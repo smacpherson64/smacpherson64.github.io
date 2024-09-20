@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html style="background-color: rgb(31, 31, 30)">
+  <head>
+    <meta charset="utf-8" />
+    <script
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+      integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script type="text/babel" data-presets="env,react,typescript" defer>
+      const input = document.getElementById("input");
+      const linkElement = document.getElementById("link");
+      const imageContainerElement = document.getElementById("images");
+      const buttons = document.getElementById("fast-icons");
+
+      const sizes = [16, 24, 32, 48, 64, 128, 256];
+
+      const emojiRanges = [
+        [128513, 128591],
+        [9986, 10160],
+        [128640, 128704],
+      ];
+
+      function expand(range) {
+        const result = [];
+        const [start, end] = range;
+        let i = start;
+
+        while (i <= end) {
+          result.push(i);
+          i++;
+        }
+
+        return result;
+      }
+
+      function encode(number) {
+        return `&#${number.toString()};`;
+      }
+
+      const emoji = emojiRanges
+        .map(expand)
+        .flat(1)
+        .forEach((number) => {
+          const button = document.createElement("button");
+          button.value = number;
+          button.setAttribute("name", "emoji");
+          button.innerHTML = encode(number);
+          buttons.appendChild(button);
+        });
+
+      function draw(size, content) {
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.font = `normal ${size * 0.9}px monospace`;
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        ctx.fillText(content, 0, 0);
+
+        return canvas;
+      }
+
+      // Create PNG ArrayBuffer from canvas.
+      function canvasToBlob(canvas, type = "image/png") {
+        return new Promise((resolve) => {
+          canvas.toBlob(resolve, type);
+        });
+      }
+
+      function blobToArrayBuffer(blob) {
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+
+          reader.addEventListener("loadend", () => {
+            resolve(new Uint8Array(reader.result));
+          });
+
+          reader.readAsArrayBuffer(blob);
+        });
+      }
+
+      function blobToUrl(blob, type = "image/png") {
+        return URL.createObjectURL(blob, type);
+      }
+
+      async function main(content) {
+        let icoSource;
+
+        imageContainerElement.innerHTML = "";
+
+        const zip = new JSZip();
+
+        for (const size of sizes) {
+          const canvas = draw(size, content);
+          const blob = await canvasToBlob(canvas);
+          const buffer = await blobToArrayBuffer(blob);
+          const src = blobToUrl(blob);
+
+          if (size === 256) {
+            icoSource = await blobToArrayBuffer(
+              await canvasToBlob(canvas, "image/vnd.microsoft.icon")
+            );
+          }
+
+          const img = document.createElement("img");
+          img.src = src;
+          img.setAttribute("style", `width: ${size}px; height: ${size}px`);
+          imageContainerElement.appendChild(img);
+
+          zip.file(`favicon_${size}.png`, buffer);
+        }
+        zip.file(`favicon.ico`, icoSource);
+
+        const zipBlob = await zip.generateAsync({ type: "blob" });
+        const zipSrc = blobToUrl(zipBlob);
+
+        linkElement.setAttribute("href", zipSrc);
+      }
+
+      let last = "🤘";
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (target.matches(`button[name="emoji"]`)) {
+          const value = String.fromCodePoint(
+            `0x${Number(target.value).toString(16)}`
+          );
+
+          document.removeEventListener("input", handler);
+
+          input.value = value;
+
+          main(value).then(() => {
+            document.addEventListener("input", handler);
+          });
+        }
+      });
+
+      function handler(event) {
+        const text = event.target?.value;
+
+        if (!text) return;
+
+        const firstChar = Array.from(text)[0];
+
+        if (last === firstChar) return;
+
+        document.removeEventListener("input", handler);
+
+        main(firstChar).then(() => {
+          document.addEventListener("input", handler);
+        });
+      }
+
+      main("🤘").then(() => {
+        document.addEventListener("input", handler);
+      });
+    </script>
+  </head>
+
+  <body
+    class="bg-gradient-to-br from-gray-950 to-slate-800 min-h-screen text-white"
+  >
+    <header class="p-8 border-b border-b-slate-800">
+      <label class="flex flex-col gap-2 w-full"
+        ><div>Emoji to generate</div>
+        <input
+          id="input"
+          class="bg-transparent text-2xl rounded ring ring-slate-800 focus:ring-blue-500"
+          value="🤘"
+      /></label>
+      <div id="fast-icons" class="grid gap-3 grid-cols-12"></div>
+    </header>
+
+    <div id="images" class="mt-8 flex flex-wrap gap-3 justify-center"></div>
+    <div class="flex justify-center">
+      <a
+        id="link"
+        class="cursor-pointer block w-[80%] text-2xl text-center text-white font-mono p-3 rounded-full bg-blue-500 hover:bg-blue-600 focus:bg-blue-600"
+        download="icons.zip"
+        >Download icons</a
+      >
+    </div>
+  </body>
+</html>

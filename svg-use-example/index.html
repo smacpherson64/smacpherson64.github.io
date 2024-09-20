@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/babel" data-presets="env,react,typescript" defer>
+      function Example() {
+        return <div>
+          <svg className="stroke-[.03rem] stroke-blue-500 fill-red-500 w-16 h-16">
+            <use href="./example.svg#circle"></use>
+          </svg>
+
+          <svg className="stroke-blue-500 fill-red-500 w-16 h-16">
+            <use href="./example.svg#square"></use>
+          </svg>
+
+          <svg className="fill-red-500 w-48 h-48">
+            <use href="./example.svg#splash"></use>
+          </svg>
+
+          <svg className="fill-blue-500 w-[500px] h-[500px]">
+            <use href="./example.svg#splash"></use>
+          </svg>
+        </div>
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<Example />);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <form
+      class="group/form p-10 bg-yellow-100 invalid:bg-red-100"
+      data-submitted
+      data-blurred
+      data-changed
+    >
+      <fieldset
+        class="group/fieldset p-10 bg-yellow-200 invalid:bg-red-200"
+        data-submitted
+        data-blurred
+        data-changed
+      >
+        <fieldset
+          class="group/field p-10 bg-yellow-300 invalid:bg-red-300 flex flex-col"
+          data-submitted
+          data-blurred
+          data-changed
+        >
+          <label
+            class="text-sm group-invalid/field:group-data-[blurred]/field:text-red-500"
+            >abcdefg</label
+          >
+          <input
+            required
+            class="invalid:data-[blurred]:bg-red-200"
+            data-changed
+          />
+          <div
+            class="invisible group-invalid/field:visible text-xs text-red-600"
+          >
+            Required
+          </div>
+        </fieldset>
+        <fieldset
+          class="group/field p-10 bg-yellow-300 invalid:bg-red-300 flex flex-col"
+          data-submitted
+          data-blurred
+          data-changed
+        >
+          <label
+            class="text-sm group-invalid/field:group-data-[blurred]/field:text-red-500"
+            >abcdefg</label
+          >
+          <input
+            required
+            class="invalid:data-[blurred]:bg-red-200"
+            data-changed
+          />
+          <div
+            class="invisible group-invalid/field:visible text-xs text-red-600"
+          >
+            Required
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <fieldset
+        class="group/field p-10 bg-yellow-300 invalid:bg-red-300 flex flex-col"
+        data-submitted
+        data-blurred
+        data-changed
+      >
+        <label
+          class="text-sm group-invalid/field:group-data-[blurred]/field:text-red-500"
+          >abcdefg</label
+        >
+        <input
+          required
+          class="invalid:data-[blurred]:bg-red-200"
+          data-changed
+        />
+        <div class="invisible group-invalid/field:visible text-xs text-red-600">
+          Required
+        </div>
+      </fieldset>
+
+      <div class="invisible group-data-[submitted]/form:visible">Sent!</div>
+      <div class="invisible group-data-[blurred]/form:visible">Blurred!</div>
+      <div class="invisible group-data-[changed]/form:visible">Changed!</div>
+    </form>
+
+    <div className="group has-[:checked]:bg-red-500 has-[:checked]:text-2xl">
+      <label><input type="checkbox" /> a quick test</label>
+      <div className="group-has-[:checked]:text-white text-gray-500">abc</div>
+    </div>
+  </body>
+</html>
