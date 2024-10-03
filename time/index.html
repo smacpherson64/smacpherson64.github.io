@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="bg-slate-700">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/styles.css" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone/babel.min.js"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="text/babel" data-presets="env,react,typescript" defer>
+        const timeSlots = Array.from({length: 48})
+
+        const timeColors = [
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+          "fill-blue-200",
+
+          "fill-orange-500",
+
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+          "fill-lime-400",
+        ]
+
+
+     
+        const text = timeSlots.map((_, i) => {
+          const x = (i * 1) + 1
+          const y = 5
+          const text = i < 36 ? i - 12 : i - 36
+          return <text key={i} x={x} y={1} className={["text-[.3px] font-mono", i < 12 || i > 35 ? "fill-gray-500" : "fill-orange-300"].filter(Boolean).join(" ") }>{text.toString()}</text>
+        })
+
+        const GMT = 13
+        const fullDay = 24
+
+        const hours = Array.from({length: 24}).map((_, i) => {
+          const x = (i * 1) + 1
+          const y = 1.5 + (i * .9) + i * .1
+
+          return <g key={i}>
+            <rect x={x} width={.1} height={.5} y={y} className={timeColors[i]} />
+            <rect x={x+fullDay - .1} width={.1} height={.5} y={y} className={timeColors[i]} />
+            <rect x={x+.05} width={fullDay-.1} height={.1} y={y + .20} className={timeColors[i]} />
+            <rect x={x+(fullDay/2)-.05} width={.1} height={.5} y={y} className='fill-white' />
+       
+          </g>
+        })
+
+        const lines = timeSlots.map((_, i) => {
+          const x = (i * 1) + 1
+          const y = 1.2
+          return <rect key={i} x={x} width={.01} height={50} y={y} className="fill-gray-300" />
+        })
+
+      function Example() {
+
+
+        return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+           {text}
+           {hours}
+           {lines}
+        </svg>
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<Example />);
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
