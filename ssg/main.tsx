@@ -12,7 +12,7 @@ import MarkdownTemplate from "./templates/markdown.tsx";
 import { renderXMLToString } from "./utils/react.tsx";
 import { info } from "./utils/console.tsx";
 
-const siteDir = "site";
+const siteDir = "docs";
 const baseUrl = "https://www.sethmac.com";
 const skippedFiles = [
   /\/private\//i,
