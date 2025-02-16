@@ -1,0 +1,58 @@
+{
+  "version": "4",
+  "specifiers": {
+    "jsr:@std/fs@*": "1.0.8",
+    "jsr:@std/path@*": "1.0.8",
+    "jsr:@std/path@^1.0.8": "1.0.8"
+  },
+  "jsr": {
+    "@std/fs@1.0.8": {
+      "integrity": "161c721b6f9400b8100a851b6f4061431c538b204bb76c501d02c508995cffe0",
+      "dependencies": [
+        "jsr:@std/path@^1.0.8"
+      ]
+    },
+    "@std/path@1.0.8": {
+      "integrity": "548fa456bb6a04d3c1a1e7477986b6cffbce95102d0bb447c67c4ee70e0364be"
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@types/react@*",
+      "npm:react@*"
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@eslint/js@^9.20.0",
+        "npm:@jsr/std__media-types@^1.1.0",
+        "npm:@sinclair/typebox@~0.34.25",
+        "npm:@tailwindcss/cli@^4.0.6",
+        "npm:@types/react@^19.0.9",
+        "npm:concurrently@^9.1.2",
+        "npm:date-fns@^4.1.0",
+        "npm:esbuild@0.25.0",
+        "npm:eslint-plugin-react@^7.37.4",
+        "npm:eslint@^9.20.1",
+        "npm:globals@^15.15.0",
+        "npm:jszip@^3.10.1",
+        "npm:react-dom@19",
+        "npm:react@19",
+        "npm:remark-directive@^3.0.1",
+        "npm:remark-frontmatter@5",
+        "npm:remark-gfm@^4.0.1",
+        "npm:remark-github-admonitions-to-directives@^2.1.0",
+        "npm:remark-html@^16.0.1",
+        "npm:remark-math@6",
+        "npm:remark-parse-frontmatter@^1.0.3",
+        "npm:remark-parse@11",
+        "npm:remark-prism@^1.3.6",
+        "npm:remark@^15.0.1",
+        "npm:tailwind-merge@^3.0.1",
+        "npm:tailwindcss@^4.0.6",
+        "npm:typescript-eslint@^8.24.0",
+        "npm:typescript@^5.7.3",
+        "npm:unified@^11.0.5"
+      ]
+    }
+  }
+}

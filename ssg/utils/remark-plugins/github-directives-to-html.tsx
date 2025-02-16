@@ -1,0 +1,18 @@
+import { visit } from "npm:unist-util-visit";
+
+export function githubDirectivesToHtml() {
+  return (
+    tree: import("npm:mdast").Root,
+    file: import("npm:vfile").VFile
+  ): undefined => {
+    visit(tree, function (node) {
+      if (node.type === "containerDirective") {
+        const data = node.data || (node.data = {});
+        data.hName = "blockquote";
+        data.hProperties = {
+          class: [node.name].filter(Boolean).join(" ").toLocaleLowerCase(),
+        };
+      }
+    });
+  };
+}

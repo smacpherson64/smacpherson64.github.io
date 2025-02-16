@@ -1,0 +1,46 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.25",
+    "@std/media-types": "npm:@jsr/std__media-types@^1.1.0",
+    "@tailwindcss/cli": "^4.0.6",
+    "concurrently": "^9.1.2",
+    "date-fns": "^4.1.0",
+    "esbuild": "0.25.0",
+    "jszip": "^3.10.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-directive": "^3.0.1",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-github-admonitions-to-directives": "^2.1.0",
+    "remark-html": "^16.0.1",
+    "remark-math": "^6.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-parse-frontmatter": "^1.0.3",
+    "remark-prism": "^1.3.6",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss": "^4.0.6",
+    "typescript": "^5.7.3",
+    "unified": "^11.0.5"
+  },
+  "scripts": {
+    "init": "tsx --init",
+    "start": "serve ./site",
+    "build:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./site/styles.css",
+    "build:client": "./node_modules/.bin/esbuild './src/**/*.client.tsx' --bundle --outdir=site --outbase=./src --format=esm",
+    "build:pages": "deno -RWE ./ssg/main.tsx",
+    "build:pages:watch": "deno -RWE --watch ./ssg/main.tsx",
+    "build": "npx concurrently 'npm run build:pages' 'npm run build:css' 'npm run build:client'",
+    "dev": "npx concurrently 'npm run build:client -- --watch' 'npm run build:css -- --watch' 'npm run build:pages:watch' 'npm run start'"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@types/react": "^19.0.9",
+    "eslint": "^9.20.1",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^15.15.0",
+    "typescript-eslint": "^8.24.0"
+  }
+}
