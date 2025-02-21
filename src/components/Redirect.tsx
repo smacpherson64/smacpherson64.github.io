@@ -1,4 +1,4 @@
-export default function Page() {
+export function Redirect({ url }: { url: string }) {
   return (
     <html
       style={{ backgroundColor: "rgb(31, 31, 30)" }}
@@ -8,12 +8,15 @@ export default function Page() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>ico generator | sethmac.com</title>
+        <title>{`Redirecting to ${url}`}</title>
+        <meta httpEquiv="refresh" content={`0; URL=${url}`} />
+        <link rel="canonical" href={url} />
         <link rel="stylesheet" href="/styles.css" />
-        <script src="./ico.client.js" defer async />
       </head>
 
-      <body className="bg-gradient-to-br from-gray-950 to-slate-800 min-h-screen text-white" />
+      <body>
+        Redirecting to <a href={url}>{url}</a>
+      </body>
     </html>
   );
 }

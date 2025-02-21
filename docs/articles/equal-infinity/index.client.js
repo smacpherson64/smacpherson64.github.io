@@ -4,14 +4,8 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined") return require.apply(this, arguments);
-  throw Error('Dynamic require of "' + x + '" is not supported');
-});
-var __commonJS = (cb, mod) => function __require2() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+var __commonJS = (cb, mod2) => function __require() {
+  return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
 };
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
@@ -21,2378 +15,292 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
   // If the importer is in node compatibility mode or this is not an ESM
   // file that has been converted to a CommonJS file using a Babel-
   // compatible transform (i.e. "__esModule" has not been set), then set
   // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
+  isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
+  mod2
 ));
 
-// node_modules/jszip/dist/jszip.min.js
-var require_jszip_min = __commonJS({
-  "node_modules/jszip/dist/jszip.min.js"(exports, module) {
-    !function(e) {
-      if ("object" == typeof exports && "undefined" != typeof module) module.exports = e();
-      else if ("function" == typeof define && define.amd) define([], e);
-      else {
-        ("undefined" != typeof window ? window : "undefined" != typeof global ? global : "undefined" != typeof self ? self : this).JSZip = e();
-      }
-    }(function() {
-      return function s(a, o, h) {
-        function u(r, e2) {
-          if (!o[r]) {
-            if (!a[r]) {
-              var t = "function" == typeof __require && __require;
-              if (!e2 && t) return t(r, true);
-              if (l) return l(r, true);
-              var n = new Error("Cannot find module '" + r + "'");
-              throw n.code = "MODULE_NOT_FOUND", n;
-            }
-            var i = o[r] = { exports: {} };
-            a[r][0].call(i.exports, function(e3) {
-              var t2 = a[r][1][e3];
-              return u(t2 || e3);
-            }, i, i.exports, s, a, o, h);
-          }
-          return o[r].exports;
-        }
-        for (var l = "function" == typeof __require && __require, e = 0; e < h.length; e++) u(h[e]);
-        return u;
-      }({ 1: [function(e, t, r) {
-        "use strict";
-        var d = e("./utils"), c = e("./support"), p = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-        r.encode = function(e2) {
-          for (var t2, r2, n, i, s, a, o, h = [], u = 0, l = e2.length, f = l, c2 = "string" !== d.getTypeOf(e2); u < e2.length; ) f = l - u, n = c2 ? (t2 = e2[u++], r2 = u < l ? e2[u++] : 0, u < l ? e2[u++] : 0) : (t2 = e2.charCodeAt(u++), r2 = u < l ? e2.charCodeAt(u++) : 0, u < l ? e2.charCodeAt(u++) : 0), i = t2 >> 2, s = (3 & t2) << 4 | r2 >> 4, a = 1 < f ? (15 & r2) << 2 | n >> 6 : 64, o = 2 < f ? 63 & n : 64, h.push(p.charAt(i) + p.charAt(s) + p.charAt(a) + p.charAt(o));
-          return h.join("");
-        }, r.decode = function(e2) {
-          var t2, r2, n, i, s, a, o = 0, h = 0, u = "data:";
-          if (e2.substr(0, u.length) === u) throw new Error("Invalid base64 input, it looks like a data url.");
-          var l, f = 3 * (e2 = e2.replace(/[^A-Za-z0-9+/=]/g, "")).length / 4;
-          if (e2.charAt(e2.length - 1) === p.charAt(64) && f--, e2.charAt(e2.length - 2) === p.charAt(64) && f--, f % 1 != 0) throw new Error("Invalid base64 input, bad content length.");
-          for (l = c.uint8array ? new Uint8Array(0 | f) : new Array(0 | f); o < e2.length; ) t2 = p.indexOf(e2.charAt(o++)) << 2 | (i = p.indexOf(e2.charAt(o++))) >> 4, r2 = (15 & i) << 4 | (s = p.indexOf(e2.charAt(o++))) >> 2, n = (3 & s) << 6 | (a = p.indexOf(e2.charAt(o++))), l[h++] = t2, 64 !== s && (l[h++] = r2), 64 !== a && (l[h++] = n);
-          return l;
-        };
-      }, { "./support": 30, "./utils": 32 }], 2: [function(e, t, r) {
-        "use strict";
-        var n = e("./external"), i = e("./stream/DataWorker"), s = e("./stream/Crc32Probe"), a = e("./stream/DataLengthProbe");
-        function o(e2, t2, r2, n2, i2) {
-          this.compressedSize = e2, this.uncompressedSize = t2, this.crc32 = r2, this.compression = n2, this.compressedContent = i2;
-        }
-        o.prototype = { getContentWorker: function() {
-          var e2 = new i(n.Promise.resolve(this.compressedContent)).pipe(this.compression.uncompressWorker()).pipe(new a("data_length")), t2 = this;
-          return e2.on("end", function() {
-            if (this.streamInfo.data_length !== t2.uncompressedSize) throw new Error("Bug : uncompressed data size mismatch");
-          }), e2;
-        }, getCompressedWorker: function() {
-          return new i(n.Promise.resolve(this.compressedContent)).withStreamInfo("compressedSize", this.compressedSize).withStreamInfo("uncompressedSize", this.uncompressedSize).withStreamInfo("crc32", this.crc32).withStreamInfo("compression", this.compression);
-        } }, o.createWorkerFrom = function(e2, t2, r2) {
-          return e2.pipe(new s()).pipe(new a("uncompressedSize")).pipe(t2.compressWorker(r2)).pipe(new a("compressedSize")).withStreamInfo("compression", t2);
-        }, t.exports = o;
-      }, { "./external": 6, "./stream/Crc32Probe": 25, "./stream/DataLengthProbe": 26, "./stream/DataWorker": 27 }], 3: [function(e, t, r) {
-        "use strict";
-        var n = e("./stream/GenericWorker");
-        r.STORE = { magic: "\0\0", compressWorker: function() {
-          return new n("STORE compression");
-        }, uncompressWorker: function() {
-          return new n("STORE decompression");
-        } }, r.DEFLATE = e("./flate");
-      }, { "./flate": 7, "./stream/GenericWorker": 28 }], 4: [function(e, t, r) {
-        "use strict";
-        var n = e("./utils");
-        var o = function() {
-          for (var e2, t2 = [], r2 = 0; r2 < 256; r2++) {
-            e2 = r2;
-            for (var n2 = 0; n2 < 8; n2++) e2 = 1 & e2 ? 3988292384 ^ e2 >>> 1 : e2 >>> 1;
-            t2[r2] = e2;
-          }
-          return t2;
-        }();
-        t.exports = function(e2, t2) {
-          return void 0 !== e2 && e2.length ? "string" !== n.getTypeOf(e2) ? function(e3, t3, r2, n2) {
-            var i = o, s = n2 + r2;
-            e3 ^= -1;
-            for (var a = n2; a < s; a++) e3 = e3 >>> 8 ^ i[255 & (e3 ^ t3[a])];
-            return -1 ^ e3;
-          }(0 | t2, e2, e2.length, 0) : function(e3, t3, r2, n2) {
-            var i = o, s = n2 + r2;
-            e3 ^= -1;
-            for (var a = n2; a < s; a++) e3 = e3 >>> 8 ^ i[255 & (e3 ^ t3.charCodeAt(a))];
-            return -1 ^ e3;
-          }(0 | t2, e2, e2.length, 0) : 0;
-        };
-      }, { "./utils": 32 }], 5: [function(e, t, r) {
-        "use strict";
-        r.base64 = false, r.binary = false, r.dir = false, r.createFolders = true, r.date = null, r.compression = null, r.compressionOptions = null, r.comment = null, r.unixPermissions = null, r.dosPermissions = null;
-      }, {}], 6: [function(e, t, r) {
-        "use strict";
-        var n = null;
-        n = "undefined" != typeof Promise ? Promise : e("lie"), t.exports = { Promise: n };
-      }, { lie: 37 }], 7: [function(e, t, r) {
-        "use strict";
-        var n = "undefined" != typeof Uint8Array && "undefined" != typeof Uint16Array && "undefined" != typeof Uint32Array, i = e("pako"), s = e("./utils"), a = e("./stream/GenericWorker"), o = n ? "uint8array" : "array";
-        function h(e2, t2) {
-          a.call(this, "FlateWorker/" + e2), this._pako = null, this._pakoAction = e2, this._pakoOptions = t2, this.meta = {};
-        }
-        r.magic = "\b\0", s.inherits(h, a), h.prototype.processChunk = function(e2) {
-          this.meta = e2.meta, null === this._pako && this._createPako(), this._pako.push(s.transformTo(o, e2.data), false);
-        }, h.prototype.flush = function() {
-          a.prototype.flush.call(this), null === this._pako && this._createPako(), this._pako.push([], true);
-        }, h.prototype.cleanUp = function() {
-          a.prototype.cleanUp.call(this), this._pako = null;
-        }, h.prototype._createPako = function() {
-          this._pako = new i[this._pakoAction]({ raw: true, level: this._pakoOptions.level || -1 });
-          var t2 = this;
-          this._pako.onData = function(e2) {
-            t2.push({ data: e2, meta: t2.meta });
-          };
-        }, r.compressWorker = function(e2) {
-          return new h("Deflate", e2);
-        }, r.uncompressWorker = function() {
-          return new h("Inflate", {});
-        };
-      }, { "./stream/GenericWorker": 28, "./utils": 32, pako: 38 }], 8: [function(e, t, r) {
-        "use strict";
-        function A(e2, t2) {
-          var r2, n2 = "";
-          for (r2 = 0; r2 < t2; r2++) n2 += String.fromCharCode(255 & e2), e2 >>>= 8;
-          return n2;
-        }
-        function n(e2, t2, r2, n2, i2, s2) {
-          var a, o, h = e2.file, u = e2.compression, l = s2 !== O.utf8encode, f = I.transformTo("string", s2(h.name)), c = I.transformTo("string", O.utf8encode(h.name)), d = h.comment, p = I.transformTo("string", s2(d)), m = I.transformTo("string", O.utf8encode(d)), _ = c.length !== h.name.length, g = m.length !== d.length, b = "", v = "", y = "", w = h.dir, k = h.date, x = { crc32: 0, compressedSize: 0, uncompressedSize: 0 };
-          t2 && !r2 || (x.crc32 = e2.crc32, x.compressedSize = e2.compressedSize, x.uncompressedSize = e2.uncompressedSize);
-          var S = 0;
-          t2 && (S |= 8), l || !_ && !g || (S |= 2048);
-          var z = 0, C = 0;
-          w && (z |= 16), "UNIX" === i2 ? (C = 798, z |= function(e3, t3) {
-            var r3 = e3;
-            return e3 || (r3 = t3 ? 16893 : 33204), (65535 & r3) << 16;
-          }(h.unixPermissions, w)) : (C = 20, z |= function(e3) {
-            return 63 & (e3 || 0);
-          }(h.dosPermissions)), a = k.getUTCHours(), a <<= 6, a |= k.getUTCMinutes(), a <<= 5, a |= k.getUTCSeconds() / 2, o = k.getUTCFullYear() - 1980, o <<= 4, o |= k.getUTCMonth() + 1, o <<= 5, o |= k.getUTCDate(), _ && (v = A(1, 1) + A(B(f), 4) + c, b += "up" + A(v.length, 2) + v), g && (y = A(1, 1) + A(B(p), 4) + m, b += "uc" + A(y.length, 2) + y);
-          var E = "";
-          return E += "\n\0", E += A(S, 2), E += u.magic, E += A(a, 2), E += A(o, 2), E += A(x.crc32, 4), E += A(x.compressedSize, 4), E += A(x.uncompressedSize, 4), E += A(f.length, 2), E += A(b.length, 2), { fileRecord: R.LOCAL_FILE_HEADER + E + f + b, dirRecord: R.CENTRAL_FILE_HEADER + A(C, 2) + E + A(p.length, 2) + "\0\0\0\0" + A(z, 4) + A(n2, 4) + f + b + p };
-        }
-        var I = e("../utils"), i = e("../stream/GenericWorker"), O = e("../utf8"), B = e("../crc32"), R = e("../signature");
-        function s(e2, t2, r2, n2) {
-          i.call(this, "ZipFileWorker"), this.bytesWritten = 0, this.zipComment = t2, this.zipPlatform = r2, this.encodeFileName = n2, this.streamFiles = e2, this.accumulate = false, this.contentBuffer = [], this.dirRecords = [], this.currentSourceOffset = 0, this.entriesCount = 0, this.currentFile = null, this._sources = [];
-        }
-        I.inherits(s, i), s.prototype.push = function(e2) {
-          var t2 = e2.meta.percent || 0, r2 = this.entriesCount, n2 = this._sources.length;
-          this.accumulate ? this.contentBuffer.push(e2) : (this.bytesWritten += e2.data.length, i.prototype.push.call(this, { data: e2.data, meta: { currentFile: this.currentFile, percent: r2 ? (t2 + 100 * (r2 - n2 - 1)) / r2 : 100 } }));
-        }, s.prototype.openedSource = function(e2) {
-          this.currentSourceOffset = this.bytesWritten, this.currentFile = e2.file.name;
-          var t2 = this.streamFiles && !e2.file.dir;
-          if (t2) {
-            var r2 = n(e2, t2, false, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
-            this.push({ data: r2.fileRecord, meta: { percent: 0 } });
-          } else this.accumulate = true;
-        }, s.prototype.closedSource = function(e2) {
-          this.accumulate = false;
-          var t2 = this.streamFiles && !e2.file.dir, r2 = n(e2, t2, true, this.currentSourceOffset, this.zipPlatform, this.encodeFileName);
-          if (this.dirRecords.push(r2.dirRecord), t2) this.push({ data: function(e3) {
-            return R.DATA_DESCRIPTOR + A(e3.crc32, 4) + A(e3.compressedSize, 4) + A(e3.uncompressedSize, 4);
-          }(e2), meta: { percent: 100 } });
-          else for (this.push({ data: r2.fileRecord, meta: { percent: 0 } }); this.contentBuffer.length; ) this.push(this.contentBuffer.shift());
-          this.currentFile = null;
-        }, s.prototype.flush = function() {
-          for (var e2 = this.bytesWritten, t2 = 0; t2 < this.dirRecords.length; t2++) this.push({ data: this.dirRecords[t2], meta: { percent: 100 } });
-          var r2 = this.bytesWritten - e2, n2 = function(e3, t3, r3, n3, i2) {
-            var s2 = I.transformTo("string", i2(n3));
-            return R.CENTRAL_DIRECTORY_END + "\0\0\0\0" + A(e3, 2) + A(e3, 2) + A(t3, 4) + A(r3, 4) + A(s2.length, 2) + s2;
-          }(this.dirRecords.length, r2, e2, this.zipComment, this.encodeFileName);
-          this.push({ data: n2, meta: { percent: 100 } });
-        }, s.prototype.prepareNextSource = function() {
-          this.previous = this._sources.shift(), this.openedSource(this.previous.streamInfo), this.isPaused ? this.previous.pause() : this.previous.resume();
-        }, s.prototype.registerPrevious = function(e2) {
-          this._sources.push(e2);
-          var t2 = this;
-          return e2.on("data", function(e3) {
-            t2.processChunk(e3);
-          }), e2.on("end", function() {
-            t2.closedSource(t2.previous.streamInfo), t2._sources.length ? t2.prepareNextSource() : t2.end();
-          }), e2.on("error", function(e3) {
-            t2.error(e3);
-          }), this;
-        }, s.prototype.resume = function() {
-          return !!i.prototype.resume.call(this) && (!this.previous && this._sources.length ? (this.prepareNextSource(), true) : this.previous || this._sources.length || this.generatedError ? void 0 : (this.end(), true));
-        }, s.prototype.error = function(e2) {
-          var t2 = this._sources;
-          if (!i.prototype.error.call(this, e2)) return false;
-          for (var r2 = 0; r2 < t2.length; r2++) try {
-            t2[r2].error(e2);
-          } catch (e3) {
-          }
-          return true;
-        }, s.prototype.lock = function() {
-          i.prototype.lock.call(this);
-          for (var e2 = this._sources, t2 = 0; t2 < e2.length; t2++) e2[t2].lock();
-        }, t.exports = s;
-      }, { "../crc32": 4, "../signature": 23, "../stream/GenericWorker": 28, "../utf8": 31, "../utils": 32 }], 9: [function(e, t, r) {
-        "use strict";
-        var u = e("../compressions"), n = e("./ZipFileWorker");
-        r.generateWorker = function(e2, a, t2) {
-          var o = new n(a.streamFiles, t2, a.platform, a.encodeFileName), h = 0;
+// node_modules/scheduler/cjs/scheduler.development.js
+var require_scheduler_development = __commonJS({
+  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+    "use strict";
+    (function() {
+      function performWorkUntilDeadline() {
+        if (isMessageLoopRunning) {
+          var currentTime = exports.unstable_now();
+          startTime = currentTime;
+          var hasMoreWork = true;
           try {
-            e2.forEach(function(e3, t3) {
-              h++;
-              var r2 = function(e4, t4) {
-                var r3 = e4 || t4, n3 = u[r3];
-                if (!n3) throw new Error(r3 + " is not a valid compression method !");
-                return n3;
-              }(t3.options.compression, a.compression), n2 = t3.options.compressionOptions || a.compressionOptions || {}, i = t3.dir, s = t3.date;
-              t3._compressWorker(r2, n2).withStreamInfo("file", { name: e3, dir: i, date: s, comment: t3.comment || "", unixPermissions: t3.unixPermissions, dosPermissions: t3.dosPermissions }).pipe(o);
-            }), o.entriesCount = h;
-          } catch (e3) {
-            o.error(e3);
-          }
-          return o;
-        };
-      }, { "../compressions": 3, "./ZipFileWorker": 8 }], 10: [function(e, t, r) {
-        "use strict";
-        function n() {
-          if (!(this instanceof n)) return new n();
-          if (arguments.length) throw new Error("The constructor with parameters has been removed in JSZip 3.0, please check the upgrade guide.");
-          this.files = /* @__PURE__ */ Object.create(null), this.comment = null, this.root = "", this.clone = function() {
-            var e2 = new n();
-            for (var t2 in this) "function" != typeof this[t2] && (e2[t2] = this[t2]);
-            return e2;
-          };
-        }
-        (n.prototype = e("./object")).loadAsync = e("./load"), n.support = e("./support"), n.defaults = e("./defaults"), n.version = "3.10.1", n.loadAsync = function(e2, t2) {
-          return new n().loadAsync(e2, t2);
-        }, n.external = e("./external"), t.exports = n;
-      }, { "./defaults": 5, "./external": 6, "./load": 11, "./object": 15, "./support": 30 }], 11: [function(e, t, r) {
-        "use strict";
-        var u = e("./utils"), i = e("./external"), n = e("./utf8"), s = e("./zipEntries"), a = e("./stream/Crc32Probe"), l = e("./nodejsUtils");
-        function f(n2) {
-          return new i.Promise(function(e2, t2) {
-            var r2 = n2.decompressed.getContentWorker().pipe(new a());
-            r2.on("error", function(e3) {
-              t2(e3);
-            }).on("end", function() {
-              r2.streamInfo.crc32 !== n2.decompressed.crc32 ? t2(new Error("Corrupted zip : CRC32 mismatch")) : e2();
-            }).resume();
-          });
-        }
-        t.exports = function(e2, o) {
-          var h = this;
-          return o = u.extend(o || {}, { base64: false, checkCRC32: false, optimizedBinaryString: false, createFolders: false, decodeFileName: n.utf8decode }), l.isNode && l.isStream(e2) ? i.Promise.reject(new Error("JSZip can't accept a stream when loading a zip file.")) : u.prepareContent("the loaded zip file", e2, true, o.optimizedBinaryString, o.base64).then(function(e3) {
-            var t2 = new s(o);
-            return t2.load(e3), t2;
-          }).then(function(e3) {
-            var t2 = [i.Promise.resolve(e3)], r2 = e3.files;
-            if (o.checkCRC32) for (var n2 = 0; n2 < r2.length; n2++) t2.push(f(r2[n2]));
-            return i.Promise.all(t2);
-          }).then(function(e3) {
-            for (var t2 = e3.shift(), r2 = t2.files, n2 = 0; n2 < r2.length; n2++) {
-              var i2 = r2[n2], s2 = i2.fileNameStr, a2 = u.resolve(i2.fileNameStr);
-              h.file(a2, i2.decompressed, { binary: true, optimizedBinaryString: true, date: i2.date, dir: i2.dir, comment: i2.fileCommentStr.length ? i2.fileCommentStr : null, unixPermissions: i2.unixPermissions, dosPermissions: i2.dosPermissions, createFolders: o.createFolders }), i2.dir || (h.file(a2).unsafeOriginalName = s2);
-            }
-            return t2.zipComment.length && (h.comment = t2.zipComment), h;
-          });
-        };
-      }, { "./external": 6, "./nodejsUtils": 14, "./stream/Crc32Probe": 25, "./utf8": 31, "./utils": 32, "./zipEntries": 33 }], 12: [function(e, t, r) {
-        "use strict";
-        var n = e("../utils"), i = e("../stream/GenericWorker");
-        function s(e2, t2) {
-          i.call(this, "Nodejs stream input adapter for " + e2), this._upstreamEnded = false, this._bindStream(t2);
-        }
-        n.inherits(s, i), s.prototype._bindStream = function(e2) {
-          var t2 = this;
-          (this._stream = e2).pause(), e2.on("data", function(e3) {
-            t2.push({ data: e3, meta: { percent: 0 } });
-          }).on("error", function(e3) {
-            t2.isPaused ? this.generatedError = e3 : t2.error(e3);
-          }).on("end", function() {
-            t2.isPaused ? t2._upstreamEnded = true : t2.end();
-          });
-        }, s.prototype.pause = function() {
-          return !!i.prototype.pause.call(this) && (this._stream.pause(), true);
-        }, s.prototype.resume = function() {
-          return !!i.prototype.resume.call(this) && (this._upstreamEnded ? this.end() : this._stream.resume(), true);
-        }, t.exports = s;
-      }, { "../stream/GenericWorker": 28, "../utils": 32 }], 13: [function(e, t, r) {
-        "use strict";
-        var i = e("readable-stream").Readable;
-        function n(e2, t2, r2) {
-          i.call(this, t2), this._helper = e2;
-          var n2 = this;
-          e2.on("data", function(e3, t3) {
-            n2.push(e3) || n2._helper.pause(), r2 && r2(t3);
-          }).on("error", function(e3) {
-            n2.emit("error", e3);
-          }).on("end", function() {
-            n2.push(null);
-          });
-        }
-        e("../utils").inherits(n, i), n.prototype._read = function() {
-          this._helper.resume();
-        }, t.exports = n;
-      }, { "../utils": 32, "readable-stream": 16 }], 14: [function(e, t, r) {
-        "use strict";
-        t.exports = { isNode: "undefined" != typeof Buffer, newBufferFrom: function(e2, t2) {
-          if (Buffer.from && Buffer.from !== Uint8Array.from) return Buffer.from(e2, t2);
-          if ("number" == typeof e2) throw new Error('The "data" argument must not be a number');
-          return new Buffer(e2, t2);
-        }, allocBuffer: function(e2) {
-          if (Buffer.alloc) return Buffer.alloc(e2);
-          var t2 = new Buffer(e2);
-          return t2.fill(0), t2;
-        }, isBuffer: function(e2) {
-          return Buffer.isBuffer(e2);
-        }, isStream: function(e2) {
-          return e2 && "function" == typeof e2.on && "function" == typeof e2.pause && "function" == typeof e2.resume;
-        } };
-      }, {}], 15: [function(e, t, r) {
-        "use strict";
-        function s(e2, t2, r2) {
-          var n2, i2 = u.getTypeOf(t2), s2 = u.extend(r2 || {}, f);
-          s2.date = s2.date || /* @__PURE__ */ new Date(), null !== s2.compression && (s2.compression = s2.compression.toUpperCase()), "string" == typeof s2.unixPermissions && (s2.unixPermissions = parseInt(s2.unixPermissions, 8)), s2.unixPermissions && 16384 & s2.unixPermissions && (s2.dir = true), s2.dosPermissions && 16 & s2.dosPermissions && (s2.dir = true), s2.dir && (e2 = g(e2)), s2.createFolders && (n2 = _(e2)) && b.call(this, n2, true);
-          var a2 = "string" === i2 && false === s2.binary && false === s2.base64;
-          r2 && void 0 !== r2.binary || (s2.binary = !a2), (t2 instanceof c && 0 === t2.uncompressedSize || s2.dir || !t2 || 0 === t2.length) && (s2.base64 = false, s2.binary = true, t2 = "", s2.compression = "STORE", i2 = "string");
-          var o2 = null;
-          o2 = t2 instanceof c || t2 instanceof l ? t2 : p.isNode && p.isStream(t2) ? new m(e2, t2) : u.prepareContent(e2, t2, s2.binary, s2.optimizedBinaryString, s2.base64);
-          var h2 = new d(e2, o2, s2);
-          this.files[e2] = h2;
-        }
-        var i = e("./utf8"), u = e("./utils"), l = e("./stream/GenericWorker"), a = e("./stream/StreamHelper"), f = e("./defaults"), c = e("./compressedObject"), d = e("./zipObject"), o = e("./generate"), p = e("./nodejsUtils"), m = e("./nodejs/NodejsStreamInputAdapter"), _ = function(e2) {
-          "/" === e2.slice(-1) && (e2 = e2.substring(0, e2.length - 1));
-          var t2 = e2.lastIndexOf("/");
-          return 0 < t2 ? e2.substring(0, t2) : "";
-        }, g = function(e2) {
-          return "/" !== e2.slice(-1) && (e2 += "/"), e2;
-        }, b = function(e2, t2) {
-          return t2 = void 0 !== t2 ? t2 : f.createFolders, e2 = g(e2), this.files[e2] || s.call(this, e2, null, { dir: true, createFolders: t2 }), this.files[e2];
-        };
-        function h(e2) {
-          return "[object RegExp]" === Object.prototype.toString.call(e2);
-        }
-        var n = { load: function() {
-          throw new Error("This method has been removed in JSZip 3.0, please check the upgrade guide.");
-        }, forEach: function(e2) {
-          var t2, r2, n2;
-          for (t2 in this.files) n2 = this.files[t2], (r2 = t2.slice(this.root.length, t2.length)) && t2.slice(0, this.root.length) === this.root && e2(r2, n2);
-        }, filter: function(r2) {
-          var n2 = [];
-          return this.forEach(function(e2, t2) {
-            r2(e2, t2) && n2.push(t2);
-          }), n2;
-        }, file: function(e2, t2, r2) {
-          if (1 !== arguments.length) return e2 = this.root + e2, s.call(this, e2, t2, r2), this;
-          if (h(e2)) {
-            var n2 = e2;
-            return this.filter(function(e3, t3) {
-              return !t3.dir && n2.test(e3);
-            });
-          }
-          var i2 = this.files[this.root + e2];
-          return i2 && !i2.dir ? i2 : null;
-        }, folder: function(r2) {
-          if (!r2) return this;
-          if (h(r2)) return this.filter(function(e3, t3) {
-            return t3.dir && r2.test(e3);
-          });
-          var e2 = this.root + r2, t2 = b.call(this, e2), n2 = this.clone();
-          return n2.root = t2.name, n2;
-        }, remove: function(r2) {
-          r2 = this.root + r2;
-          var e2 = this.files[r2];
-          if (e2 || ("/" !== r2.slice(-1) && (r2 += "/"), e2 = this.files[r2]), e2 && !e2.dir) delete this.files[r2];
-          else for (var t2 = this.filter(function(e3, t3) {
-            return t3.name.slice(0, r2.length) === r2;
-          }), n2 = 0; n2 < t2.length; n2++) delete this.files[t2[n2].name];
-          return this;
-        }, generate: function() {
-          throw new Error("This method has been removed in JSZip 3.0, please check the upgrade guide.");
-        }, generateInternalStream: function(e2) {
-          var t2, r2 = {};
-          try {
-            if ((r2 = u.extend(e2 || {}, { streamFiles: false, compression: "STORE", compressionOptions: null, type: "", platform: "DOS", comment: null, mimeType: "application/zip", encodeFileName: i.utf8encode })).type = r2.type.toLowerCase(), r2.compression = r2.compression.toUpperCase(), "binarystring" === r2.type && (r2.type = "string"), !r2.type) throw new Error("No output type specified.");
-            u.checkSupport(r2.type), "darwin" !== r2.platform && "freebsd" !== r2.platform && "linux" !== r2.platform && "sunos" !== r2.platform || (r2.platform = "UNIX"), "win32" === r2.platform && (r2.platform = "DOS");
-            var n2 = r2.comment || this.comment || "";
-            t2 = o.generateWorker(this, r2, n2);
-          } catch (e3) {
-            (t2 = new l("error")).error(e3);
-          }
-          return new a(t2, r2.type || "string", r2.mimeType);
-        }, generateAsync: function(e2, t2) {
-          return this.generateInternalStream(e2).accumulate(t2);
-        }, generateNodeStream: function(e2, t2) {
-          return (e2 = e2 || {}).type || (e2.type = "nodebuffer"), this.generateInternalStream(e2).toNodejsStream(t2);
-        } };
-        t.exports = n;
-      }, { "./compressedObject": 2, "./defaults": 5, "./generate": 9, "./nodejs/NodejsStreamInputAdapter": 12, "./nodejsUtils": 14, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31, "./utils": 32, "./zipObject": 35 }], 16: [function(e, t, r) {
-        "use strict";
-        t.exports = e("stream");
-      }, { stream: void 0 }], 17: [function(e, t, r) {
-        "use strict";
-        var n = e("./DataReader");
-        function i(e2) {
-          n.call(this, e2);
-          for (var t2 = 0; t2 < this.data.length; t2++) e2[t2] = 255 & e2[t2];
-        }
-        e("../utils").inherits(i, n), i.prototype.byteAt = function(e2) {
-          return this.data[this.zero + e2];
-        }, i.prototype.lastIndexOfSignature = function(e2) {
-          for (var t2 = e2.charCodeAt(0), r2 = e2.charCodeAt(1), n2 = e2.charCodeAt(2), i2 = e2.charCodeAt(3), s = this.length - 4; 0 <= s; --s) if (this.data[s] === t2 && this.data[s + 1] === r2 && this.data[s + 2] === n2 && this.data[s + 3] === i2) return s - this.zero;
-          return -1;
-        }, i.prototype.readAndCheckSignature = function(e2) {
-          var t2 = e2.charCodeAt(0), r2 = e2.charCodeAt(1), n2 = e2.charCodeAt(2), i2 = e2.charCodeAt(3), s = this.readData(4);
-          return t2 === s[0] && r2 === s[1] && n2 === s[2] && i2 === s[3];
-        }, i.prototype.readData = function(e2) {
-          if (this.checkOffset(e2), 0 === e2) return [];
-          var t2 = this.data.slice(this.zero + this.index, this.zero + this.index + e2);
-          return this.index += e2, t2;
-        }, t.exports = i;
-      }, { "../utils": 32, "./DataReader": 18 }], 18: [function(e, t, r) {
-        "use strict";
-        var n = e("../utils");
-        function i(e2) {
-          this.data = e2, this.length = e2.length, this.index = 0, this.zero = 0;
-        }
-        i.prototype = { checkOffset: function(e2) {
-          this.checkIndex(this.index + e2);
-        }, checkIndex: function(e2) {
-          if (this.length < this.zero + e2 || e2 < 0) throw new Error("End of data reached (data length = " + this.length + ", asked index = " + e2 + "). Corrupted zip ?");
-        }, setIndex: function(e2) {
-          this.checkIndex(e2), this.index = e2;
-        }, skip: function(e2) {
-          this.setIndex(this.index + e2);
-        }, byteAt: function() {
-        }, readInt: function(e2) {
-          var t2, r2 = 0;
-          for (this.checkOffset(e2), t2 = this.index + e2 - 1; t2 >= this.index; t2--) r2 = (r2 << 8) + this.byteAt(t2);
-          return this.index += e2, r2;
-        }, readString: function(e2) {
-          return n.transformTo("string", this.readData(e2));
-        }, readData: function() {
-        }, lastIndexOfSignature: function() {
-        }, readAndCheckSignature: function() {
-        }, readDate: function() {
-          var e2 = this.readInt(4);
-          return new Date(Date.UTC(1980 + (e2 >> 25 & 127), (e2 >> 21 & 15) - 1, e2 >> 16 & 31, e2 >> 11 & 31, e2 >> 5 & 63, (31 & e2) << 1));
-        } }, t.exports = i;
-      }, { "../utils": 32 }], 19: [function(e, t, r) {
-        "use strict";
-        var n = e("./Uint8ArrayReader");
-        function i(e2) {
-          n.call(this, e2);
-        }
-        e("../utils").inherits(i, n), i.prototype.readData = function(e2) {
-          this.checkOffset(e2);
-          var t2 = this.data.slice(this.zero + this.index, this.zero + this.index + e2);
-          return this.index += e2, t2;
-        }, t.exports = i;
-      }, { "../utils": 32, "./Uint8ArrayReader": 21 }], 20: [function(e, t, r) {
-        "use strict";
-        var n = e("./DataReader");
-        function i(e2) {
-          n.call(this, e2);
-        }
-        e("../utils").inherits(i, n), i.prototype.byteAt = function(e2) {
-          return this.data.charCodeAt(this.zero + e2);
-        }, i.prototype.lastIndexOfSignature = function(e2) {
-          return this.data.lastIndexOf(e2) - this.zero;
-        }, i.prototype.readAndCheckSignature = function(e2) {
-          return e2 === this.readData(4);
-        }, i.prototype.readData = function(e2) {
-          this.checkOffset(e2);
-          var t2 = this.data.slice(this.zero + this.index, this.zero + this.index + e2);
-          return this.index += e2, t2;
-        }, t.exports = i;
-      }, { "../utils": 32, "./DataReader": 18 }], 21: [function(e, t, r) {
-        "use strict";
-        var n = e("./ArrayReader");
-        function i(e2) {
-          n.call(this, e2);
-        }
-        e("../utils").inherits(i, n), i.prototype.readData = function(e2) {
-          if (this.checkOffset(e2), 0 === e2) return new Uint8Array(0);
-          var t2 = this.data.subarray(this.zero + this.index, this.zero + this.index + e2);
-          return this.index += e2, t2;
-        }, t.exports = i;
-      }, { "../utils": 32, "./ArrayReader": 17 }], 22: [function(e, t, r) {
-        "use strict";
-        var n = e("../utils"), i = e("../support"), s = e("./ArrayReader"), a = e("./StringReader"), o = e("./NodeBufferReader"), h = e("./Uint8ArrayReader");
-        t.exports = function(e2) {
-          var t2 = n.getTypeOf(e2);
-          return n.checkSupport(t2), "string" !== t2 || i.uint8array ? "nodebuffer" === t2 ? new o(e2) : i.uint8array ? new h(n.transformTo("uint8array", e2)) : new s(n.transformTo("array", e2)) : new a(e2);
-        };
-      }, { "../support": 30, "../utils": 32, "./ArrayReader": 17, "./NodeBufferReader": 19, "./StringReader": 20, "./Uint8ArrayReader": 21 }], 23: [function(e, t, r) {
-        "use strict";
-        r.LOCAL_FILE_HEADER = "PK", r.CENTRAL_FILE_HEADER = "PK", r.CENTRAL_DIRECTORY_END = "PK", r.ZIP64_CENTRAL_DIRECTORY_LOCATOR = "PK\x07", r.ZIP64_CENTRAL_DIRECTORY_END = "PK", r.DATA_DESCRIPTOR = "PK\x07\b";
-      }, {}], 24: [function(e, t, r) {
-        "use strict";
-        var n = e("./GenericWorker"), i = e("../utils");
-        function s(e2) {
-          n.call(this, "ConvertWorker to " + e2), this.destType = e2;
-        }
-        i.inherits(s, n), s.prototype.processChunk = function(e2) {
-          this.push({ data: i.transformTo(this.destType, e2.data), meta: e2.meta });
-        }, t.exports = s;
-      }, { "../utils": 32, "./GenericWorker": 28 }], 25: [function(e, t, r) {
-        "use strict";
-        var n = e("./GenericWorker"), i = e("../crc32");
-        function s() {
-          n.call(this, "Crc32Probe"), this.withStreamInfo("crc32", 0);
-        }
-        e("../utils").inherits(s, n), s.prototype.processChunk = function(e2) {
-          this.streamInfo.crc32 = i(e2.data, this.streamInfo.crc32 || 0), this.push(e2);
-        }, t.exports = s;
-      }, { "../crc32": 4, "../utils": 32, "./GenericWorker": 28 }], 26: [function(e, t, r) {
-        "use strict";
-        var n = e("../utils"), i = e("./GenericWorker");
-        function s(e2) {
-          i.call(this, "DataLengthProbe for " + e2), this.propName = e2, this.withStreamInfo(e2, 0);
-        }
-        n.inherits(s, i), s.prototype.processChunk = function(e2) {
-          if (e2) {
-            var t2 = this.streamInfo[this.propName] || 0;
-            this.streamInfo[this.propName] = t2 + e2.data.length;
-          }
-          i.prototype.processChunk.call(this, e2);
-        }, t.exports = s;
-      }, { "../utils": 32, "./GenericWorker": 28 }], 27: [function(e, t, r) {
-        "use strict";
-        var n = e("../utils"), i = e("./GenericWorker");
-        function s(e2) {
-          i.call(this, "DataWorker");
-          var t2 = this;
-          this.dataIsReady = false, this.index = 0, this.max = 0, this.data = null, this.type = "", this._tickScheduled = false, e2.then(function(e3) {
-            t2.dataIsReady = true, t2.data = e3, t2.max = e3 && e3.length || 0, t2.type = n.getTypeOf(e3), t2.isPaused || t2._tickAndRepeat();
-          }, function(e3) {
-            t2.error(e3);
-          });
-        }
-        n.inherits(s, i), s.prototype.cleanUp = function() {
-          i.prototype.cleanUp.call(this), this.data = null;
-        }, s.prototype.resume = function() {
-          return !!i.prototype.resume.call(this) && (!this._tickScheduled && this.dataIsReady && (this._tickScheduled = true, n.delay(this._tickAndRepeat, [], this)), true);
-        }, s.prototype._tickAndRepeat = function() {
-          this._tickScheduled = false, this.isPaused || this.isFinished || (this._tick(), this.isFinished || (n.delay(this._tickAndRepeat, [], this), this._tickScheduled = true));
-        }, s.prototype._tick = function() {
-          if (this.isPaused || this.isFinished) return false;
-          var e2 = null, t2 = Math.min(this.max, this.index + 16384);
-          if (this.index >= this.max) return this.end();
-          switch (this.type) {
-            case "string":
-              e2 = this.data.substring(this.index, t2);
-              break;
-            case "uint8array":
-              e2 = this.data.subarray(this.index, t2);
-              break;
-            case "array":
-            case "nodebuffer":
-              e2 = this.data.slice(this.index, t2);
-          }
-          return this.index = t2, this.push({ data: e2, meta: { percent: this.max ? this.index / this.max * 100 : 0 } });
-        }, t.exports = s;
-      }, { "../utils": 32, "./GenericWorker": 28 }], 28: [function(e, t, r) {
-        "use strict";
-        function n(e2) {
-          this.name = e2 || "default", this.streamInfo = {}, this.generatedError = null, this.extraStreamInfo = {}, this.isPaused = true, this.isFinished = false, this.isLocked = false, this._listeners = { data: [], end: [], error: [] }, this.previous = null;
-        }
-        n.prototype = { push: function(e2) {
-          this.emit("data", e2);
-        }, end: function() {
-          if (this.isFinished) return false;
-          this.flush();
-          try {
-            this.emit("end"), this.cleanUp(), this.isFinished = true;
-          } catch (e2) {
-            this.emit("error", e2);
-          }
-          return true;
-        }, error: function(e2) {
-          return !this.isFinished && (this.isPaused ? this.generatedError = e2 : (this.isFinished = true, this.emit("error", e2), this.previous && this.previous.error(e2), this.cleanUp()), true);
-        }, on: function(e2, t2) {
-          return this._listeners[e2].push(t2), this;
-        }, cleanUp: function() {
-          this.streamInfo = this.generatedError = this.extraStreamInfo = null, this._listeners = [];
-        }, emit: function(e2, t2) {
-          if (this._listeners[e2]) for (var r2 = 0; r2 < this._listeners[e2].length; r2++) this._listeners[e2][r2].call(this, t2);
-        }, pipe: function(e2) {
-          return e2.registerPrevious(this);
-        }, registerPrevious: function(e2) {
-          if (this.isLocked) throw new Error("The stream '" + this + "' has already been used.");
-          this.streamInfo = e2.streamInfo, this.mergeStreamInfo(), this.previous = e2;
-          var t2 = this;
-          return e2.on("data", function(e3) {
-            t2.processChunk(e3);
-          }), e2.on("end", function() {
-            t2.end();
-          }), e2.on("error", function(e3) {
-            t2.error(e3);
-          }), this;
-        }, pause: function() {
-          return !this.isPaused && !this.isFinished && (this.isPaused = true, this.previous && this.previous.pause(), true);
-        }, resume: function() {
-          if (!this.isPaused || this.isFinished) return false;
-          var e2 = this.isPaused = false;
-          return this.generatedError && (this.error(this.generatedError), e2 = true), this.previous && this.previous.resume(), !e2;
-        }, flush: function() {
-        }, processChunk: function(e2) {
-          this.push(e2);
-        }, withStreamInfo: function(e2, t2) {
-          return this.extraStreamInfo[e2] = t2, this.mergeStreamInfo(), this;
-        }, mergeStreamInfo: function() {
-          for (var e2 in this.extraStreamInfo) Object.prototype.hasOwnProperty.call(this.extraStreamInfo, e2) && (this.streamInfo[e2] = this.extraStreamInfo[e2]);
-        }, lock: function() {
-          if (this.isLocked) throw new Error("The stream '" + this + "' has already been used.");
-          this.isLocked = true, this.previous && this.previous.lock();
-        }, toString: function() {
-          var e2 = "Worker " + this.name;
-          return this.previous ? this.previous + " -> " + e2 : e2;
-        } }, t.exports = n;
-      }, {}], 29: [function(e, t, r) {
-        "use strict";
-        var h = e("../utils"), i = e("./ConvertWorker"), s = e("./GenericWorker"), u = e("../base64"), n = e("../support"), a = e("../external"), o = null;
-        if (n.nodestream) try {
-          o = e("../nodejs/NodejsStreamOutputAdapter");
-        } catch (e2) {
-        }
-        function l(e2, o2) {
-          return new a.Promise(function(t2, r2) {
-            var n2 = [], i2 = e2._internalType, s2 = e2._outputType, a2 = e2._mimeType;
-            e2.on("data", function(e3, t3) {
-              n2.push(e3), o2 && o2(t3);
-            }).on("error", function(e3) {
-              n2 = [], r2(e3);
-            }).on("end", function() {
+            a: {
+              isHostCallbackScheduled = false;
+              isHostTimeoutScheduled && (isHostTimeoutScheduled = false, localClearTimeout(taskTimeoutID), taskTimeoutID = -1);
+              isPerformingWork = true;
+              var previousPriorityLevel = currentPriorityLevel;
               try {
-                var e3 = function(e4, t3, r3) {
-                  switch (e4) {
-                    case "blob":
-                      return h.newBlob(h.transformTo("arraybuffer", t3), r3);
-                    case "base64":
-                      return u.encode(t3);
-                    default:
-                      return h.transformTo(e4, t3);
-                  }
-                }(s2, function(e4, t3) {
-                  var r3, n3 = 0, i3 = null, s3 = 0;
-                  for (r3 = 0; r3 < t3.length; r3++) s3 += t3[r3].length;
-                  switch (e4) {
-                    case "string":
-                      return t3.join("");
-                    case "array":
-                      return Array.prototype.concat.apply([], t3);
-                    case "uint8array":
-                      for (i3 = new Uint8Array(s3), r3 = 0; r3 < t3.length; r3++) i3.set(t3[r3], n3), n3 += t3[r3].length;
-                      return i3;
-                    case "nodebuffer":
-                      return Buffer.concat(t3);
-                    default:
-                      throw new Error("concat : unsupported type '" + e4 + "'");
-                  }
-                }(i2, n2), a2);
-                t2(e3);
-              } catch (e4) {
-                r2(e4);
-              }
-              n2 = [];
-            }).resume();
-          });
-        }
-        function f(e2, t2, r2) {
-          var n2 = t2;
-          switch (t2) {
-            case "blob":
-            case "arraybuffer":
-              n2 = "uint8array";
-              break;
-            case "base64":
-              n2 = "string";
-          }
-          try {
-            this._internalType = n2, this._outputType = t2, this._mimeType = r2, h.checkSupport(n2), this._worker = e2.pipe(new i(n2)), e2.lock();
-          } catch (e3) {
-            this._worker = new s("error"), this._worker.error(e3);
-          }
-        }
-        f.prototype = { accumulate: function(e2) {
-          return l(this, e2);
-        }, on: function(e2, t2) {
-          var r2 = this;
-          return "data" === e2 ? this._worker.on(e2, function(e3) {
-            t2.call(r2, e3.data, e3.meta);
-          }) : this._worker.on(e2, function() {
-            h.delay(t2, arguments, r2);
-          }), this;
-        }, resume: function() {
-          return h.delay(this._worker.resume, [], this._worker), this;
-        }, pause: function() {
-          return this._worker.pause(), this;
-        }, toNodejsStream: function(e2) {
-          if (h.checkSupport("nodestream"), "nodebuffer" !== this._outputType) throw new Error(this._outputType + " is not supported by this method");
-          return new o(this, { objectMode: "nodebuffer" !== this._outputType }, e2);
-        } }, t.exports = f;
-      }, { "../base64": 1, "../external": 6, "../nodejs/NodejsStreamOutputAdapter": 13, "../support": 30, "../utils": 32, "./ConvertWorker": 24, "./GenericWorker": 28 }], 30: [function(e, t, r) {
-        "use strict";
-        if (r.base64 = true, r.array = true, r.string = true, r.arraybuffer = "undefined" != typeof ArrayBuffer && "undefined" != typeof Uint8Array, r.nodebuffer = "undefined" != typeof Buffer, r.uint8array = "undefined" != typeof Uint8Array, "undefined" == typeof ArrayBuffer) r.blob = false;
-        else {
-          var n = new ArrayBuffer(0);
-          try {
-            r.blob = 0 === new Blob([n], { type: "application/zip" }).size;
-          } catch (e2) {
-            try {
-              var i = new (self.BlobBuilder || self.WebKitBlobBuilder || self.MozBlobBuilder || self.MSBlobBuilder)();
-              i.append(n), r.blob = 0 === i.getBlob("application/zip").size;
-            } catch (e3) {
-              r.blob = false;
-            }
-          }
-        }
-        try {
-          r.nodestream = !!e("readable-stream").Readable;
-        } catch (e2) {
-          r.nodestream = false;
-        }
-      }, { "readable-stream": 16 }], 31: [function(e, t, s) {
-        "use strict";
-        for (var o = e("./utils"), h = e("./support"), r = e("./nodejsUtils"), n = e("./stream/GenericWorker"), u = new Array(256), i = 0; i < 256; i++) u[i] = 252 <= i ? 6 : 248 <= i ? 5 : 240 <= i ? 4 : 224 <= i ? 3 : 192 <= i ? 2 : 1;
-        u[254] = u[254] = 1;
-        function a() {
-          n.call(this, "utf-8 decode"), this.leftOver = null;
-        }
-        function l() {
-          n.call(this, "utf-8 encode");
-        }
-        s.utf8encode = function(e2) {
-          return h.nodebuffer ? r.newBufferFrom(e2, "utf-8") : function(e3) {
-            var t2, r2, n2, i2, s2, a2 = e3.length, o2 = 0;
-            for (i2 = 0; i2 < a2; i2++) 55296 == (64512 & (r2 = e3.charCodeAt(i2))) && i2 + 1 < a2 && 56320 == (64512 & (n2 = e3.charCodeAt(i2 + 1))) && (r2 = 65536 + (r2 - 55296 << 10) + (n2 - 56320), i2++), o2 += r2 < 128 ? 1 : r2 < 2048 ? 2 : r2 < 65536 ? 3 : 4;
-            for (t2 = h.uint8array ? new Uint8Array(o2) : new Array(o2), i2 = s2 = 0; s2 < o2; i2++) 55296 == (64512 & (r2 = e3.charCodeAt(i2))) && i2 + 1 < a2 && 56320 == (64512 & (n2 = e3.charCodeAt(i2 + 1))) && (r2 = 65536 + (r2 - 55296 << 10) + (n2 - 56320), i2++), r2 < 128 ? t2[s2++] = r2 : (r2 < 2048 ? t2[s2++] = 192 | r2 >>> 6 : (r2 < 65536 ? t2[s2++] = 224 | r2 >>> 12 : (t2[s2++] = 240 | r2 >>> 18, t2[s2++] = 128 | r2 >>> 12 & 63), t2[s2++] = 128 | r2 >>> 6 & 63), t2[s2++] = 128 | 63 & r2);
-            return t2;
-          }(e2);
-        }, s.utf8decode = function(e2) {
-          return h.nodebuffer ? o.transformTo("nodebuffer", e2).toString("utf-8") : function(e3) {
-            var t2, r2, n2, i2, s2 = e3.length, a2 = new Array(2 * s2);
-            for (t2 = r2 = 0; t2 < s2; ) if ((n2 = e3[t2++]) < 128) a2[r2++] = n2;
-            else if (4 < (i2 = u[n2])) a2[r2++] = 65533, t2 += i2 - 1;
-            else {
-              for (n2 &= 2 === i2 ? 31 : 3 === i2 ? 15 : 7; 1 < i2 && t2 < s2; ) n2 = n2 << 6 | 63 & e3[t2++], i2--;
-              1 < i2 ? a2[r2++] = 65533 : n2 < 65536 ? a2[r2++] = n2 : (n2 -= 65536, a2[r2++] = 55296 | n2 >> 10 & 1023, a2[r2++] = 56320 | 1023 & n2);
-            }
-            return a2.length !== r2 && (a2.subarray ? a2 = a2.subarray(0, r2) : a2.length = r2), o.applyFromCharCode(a2);
-          }(e2 = o.transformTo(h.uint8array ? "uint8array" : "array", e2));
-        }, o.inherits(a, n), a.prototype.processChunk = function(e2) {
-          var t2 = o.transformTo(h.uint8array ? "uint8array" : "array", e2.data);
-          if (this.leftOver && this.leftOver.length) {
-            if (h.uint8array) {
-              var r2 = t2;
-              (t2 = new Uint8Array(r2.length + this.leftOver.length)).set(this.leftOver, 0), t2.set(r2, this.leftOver.length);
-            } else t2 = this.leftOver.concat(t2);
-            this.leftOver = null;
-          }
-          var n2 = function(e3, t3) {
-            var r3;
-            for ((t3 = t3 || e3.length) > e3.length && (t3 = e3.length), r3 = t3 - 1; 0 <= r3 && 128 == (192 & e3[r3]); ) r3--;
-            return r3 < 0 ? t3 : 0 === r3 ? t3 : r3 + u[e3[r3]] > t3 ? r3 : t3;
-          }(t2), i2 = t2;
-          n2 !== t2.length && (h.uint8array ? (i2 = t2.subarray(0, n2), this.leftOver = t2.subarray(n2, t2.length)) : (i2 = t2.slice(0, n2), this.leftOver = t2.slice(n2, t2.length))), this.push({ data: s.utf8decode(i2), meta: e2.meta });
-        }, a.prototype.flush = function() {
-          this.leftOver && this.leftOver.length && (this.push({ data: s.utf8decode(this.leftOver), meta: {} }), this.leftOver = null);
-        }, s.Utf8DecodeWorker = a, o.inherits(l, n), l.prototype.processChunk = function(e2) {
-          this.push({ data: s.utf8encode(e2.data), meta: e2.meta });
-        }, s.Utf8EncodeWorker = l;
-      }, { "./nodejsUtils": 14, "./stream/GenericWorker": 28, "./support": 30, "./utils": 32 }], 32: [function(e, t, a) {
-        "use strict";
-        var o = e("./support"), h = e("./base64"), r = e("./nodejsUtils"), u = e("./external");
-        function n(e2) {
-          return e2;
-        }
-        function l(e2, t2) {
-          for (var r2 = 0; r2 < e2.length; ++r2) t2[r2] = 255 & e2.charCodeAt(r2);
-          return t2;
-        }
-        e("setimmediate"), a.newBlob = function(t2, r2) {
-          a.checkSupport("blob");
-          try {
-            return new Blob([t2], { type: r2 });
-          } catch (e2) {
-            try {
-              var n2 = new (self.BlobBuilder || self.WebKitBlobBuilder || self.MozBlobBuilder || self.MSBlobBuilder)();
-              return n2.append(t2), n2.getBlob(r2);
-            } catch (e3) {
-              throw new Error("Bug : can't construct the Blob.");
-            }
-          }
-        };
-        var i = { stringifyByChunk: function(e2, t2, r2) {
-          var n2 = [], i2 = 0, s2 = e2.length;
-          if (s2 <= r2) return String.fromCharCode.apply(null, e2);
-          for (; i2 < s2; ) "array" === t2 || "nodebuffer" === t2 ? n2.push(String.fromCharCode.apply(null, e2.slice(i2, Math.min(i2 + r2, s2)))) : n2.push(String.fromCharCode.apply(null, e2.subarray(i2, Math.min(i2 + r2, s2)))), i2 += r2;
-          return n2.join("");
-        }, stringifyByChar: function(e2) {
-          for (var t2 = "", r2 = 0; r2 < e2.length; r2++) t2 += String.fromCharCode(e2[r2]);
-          return t2;
-        }, applyCanBeUsed: { uint8array: function() {
-          try {
-            return o.uint8array && 1 === String.fromCharCode.apply(null, new Uint8Array(1)).length;
-          } catch (e2) {
-            return false;
-          }
-        }(), nodebuffer: function() {
-          try {
-            return o.nodebuffer && 1 === String.fromCharCode.apply(null, r.allocBuffer(1)).length;
-          } catch (e2) {
-            return false;
-          }
-        }() } };
-        function s(e2) {
-          var t2 = 65536, r2 = a.getTypeOf(e2), n2 = true;
-          if ("uint8array" === r2 ? n2 = i.applyCanBeUsed.uint8array : "nodebuffer" === r2 && (n2 = i.applyCanBeUsed.nodebuffer), n2) for (; 1 < t2; ) try {
-            return i.stringifyByChunk(e2, r2, t2);
-          } catch (e3) {
-            t2 = Math.floor(t2 / 2);
-          }
-          return i.stringifyByChar(e2);
-        }
-        function f(e2, t2) {
-          for (var r2 = 0; r2 < e2.length; r2++) t2[r2] = e2[r2];
-          return t2;
-        }
-        a.applyFromCharCode = s;
-        var c = {};
-        c.string = { string: n, array: function(e2) {
-          return l(e2, new Array(e2.length));
-        }, arraybuffer: function(e2) {
-          return c.string.uint8array(e2).buffer;
-        }, uint8array: function(e2) {
-          return l(e2, new Uint8Array(e2.length));
-        }, nodebuffer: function(e2) {
-          return l(e2, r.allocBuffer(e2.length));
-        } }, c.array = { string: s, array: n, arraybuffer: function(e2) {
-          return new Uint8Array(e2).buffer;
-        }, uint8array: function(e2) {
-          return new Uint8Array(e2);
-        }, nodebuffer: function(e2) {
-          return r.newBufferFrom(e2);
-        } }, c.arraybuffer = { string: function(e2) {
-          return s(new Uint8Array(e2));
-        }, array: function(e2) {
-          return f(new Uint8Array(e2), new Array(e2.byteLength));
-        }, arraybuffer: n, uint8array: function(e2) {
-          return new Uint8Array(e2);
-        }, nodebuffer: function(e2) {
-          return r.newBufferFrom(new Uint8Array(e2));
-        } }, c.uint8array = { string: s, array: function(e2) {
-          return f(e2, new Array(e2.length));
-        }, arraybuffer: function(e2) {
-          return e2.buffer;
-        }, uint8array: n, nodebuffer: function(e2) {
-          return r.newBufferFrom(e2);
-        } }, c.nodebuffer = { string: s, array: function(e2) {
-          return f(e2, new Array(e2.length));
-        }, arraybuffer: function(e2) {
-          return c.nodebuffer.uint8array(e2).buffer;
-        }, uint8array: function(e2) {
-          return f(e2, new Uint8Array(e2.length));
-        }, nodebuffer: n }, a.transformTo = function(e2, t2) {
-          if (t2 = t2 || "", !e2) return t2;
-          a.checkSupport(e2);
-          var r2 = a.getTypeOf(t2);
-          return c[r2][e2](t2);
-        }, a.resolve = function(e2) {
-          for (var t2 = e2.split("/"), r2 = [], n2 = 0; n2 < t2.length; n2++) {
-            var i2 = t2[n2];
-            "." === i2 || "" === i2 && 0 !== n2 && n2 !== t2.length - 1 || (".." === i2 ? r2.pop() : r2.push(i2));
-          }
-          return r2.join("/");
-        }, a.getTypeOf = function(e2) {
-          return "string" == typeof e2 ? "string" : "[object Array]" === Object.prototype.toString.call(e2) ? "array" : o.nodebuffer && r.isBuffer(e2) ? "nodebuffer" : o.uint8array && e2 instanceof Uint8Array ? "uint8array" : o.arraybuffer && e2 instanceof ArrayBuffer ? "arraybuffer" : void 0;
-        }, a.checkSupport = function(e2) {
-          if (!o[e2.toLowerCase()]) throw new Error(e2 + " is not supported by this platform");
-        }, a.MAX_VALUE_16BITS = 65535, a.MAX_VALUE_32BITS = -1, a.pretty = function(e2) {
-          var t2, r2, n2 = "";
-          for (r2 = 0; r2 < (e2 || "").length; r2++) n2 += "\\x" + ((t2 = e2.charCodeAt(r2)) < 16 ? "0" : "") + t2.toString(16).toUpperCase();
-          return n2;
-        }, a.delay = function(e2, t2, r2) {
-          setImmediate(function() {
-            e2.apply(r2 || null, t2 || []);
-          });
-        }, a.inherits = function(e2, t2) {
-          function r2() {
-          }
-          r2.prototype = t2.prototype, e2.prototype = new r2();
-        }, a.extend = function() {
-          var e2, t2, r2 = {};
-          for (e2 = 0; e2 < arguments.length; e2++) for (t2 in arguments[e2]) Object.prototype.hasOwnProperty.call(arguments[e2], t2) && void 0 === r2[t2] && (r2[t2] = arguments[e2][t2]);
-          return r2;
-        }, a.prepareContent = function(r2, e2, n2, i2, s2) {
-          return u.Promise.resolve(e2).then(function(n3) {
-            return o.blob && (n3 instanceof Blob || -1 !== ["[object File]", "[object Blob]"].indexOf(Object.prototype.toString.call(n3))) && "undefined" != typeof FileReader ? new u.Promise(function(t2, r3) {
-              var e3 = new FileReader();
-              e3.onload = function(e4) {
-                t2(e4.target.result);
-              }, e3.onerror = function(e4) {
-                r3(e4.target.error);
-              }, e3.readAsArrayBuffer(n3);
-            }) : n3;
-          }).then(function(e3) {
-            var t2 = a.getTypeOf(e3);
-            return t2 ? ("arraybuffer" === t2 ? e3 = a.transformTo("uint8array", e3) : "string" === t2 && (s2 ? e3 = h.decode(e3) : n2 && true !== i2 && (e3 = function(e4) {
-              return l(e4, o.uint8array ? new Uint8Array(e4.length) : new Array(e4.length));
-            }(e3))), e3) : u.Promise.reject(new Error("Can't read the data of '" + r2 + "'. Is it in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?"));
-          });
-        };
-      }, { "./base64": 1, "./external": 6, "./nodejsUtils": 14, "./support": 30, setimmediate: 54 }], 33: [function(e, t, r) {
-        "use strict";
-        var n = e("./reader/readerFor"), i = e("./utils"), s = e("./signature"), a = e("./zipEntry"), o = e("./support");
-        function h(e2) {
-          this.files = [], this.loadOptions = e2;
-        }
-        h.prototype = { checkSignature: function(e2) {
-          if (!this.reader.readAndCheckSignature(e2)) {
-            this.reader.index -= 4;
-            var t2 = this.reader.readString(4);
-            throw new Error("Corrupted zip or bug: unexpected signature (" + i.pretty(t2) + ", expected " + i.pretty(e2) + ")");
-          }
-        }, isSignature: function(e2, t2) {
-          var r2 = this.reader.index;
-          this.reader.setIndex(e2);
-          var n2 = this.reader.readString(4) === t2;
-          return this.reader.setIndex(r2), n2;
-        }, readBlockEndOfCentral: function() {
-          this.diskNumber = this.reader.readInt(2), this.diskWithCentralDirStart = this.reader.readInt(2), this.centralDirRecordsOnThisDisk = this.reader.readInt(2), this.centralDirRecords = this.reader.readInt(2), this.centralDirSize = this.reader.readInt(4), this.centralDirOffset = this.reader.readInt(4), this.zipCommentLength = this.reader.readInt(2);
-          var e2 = this.reader.readData(this.zipCommentLength), t2 = o.uint8array ? "uint8array" : "array", r2 = i.transformTo(t2, e2);
-          this.zipComment = this.loadOptions.decodeFileName(r2);
-        }, readBlockZip64EndOfCentral: function() {
-          this.zip64EndOfCentralSize = this.reader.readInt(8), this.reader.skip(4), this.diskNumber = this.reader.readInt(4), this.diskWithCentralDirStart = this.reader.readInt(4), this.centralDirRecordsOnThisDisk = this.reader.readInt(8), this.centralDirRecords = this.reader.readInt(8), this.centralDirSize = this.reader.readInt(8), this.centralDirOffset = this.reader.readInt(8), this.zip64ExtensibleData = {};
-          for (var e2, t2, r2, n2 = this.zip64EndOfCentralSize - 44; 0 < n2; ) e2 = this.reader.readInt(2), t2 = this.reader.readInt(4), r2 = this.reader.readData(t2), this.zip64ExtensibleData[e2] = { id: e2, length: t2, value: r2 };
-        }, readBlockZip64EndOfCentralLocator: function() {
-          if (this.diskWithZip64CentralDirStart = this.reader.readInt(4), this.relativeOffsetEndOfZip64CentralDir = this.reader.readInt(8), this.disksCount = this.reader.readInt(4), 1 < this.disksCount) throw new Error("Multi-volumes zip are not supported");
-        }, readLocalFiles: function() {
-          var e2, t2;
-          for (e2 = 0; e2 < this.files.length; e2++) t2 = this.files[e2], this.reader.setIndex(t2.localHeaderOffset), this.checkSignature(s.LOCAL_FILE_HEADER), t2.readLocalPart(this.reader), t2.handleUTF8(), t2.processAttributes();
-        }, readCentralDir: function() {
-          var e2;
-          for (this.reader.setIndex(this.centralDirOffset); this.reader.readAndCheckSignature(s.CENTRAL_FILE_HEADER); ) (e2 = new a({ zip64: this.zip64 }, this.loadOptions)).readCentralPart(this.reader), this.files.push(e2);
-          if (this.centralDirRecords !== this.files.length && 0 !== this.centralDirRecords && 0 === this.files.length) throw new Error("Corrupted zip or bug: expected " + this.centralDirRecords + " records in central dir, got " + this.files.length);
-        }, readEndOfCentral: function() {
-          var e2 = this.reader.lastIndexOfSignature(s.CENTRAL_DIRECTORY_END);
-          if (e2 < 0) throw !this.isSignature(0, s.LOCAL_FILE_HEADER) ? new Error("Can't find end of central directory : is this a zip file ? If it is, see https://stuk.github.io/jszip/documentation/howto/read_zip.html") : new Error("Corrupted zip: can't find end of central directory");
-          this.reader.setIndex(e2);
-          var t2 = e2;
-          if (this.checkSignature(s.CENTRAL_DIRECTORY_END), this.readBlockEndOfCentral(), this.diskNumber === i.MAX_VALUE_16BITS || this.diskWithCentralDirStart === i.MAX_VALUE_16BITS || this.centralDirRecordsOnThisDisk === i.MAX_VALUE_16BITS || this.centralDirRecords === i.MAX_VALUE_16BITS || this.centralDirSize === i.MAX_VALUE_32BITS || this.centralDirOffset === i.MAX_VALUE_32BITS) {
-            if (this.zip64 = true, (e2 = this.reader.lastIndexOfSignature(s.ZIP64_CENTRAL_DIRECTORY_LOCATOR)) < 0) throw new Error("Corrupted zip: can't find the ZIP64 end of central directory locator");
-            if (this.reader.setIndex(e2), this.checkSignature(s.ZIP64_CENTRAL_DIRECTORY_LOCATOR), this.readBlockZip64EndOfCentralLocator(), !this.isSignature(this.relativeOffsetEndOfZip64CentralDir, s.ZIP64_CENTRAL_DIRECTORY_END) && (this.relativeOffsetEndOfZip64CentralDir = this.reader.lastIndexOfSignature(s.ZIP64_CENTRAL_DIRECTORY_END), this.relativeOffsetEndOfZip64CentralDir < 0)) throw new Error("Corrupted zip: can't find the ZIP64 end of central directory");
-            this.reader.setIndex(this.relativeOffsetEndOfZip64CentralDir), this.checkSignature(s.ZIP64_CENTRAL_DIRECTORY_END), this.readBlockZip64EndOfCentral();
-          }
-          var r2 = this.centralDirOffset + this.centralDirSize;
-          this.zip64 && (r2 += 20, r2 += 12 + this.zip64EndOfCentralSize);
-          var n2 = t2 - r2;
-          if (0 < n2) this.isSignature(t2, s.CENTRAL_FILE_HEADER) || (this.reader.zero = n2);
-          else if (n2 < 0) throw new Error("Corrupted zip: missing " + Math.abs(n2) + " bytes.");
-        }, prepareReader: function(e2) {
-          this.reader = n(e2);
-        }, load: function(e2) {
-          this.prepareReader(e2), this.readEndOfCentral(), this.readCentralDir(), this.readLocalFiles();
-        } }, t.exports = h;
-      }, { "./reader/readerFor": 22, "./signature": 23, "./support": 30, "./utils": 32, "./zipEntry": 34 }], 34: [function(e, t, r) {
-        "use strict";
-        var n = e("./reader/readerFor"), s = e("./utils"), i = e("./compressedObject"), a = e("./crc32"), o = e("./utf8"), h = e("./compressions"), u = e("./support");
-        function l(e2, t2) {
-          this.options = e2, this.loadOptions = t2;
-        }
-        l.prototype = { isEncrypted: function() {
-          return 1 == (1 & this.bitFlag);
-        }, useUTF8: function() {
-          return 2048 == (2048 & this.bitFlag);
-        }, readLocalPart: function(e2) {
-          var t2, r2;
-          if (e2.skip(22), this.fileNameLength = e2.readInt(2), r2 = e2.readInt(2), this.fileName = e2.readData(this.fileNameLength), e2.skip(r2), -1 === this.compressedSize || -1 === this.uncompressedSize) throw new Error("Bug or corrupted zip : didn't get enough information from the central directory (compressedSize === -1 || uncompressedSize === -1)");
-          if (null === (t2 = function(e3) {
-            for (var t3 in h) if (Object.prototype.hasOwnProperty.call(h, t3) && h[t3].magic === e3) return h[t3];
-            return null;
-          }(this.compressionMethod))) throw new Error("Corrupted zip : compression " + s.pretty(this.compressionMethod) + " unknown (inner file : " + s.transformTo("string", this.fileName) + ")");
-          this.decompressed = new i(this.compressedSize, this.uncompressedSize, this.crc32, t2, e2.readData(this.compressedSize));
-        }, readCentralPart: function(e2) {
-          this.versionMadeBy = e2.readInt(2), e2.skip(2), this.bitFlag = e2.readInt(2), this.compressionMethod = e2.readString(2), this.date = e2.readDate(), this.crc32 = e2.readInt(4), this.compressedSize = e2.readInt(4), this.uncompressedSize = e2.readInt(4);
-          var t2 = e2.readInt(2);
-          if (this.extraFieldsLength = e2.readInt(2), this.fileCommentLength = e2.readInt(2), this.diskNumberStart = e2.readInt(2), this.internalFileAttributes = e2.readInt(2), this.externalFileAttributes = e2.readInt(4), this.localHeaderOffset = e2.readInt(4), this.isEncrypted()) throw new Error("Encrypted zip are not supported");
-          e2.skip(t2), this.readExtraFields(e2), this.parseZIP64ExtraField(e2), this.fileComment = e2.readData(this.fileCommentLength);
-        }, processAttributes: function() {
-          this.unixPermissions = null, this.dosPermissions = null;
-          var e2 = this.versionMadeBy >> 8;
-          this.dir = !!(16 & this.externalFileAttributes), 0 == e2 && (this.dosPermissions = 63 & this.externalFileAttributes), 3 == e2 && (this.unixPermissions = this.externalFileAttributes >> 16 & 65535), this.dir || "/" !== this.fileNameStr.slice(-1) || (this.dir = true);
-        }, parseZIP64ExtraField: function() {
-          if (this.extraFields[1]) {
-            var e2 = n(this.extraFields[1].value);
-            this.uncompressedSize === s.MAX_VALUE_32BITS && (this.uncompressedSize = e2.readInt(8)), this.compressedSize === s.MAX_VALUE_32BITS && (this.compressedSize = e2.readInt(8)), this.localHeaderOffset === s.MAX_VALUE_32BITS && (this.localHeaderOffset = e2.readInt(8)), this.diskNumberStart === s.MAX_VALUE_32BITS && (this.diskNumberStart = e2.readInt(4));
-          }
-        }, readExtraFields: function(e2) {
-          var t2, r2, n2, i2 = e2.index + this.extraFieldsLength;
-          for (this.extraFields || (this.extraFields = {}); e2.index + 4 < i2; ) t2 = e2.readInt(2), r2 = e2.readInt(2), n2 = e2.readData(r2), this.extraFields[t2] = { id: t2, length: r2, value: n2 };
-          e2.setIndex(i2);
-        }, handleUTF8: function() {
-          var e2 = u.uint8array ? "uint8array" : "array";
-          if (this.useUTF8()) this.fileNameStr = o.utf8decode(this.fileName), this.fileCommentStr = o.utf8decode(this.fileComment);
-          else {
-            var t2 = this.findExtraFieldUnicodePath();
-            if (null !== t2) this.fileNameStr = t2;
-            else {
-              var r2 = s.transformTo(e2, this.fileName);
-              this.fileNameStr = this.loadOptions.decodeFileName(r2);
-            }
-            var n2 = this.findExtraFieldUnicodeComment();
-            if (null !== n2) this.fileCommentStr = n2;
-            else {
-              var i2 = s.transformTo(e2, this.fileComment);
-              this.fileCommentStr = this.loadOptions.decodeFileName(i2);
-            }
-          }
-        }, findExtraFieldUnicodePath: function() {
-          var e2 = this.extraFields[28789];
-          if (e2) {
-            var t2 = n(e2.value);
-            return 1 !== t2.readInt(1) ? null : a(this.fileName) !== t2.readInt(4) ? null : o.utf8decode(t2.readData(e2.length - 5));
-          }
-          return null;
-        }, findExtraFieldUnicodeComment: function() {
-          var e2 = this.extraFields[25461];
-          if (e2) {
-            var t2 = n(e2.value);
-            return 1 !== t2.readInt(1) ? null : a(this.fileComment) !== t2.readInt(4) ? null : o.utf8decode(t2.readData(e2.length - 5));
-          }
-          return null;
-        } }, t.exports = l;
-      }, { "./compressedObject": 2, "./compressions": 3, "./crc32": 4, "./reader/readerFor": 22, "./support": 30, "./utf8": 31, "./utils": 32 }], 35: [function(e, t, r) {
-        "use strict";
-        function n(e2, t2, r2) {
-          this.name = e2, this.dir = r2.dir, this.date = r2.date, this.comment = r2.comment, this.unixPermissions = r2.unixPermissions, this.dosPermissions = r2.dosPermissions, this._data = t2, this._dataBinary = r2.binary, this.options = { compression: r2.compression, compressionOptions: r2.compressionOptions };
-        }
-        var s = e("./stream/StreamHelper"), i = e("./stream/DataWorker"), a = e("./utf8"), o = e("./compressedObject"), h = e("./stream/GenericWorker");
-        n.prototype = { internalStream: function(e2) {
-          var t2 = null, r2 = "string";
-          try {
-            if (!e2) throw new Error("No output type specified.");
-            var n2 = "string" === (r2 = e2.toLowerCase()) || "text" === r2;
-            "binarystring" !== r2 && "text" !== r2 || (r2 = "string"), t2 = this._decompressWorker();
-            var i2 = !this._dataBinary;
-            i2 && !n2 && (t2 = t2.pipe(new a.Utf8EncodeWorker())), !i2 && n2 && (t2 = t2.pipe(new a.Utf8DecodeWorker()));
-          } catch (e3) {
-            (t2 = new h("error")).error(e3);
-          }
-          return new s(t2, r2, "");
-        }, async: function(e2, t2) {
-          return this.internalStream(e2).accumulate(t2);
-        }, nodeStream: function(e2, t2) {
-          return this.internalStream(e2 || "nodebuffer").toNodejsStream(t2);
-        }, _compressWorker: function(e2, t2) {
-          if (this._data instanceof o && this._data.compression.magic === e2.magic) return this._data.getCompressedWorker();
-          var r2 = this._decompressWorker();
-          return this._dataBinary || (r2 = r2.pipe(new a.Utf8EncodeWorker())), o.createWorkerFrom(r2, e2, t2);
-        }, _decompressWorker: function() {
-          return this._data instanceof o ? this._data.getContentWorker() : this._data instanceof h ? this._data : new i(this._data);
-        } };
-        for (var u = ["asText", "asBinary", "asNodeBuffer", "asUint8Array", "asArrayBuffer"], l = function() {
-          throw new Error("This method has been removed in JSZip 3.0, please check the upgrade guide.");
-        }, f = 0; f < u.length; f++) n.prototype[u[f]] = l;
-        t.exports = n;
-      }, { "./compressedObject": 2, "./stream/DataWorker": 27, "./stream/GenericWorker": 28, "./stream/StreamHelper": 29, "./utf8": 31 }], 36: [function(e, l, t) {
-        (function(t2) {
-          "use strict";
-          var r, n, e2 = t2.MutationObserver || t2.WebKitMutationObserver;
-          if (e2) {
-            var i = 0, s = new e2(u), a = t2.document.createTextNode("");
-            s.observe(a, { characterData: true }), r = function() {
-              a.data = i = ++i % 2;
-            };
-          } else if (t2.setImmediate || void 0 === t2.MessageChannel) r = "document" in t2 && "onreadystatechange" in t2.document.createElement("script") ? function() {
-            var e3 = t2.document.createElement("script");
-            e3.onreadystatechange = function() {
-              u(), e3.onreadystatechange = null, e3.parentNode.removeChild(e3), e3 = null;
-            }, t2.document.documentElement.appendChild(e3);
-          } : function() {
-            setTimeout(u, 0);
-          };
-          else {
-            var o = new t2.MessageChannel();
-            o.port1.onmessage = u, r = function() {
-              o.port2.postMessage(0);
-            };
-          }
-          var h = [];
-          function u() {
-            var e3, t3;
-            n = true;
-            for (var r2 = h.length; r2; ) {
-              for (t3 = h, h = [], e3 = -1; ++e3 < r2; ) t3[e3]();
-              r2 = h.length;
-            }
-            n = false;
-          }
-          l.exports = function(e3) {
-            1 !== h.push(e3) || n || r();
-          };
-        }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-      }, {}], 37: [function(e, t, r) {
-        "use strict";
-        var i = e("immediate");
-        function u() {
-        }
-        var l = {}, s = ["REJECTED"], a = ["FULFILLED"], n = ["PENDING"];
-        function o(e2) {
-          if ("function" != typeof e2) throw new TypeError("resolver must be a function");
-          this.state = n, this.queue = [], this.outcome = void 0, e2 !== u && d(this, e2);
-        }
-        function h(e2, t2, r2) {
-          this.promise = e2, "function" == typeof t2 && (this.onFulfilled = t2, this.callFulfilled = this.otherCallFulfilled), "function" == typeof r2 && (this.onRejected = r2, this.callRejected = this.otherCallRejected);
-        }
-        function f(t2, r2, n2) {
-          i(function() {
-            var e2;
-            try {
-              e2 = r2(n2);
-            } catch (e3) {
-              return l.reject(t2, e3);
-            }
-            e2 === t2 ? l.reject(t2, new TypeError("Cannot resolve promise with itself")) : l.resolve(t2, e2);
-          });
-        }
-        function c(e2) {
-          var t2 = e2 && e2.then;
-          if (e2 && ("object" == typeof e2 || "function" == typeof e2) && "function" == typeof t2) return function() {
-            t2.apply(e2, arguments);
-          };
-        }
-        function d(t2, e2) {
-          var r2 = false;
-          function n2(e3) {
-            r2 || (r2 = true, l.reject(t2, e3));
-          }
-          function i2(e3) {
-            r2 || (r2 = true, l.resolve(t2, e3));
-          }
-          var s2 = p(function() {
-            e2(i2, n2);
-          });
-          "error" === s2.status && n2(s2.value);
-        }
-        function p(e2, t2) {
-          var r2 = {};
-          try {
-            r2.value = e2(t2), r2.status = "success";
-          } catch (e3) {
-            r2.status = "error", r2.value = e3;
-          }
-          return r2;
-        }
-        (t.exports = o).prototype.finally = function(t2) {
-          if ("function" != typeof t2) return this;
-          var r2 = this.constructor;
-          return this.then(function(e2) {
-            return r2.resolve(t2()).then(function() {
-              return e2;
-            });
-          }, function(e2) {
-            return r2.resolve(t2()).then(function() {
-              throw e2;
-            });
-          });
-        }, o.prototype.catch = function(e2) {
-          return this.then(null, e2);
-        }, o.prototype.then = function(e2, t2) {
-          if ("function" != typeof e2 && this.state === a || "function" != typeof t2 && this.state === s) return this;
-          var r2 = new this.constructor(u);
-          this.state !== n ? f(r2, this.state === a ? e2 : t2, this.outcome) : this.queue.push(new h(r2, e2, t2));
-          return r2;
-        }, h.prototype.callFulfilled = function(e2) {
-          l.resolve(this.promise, e2);
-        }, h.prototype.otherCallFulfilled = function(e2) {
-          f(this.promise, this.onFulfilled, e2);
-        }, h.prototype.callRejected = function(e2) {
-          l.reject(this.promise, e2);
-        }, h.prototype.otherCallRejected = function(e2) {
-          f(this.promise, this.onRejected, e2);
-        }, l.resolve = function(e2, t2) {
-          var r2 = p(c, t2);
-          if ("error" === r2.status) return l.reject(e2, r2.value);
-          var n2 = r2.value;
-          if (n2) d(e2, n2);
-          else {
-            e2.state = a, e2.outcome = t2;
-            for (var i2 = -1, s2 = e2.queue.length; ++i2 < s2; ) e2.queue[i2].callFulfilled(t2);
-          }
-          return e2;
-        }, l.reject = function(e2, t2) {
-          e2.state = s, e2.outcome = t2;
-          for (var r2 = -1, n2 = e2.queue.length; ++r2 < n2; ) e2.queue[r2].callRejected(t2);
-          return e2;
-        }, o.resolve = function(e2) {
-          if (e2 instanceof this) return e2;
-          return l.resolve(new this(u), e2);
-        }, o.reject = function(e2) {
-          var t2 = new this(u);
-          return l.reject(t2, e2);
-        }, o.all = function(e2) {
-          var r2 = this;
-          if ("[object Array]" !== Object.prototype.toString.call(e2)) return this.reject(new TypeError("must be an array"));
-          var n2 = e2.length, i2 = false;
-          if (!n2) return this.resolve([]);
-          var s2 = new Array(n2), a2 = 0, t2 = -1, o2 = new this(u);
-          for (; ++t2 < n2; ) h2(e2[t2], t2);
-          return o2;
-          function h2(e3, t3) {
-            r2.resolve(e3).then(function(e4) {
-              s2[t3] = e4, ++a2 !== n2 || i2 || (i2 = true, l.resolve(o2, s2));
-            }, function(e4) {
-              i2 || (i2 = true, l.reject(o2, e4));
-            });
-          }
-        }, o.race = function(e2) {
-          var t2 = this;
-          if ("[object Array]" !== Object.prototype.toString.call(e2)) return this.reject(new TypeError("must be an array"));
-          var r2 = e2.length, n2 = false;
-          if (!r2) return this.resolve([]);
-          var i2 = -1, s2 = new this(u);
-          for (; ++i2 < r2; ) a2 = e2[i2], t2.resolve(a2).then(function(e3) {
-            n2 || (n2 = true, l.resolve(s2, e3));
-          }, function(e3) {
-            n2 || (n2 = true, l.reject(s2, e3));
-          });
-          var a2;
-          return s2;
-        };
-      }, { immediate: 36 }], 38: [function(e, t, r) {
-        "use strict";
-        var n = {};
-        (0, e("./lib/utils/common").assign)(n, e("./lib/deflate"), e("./lib/inflate"), e("./lib/zlib/constants")), t.exports = n;
-      }, { "./lib/deflate": 39, "./lib/inflate": 40, "./lib/utils/common": 41, "./lib/zlib/constants": 44 }], 39: [function(e, t, r) {
-        "use strict";
-        var a = e("./zlib/deflate"), o = e("./utils/common"), h = e("./utils/strings"), i = e("./zlib/messages"), s = e("./zlib/zstream"), u = Object.prototype.toString, l = 0, f = -1, c = 0, d = 8;
-        function p(e2) {
-          if (!(this instanceof p)) return new p(e2);
-          this.options = o.assign({ level: f, method: d, chunkSize: 16384, windowBits: 15, memLevel: 8, strategy: c, to: "" }, e2 || {});
-          var t2 = this.options;
-          t2.raw && 0 < t2.windowBits ? t2.windowBits = -t2.windowBits : t2.gzip && 0 < t2.windowBits && t2.windowBits < 16 && (t2.windowBits += 16), this.err = 0, this.msg = "", this.ended = false, this.chunks = [], this.strm = new s(), this.strm.avail_out = 0;
-          var r2 = a.deflateInit2(this.strm, t2.level, t2.method, t2.windowBits, t2.memLevel, t2.strategy);
-          if (r2 !== l) throw new Error(i[r2]);
-          if (t2.header && a.deflateSetHeader(this.strm, t2.header), t2.dictionary) {
-            var n2;
-            if (n2 = "string" == typeof t2.dictionary ? h.string2buf(t2.dictionary) : "[object ArrayBuffer]" === u.call(t2.dictionary) ? new Uint8Array(t2.dictionary) : t2.dictionary, (r2 = a.deflateSetDictionary(this.strm, n2)) !== l) throw new Error(i[r2]);
-            this._dict_set = true;
-          }
-        }
-        function n(e2, t2) {
-          var r2 = new p(t2);
-          if (r2.push(e2, true), r2.err) throw r2.msg || i[r2.err];
-          return r2.result;
-        }
-        p.prototype.push = function(e2, t2) {
-          var r2, n2, i2 = this.strm, s2 = this.options.chunkSize;
-          if (this.ended) return false;
-          n2 = t2 === ~~t2 ? t2 : true === t2 ? 4 : 0, "string" == typeof e2 ? i2.input = h.string2buf(e2) : "[object ArrayBuffer]" === u.call(e2) ? i2.input = new Uint8Array(e2) : i2.input = e2, i2.next_in = 0, i2.avail_in = i2.input.length;
-          do {
-            if (0 === i2.avail_out && (i2.output = new o.Buf8(s2), i2.next_out = 0, i2.avail_out = s2), 1 !== (r2 = a.deflate(i2, n2)) && r2 !== l) return this.onEnd(r2), !(this.ended = true);
-            0 !== i2.avail_out && (0 !== i2.avail_in || 4 !== n2 && 2 !== n2) || ("string" === this.options.to ? this.onData(h.buf2binstring(o.shrinkBuf(i2.output, i2.next_out))) : this.onData(o.shrinkBuf(i2.output, i2.next_out)));
-          } while ((0 < i2.avail_in || 0 === i2.avail_out) && 1 !== r2);
-          return 4 === n2 ? (r2 = a.deflateEnd(this.strm), this.onEnd(r2), this.ended = true, r2 === l) : 2 !== n2 || (this.onEnd(l), !(i2.avail_out = 0));
-        }, p.prototype.onData = function(e2) {
-          this.chunks.push(e2);
-        }, p.prototype.onEnd = function(e2) {
-          e2 === l && ("string" === this.options.to ? this.result = this.chunks.join("") : this.result = o.flattenChunks(this.chunks)), this.chunks = [], this.err = e2, this.msg = this.strm.msg;
-        }, r.Deflate = p, r.deflate = n, r.deflateRaw = function(e2, t2) {
-          return (t2 = t2 || {}).raw = true, n(e2, t2);
-        }, r.gzip = function(e2, t2) {
-          return (t2 = t2 || {}).gzip = true, n(e2, t2);
-        };
-      }, { "./utils/common": 41, "./utils/strings": 42, "./zlib/deflate": 46, "./zlib/messages": 51, "./zlib/zstream": 53 }], 40: [function(e, t, r) {
-        "use strict";
-        var c = e("./zlib/inflate"), d = e("./utils/common"), p = e("./utils/strings"), m = e("./zlib/constants"), n = e("./zlib/messages"), i = e("./zlib/zstream"), s = e("./zlib/gzheader"), _ = Object.prototype.toString;
-        function a(e2) {
-          if (!(this instanceof a)) return new a(e2);
-          this.options = d.assign({ chunkSize: 16384, windowBits: 0, to: "" }, e2 || {});
-          var t2 = this.options;
-          t2.raw && 0 <= t2.windowBits && t2.windowBits < 16 && (t2.windowBits = -t2.windowBits, 0 === t2.windowBits && (t2.windowBits = -15)), !(0 <= t2.windowBits && t2.windowBits < 16) || e2 && e2.windowBits || (t2.windowBits += 32), 15 < t2.windowBits && t2.windowBits < 48 && 0 == (15 & t2.windowBits) && (t2.windowBits |= 15), this.err = 0, this.msg = "", this.ended = false, this.chunks = [], this.strm = new i(), this.strm.avail_out = 0;
-          var r2 = c.inflateInit2(this.strm, t2.windowBits);
-          if (r2 !== m.Z_OK) throw new Error(n[r2]);
-          this.header = new s(), c.inflateGetHeader(this.strm, this.header);
-        }
-        function o(e2, t2) {
-          var r2 = new a(t2);
-          if (r2.push(e2, true), r2.err) throw r2.msg || n[r2.err];
-          return r2.result;
-        }
-        a.prototype.push = function(e2, t2) {
-          var r2, n2, i2, s2, a2, o2, h = this.strm, u = this.options.chunkSize, l = this.options.dictionary, f = false;
-          if (this.ended) return false;
-          n2 = t2 === ~~t2 ? t2 : true === t2 ? m.Z_FINISH : m.Z_NO_FLUSH, "string" == typeof e2 ? h.input = p.binstring2buf(e2) : "[object ArrayBuffer]" === _.call(e2) ? h.input = new Uint8Array(e2) : h.input = e2, h.next_in = 0, h.avail_in = h.input.length;
-          do {
-            if (0 === h.avail_out && (h.output = new d.Buf8(u), h.next_out = 0, h.avail_out = u), (r2 = c.inflate(h, m.Z_NO_FLUSH)) === m.Z_NEED_DICT && l && (o2 = "string" == typeof l ? p.string2buf(l) : "[object ArrayBuffer]" === _.call(l) ? new Uint8Array(l) : l, r2 = c.inflateSetDictionary(this.strm, o2)), r2 === m.Z_BUF_ERROR && true === f && (r2 = m.Z_OK, f = false), r2 !== m.Z_STREAM_END && r2 !== m.Z_OK) return this.onEnd(r2), !(this.ended = true);
-            h.next_out && (0 !== h.avail_out && r2 !== m.Z_STREAM_END && (0 !== h.avail_in || n2 !== m.Z_FINISH && n2 !== m.Z_SYNC_FLUSH) || ("string" === this.options.to ? (i2 = p.utf8border(h.output, h.next_out), s2 = h.next_out - i2, a2 = p.buf2string(h.output, i2), h.next_out = s2, h.avail_out = u - s2, s2 && d.arraySet(h.output, h.output, i2, s2, 0), this.onData(a2)) : this.onData(d.shrinkBuf(h.output, h.next_out)))), 0 === h.avail_in && 0 === h.avail_out && (f = true);
-          } while ((0 < h.avail_in || 0 === h.avail_out) && r2 !== m.Z_STREAM_END);
-          return r2 === m.Z_STREAM_END && (n2 = m.Z_FINISH), n2 === m.Z_FINISH ? (r2 = c.inflateEnd(this.strm), this.onEnd(r2), this.ended = true, r2 === m.Z_OK) : n2 !== m.Z_SYNC_FLUSH || (this.onEnd(m.Z_OK), !(h.avail_out = 0));
-        }, a.prototype.onData = function(e2) {
-          this.chunks.push(e2);
-        }, a.prototype.onEnd = function(e2) {
-          e2 === m.Z_OK && ("string" === this.options.to ? this.result = this.chunks.join("") : this.result = d.flattenChunks(this.chunks)), this.chunks = [], this.err = e2, this.msg = this.strm.msg;
-        }, r.Inflate = a, r.inflate = o, r.inflateRaw = function(e2, t2) {
-          return (t2 = t2 || {}).raw = true, o(e2, t2);
-        }, r.ungzip = o;
-      }, { "./utils/common": 41, "./utils/strings": 42, "./zlib/constants": 44, "./zlib/gzheader": 47, "./zlib/inflate": 49, "./zlib/messages": 51, "./zlib/zstream": 53 }], 41: [function(e, t, r) {
-        "use strict";
-        var n = "undefined" != typeof Uint8Array && "undefined" != typeof Uint16Array && "undefined" != typeof Int32Array;
-        r.assign = function(e2) {
-          for (var t2 = Array.prototype.slice.call(arguments, 1); t2.length; ) {
-            var r2 = t2.shift();
-            if (r2) {
-              if ("object" != typeof r2) throw new TypeError(r2 + "must be non-object");
-              for (var n2 in r2) r2.hasOwnProperty(n2) && (e2[n2] = r2[n2]);
-            }
-          }
-          return e2;
-        }, r.shrinkBuf = function(e2, t2) {
-          return e2.length === t2 ? e2 : e2.subarray ? e2.subarray(0, t2) : (e2.length = t2, e2);
-        };
-        var i = { arraySet: function(e2, t2, r2, n2, i2) {
-          if (t2.subarray && e2.subarray) e2.set(t2.subarray(r2, r2 + n2), i2);
-          else for (var s2 = 0; s2 < n2; s2++) e2[i2 + s2] = t2[r2 + s2];
-        }, flattenChunks: function(e2) {
-          var t2, r2, n2, i2, s2, a;
-          for (t2 = n2 = 0, r2 = e2.length; t2 < r2; t2++) n2 += e2[t2].length;
-          for (a = new Uint8Array(n2), t2 = i2 = 0, r2 = e2.length; t2 < r2; t2++) s2 = e2[t2], a.set(s2, i2), i2 += s2.length;
-          return a;
-        } }, s = { arraySet: function(e2, t2, r2, n2, i2) {
-          for (var s2 = 0; s2 < n2; s2++) e2[i2 + s2] = t2[r2 + s2];
-        }, flattenChunks: function(e2) {
-          return [].concat.apply([], e2);
-        } };
-        r.setTyped = function(e2) {
-          e2 ? (r.Buf8 = Uint8Array, r.Buf16 = Uint16Array, r.Buf32 = Int32Array, r.assign(r, i)) : (r.Buf8 = Array, r.Buf16 = Array, r.Buf32 = Array, r.assign(r, s));
-        }, r.setTyped(n);
-      }, {}], 42: [function(e, t, r) {
-        "use strict";
-        var h = e("./common"), i = true, s = true;
-        try {
-          String.fromCharCode.apply(null, [0]);
-        } catch (e2) {
-          i = false;
-        }
-        try {
-          String.fromCharCode.apply(null, new Uint8Array(1));
-        } catch (e2) {
-          s = false;
-        }
-        for (var u = new h.Buf8(256), n = 0; n < 256; n++) u[n] = 252 <= n ? 6 : 248 <= n ? 5 : 240 <= n ? 4 : 224 <= n ? 3 : 192 <= n ? 2 : 1;
-        function l(e2, t2) {
-          if (t2 < 65537 && (e2.subarray && s || !e2.subarray && i)) return String.fromCharCode.apply(null, h.shrinkBuf(e2, t2));
-          for (var r2 = "", n2 = 0; n2 < t2; n2++) r2 += String.fromCharCode(e2[n2]);
-          return r2;
-        }
-        u[254] = u[254] = 1, r.string2buf = function(e2) {
-          var t2, r2, n2, i2, s2, a = e2.length, o = 0;
-          for (i2 = 0; i2 < a; i2++) 55296 == (64512 & (r2 = e2.charCodeAt(i2))) && i2 + 1 < a && 56320 == (64512 & (n2 = e2.charCodeAt(i2 + 1))) && (r2 = 65536 + (r2 - 55296 << 10) + (n2 - 56320), i2++), o += r2 < 128 ? 1 : r2 < 2048 ? 2 : r2 < 65536 ? 3 : 4;
-          for (t2 = new h.Buf8(o), i2 = s2 = 0; s2 < o; i2++) 55296 == (64512 & (r2 = e2.charCodeAt(i2))) && i2 + 1 < a && 56320 == (64512 & (n2 = e2.charCodeAt(i2 + 1))) && (r2 = 65536 + (r2 - 55296 << 10) + (n2 - 56320), i2++), r2 < 128 ? t2[s2++] = r2 : (r2 < 2048 ? t2[s2++] = 192 | r2 >>> 6 : (r2 < 65536 ? t2[s2++] = 224 | r2 >>> 12 : (t2[s2++] = 240 | r2 >>> 18, t2[s2++] = 128 | r2 >>> 12 & 63), t2[s2++] = 128 | r2 >>> 6 & 63), t2[s2++] = 128 | 63 & r2);
-          return t2;
-        }, r.buf2binstring = function(e2) {
-          return l(e2, e2.length);
-        }, r.binstring2buf = function(e2) {
-          for (var t2 = new h.Buf8(e2.length), r2 = 0, n2 = t2.length; r2 < n2; r2++) t2[r2] = e2.charCodeAt(r2);
-          return t2;
-        }, r.buf2string = function(e2, t2) {
-          var r2, n2, i2, s2, a = t2 || e2.length, o = new Array(2 * a);
-          for (r2 = n2 = 0; r2 < a; ) if ((i2 = e2[r2++]) < 128) o[n2++] = i2;
-          else if (4 < (s2 = u[i2])) o[n2++] = 65533, r2 += s2 - 1;
-          else {
-            for (i2 &= 2 === s2 ? 31 : 3 === s2 ? 15 : 7; 1 < s2 && r2 < a; ) i2 = i2 << 6 | 63 & e2[r2++], s2--;
-            1 < s2 ? o[n2++] = 65533 : i2 < 65536 ? o[n2++] = i2 : (i2 -= 65536, o[n2++] = 55296 | i2 >> 10 & 1023, o[n2++] = 56320 | 1023 & i2);
-          }
-          return l(o, n2);
-        }, r.utf8border = function(e2, t2) {
-          var r2;
-          for ((t2 = t2 || e2.length) > e2.length && (t2 = e2.length), r2 = t2 - 1; 0 <= r2 && 128 == (192 & e2[r2]); ) r2--;
-          return r2 < 0 ? t2 : 0 === r2 ? t2 : r2 + u[e2[r2]] > t2 ? r2 : t2;
-        };
-      }, { "./common": 41 }], 43: [function(e, t, r) {
-        "use strict";
-        t.exports = function(e2, t2, r2, n) {
-          for (var i = 65535 & e2 | 0, s = e2 >>> 16 & 65535 | 0, a = 0; 0 !== r2; ) {
-            for (r2 -= a = 2e3 < r2 ? 2e3 : r2; s = s + (i = i + t2[n++] | 0) | 0, --a; ) ;
-            i %= 65521, s %= 65521;
-          }
-          return i | s << 16 | 0;
-        };
-      }, {}], 44: [function(e, t, r) {
-        "use strict";
-        t.exports = { Z_NO_FLUSH: 0, Z_PARTIAL_FLUSH: 1, Z_SYNC_FLUSH: 2, Z_FULL_FLUSH: 3, Z_FINISH: 4, Z_BLOCK: 5, Z_TREES: 6, Z_OK: 0, Z_STREAM_END: 1, Z_NEED_DICT: 2, Z_ERRNO: -1, Z_STREAM_ERROR: -2, Z_DATA_ERROR: -3, Z_BUF_ERROR: -5, Z_NO_COMPRESSION: 0, Z_BEST_SPEED: 1, Z_BEST_COMPRESSION: 9, Z_DEFAULT_COMPRESSION: -1, Z_FILTERED: 1, Z_HUFFMAN_ONLY: 2, Z_RLE: 3, Z_FIXED: 4, Z_DEFAULT_STRATEGY: 0, Z_BINARY: 0, Z_TEXT: 1, Z_UNKNOWN: 2, Z_DEFLATED: 8 };
-      }, {}], 45: [function(e, t, r) {
-        "use strict";
-        var o = function() {
-          for (var e2, t2 = [], r2 = 0; r2 < 256; r2++) {
-            e2 = r2;
-            for (var n = 0; n < 8; n++) e2 = 1 & e2 ? 3988292384 ^ e2 >>> 1 : e2 >>> 1;
-            t2[r2] = e2;
-          }
-          return t2;
-        }();
-        t.exports = function(e2, t2, r2, n) {
-          var i = o, s = n + r2;
-          e2 ^= -1;
-          for (var a = n; a < s; a++) e2 = e2 >>> 8 ^ i[255 & (e2 ^ t2[a])];
-          return -1 ^ e2;
-        };
-      }, {}], 46: [function(e, t, r) {
-        "use strict";
-        var h, c = e("../utils/common"), u = e("./trees"), d = e("./adler32"), p = e("./crc32"), n = e("./messages"), l = 0, f = 4, m = 0, _ = -2, g = -1, b = 4, i = 2, v = 8, y = 9, s = 286, a = 30, o = 19, w = 2 * s + 1, k = 15, x = 3, S = 258, z = S + x + 1, C = 42, E = 113, A = 1, I = 2, O = 3, B = 4;
-        function R(e2, t2) {
-          return e2.msg = n[t2], t2;
-        }
-        function T(e2) {
-          return (e2 << 1) - (4 < e2 ? 9 : 0);
-        }
-        function D(e2) {
-          for (var t2 = e2.length; 0 <= --t2; ) e2[t2] = 0;
-        }
-        function F(e2) {
-          var t2 = e2.state, r2 = t2.pending;
-          r2 > e2.avail_out && (r2 = e2.avail_out), 0 !== r2 && (c.arraySet(e2.output, t2.pending_buf, t2.pending_out, r2, e2.next_out), e2.next_out += r2, t2.pending_out += r2, e2.total_out += r2, e2.avail_out -= r2, t2.pending -= r2, 0 === t2.pending && (t2.pending_out = 0));
-        }
-        function N(e2, t2) {
-          u._tr_flush_block(e2, 0 <= e2.block_start ? e2.block_start : -1, e2.strstart - e2.block_start, t2), e2.block_start = e2.strstart, F(e2.strm);
-        }
-        function U(e2, t2) {
-          e2.pending_buf[e2.pending++] = t2;
-        }
-        function P(e2, t2) {
-          e2.pending_buf[e2.pending++] = t2 >>> 8 & 255, e2.pending_buf[e2.pending++] = 255 & t2;
-        }
-        function L(e2, t2) {
-          var r2, n2, i2 = e2.max_chain_length, s2 = e2.strstart, a2 = e2.prev_length, o2 = e2.nice_match, h2 = e2.strstart > e2.w_size - z ? e2.strstart - (e2.w_size - z) : 0, u2 = e2.window, l2 = e2.w_mask, f2 = e2.prev, c2 = e2.strstart + S, d2 = u2[s2 + a2 - 1], p2 = u2[s2 + a2];
-          e2.prev_length >= e2.good_match && (i2 >>= 2), o2 > e2.lookahead && (o2 = e2.lookahead);
-          do {
-            if (u2[(r2 = t2) + a2] === p2 && u2[r2 + a2 - 1] === d2 && u2[r2] === u2[s2] && u2[++r2] === u2[s2 + 1]) {
-              s2 += 2, r2++;
-              do {
-              } while (u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && u2[++s2] === u2[++r2] && s2 < c2);
-              if (n2 = S - (c2 - s2), s2 = c2 - S, a2 < n2) {
-                if (e2.match_start = t2, o2 <= (a2 = n2)) break;
-                d2 = u2[s2 + a2 - 1], p2 = u2[s2 + a2];
-              }
-            }
-          } while ((t2 = f2[t2 & l2]) > h2 && 0 != --i2);
-          return a2 <= e2.lookahead ? a2 : e2.lookahead;
-        }
-        function j(e2) {
-          var t2, r2, n2, i2, s2, a2, o2, h2, u2, l2, f2 = e2.w_size;
-          do {
-            if (i2 = e2.window_size - e2.lookahead - e2.strstart, e2.strstart >= f2 + (f2 - z)) {
-              for (c.arraySet(e2.window, e2.window, f2, f2, 0), e2.match_start -= f2, e2.strstart -= f2, e2.block_start -= f2, t2 = r2 = e2.hash_size; n2 = e2.head[--t2], e2.head[t2] = f2 <= n2 ? n2 - f2 : 0, --r2; ) ;
-              for (t2 = r2 = f2; n2 = e2.prev[--t2], e2.prev[t2] = f2 <= n2 ? n2 - f2 : 0, --r2; ) ;
-              i2 += f2;
-            }
-            if (0 === e2.strm.avail_in) break;
-            if (a2 = e2.strm, o2 = e2.window, h2 = e2.strstart + e2.lookahead, u2 = i2, l2 = void 0, l2 = a2.avail_in, u2 < l2 && (l2 = u2), r2 = 0 === l2 ? 0 : (a2.avail_in -= l2, c.arraySet(o2, a2.input, a2.next_in, l2, h2), 1 === a2.state.wrap ? a2.adler = d(a2.adler, o2, l2, h2) : 2 === a2.state.wrap && (a2.adler = p(a2.adler, o2, l2, h2)), a2.next_in += l2, a2.total_in += l2, l2), e2.lookahead += r2, e2.lookahead + e2.insert >= x) for (s2 = e2.strstart - e2.insert, e2.ins_h = e2.window[s2], e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[s2 + 1]) & e2.hash_mask; e2.insert && (e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[s2 + x - 1]) & e2.hash_mask, e2.prev[s2 & e2.w_mask] = e2.head[e2.ins_h], e2.head[e2.ins_h] = s2, s2++, e2.insert--, !(e2.lookahead + e2.insert < x)); ) ;
-          } while (e2.lookahead < z && 0 !== e2.strm.avail_in);
-        }
-        function Z(e2, t2) {
-          for (var r2, n2; ; ) {
-            if (e2.lookahead < z) {
-              if (j(e2), e2.lookahead < z && t2 === l) return A;
-              if (0 === e2.lookahead) break;
-            }
-            if (r2 = 0, e2.lookahead >= x && (e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[e2.strstart + x - 1]) & e2.hash_mask, r2 = e2.prev[e2.strstart & e2.w_mask] = e2.head[e2.ins_h], e2.head[e2.ins_h] = e2.strstart), 0 !== r2 && e2.strstart - r2 <= e2.w_size - z && (e2.match_length = L(e2, r2)), e2.match_length >= x) if (n2 = u._tr_tally(e2, e2.strstart - e2.match_start, e2.match_length - x), e2.lookahead -= e2.match_length, e2.match_length <= e2.max_lazy_match && e2.lookahead >= x) {
-              for (e2.match_length--; e2.strstart++, e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[e2.strstart + x - 1]) & e2.hash_mask, r2 = e2.prev[e2.strstart & e2.w_mask] = e2.head[e2.ins_h], e2.head[e2.ins_h] = e2.strstart, 0 != --e2.match_length; ) ;
-              e2.strstart++;
-            } else e2.strstart += e2.match_length, e2.match_length = 0, e2.ins_h = e2.window[e2.strstart], e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[e2.strstart + 1]) & e2.hash_mask;
-            else n2 = u._tr_tally(e2, 0, e2.window[e2.strstart]), e2.lookahead--, e2.strstart++;
-            if (n2 && (N(e2, false), 0 === e2.strm.avail_out)) return A;
-          }
-          return e2.insert = e2.strstart < x - 1 ? e2.strstart : x - 1, t2 === f ? (N(e2, true), 0 === e2.strm.avail_out ? O : B) : e2.last_lit && (N(e2, false), 0 === e2.strm.avail_out) ? A : I;
-        }
-        function W(e2, t2) {
-          for (var r2, n2, i2; ; ) {
-            if (e2.lookahead < z) {
-              if (j(e2), e2.lookahead < z && t2 === l) return A;
-              if (0 === e2.lookahead) break;
-            }
-            if (r2 = 0, e2.lookahead >= x && (e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[e2.strstart + x - 1]) & e2.hash_mask, r2 = e2.prev[e2.strstart & e2.w_mask] = e2.head[e2.ins_h], e2.head[e2.ins_h] = e2.strstart), e2.prev_length = e2.match_length, e2.prev_match = e2.match_start, e2.match_length = x - 1, 0 !== r2 && e2.prev_length < e2.max_lazy_match && e2.strstart - r2 <= e2.w_size - z && (e2.match_length = L(e2, r2), e2.match_length <= 5 && (1 === e2.strategy || e2.match_length === x && 4096 < e2.strstart - e2.match_start) && (e2.match_length = x - 1)), e2.prev_length >= x && e2.match_length <= e2.prev_length) {
-              for (i2 = e2.strstart + e2.lookahead - x, n2 = u._tr_tally(e2, e2.strstart - 1 - e2.prev_match, e2.prev_length - x), e2.lookahead -= e2.prev_length - 1, e2.prev_length -= 2; ++e2.strstart <= i2 && (e2.ins_h = (e2.ins_h << e2.hash_shift ^ e2.window[e2.strstart + x - 1]) & e2.hash_mask, r2 = e2.prev[e2.strstart & e2.w_mask] = e2.head[e2.ins_h], e2.head[e2.ins_h] = e2.strstart), 0 != --e2.prev_length; ) ;
-              if (e2.match_available = 0, e2.match_length = x - 1, e2.strstart++, n2 && (N(e2, false), 0 === e2.strm.avail_out)) return A;
-            } else if (e2.match_available) {
-              if ((n2 = u._tr_tally(e2, 0, e2.window[e2.strstart - 1])) && N(e2, false), e2.strstart++, e2.lookahead--, 0 === e2.strm.avail_out) return A;
-            } else e2.match_available = 1, e2.strstart++, e2.lookahead--;
-          }
-          return e2.match_available && (n2 = u._tr_tally(e2, 0, e2.window[e2.strstart - 1]), e2.match_available = 0), e2.insert = e2.strstart < x - 1 ? e2.strstart : x - 1, t2 === f ? (N(e2, true), 0 === e2.strm.avail_out ? O : B) : e2.last_lit && (N(e2, false), 0 === e2.strm.avail_out) ? A : I;
-        }
-        function M(e2, t2, r2, n2, i2) {
-          this.good_length = e2, this.max_lazy = t2, this.nice_length = r2, this.max_chain = n2, this.func = i2;
-        }
-        function H() {
-          this.strm = null, this.status = 0, this.pending_buf = null, this.pending_buf_size = 0, this.pending_out = 0, this.pending = 0, this.wrap = 0, this.gzhead = null, this.gzindex = 0, this.method = v, this.last_flush = -1, this.w_size = 0, this.w_bits = 0, this.w_mask = 0, this.window = null, this.window_size = 0, this.prev = null, this.head = null, this.ins_h = 0, this.hash_size = 0, this.hash_bits = 0, this.hash_mask = 0, this.hash_shift = 0, this.block_start = 0, this.match_length = 0, this.prev_match = 0, this.match_available = 0, this.strstart = 0, this.match_start = 0, this.lookahead = 0, this.prev_length = 0, this.max_chain_length = 0, this.max_lazy_match = 0, this.level = 0, this.strategy = 0, this.good_match = 0, this.nice_match = 0, this.dyn_ltree = new c.Buf16(2 * w), this.dyn_dtree = new c.Buf16(2 * (2 * a + 1)), this.bl_tree = new c.Buf16(2 * (2 * o + 1)), D(this.dyn_ltree), D(this.dyn_dtree), D(this.bl_tree), this.l_desc = null, this.d_desc = null, this.bl_desc = null, this.bl_count = new c.Buf16(k + 1), this.heap = new c.Buf16(2 * s + 1), D(this.heap), this.heap_len = 0, this.heap_max = 0, this.depth = new c.Buf16(2 * s + 1), D(this.depth), this.l_buf = 0, this.lit_bufsize = 0, this.last_lit = 0, this.d_buf = 0, this.opt_len = 0, this.static_len = 0, this.matches = 0, this.insert = 0, this.bi_buf = 0, this.bi_valid = 0;
-        }
-        function G(e2) {
-          var t2;
-          return e2 && e2.state ? (e2.total_in = e2.total_out = 0, e2.data_type = i, (t2 = e2.state).pending = 0, t2.pending_out = 0, t2.wrap < 0 && (t2.wrap = -t2.wrap), t2.status = t2.wrap ? C : E, e2.adler = 2 === t2.wrap ? 0 : 1, t2.last_flush = l, u._tr_init(t2), m) : R(e2, _);
-        }
-        function K(e2) {
-          var t2 = G(e2);
-          return t2 === m && function(e3) {
-            e3.window_size = 2 * e3.w_size, D(e3.head), e3.max_lazy_match = h[e3.level].max_lazy, e3.good_match = h[e3.level].good_length, e3.nice_match = h[e3.level].nice_length, e3.max_chain_length = h[e3.level].max_chain, e3.strstart = 0, e3.block_start = 0, e3.lookahead = 0, e3.insert = 0, e3.match_length = e3.prev_length = x - 1, e3.match_available = 0, e3.ins_h = 0;
-          }(e2.state), t2;
-        }
-        function Y(e2, t2, r2, n2, i2, s2) {
-          if (!e2) return _;
-          var a2 = 1;
-          if (t2 === g && (t2 = 6), n2 < 0 ? (a2 = 0, n2 = -n2) : 15 < n2 && (a2 = 2, n2 -= 16), i2 < 1 || y < i2 || r2 !== v || n2 < 8 || 15 < n2 || t2 < 0 || 9 < t2 || s2 < 0 || b < s2) return R(e2, _);
-          8 === n2 && (n2 = 9);
-          var o2 = new H();
-          return (e2.state = o2).strm = e2, o2.wrap = a2, o2.gzhead = null, o2.w_bits = n2, o2.w_size = 1 << o2.w_bits, o2.w_mask = o2.w_size - 1, o2.hash_bits = i2 + 7, o2.hash_size = 1 << o2.hash_bits, o2.hash_mask = o2.hash_size - 1, o2.hash_shift = ~~((o2.hash_bits + x - 1) / x), o2.window = new c.Buf8(2 * o2.w_size), o2.head = new c.Buf16(o2.hash_size), o2.prev = new c.Buf16(o2.w_size), o2.lit_bufsize = 1 << i2 + 6, o2.pending_buf_size = 4 * o2.lit_bufsize, o2.pending_buf = new c.Buf8(o2.pending_buf_size), o2.d_buf = 1 * o2.lit_bufsize, o2.l_buf = 3 * o2.lit_bufsize, o2.level = t2, o2.strategy = s2, o2.method = r2, K(e2);
-        }
-        h = [new M(0, 0, 0, 0, function(e2, t2) {
-          var r2 = 65535;
-          for (r2 > e2.pending_buf_size - 5 && (r2 = e2.pending_buf_size - 5); ; ) {
-            if (e2.lookahead <= 1) {
-              if (j(e2), 0 === e2.lookahead && t2 === l) return A;
-              if (0 === e2.lookahead) break;
-            }
-            e2.strstart += e2.lookahead, e2.lookahead = 0;
-            var n2 = e2.block_start + r2;
-            if ((0 === e2.strstart || e2.strstart >= n2) && (e2.lookahead = e2.strstart - n2, e2.strstart = n2, N(e2, false), 0 === e2.strm.avail_out)) return A;
-            if (e2.strstart - e2.block_start >= e2.w_size - z && (N(e2, false), 0 === e2.strm.avail_out)) return A;
-          }
-          return e2.insert = 0, t2 === f ? (N(e2, true), 0 === e2.strm.avail_out ? O : B) : (e2.strstart > e2.block_start && (N(e2, false), e2.strm.avail_out), A);
-        }), new M(4, 4, 8, 4, Z), new M(4, 5, 16, 8, Z), new M(4, 6, 32, 32, Z), new M(4, 4, 16, 16, W), new M(8, 16, 32, 32, W), new M(8, 16, 128, 128, W), new M(8, 32, 128, 256, W), new M(32, 128, 258, 1024, W), new M(32, 258, 258, 4096, W)], r.deflateInit = function(e2, t2) {
-          return Y(e2, t2, v, 15, 8, 0);
-        }, r.deflateInit2 = Y, r.deflateReset = K, r.deflateResetKeep = G, r.deflateSetHeader = function(e2, t2) {
-          return e2 && e2.state ? 2 !== e2.state.wrap ? _ : (e2.state.gzhead = t2, m) : _;
-        }, r.deflate = function(e2, t2) {
-          var r2, n2, i2, s2;
-          if (!e2 || !e2.state || 5 < t2 || t2 < 0) return e2 ? R(e2, _) : _;
-          if (n2 = e2.state, !e2.output || !e2.input && 0 !== e2.avail_in || 666 === n2.status && t2 !== f) return R(e2, 0 === e2.avail_out ? -5 : _);
-          if (n2.strm = e2, r2 = n2.last_flush, n2.last_flush = t2, n2.status === C) if (2 === n2.wrap) e2.adler = 0, U(n2, 31), U(n2, 139), U(n2, 8), n2.gzhead ? (U(n2, (n2.gzhead.text ? 1 : 0) + (n2.gzhead.hcrc ? 2 : 0) + (n2.gzhead.extra ? 4 : 0) + (n2.gzhead.name ? 8 : 0) + (n2.gzhead.comment ? 16 : 0)), U(n2, 255 & n2.gzhead.time), U(n2, n2.gzhead.time >> 8 & 255), U(n2, n2.gzhead.time >> 16 & 255), U(n2, n2.gzhead.time >> 24 & 255), U(n2, 9 === n2.level ? 2 : 2 <= n2.strategy || n2.level < 2 ? 4 : 0), U(n2, 255 & n2.gzhead.os), n2.gzhead.extra && n2.gzhead.extra.length && (U(n2, 255 & n2.gzhead.extra.length), U(n2, n2.gzhead.extra.length >> 8 & 255)), n2.gzhead.hcrc && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending, 0)), n2.gzindex = 0, n2.status = 69) : (U(n2, 0), U(n2, 0), U(n2, 0), U(n2, 0), U(n2, 0), U(n2, 9 === n2.level ? 2 : 2 <= n2.strategy || n2.level < 2 ? 4 : 0), U(n2, 3), n2.status = E);
-          else {
-            var a2 = v + (n2.w_bits - 8 << 4) << 8;
-            a2 |= (2 <= n2.strategy || n2.level < 2 ? 0 : n2.level < 6 ? 1 : 6 === n2.level ? 2 : 3) << 6, 0 !== n2.strstart && (a2 |= 32), a2 += 31 - a2 % 31, n2.status = E, P(n2, a2), 0 !== n2.strstart && (P(n2, e2.adler >>> 16), P(n2, 65535 & e2.adler)), e2.adler = 1;
-          }
-          if (69 === n2.status) if (n2.gzhead.extra) {
-            for (i2 = n2.pending; n2.gzindex < (65535 & n2.gzhead.extra.length) && (n2.pending !== n2.pending_buf_size || (n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), F(e2), i2 = n2.pending, n2.pending !== n2.pending_buf_size)); ) U(n2, 255 & n2.gzhead.extra[n2.gzindex]), n2.gzindex++;
-            n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), n2.gzindex === n2.gzhead.extra.length && (n2.gzindex = 0, n2.status = 73);
-          } else n2.status = 73;
-          if (73 === n2.status) if (n2.gzhead.name) {
-            i2 = n2.pending;
-            do {
-              if (n2.pending === n2.pending_buf_size && (n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), F(e2), i2 = n2.pending, n2.pending === n2.pending_buf_size)) {
-                s2 = 1;
-                break;
-              }
-              s2 = n2.gzindex < n2.gzhead.name.length ? 255 & n2.gzhead.name.charCodeAt(n2.gzindex++) : 0, U(n2, s2);
-            } while (0 !== s2);
-            n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), 0 === s2 && (n2.gzindex = 0, n2.status = 91);
-          } else n2.status = 91;
-          if (91 === n2.status) if (n2.gzhead.comment) {
-            i2 = n2.pending;
-            do {
-              if (n2.pending === n2.pending_buf_size && (n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), F(e2), i2 = n2.pending, n2.pending === n2.pending_buf_size)) {
-                s2 = 1;
-                break;
-              }
-              s2 = n2.gzindex < n2.gzhead.comment.length ? 255 & n2.gzhead.comment.charCodeAt(n2.gzindex++) : 0, U(n2, s2);
-            } while (0 !== s2);
-            n2.gzhead.hcrc && n2.pending > i2 && (e2.adler = p(e2.adler, n2.pending_buf, n2.pending - i2, i2)), 0 === s2 && (n2.status = 103);
-          } else n2.status = 103;
-          if (103 === n2.status && (n2.gzhead.hcrc ? (n2.pending + 2 > n2.pending_buf_size && F(e2), n2.pending + 2 <= n2.pending_buf_size && (U(n2, 255 & e2.adler), U(n2, e2.adler >> 8 & 255), e2.adler = 0, n2.status = E)) : n2.status = E), 0 !== n2.pending) {
-            if (F(e2), 0 === e2.avail_out) return n2.last_flush = -1, m;
-          } else if (0 === e2.avail_in && T(t2) <= T(r2) && t2 !== f) return R(e2, -5);
-          if (666 === n2.status && 0 !== e2.avail_in) return R(e2, -5);
-          if (0 !== e2.avail_in || 0 !== n2.lookahead || t2 !== l && 666 !== n2.status) {
-            var o2 = 2 === n2.strategy ? function(e3, t3) {
-              for (var r3; ; ) {
-                if (0 === e3.lookahead && (j(e3), 0 === e3.lookahead)) {
-                  if (t3 === l) return A;
-                  break;
-                }
-                if (e3.match_length = 0, r3 = u._tr_tally(e3, 0, e3.window[e3.strstart]), e3.lookahead--, e3.strstart++, r3 && (N(e3, false), 0 === e3.strm.avail_out)) return A;
-              }
-              return e3.insert = 0, t3 === f ? (N(e3, true), 0 === e3.strm.avail_out ? O : B) : e3.last_lit && (N(e3, false), 0 === e3.strm.avail_out) ? A : I;
-            }(n2, t2) : 3 === n2.strategy ? function(e3, t3) {
-              for (var r3, n3, i3, s3, a3 = e3.window; ; ) {
-                if (e3.lookahead <= S) {
-                  if (j(e3), e3.lookahead <= S && t3 === l) return A;
-                  if (0 === e3.lookahead) break;
-                }
-                if (e3.match_length = 0, e3.lookahead >= x && 0 < e3.strstart && (n3 = a3[i3 = e3.strstart - 1]) === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3]) {
-                  s3 = e3.strstart + S;
-                  do {
-                  } while (n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && n3 === a3[++i3] && i3 < s3);
-                  e3.match_length = S - (s3 - i3), e3.match_length > e3.lookahead && (e3.match_length = e3.lookahead);
-                }
-                if (e3.match_length >= x ? (r3 = u._tr_tally(e3, 1, e3.match_length - x), e3.lookahead -= e3.match_length, e3.strstart += e3.match_length, e3.match_length = 0) : (r3 = u._tr_tally(e3, 0, e3.window[e3.strstart]), e3.lookahead--, e3.strstart++), r3 && (N(e3, false), 0 === e3.strm.avail_out)) return A;
-              }
-              return e3.insert = 0, t3 === f ? (N(e3, true), 0 === e3.strm.avail_out ? O : B) : e3.last_lit && (N(e3, false), 0 === e3.strm.avail_out) ? A : I;
-            }(n2, t2) : h[n2.level].func(n2, t2);
-            if (o2 !== O && o2 !== B || (n2.status = 666), o2 === A || o2 === O) return 0 === e2.avail_out && (n2.last_flush = -1), m;
-            if (o2 === I && (1 === t2 ? u._tr_align(n2) : 5 !== t2 && (u._tr_stored_block(n2, 0, 0, false), 3 === t2 && (D(n2.head), 0 === n2.lookahead && (n2.strstart = 0, n2.block_start = 0, n2.insert = 0))), F(e2), 0 === e2.avail_out)) return n2.last_flush = -1, m;
-          }
-          return t2 !== f ? m : n2.wrap <= 0 ? 1 : (2 === n2.wrap ? (U(n2, 255 & e2.adler), U(n2, e2.adler >> 8 & 255), U(n2, e2.adler >> 16 & 255), U(n2, e2.adler >> 24 & 255), U(n2, 255 & e2.total_in), U(n2, e2.total_in >> 8 & 255), U(n2, e2.total_in >> 16 & 255), U(n2, e2.total_in >> 24 & 255)) : (P(n2, e2.adler >>> 16), P(n2, 65535 & e2.adler)), F(e2), 0 < n2.wrap && (n2.wrap = -n2.wrap), 0 !== n2.pending ? m : 1);
-        }, r.deflateEnd = function(e2) {
-          var t2;
-          return e2 && e2.state ? (t2 = e2.state.status) !== C && 69 !== t2 && 73 !== t2 && 91 !== t2 && 103 !== t2 && t2 !== E && 666 !== t2 ? R(e2, _) : (e2.state = null, t2 === E ? R(e2, -3) : m) : _;
-        }, r.deflateSetDictionary = function(e2, t2) {
-          var r2, n2, i2, s2, a2, o2, h2, u2, l2 = t2.length;
-          if (!e2 || !e2.state) return _;
-          if (2 === (s2 = (r2 = e2.state).wrap) || 1 === s2 && r2.status !== C || r2.lookahead) return _;
-          for (1 === s2 && (e2.adler = d(e2.adler, t2, l2, 0)), r2.wrap = 0, l2 >= r2.w_size && (0 === s2 && (D(r2.head), r2.strstart = 0, r2.block_start = 0, r2.insert = 0), u2 = new c.Buf8(r2.w_size), c.arraySet(u2, t2, l2 - r2.w_size, r2.w_size, 0), t2 = u2, l2 = r2.w_size), a2 = e2.avail_in, o2 = e2.next_in, h2 = e2.input, e2.avail_in = l2, e2.next_in = 0, e2.input = t2, j(r2); r2.lookahead >= x; ) {
-            for (n2 = r2.strstart, i2 = r2.lookahead - (x - 1); r2.ins_h = (r2.ins_h << r2.hash_shift ^ r2.window[n2 + x - 1]) & r2.hash_mask, r2.prev[n2 & r2.w_mask] = r2.head[r2.ins_h], r2.head[r2.ins_h] = n2, n2++, --i2; ) ;
-            r2.strstart = n2, r2.lookahead = x - 1, j(r2);
-          }
-          return r2.strstart += r2.lookahead, r2.block_start = r2.strstart, r2.insert = r2.lookahead, r2.lookahead = 0, r2.match_length = r2.prev_length = x - 1, r2.match_available = 0, e2.next_in = o2, e2.input = h2, e2.avail_in = a2, r2.wrap = s2, m;
-        }, r.deflateInfo = "pako deflate (from Nodeca project)";
-      }, { "../utils/common": 41, "./adler32": 43, "./crc32": 45, "./messages": 51, "./trees": 52 }], 47: [function(e, t, r) {
-        "use strict";
-        t.exports = function() {
-          this.text = 0, this.time = 0, this.xflags = 0, this.os = 0, this.extra = null, this.extra_len = 0, this.name = "", this.comment = "", this.hcrc = 0, this.done = false;
-        };
-      }, {}], 48: [function(e, t, r) {
-        "use strict";
-        t.exports = function(e2, t2) {
-          var r2, n, i, s, a, o, h, u, l, f, c, d, p, m, _, g, b, v, y, w, k, x, S, z, C;
-          r2 = e2.state, n = e2.next_in, z = e2.input, i = n + (e2.avail_in - 5), s = e2.next_out, C = e2.output, a = s - (t2 - e2.avail_out), o = s + (e2.avail_out - 257), h = r2.dmax, u = r2.wsize, l = r2.whave, f = r2.wnext, c = r2.window, d = r2.hold, p = r2.bits, m = r2.lencode, _ = r2.distcode, g = (1 << r2.lenbits) - 1, b = (1 << r2.distbits) - 1;
-          e: do {
-            p < 15 && (d += z[n++] << p, p += 8, d += z[n++] << p, p += 8), v = m[d & g];
-            t: for (; ; ) {
-              if (d >>>= y = v >>> 24, p -= y, 0 === (y = v >>> 16 & 255)) C[s++] = 65535 & v;
-              else {
-                if (!(16 & y)) {
-                  if (0 == (64 & y)) {
-                    v = m[(65535 & v) + (d & (1 << y) - 1)];
-                    continue t;
-                  }
-                  if (32 & y) {
-                    r2.mode = 12;
-                    break e;
-                  }
-                  e2.msg = "invalid literal/length code", r2.mode = 30;
-                  break e;
-                }
-                w = 65535 & v, (y &= 15) && (p < y && (d += z[n++] << p, p += 8), w += d & (1 << y) - 1, d >>>= y, p -= y), p < 15 && (d += z[n++] << p, p += 8, d += z[n++] << p, p += 8), v = _[d & b];
-                r: for (; ; ) {
-                  if (d >>>= y = v >>> 24, p -= y, !(16 & (y = v >>> 16 & 255))) {
-                    if (0 == (64 & y)) {
-                      v = _[(65535 & v) + (d & (1 << y) - 1)];
-                      continue r;
-                    }
-                    e2.msg = "invalid distance code", r2.mode = 30;
-                    break e;
-                  }
-                  if (k = 65535 & v, p < (y &= 15) && (d += z[n++] << p, (p += 8) < y && (d += z[n++] << p, p += 8)), h < (k += d & (1 << y) - 1)) {
-                    e2.msg = "invalid distance too far back", r2.mode = 30;
-                    break e;
-                  }
-                  if (d >>>= y, p -= y, (y = s - a) < k) {
-                    if (l < (y = k - y) && r2.sane) {
-                      e2.msg = "invalid distance too far back", r2.mode = 30;
-                      break e;
-                    }
-                    if (S = c, (x = 0) === f) {
-                      if (x += u - y, y < w) {
-                        for (w -= y; C[s++] = c[x++], --y; ) ;
-                        x = s - k, S = C;
+                b: {
+                  advanceTimers(currentTime);
+                  for (currentTask = peek(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost()); ) {
+                    var callback = currentTask.callback;
+                    if ("function" === typeof callback) {
+                      currentTask.callback = null;
+                      currentPriorityLevel = currentTask.priorityLevel;
+                      var continuationCallback = callback(
+                        currentTask.expirationTime <= currentTime
+                      );
+                      currentTime = exports.unstable_now();
+                      if ("function" === typeof continuationCallback) {
+                        currentTask.callback = continuationCallback;
+                        advanceTimers(currentTime);
+                        hasMoreWork = true;
+                        break b;
                       }
-                    } else if (f < y) {
-                      if (x += u + f - y, (y -= f) < w) {
-                        for (w -= y; C[s++] = c[x++], --y; ) ;
-                        if (x = 0, f < w) {
-                          for (w -= y = f; C[s++] = c[x++], --y; ) ;
-                          x = s - k, S = C;
-                        }
-                      }
-                    } else if (x += f - y, y < w) {
-                      for (w -= y; C[s++] = c[x++], --y; ) ;
-                      x = s - k, S = C;
-                    }
-                    for (; 2 < w; ) C[s++] = S[x++], C[s++] = S[x++], C[s++] = S[x++], w -= 3;
-                    w && (C[s++] = S[x++], 1 < w && (C[s++] = S[x++]));
-                  } else {
-                    for (x = s - k; C[s++] = C[x++], C[s++] = C[x++], C[s++] = C[x++], 2 < (w -= 3); ) ;
-                    w && (C[s++] = C[x++], 1 < w && (C[s++] = C[x++]));
+                      currentTask === peek(taskQueue) && pop(taskQueue);
+                      advanceTimers(currentTime);
+                    } else pop(taskQueue);
+                    currentTask = peek(taskQueue);
                   }
-                  break;
-                }
-              }
-              break;
-            }
-          } while (n < i && s < o);
-          n -= w = p >> 3, d &= (1 << (p -= w << 3)) - 1, e2.next_in = n, e2.next_out = s, e2.avail_in = n < i ? i - n + 5 : 5 - (n - i), e2.avail_out = s < o ? o - s + 257 : 257 - (s - o), r2.hold = d, r2.bits = p;
-        };
-      }, {}], 49: [function(e, t, r) {
-        "use strict";
-        var I = e("../utils/common"), O = e("./adler32"), B = e("./crc32"), R = e("./inffast"), T = e("./inftrees"), D = 1, F = 2, N = 0, U = -2, P = 1, n = 852, i = 592;
-        function L(e2) {
-          return (e2 >>> 24 & 255) + (e2 >>> 8 & 65280) + ((65280 & e2) << 8) + ((255 & e2) << 24);
-        }
-        function s() {
-          this.mode = 0, this.last = false, this.wrap = 0, this.havedict = false, this.flags = 0, this.dmax = 0, this.check = 0, this.total = 0, this.head = null, this.wbits = 0, this.wsize = 0, this.whave = 0, this.wnext = 0, this.window = null, this.hold = 0, this.bits = 0, this.length = 0, this.offset = 0, this.extra = 0, this.lencode = null, this.distcode = null, this.lenbits = 0, this.distbits = 0, this.ncode = 0, this.nlen = 0, this.ndist = 0, this.have = 0, this.next = null, this.lens = new I.Buf16(320), this.work = new I.Buf16(288), this.lendyn = null, this.distdyn = null, this.sane = 0, this.back = 0, this.was = 0;
-        }
-        function a(e2) {
-          var t2;
-          return e2 && e2.state ? (t2 = e2.state, e2.total_in = e2.total_out = t2.total = 0, e2.msg = "", t2.wrap && (e2.adler = 1 & t2.wrap), t2.mode = P, t2.last = 0, t2.havedict = 0, t2.dmax = 32768, t2.head = null, t2.hold = 0, t2.bits = 0, t2.lencode = t2.lendyn = new I.Buf32(n), t2.distcode = t2.distdyn = new I.Buf32(i), t2.sane = 1, t2.back = -1, N) : U;
-        }
-        function o(e2) {
-          var t2;
-          return e2 && e2.state ? ((t2 = e2.state).wsize = 0, t2.whave = 0, t2.wnext = 0, a(e2)) : U;
-        }
-        function h(e2, t2) {
-          var r2, n2;
-          return e2 && e2.state ? (n2 = e2.state, t2 < 0 ? (r2 = 0, t2 = -t2) : (r2 = 1 + (t2 >> 4), t2 < 48 && (t2 &= 15)), t2 && (t2 < 8 || 15 < t2) ? U : (null !== n2.window && n2.wbits !== t2 && (n2.window = null), n2.wrap = r2, n2.wbits = t2, o(e2))) : U;
-        }
-        function u(e2, t2) {
-          var r2, n2;
-          return e2 ? (n2 = new s(), (e2.state = n2).window = null, (r2 = h(e2, t2)) !== N && (e2.state = null), r2) : U;
-        }
-        var l, f, c = true;
-        function j(e2) {
-          if (c) {
-            var t2;
-            for (l = new I.Buf32(512), f = new I.Buf32(32), t2 = 0; t2 < 144; ) e2.lens[t2++] = 8;
-            for (; t2 < 256; ) e2.lens[t2++] = 9;
-            for (; t2 < 280; ) e2.lens[t2++] = 7;
-            for (; t2 < 288; ) e2.lens[t2++] = 8;
-            for (T(D, e2.lens, 0, 288, l, 0, e2.work, { bits: 9 }), t2 = 0; t2 < 32; ) e2.lens[t2++] = 5;
-            T(F, e2.lens, 0, 32, f, 0, e2.work, { bits: 5 }), c = false;
-          }
-          e2.lencode = l, e2.lenbits = 9, e2.distcode = f, e2.distbits = 5;
-        }
-        function Z(e2, t2, r2, n2) {
-          var i2, s2 = e2.state;
-          return null === s2.window && (s2.wsize = 1 << s2.wbits, s2.wnext = 0, s2.whave = 0, s2.window = new I.Buf8(s2.wsize)), n2 >= s2.wsize ? (I.arraySet(s2.window, t2, r2 - s2.wsize, s2.wsize, 0), s2.wnext = 0, s2.whave = s2.wsize) : (n2 < (i2 = s2.wsize - s2.wnext) && (i2 = n2), I.arraySet(s2.window, t2, r2 - n2, i2, s2.wnext), (n2 -= i2) ? (I.arraySet(s2.window, t2, r2 - n2, n2, 0), s2.wnext = n2, s2.whave = s2.wsize) : (s2.wnext += i2, s2.wnext === s2.wsize && (s2.wnext = 0), s2.whave < s2.wsize && (s2.whave += i2))), 0;
-        }
-        r.inflateReset = o, r.inflateReset2 = h, r.inflateResetKeep = a, r.inflateInit = function(e2) {
-          return u(e2, 15);
-        }, r.inflateInit2 = u, r.inflate = function(e2, t2) {
-          var r2, n2, i2, s2, a2, o2, h2, u2, l2, f2, c2, d, p, m, _, g, b, v, y, w, k, x, S, z, C = 0, E = new I.Buf8(4), A = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
-          if (!e2 || !e2.state || !e2.output || !e2.input && 0 !== e2.avail_in) return U;
-          12 === (r2 = e2.state).mode && (r2.mode = 13), a2 = e2.next_out, i2 = e2.output, h2 = e2.avail_out, s2 = e2.next_in, n2 = e2.input, o2 = e2.avail_in, u2 = r2.hold, l2 = r2.bits, f2 = o2, c2 = h2, x = N;
-          e: for (; ; ) switch (r2.mode) {
-            case P:
-              if (0 === r2.wrap) {
-                r2.mode = 13;
-                break;
-              }
-              for (; l2 < 16; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if (2 & r2.wrap && 35615 === u2) {
-                E[r2.check = 0] = 255 & u2, E[1] = u2 >>> 8 & 255, r2.check = B(r2.check, E, 2, 0), l2 = u2 = 0, r2.mode = 2;
-                break;
-              }
-              if (r2.flags = 0, r2.head && (r2.head.done = false), !(1 & r2.wrap) || (((255 & u2) << 8) + (u2 >> 8)) % 31) {
-                e2.msg = "incorrect header check", r2.mode = 30;
-                break;
-              }
-              if (8 != (15 & u2)) {
-                e2.msg = "unknown compression method", r2.mode = 30;
-                break;
-              }
-              if (l2 -= 4, k = 8 + (15 & (u2 >>>= 4)), 0 === r2.wbits) r2.wbits = k;
-              else if (k > r2.wbits) {
-                e2.msg = "invalid window size", r2.mode = 30;
-                break;
-              }
-              r2.dmax = 1 << k, e2.adler = r2.check = 1, r2.mode = 512 & u2 ? 10 : 12, l2 = u2 = 0;
-              break;
-            case 2:
-              for (; l2 < 16; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if (r2.flags = u2, 8 != (255 & r2.flags)) {
-                e2.msg = "unknown compression method", r2.mode = 30;
-                break;
-              }
-              if (57344 & r2.flags) {
-                e2.msg = "unknown header flags set", r2.mode = 30;
-                break;
-              }
-              r2.head && (r2.head.text = u2 >> 8 & 1), 512 & r2.flags && (E[0] = 255 & u2, E[1] = u2 >>> 8 & 255, r2.check = B(r2.check, E, 2, 0)), l2 = u2 = 0, r2.mode = 3;
-            case 3:
-              for (; l2 < 32; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              r2.head && (r2.head.time = u2), 512 & r2.flags && (E[0] = 255 & u2, E[1] = u2 >>> 8 & 255, E[2] = u2 >>> 16 & 255, E[3] = u2 >>> 24 & 255, r2.check = B(r2.check, E, 4, 0)), l2 = u2 = 0, r2.mode = 4;
-            case 4:
-              for (; l2 < 16; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              r2.head && (r2.head.xflags = 255 & u2, r2.head.os = u2 >> 8), 512 & r2.flags && (E[0] = 255 & u2, E[1] = u2 >>> 8 & 255, r2.check = B(r2.check, E, 2, 0)), l2 = u2 = 0, r2.mode = 5;
-            case 5:
-              if (1024 & r2.flags) {
-                for (; l2 < 16; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                r2.length = u2, r2.head && (r2.head.extra_len = u2), 512 & r2.flags && (E[0] = 255 & u2, E[1] = u2 >>> 8 & 255, r2.check = B(r2.check, E, 2, 0)), l2 = u2 = 0;
-              } else r2.head && (r2.head.extra = null);
-              r2.mode = 6;
-            case 6:
-              if (1024 & r2.flags && (o2 < (d = r2.length) && (d = o2), d && (r2.head && (k = r2.head.extra_len - r2.length, r2.head.extra || (r2.head.extra = new Array(r2.head.extra_len)), I.arraySet(r2.head.extra, n2, s2, d, k)), 512 & r2.flags && (r2.check = B(r2.check, n2, d, s2)), o2 -= d, s2 += d, r2.length -= d), r2.length)) break e;
-              r2.length = 0, r2.mode = 7;
-            case 7:
-              if (2048 & r2.flags) {
-                if (0 === o2) break e;
-                for (d = 0; k = n2[s2 + d++], r2.head && k && r2.length < 65536 && (r2.head.name += String.fromCharCode(k)), k && d < o2; ) ;
-                if (512 & r2.flags && (r2.check = B(r2.check, n2, d, s2)), o2 -= d, s2 += d, k) break e;
-              } else r2.head && (r2.head.name = null);
-              r2.length = 0, r2.mode = 8;
-            case 8:
-              if (4096 & r2.flags) {
-                if (0 === o2) break e;
-                for (d = 0; k = n2[s2 + d++], r2.head && k && r2.length < 65536 && (r2.head.comment += String.fromCharCode(k)), k && d < o2; ) ;
-                if (512 & r2.flags && (r2.check = B(r2.check, n2, d, s2)), o2 -= d, s2 += d, k) break e;
-              } else r2.head && (r2.head.comment = null);
-              r2.mode = 9;
-            case 9:
-              if (512 & r2.flags) {
-                for (; l2 < 16; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                if (u2 !== (65535 & r2.check)) {
-                  e2.msg = "header crc mismatch", r2.mode = 30;
-                  break;
-                }
-                l2 = u2 = 0;
-              }
-              r2.head && (r2.head.hcrc = r2.flags >> 9 & 1, r2.head.done = true), e2.adler = r2.check = 0, r2.mode = 12;
-              break;
-            case 10:
-              for (; l2 < 32; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              e2.adler = r2.check = L(u2), l2 = u2 = 0, r2.mode = 11;
-            case 11:
-              if (0 === r2.havedict) return e2.next_out = a2, e2.avail_out = h2, e2.next_in = s2, e2.avail_in = o2, r2.hold = u2, r2.bits = l2, 2;
-              e2.adler = r2.check = 1, r2.mode = 12;
-            case 12:
-              if (5 === t2 || 6 === t2) break e;
-            case 13:
-              if (r2.last) {
-                u2 >>>= 7 & l2, l2 -= 7 & l2, r2.mode = 27;
-                break;
-              }
-              for (; l2 < 3; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              switch (r2.last = 1 & u2, l2 -= 1, 3 & (u2 >>>= 1)) {
-                case 0:
-                  r2.mode = 14;
-                  break;
-                case 1:
-                  if (j(r2), r2.mode = 20, 6 !== t2) break;
-                  u2 >>>= 2, l2 -= 2;
-                  break e;
-                case 2:
-                  r2.mode = 17;
-                  break;
-                case 3:
-                  e2.msg = "invalid block type", r2.mode = 30;
-              }
-              u2 >>>= 2, l2 -= 2;
-              break;
-            case 14:
-              for (u2 >>>= 7 & l2, l2 -= 7 & l2; l2 < 32; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if ((65535 & u2) != (u2 >>> 16 ^ 65535)) {
-                e2.msg = "invalid stored block lengths", r2.mode = 30;
-                break;
-              }
-              if (r2.length = 65535 & u2, l2 = u2 = 0, r2.mode = 15, 6 === t2) break e;
-            case 15:
-              r2.mode = 16;
-            case 16:
-              if (d = r2.length) {
-                if (o2 < d && (d = o2), h2 < d && (d = h2), 0 === d) break e;
-                I.arraySet(i2, n2, s2, d, a2), o2 -= d, s2 += d, h2 -= d, a2 += d, r2.length -= d;
-                break;
-              }
-              r2.mode = 12;
-              break;
-            case 17:
-              for (; l2 < 14; ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if (r2.nlen = 257 + (31 & u2), u2 >>>= 5, l2 -= 5, r2.ndist = 1 + (31 & u2), u2 >>>= 5, l2 -= 5, r2.ncode = 4 + (15 & u2), u2 >>>= 4, l2 -= 4, 286 < r2.nlen || 30 < r2.ndist) {
-                e2.msg = "too many length or distance symbols", r2.mode = 30;
-                break;
-              }
-              r2.have = 0, r2.mode = 18;
-            case 18:
-              for (; r2.have < r2.ncode; ) {
-                for (; l2 < 3; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                r2.lens[A[r2.have++]] = 7 & u2, u2 >>>= 3, l2 -= 3;
-              }
-              for (; r2.have < 19; ) r2.lens[A[r2.have++]] = 0;
-              if (r2.lencode = r2.lendyn, r2.lenbits = 7, S = { bits: r2.lenbits }, x = T(0, r2.lens, 0, 19, r2.lencode, 0, r2.work, S), r2.lenbits = S.bits, x) {
-                e2.msg = "invalid code lengths set", r2.mode = 30;
-                break;
-              }
-              r2.have = 0, r2.mode = 19;
-            case 19:
-              for (; r2.have < r2.nlen + r2.ndist; ) {
-                for (; g = (C = r2.lencode[u2 & (1 << r2.lenbits) - 1]) >>> 16 & 255, b = 65535 & C, !((_ = C >>> 24) <= l2); ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                if (b < 16) u2 >>>= _, l2 -= _, r2.lens[r2.have++] = b;
-                else {
-                  if (16 === b) {
-                    for (z = _ + 2; l2 < z; ) {
-                      if (0 === o2) break e;
-                      o2--, u2 += n2[s2++] << l2, l2 += 8;
-                    }
-                    if (u2 >>>= _, l2 -= _, 0 === r2.have) {
-                      e2.msg = "invalid bit length repeat", r2.mode = 30;
-                      break;
-                    }
-                    k = r2.lens[r2.have - 1], d = 3 + (3 & u2), u2 >>>= 2, l2 -= 2;
-                  } else if (17 === b) {
-                    for (z = _ + 3; l2 < z; ) {
-                      if (0 === o2) break e;
-                      o2--, u2 += n2[s2++] << l2, l2 += 8;
-                    }
-                    l2 -= _, k = 0, d = 3 + (7 & (u2 >>>= _)), u2 >>>= 3, l2 -= 3;
-                  } else {
-                    for (z = _ + 7; l2 < z; ) {
-                      if (0 === o2) break e;
-                      o2--, u2 += n2[s2++] << l2, l2 += 8;
-                    }
-                    l2 -= _, k = 0, d = 11 + (127 & (u2 >>>= _)), u2 >>>= 7, l2 -= 7;
-                  }
-                  if (r2.have + d > r2.nlen + r2.ndist) {
-                    e2.msg = "invalid bit length repeat", r2.mode = 30;
-                    break;
-                  }
-                  for (; d--; ) r2.lens[r2.have++] = k;
-                }
-              }
-              if (30 === r2.mode) break;
-              if (0 === r2.lens[256]) {
-                e2.msg = "invalid code -- missing end-of-block", r2.mode = 30;
-                break;
-              }
-              if (r2.lenbits = 9, S = { bits: r2.lenbits }, x = T(D, r2.lens, 0, r2.nlen, r2.lencode, 0, r2.work, S), r2.lenbits = S.bits, x) {
-                e2.msg = "invalid literal/lengths set", r2.mode = 30;
-                break;
-              }
-              if (r2.distbits = 6, r2.distcode = r2.distdyn, S = { bits: r2.distbits }, x = T(F, r2.lens, r2.nlen, r2.ndist, r2.distcode, 0, r2.work, S), r2.distbits = S.bits, x) {
-                e2.msg = "invalid distances set", r2.mode = 30;
-                break;
-              }
-              if (r2.mode = 20, 6 === t2) break e;
-            case 20:
-              r2.mode = 21;
-            case 21:
-              if (6 <= o2 && 258 <= h2) {
-                e2.next_out = a2, e2.avail_out = h2, e2.next_in = s2, e2.avail_in = o2, r2.hold = u2, r2.bits = l2, R(e2, c2), a2 = e2.next_out, i2 = e2.output, h2 = e2.avail_out, s2 = e2.next_in, n2 = e2.input, o2 = e2.avail_in, u2 = r2.hold, l2 = r2.bits, 12 === r2.mode && (r2.back = -1);
-                break;
-              }
-              for (r2.back = 0; g = (C = r2.lencode[u2 & (1 << r2.lenbits) - 1]) >>> 16 & 255, b = 65535 & C, !((_ = C >>> 24) <= l2); ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if (g && 0 == (240 & g)) {
-                for (v = _, y = g, w = b; g = (C = r2.lencode[w + ((u2 & (1 << v + y) - 1) >> v)]) >>> 16 & 255, b = 65535 & C, !(v + (_ = C >>> 24) <= l2); ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                u2 >>>= v, l2 -= v, r2.back += v;
-              }
-              if (u2 >>>= _, l2 -= _, r2.back += _, r2.length = b, 0 === g) {
-                r2.mode = 26;
-                break;
-              }
-              if (32 & g) {
-                r2.back = -1, r2.mode = 12;
-                break;
-              }
-              if (64 & g) {
-                e2.msg = "invalid literal/length code", r2.mode = 30;
-                break;
-              }
-              r2.extra = 15 & g, r2.mode = 22;
-            case 22:
-              if (r2.extra) {
-                for (z = r2.extra; l2 < z; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                r2.length += u2 & (1 << r2.extra) - 1, u2 >>>= r2.extra, l2 -= r2.extra, r2.back += r2.extra;
-              }
-              r2.was = r2.length, r2.mode = 23;
-            case 23:
-              for (; g = (C = r2.distcode[u2 & (1 << r2.distbits) - 1]) >>> 16 & 255, b = 65535 & C, !((_ = C >>> 24) <= l2); ) {
-                if (0 === o2) break e;
-                o2--, u2 += n2[s2++] << l2, l2 += 8;
-              }
-              if (0 == (240 & g)) {
-                for (v = _, y = g, w = b; g = (C = r2.distcode[w + ((u2 & (1 << v + y) - 1) >> v)]) >>> 16 & 255, b = 65535 & C, !(v + (_ = C >>> 24) <= l2); ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                u2 >>>= v, l2 -= v, r2.back += v;
-              }
-              if (u2 >>>= _, l2 -= _, r2.back += _, 64 & g) {
-                e2.msg = "invalid distance code", r2.mode = 30;
-                break;
-              }
-              r2.offset = b, r2.extra = 15 & g, r2.mode = 24;
-            case 24:
-              if (r2.extra) {
-                for (z = r2.extra; l2 < z; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                r2.offset += u2 & (1 << r2.extra) - 1, u2 >>>= r2.extra, l2 -= r2.extra, r2.back += r2.extra;
-              }
-              if (r2.offset > r2.dmax) {
-                e2.msg = "invalid distance too far back", r2.mode = 30;
-                break;
-              }
-              r2.mode = 25;
-            case 25:
-              if (0 === h2) break e;
-              if (d = c2 - h2, r2.offset > d) {
-                if ((d = r2.offset - d) > r2.whave && r2.sane) {
-                  e2.msg = "invalid distance too far back", r2.mode = 30;
-                  break;
-                }
-                p = d > r2.wnext ? (d -= r2.wnext, r2.wsize - d) : r2.wnext - d, d > r2.length && (d = r2.length), m = r2.window;
-              } else m = i2, p = a2 - r2.offset, d = r2.length;
-              for (h2 < d && (d = h2), h2 -= d, r2.length -= d; i2[a2++] = m[p++], --d; ) ;
-              0 === r2.length && (r2.mode = 21);
-              break;
-            case 26:
-              if (0 === h2) break e;
-              i2[a2++] = r2.length, h2--, r2.mode = 21;
-              break;
-            case 27:
-              if (r2.wrap) {
-                for (; l2 < 32; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 |= n2[s2++] << l2, l2 += 8;
-                }
-                if (c2 -= h2, e2.total_out += c2, r2.total += c2, c2 && (e2.adler = r2.check = r2.flags ? B(r2.check, i2, c2, a2 - c2) : O(r2.check, i2, c2, a2 - c2)), c2 = h2, (r2.flags ? u2 : L(u2)) !== r2.check) {
-                  e2.msg = "incorrect data check", r2.mode = 30;
-                  break;
-                }
-                l2 = u2 = 0;
-              }
-              r2.mode = 28;
-            case 28:
-              if (r2.wrap && r2.flags) {
-                for (; l2 < 32; ) {
-                  if (0 === o2) break e;
-                  o2--, u2 += n2[s2++] << l2, l2 += 8;
-                }
-                if (u2 !== (4294967295 & r2.total)) {
-                  e2.msg = "incorrect length check", r2.mode = 30;
-                  break;
-                }
-                l2 = u2 = 0;
-              }
-              r2.mode = 29;
-            case 29:
-              x = 1;
-              break e;
-            case 30:
-              x = -3;
-              break e;
-            case 31:
-              return -4;
-            case 32:
-            default:
-              return U;
-          }
-          return e2.next_out = a2, e2.avail_out = h2, e2.next_in = s2, e2.avail_in = o2, r2.hold = u2, r2.bits = l2, (r2.wsize || c2 !== e2.avail_out && r2.mode < 30 && (r2.mode < 27 || 4 !== t2)) && Z(e2, e2.output, e2.next_out, c2 - e2.avail_out) ? (r2.mode = 31, -4) : (f2 -= e2.avail_in, c2 -= e2.avail_out, e2.total_in += f2, e2.total_out += c2, r2.total += c2, r2.wrap && c2 && (e2.adler = r2.check = r2.flags ? B(r2.check, i2, c2, e2.next_out - c2) : O(r2.check, i2, c2, e2.next_out - c2)), e2.data_type = r2.bits + (r2.last ? 64 : 0) + (12 === r2.mode ? 128 : 0) + (20 === r2.mode || 15 === r2.mode ? 256 : 0), (0 == f2 && 0 === c2 || 4 === t2) && x === N && (x = -5), x);
-        }, r.inflateEnd = function(e2) {
-          if (!e2 || !e2.state) return U;
-          var t2 = e2.state;
-          return t2.window && (t2.window = null), e2.state = null, N;
-        }, r.inflateGetHeader = function(e2, t2) {
-          var r2;
-          return e2 && e2.state ? 0 == (2 & (r2 = e2.state).wrap) ? U : ((r2.head = t2).done = false, N) : U;
-        }, r.inflateSetDictionary = function(e2, t2) {
-          var r2, n2 = t2.length;
-          return e2 && e2.state ? 0 !== (r2 = e2.state).wrap && 11 !== r2.mode ? U : 11 === r2.mode && O(1, t2, n2, 0) !== r2.check ? -3 : Z(e2, t2, n2, n2) ? (r2.mode = 31, -4) : (r2.havedict = 1, N) : U;
-        }, r.inflateInfo = "pako inflate (from Nodeca project)";
-      }, { "../utils/common": 41, "./adler32": 43, "./crc32": 45, "./inffast": 48, "./inftrees": 50 }], 50: [function(e, t, r) {
-        "use strict";
-        var D = e("../utils/common"), F = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0], N = [16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 16, 72, 78], U = [1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577, 0, 0], P = [16, 16, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 64, 64];
-        t.exports = function(e2, t2, r2, n, i, s, a, o) {
-          var h, u, l, f, c, d, p, m, _, g = o.bits, b = 0, v = 0, y = 0, w = 0, k = 0, x = 0, S = 0, z = 0, C = 0, E = 0, A = null, I = 0, O = new D.Buf16(16), B = new D.Buf16(16), R = null, T = 0;
-          for (b = 0; b <= 15; b++) O[b] = 0;
-          for (v = 0; v < n; v++) O[t2[r2 + v]]++;
-          for (k = g, w = 15; 1 <= w && 0 === O[w]; w--) ;
-          if (w < k && (k = w), 0 === w) return i[s++] = 20971520, i[s++] = 20971520, o.bits = 1, 0;
-          for (y = 1; y < w && 0 === O[y]; y++) ;
-          for (k < y && (k = y), b = z = 1; b <= 15; b++) if (z <<= 1, (z -= O[b]) < 0) return -1;
-          if (0 < z && (0 === e2 || 1 !== w)) return -1;
-          for (B[1] = 0, b = 1; b < 15; b++) B[b + 1] = B[b] + O[b];
-          for (v = 0; v < n; v++) 0 !== t2[r2 + v] && (a[B[t2[r2 + v]]++] = v);
-          if (d = 0 === e2 ? (A = R = a, 19) : 1 === e2 ? (A = F, I -= 257, R = N, T -= 257, 256) : (A = U, R = P, -1), b = y, c = s, S = v = E = 0, l = -1, f = (C = 1 << (x = k)) - 1, 1 === e2 && 852 < C || 2 === e2 && 592 < C) return 1;
-          for (; ; ) {
-            for (p = b - S, _ = a[v] < d ? (m = 0, a[v]) : a[v] > d ? (m = R[T + a[v]], A[I + a[v]]) : (m = 96, 0), h = 1 << b - S, y = u = 1 << x; i[c + (E >> S) + (u -= h)] = p << 24 | m << 16 | _ | 0, 0 !== u; ) ;
-            for (h = 1 << b - 1; E & h; ) h >>= 1;
-            if (0 !== h ? (E &= h - 1, E += h) : E = 0, v++, 0 == --O[b]) {
-              if (b === w) break;
-              b = t2[r2 + a[v]];
-            }
-            if (k < b && (E & f) !== l) {
-              for (0 === S && (S = k), c += y, z = 1 << (x = b - S); x + S < w && !((z -= O[x + S]) <= 0); ) x++, z <<= 1;
-              if (C += 1 << x, 1 === e2 && 852 < C || 2 === e2 && 592 < C) return 1;
-              i[l = E & f] = k << 24 | x << 16 | c - s | 0;
-            }
-          }
-          return 0 !== E && (i[c + E] = b - S << 24 | 64 << 16 | 0), o.bits = k, 0;
-        };
-      }, { "../utils/common": 41 }], 51: [function(e, t, r) {
-        "use strict";
-        t.exports = { 2: "need dictionary", 1: "stream end", 0: "", "-1": "file error", "-2": "stream error", "-3": "data error", "-4": "insufficient memory", "-5": "buffer error", "-6": "incompatible version" };
-      }, {}], 52: [function(e, t, r) {
-        "use strict";
-        var i = e("../utils/common"), o = 0, h = 1;
-        function n(e2) {
-          for (var t2 = e2.length; 0 <= --t2; ) e2[t2] = 0;
-        }
-        var s = 0, a = 29, u = 256, l = u + 1 + a, f = 30, c = 19, _ = 2 * l + 1, g = 15, d = 16, p = 7, m = 256, b = 16, v = 17, y = 18, w = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0], k = [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13], x = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7], S = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15], z = new Array(2 * (l + 2));
-        n(z);
-        var C = new Array(2 * f);
-        n(C);
-        var E = new Array(512);
-        n(E);
-        var A = new Array(256);
-        n(A);
-        var I = new Array(a);
-        n(I);
-        var O, B, R, T = new Array(f);
-        function D(e2, t2, r2, n2, i2) {
-          this.static_tree = e2, this.extra_bits = t2, this.extra_base = r2, this.elems = n2, this.max_length = i2, this.has_stree = e2 && e2.length;
-        }
-        function F(e2, t2) {
-          this.dyn_tree = e2, this.max_code = 0, this.stat_desc = t2;
-        }
-        function N(e2) {
-          return e2 < 256 ? E[e2] : E[256 + (e2 >>> 7)];
-        }
-        function U(e2, t2) {
-          e2.pending_buf[e2.pending++] = 255 & t2, e2.pending_buf[e2.pending++] = t2 >>> 8 & 255;
-        }
-        function P(e2, t2, r2) {
-          e2.bi_valid > d - r2 ? (e2.bi_buf |= t2 << e2.bi_valid & 65535, U(e2, e2.bi_buf), e2.bi_buf = t2 >> d - e2.bi_valid, e2.bi_valid += r2 - d) : (e2.bi_buf |= t2 << e2.bi_valid & 65535, e2.bi_valid += r2);
-        }
-        function L(e2, t2, r2) {
-          P(e2, r2[2 * t2], r2[2 * t2 + 1]);
-        }
-        function j(e2, t2) {
-          for (var r2 = 0; r2 |= 1 & e2, e2 >>>= 1, r2 <<= 1, 0 < --t2; ) ;
-          return r2 >>> 1;
-        }
-        function Z(e2, t2, r2) {
-          var n2, i2, s2 = new Array(g + 1), a2 = 0;
-          for (n2 = 1; n2 <= g; n2++) s2[n2] = a2 = a2 + r2[n2 - 1] << 1;
-          for (i2 = 0; i2 <= t2; i2++) {
-            var o2 = e2[2 * i2 + 1];
-            0 !== o2 && (e2[2 * i2] = j(s2[o2]++, o2));
-          }
-        }
-        function W(e2) {
-          var t2;
-          for (t2 = 0; t2 < l; t2++) e2.dyn_ltree[2 * t2] = 0;
-          for (t2 = 0; t2 < f; t2++) e2.dyn_dtree[2 * t2] = 0;
-          for (t2 = 0; t2 < c; t2++) e2.bl_tree[2 * t2] = 0;
-          e2.dyn_ltree[2 * m] = 1, e2.opt_len = e2.static_len = 0, e2.last_lit = e2.matches = 0;
-        }
-        function M(e2) {
-          8 < e2.bi_valid ? U(e2, e2.bi_buf) : 0 < e2.bi_valid && (e2.pending_buf[e2.pending++] = e2.bi_buf), e2.bi_buf = 0, e2.bi_valid = 0;
-        }
-        function H(e2, t2, r2, n2) {
-          var i2 = 2 * t2, s2 = 2 * r2;
-          return e2[i2] < e2[s2] || e2[i2] === e2[s2] && n2[t2] <= n2[r2];
-        }
-        function G(e2, t2, r2) {
-          for (var n2 = e2.heap[r2], i2 = r2 << 1; i2 <= e2.heap_len && (i2 < e2.heap_len && H(t2, e2.heap[i2 + 1], e2.heap[i2], e2.depth) && i2++, !H(t2, n2, e2.heap[i2], e2.depth)); ) e2.heap[r2] = e2.heap[i2], r2 = i2, i2 <<= 1;
-          e2.heap[r2] = n2;
-        }
-        function K(e2, t2, r2) {
-          var n2, i2, s2, a2, o2 = 0;
-          if (0 !== e2.last_lit) for (; n2 = e2.pending_buf[e2.d_buf + 2 * o2] << 8 | e2.pending_buf[e2.d_buf + 2 * o2 + 1], i2 = e2.pending_buf[e2.l_buf + o2], o2++, 0 === n2 ? L(e2, i2, t2) : (L(e2, (s2 = A[i2]) + u + 1, t2), 0 !== (a2 = w[s2]) && P(e2, i2 -= I[s2], a2), L(e2, s2 = N(--n2), r2), 0 !== (a2 = k[s2]) && P(e2, n2 -= T[s2], a2)), o2 < e2.last_lit; ) ;
-          L(e2, m, t2);
-        }
-        function Y(e2, t2) {
-          var r2, n2, i2, s2 = t2.dyn_tree, a2 = t2.stat_desc.static_tree, o2 = t2.stat_desc.has_stree, h2 = t2.stat_desc.elems, u2 = -1;
-          for (e2.heap_len = 0, e2.heap_max = _, r2 = 0; r2 < h2; r2++) 0 !== s2[2 * r2] ? (e2.heap[++e2.heap_len] = u2 = r2, e2.depth[r2] = 0) : s2[2 * r2 + 1] = 0;
-          for (; e2.heap_len < 2; ) s2[2 * (i2 = e2.heap[++e2.heap_len] = u2 < 2 ? ++u2 : 0)] = 1, e2.depth[i2] = 0, e2.opt_len--, o2 && (e2.static_len -= a2[2 * i2 + 1]);
-          for (t2.max_code = u2, r2 = e2.heap_len >> 1; 1 <= r2; r2--) G(e2, s2, r2);
-          for (i2 = h2; r2 = e2.heap[1], e2.heap[1] = e2.heap[e2.heap_len--], G(e2, s2, 1), n2 = e2.heap[1], e2.heap[--e2.heap_max] = r2, e2.heap[--e2.heap_max] = n2, s2[2 * i2] = s2[2 * r2] + s2[2 * n2], e2.depth[i2] = (e2.depth[r2] >= e2.depth[n2] ? e2.depth[r2] : e2.depth[n2]) + 1, s2[2 * r2 + 1] = s2[2 * n2 + 1] = i2, e2.heap[1] = i2++, G(e2, s2, 1), 2 <= e2.heap_len; ) ;
-          e2.heap[--e2.heap_max] = e2.heap[1], function(e3, t3) {
-            var r3, n3, i3, s3, a3, o3, h3 = t3.dyn_tree, u3 = t3.max_code, l2 = t3.stat_desc.static_tree, f2 = t3.stat_desc.has_stree, c2 = t3.stat_desc.extra_bits, d2 = t3.stat_desc.extra_base, p2 = t3.stat_desc.max_length, m2 = 0;
-            for (s3 = 0; s3 <= g; s3++) e3.bl_count[s3] = 0;
-            for (h3[2 * e3.heap[e3.heap_max] + 1] = 0, r3 = e3.heap_max + 1; r3 < _; r3++) p2 < (s3 = h3[2 * h3[2 * (n3 = e3.heap[r3]) + 1] + 1] + 1) && (s3 = p2, m2++), h3[2 * n3 + 1] = s3, u3 < n3 || (e3.bl_count[s3]++, a3 = 0, d2 <= n3 && (a3 = c2[n3 - d2]), o3 = h3[2 * n3], e3.opt_len += o3 * (s3 + a3), f2 && (e3.static_len += o3 * (l2[2 * n3 + 1] + a3)));
-            if (0 !== m2) {
-              do {
-                for (s3 = p2 - 1; 0 === e3.bl_count[s3]; ) s3--;
-                e3.bl_count[s3]--, e3.bl_count[s3 + 1] += 2, e3.bl_count[p2]--, m2 -= 2;
-              } while (0 < m2);
-              for (s3 = p2; 0 !== s3; s3--) for (n3 = e3.bl_count[s3]; 0 !== n3; ) u3 < (i3 = e3.heap[--r3]) || (h3[2 * i3 + 1] !== s3 && (e3.opt_len += (s3 - h3[2 * i3 + 1]) * h3[2 * i3], h3[2 * i3 + 1] = s3), n3--);
-            }
-          }(e2, t2), Z(s2, u2, e2.bl_count);
-        }
-        function X(e2, t2, r2) {
-          var n2, i2, s2 = -1, a2 = t2[1], o2 = 0, h2 = 7, u2 = 4;
-          for (0 === a2 && (h2 = 138, u2 = 3), t2[2 * (r2 + 1) + 1] = 65535, n2 = 0; n2 <= r2; n2++) i2 = a2, a2 = t2[2 * (n2 + 1) + 1], ++o2 < h2 && i2 === a2 || (o2 < u2 ? e2.bl_tree[2 * i2] += o2 : 0 !== i2 ? (i2 !== s2 && e2.bl_tree[2 * i2]++, e2.bl_tree[2 * b]++) : o2 <= 10 ? e2.bl_tree[2 * v]++ : e2.bl_tree[2 * y]++, s2 = i2, u2 = (o2 = 0) === a2 ? (h2 = 138, 3) : i2 === a2 ? (h2 = 6, 3) : (h2 = 7, 4));
-        }
-        function V(e2, t2, r2) {
-          var n2, i2, s2 = -1, a2 = t2[1], o2 = 0, h2 = 7, u2 = 4;
-          for (0 === a2 && (h2 = 138, u2 = 3), n2 = 0; n2 <= r2; n2++) if (i2 = a2, a2 = t2[2 * (n2 + 1) + 1], !(++o2 < h2 && i2 === a2)) {
-            if (o2 < u2) for (; L(e2, i2, e2.bl_tree), 0 != --o2; ) ;
-            else 0 !== i2 ? (i2 !== s2 && (L(e2, i2, e2.bl_tree), o2--), L(e2, b, e2.bl_tree), P(e2, o2 - 3, 2)) : o2 <= 10 ? (L(e2, v, e2.bl_tree), P(e2, o2 - 3, 3)) : (L(e2, y, e2.bl_tree), P(e2, o2 - 11, 7));
-            s2 = i2, u2 = (o2 = 0) === a2 ? (h2 = 138, 3) : i2 === a2 ? (h2 = 6, 3) : (h2 = 7, 4);
-          }
-        }
-        n(T);
-        var q = false;
-        function J(e2, t2, r2, n2) {
-          P(e2, (s << 1) + (n2 ? 1 : 0), 3), function(e3, t3, r3, n3) {
-            M(e3), n3 && (U(e3, r3), U(e3, ~r3)), i.arraySet(e3.pending_buf, e3.window, t3, r3, e3.pending), e3.pending += r3;
-          }(e2, t2, r2, true);
-        }
-        r._tr_init = function(e2) {
-          q || (function() {
-            var e3, t2, r2, n2, i2, s2 = new Array(g + 1);
-            for (n2 = r2 = 0; n2 < a - 1; n2++) for (I[n2] = r2, e3 = 0; e3 < 1 << w[n2]; e3++) A[r2++] = n2;
-            for (A[r2 - 1] = n2, n2 = i2 = 0; n2 < 16; n2++) for (T[n2] = i2, e3 = 0; e3 < 1 << k[n2]; e3++) E[i2++] = n2;
-            for (i2 >>= 7; n2 < f; n2++) for (T[n2] = i2 << 7, e3 = 0; e3 < 1 << k[n2] - 7; e3++) E[256 + i2++] = n2;
-            for (t2 = 0; t2 <= g; t2++) s2[t2] = 0;
-            for (e3 = 0; e3 <= 143; ) z[2 * e3 + 1] = 8, e3++, s2[8]++;
-            for (; e3 <= 255; ) z[2 * e3 + 1] = 9, e3++, s2[9]++;
-            for (; e3 <= 279; ) z[2 * e3 + 1] = 7, e3++, s2[7]++;
-            for (; e3 <= 287; ) z[2 * e3 + 1] = 8, e3++, s2[8]++;
-            for (Z(z, l + 1, s2), e3 = 0; e3 < f; e3++) C[2 * e3 + 1] = 5, C[2 * e3] = j(e3, 5);
-            O = new D(z, w, u + 1, l, g), B = new D(C, k, 0, f, g), R = new D(new Array(0), x, 0, c, p);
-          }(), q = true), e2.l_desc = new F(e2.dyn_ltree, O), e2.d_desc = new F(e2.dyn_dtree, B), e2.bl_desc = new F(e2.bl_tree, R), e2.bi_buf = 0, e2.bi_valid = 0, W(e2);
-        }, r._tr_stored_block = J, r._tr_flush_block = function(e2, t2, r2, n2) {
-          var i2, s2, a2 = 0;
-          0 < e2.level ? (2 === e2.strm.data_type && (e2.strm.data_type = function(e3) {
-            var t3, r3 = 4093624447;
-            for (t3 = 0; t3 <= 31; t3++, r3 >>>= 1) if (1 & r3 && 0 !== e3.dyn_ltree[2 * t3]) return o;
-            if (0 !== e3.dyn_ltree[18] || 0 !== e3.dyn_ltree[20] || 0 !== e3.dyn_ltree[26]) return h;
-            for (t3 = 32; t3 < u; t3++) if (0 !== e3.dyn_ltree[2 * t3]) return h;
-            return o;
-          }(e2)), Y(e2, e2.l_desc), Y(e2, e2.d_desc), a2 = function(e3) {
-            var t3;
-            for (X(e3, e3.dyn_ltree, e3.l_desc.max_code), X(e3, e3.dyn_dtree, e3.d_desc.max_code), Y(e3, e3.bl_desc), t3 = c - 1; 3 <= t3 && 0 === e3.bl_tree[2 * S[t3] + 1]; t3--) ;
-            return e3.opt_len += 3 * (t3 + 1) + 5 + 5 + 4, t3;
-          }(e2), i2 = e2.opt_len + 3 + 7 >>> 3, (s2 = e2.static_len + 3 + 7 >>> 3) <= i2 && (i2 = s2)) : i2 = s2 = r2 + 5, r2 + 4 <= i2 && -1 !== t2 ? J(e2, t2, r2, n2) : 4 === e2.strategy || s2 === i2 ? (P(e2, 2 + (n2 ? 1 : 0), 3), K(e2, z, C)) : (P(e2, 4 + (n2 ? 1 : 0), 3), function(e3, t3, r3, n3) {
-            var i3;
-            for (P(e3, t3 - 257, 5), P(e3, r3 - 1, 5), P(e3, n3 - 4, 4), i3 = 0; i3 < n3; i3++) P(e3, e3.bl_tree[2 * S[i3] + 1], 3);
-            V(e3, e3.dyn_ltree, t3 - 1), V(e3, e3.dyn_dtree, r3 - 1);
-          }(e2, e2.l_desc.max_code + 1, e2.d_desc.max_code + 1, a2 + 1), K(e2, e2.dyn_ltree, e2.dyn_dtree)), W(e2), n2 && M(e2);
-        }, r._tr_tally = function(e2, t2, r2) {
-          return e2.pending_buf[e2.d_buf + 2 * e2.last_lit] = t2 >>> 8 & 255, e2.pending_buf[e2.d_buf + 2 * e2.last_lit + 1] = 255 & t2, e2.pending_buf[e2.l_buf + e2.last_lit] = 255 & r2, e2.last_lit++, 0 === t2 ? e2.dyn_ltree[2 * r2]++ : (e2.matches++, t2--, e2.dyn_ltree[2 * (A[r2] + u + 1)]++, e2.dyn_dtree[2 * N(t2)]++), e2.last_lit === e2.lit_bufsize - 1;
-        }, r._tr_align = function(e2) {
-          P(e2, 2, 3), L(e2, m, z), function(e3) {
-            16 === e3.bi_valid ? (U(e3, e3.bi_buf), e3.bi_buf = 0, e3.bi_valid = 0) : 8 <= e3.bi_valid && (e3.pending_buf[e3.pending++] = 255 & e3.bi_buf, e3.bi_buf >>= 8, e3.bi_valid -= 8);
-          }(e2);
-        };
-      }, { "../utils/common": 41 }], 53: [function(e, t, r) {
-        "use strict";
-        t.exports = function() {
-          this.input = null, this.next_in = 0, this.avail_in = 0, this.total_in = 0, this.output = null, this.next_out = 0, this.avail_out = 0, this.total_out = 0, this.msg = "", this.state = null, this.data_type = 2, this.adler = 0;
-        };
-      }, {}], 54: [function(e, t, r) {
-        (function(e2) {
-          !function(r2, n) {
-            "use strict";
-            if (!r2.setImmediate) {
-              var i, s, t2, a, o = 1, h = {}, u = false, l = r2.document, e3 = Object.getPrototypeOf && Object.getPrototypeOf(r2);
-              e3 = e3 && e3.setTimeout ? e3 : r2, i = "[object process]" === {}.toString.call(r2.process) ? function(e4) {
-                process.nextTick(function() {
-                  c(e4);
-                });
-              } : function() {
-                if (r2.postMessage && !r2.importScripts) {
-                  var e4 = true, t3 = r2.onmessage;
-                  return r2.onmessage = function() {
-                    e4 = false;
-                  }, r2.postMessage("", "*"), r2.onmessage = t3, e4;
-                }
-              }() ? (a = "setImmediate$" + Math.random() + "$", r2.addEventListener ? r2.addEventListener("message", d, false) : r2.attachEvent("onmessage", d), function(e4) {
-                r2.postMessage(a + e4, "*");
-              }) : r2.MessageChannel ? ((t2 = new MessageChannel()).port1.onmessage = function(e4) {
-                c(e4.data);
-              }, function(e4) {
-                t2.port2.postMessage(e4);
-              }) : l && "onreadystatechange" in l.createElement("script") ? (s = l.documentElement, function(e4) {
-                var t3 = l.createElement("script");
-                t3.onreadystatechange = function() {
-                  c(e4), t3.onreadystatechange = null, s.removeChild(t3), t3 = null;
-                }, s.appendChild(t3);
-              }) : function(e4) {
-                setTimeout(c, 0, e4);
-              }, e3.setImmediate = function(e4) {
-                "function" != typeof e4 && (e4 = new Function("" + e4));
-                for (var t3 = new Array(arguments.length - 1), r3 = 0; r3 < t3.length; r3++) t3[r3] = arguments[r3 + 1];
-                var n2 = { callback: e4, args: t3 };
-                return h[o] = n2, i(o), o++;
-              }, e3.clearImmediate = f;
-            }
-            function f(e4) {
-              delete h[e4];
-            }
-            function c(e4) {
-              if (u) setTimeout(c, 0, e4);
-              else {
-                var t3 = h[e4];
-                if (t3) {
-                  u = true;
-                  try {
-                    !function(e5) {
-                      var t4 = e5.callback, r3 = e5.args;
-                      switch (r3.length) {
-                        case 0:
-                          t4();
-                          break;
-                        case 1:
-                          t4(r3[0]);
-                          break;
-                        case 2:
-                          t4(r3[0], r3[1]);
-                          break;
-                        case 3:
-                          t4(r3[0], r3[1], r3[2]);
-                          break;
-                        default:
-                          t4.apply(n, r3);
-                      }
-                    }(t3);
-                  } finally {
-                    f(e4), u = false;
+                  if (null !== currentTask) hasMoreWork = true;
+                  else {
+                    var firstTimer = peek(timerQueue);
+                    null !== firstTimer && requestHostTimeout(
+                      handleTimeout,
+                      firstTimer.startTime - currentTime
+                    );
+                    hasMoreWork = false;
                   }
                 }
+                break a;
+              } finally {
+                currentTask = null, currentPriorityLevel = previousPriorityLevel, isPerformingWork = false;
               }
+              hasMoreWork = void 0;
             }
-            function d(e4) {
-              e4.source === r2 && "string" == typeof e4.data && 0 === e4.data.indexOf(a) && c(+e4.data.slice(a.length));
-            }
-          }("undefined" == typeof self ? void 0 === e2 ? this : e2 : self);
-        }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
-      }, {}] }, {}, [10])(10);
-    });
+          } finally {
+            hasMoreWork ? schedulePerformWorkUntilDeadline() : isMessageLoopRunning = false;
+          }
+        }
+      }
+      function push(heap, node) {
+        var index = heap.length;
+        heap.push(node);
+        a: for (; 0 < index; ) {
+          var parentIndex = index - 1 >>> 1, parent = heap[parentIndex];
+          if (0 < compare(parent, node))
+            heap[parentIndex] = node, heap[index] = parent, index = parentIndex;
+          else break a;
+        }
+      }
+      function peek(heap) {
+        return 0 === heap.length ? null : heap[0];
+      }
+      function pop(heap) {
+        if (0 === heap.length) return null;
+        var first = heap[0], last = heap.pop();
+        if (last !== first) {
+          heap[0] = last;
+          a: for (var index = 0, length = heap.length, halfLength = length >>> 1; index < halfLength; ) {
+            var leftIndex = 2 * (index + 1) - 1, left = heap[leftIndex], rightIndex = leftIndex + 1, right = heap[rightIndex];
+            if (0 > compare(left, last))
+              rightIndex < length && 0 > compare(right, left) ? (heap[index] = right, heap[rightIndex] = last, index = rightIndex) : (heap[index] = left, heap[leftIndex] = last, index = leftIndex);
+            else if (rightIndex < length && 0 > compare(right, last))
+              heap[index] = right, heap[rightIndex] = last, index = rightIndex;
+            else break a;
+          }
+        }
+        return first;
+      }
+      function compare(a, b) {
+        var diff = a.sortIndex - b.sortIndex;
+        return 0 !== diff ? diff : a.id - b.id;
+      }
+      function advanceTimers(currentTime) {
+        for (var timer = peek(timerQueue); null !== timer; ) {
+          if (null === timer.callback) pop(timerQueue);
+          else if (timer.startTime <= currentTime)
+            pop(timerQueue), timer.sortIndex = timer.expirationTime, push(taskQueue, timer);
+          else break;
+          timer = peek(timerQueue);
+        }
+      }
+      function handleTimeout(currentTime) {
+        isHostTimeoutScheduled = false;
+        advanceTimers(currentTime);
+        if (!isHostCallbackScheduled)
+          if (null !== peek(taskQueue))
+            isHostCallbackScheduled = true, requestHostCallback();
+          else {
+            var firstTimer = peek(timerQueue);
+            null !== firstTimer && requestHostTimeout(
+              handleTimeout,
+              firstTimer.startTime - currentTime
+            );
+          }
+      }
+      function shouldYieldToHost() {
+        return exports.unstable_now() - startTime < frameInterval ? false : true;
+      }
+      function requestHostCallback() {
+        isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline());
+      }
+      function requestHostTimeout(callback, ms) {
+        taskTimeoutID = localSetTimeout(function() {
+          callback(exports.unstable_now());
+        }, ms);
+      }
+      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
+      exports.unstable_now = void 0;
+      if ("object" === typeof performance && "function" === typeof performance.now) {
+        var localPerformance = performance;
+        exports.unstable_now = function() {
+          return localPerformance.now();
+        };
+      } else {
+        var localDate = Date, initialTime = localDate.now();
+        exports.unstable_now = function() {
+          return localDate.now() - initialTime;
+        };
+      }
+      var taskQueue = [], timerQueue = [], taskIdCounter = 1, currentTask = null, currentPriorityLevel = 3, isPerformingWork = false, isHostCallbackScheduled = false, isHostTimeoutScheduled = false, localSetTimeout = "function" === typeof setTimeout ? setTimeout : null, localClearTimeout = "function" === typeof clearTimeout ? clearTimeout : null, localSetImmediate = "undefined" !== typeof setImmediate ? setImmediate : null, isMessageLoopRunning = false, taskTimeoutID = -1, frameInterval = 5, startTime = -1;
+      if ("function" === typeof localSetImmediate)
+        var schedulePerformWorkUntilDeadline = function() {
+          localSetImmediate(performWorkUntilDeadline);
+        };
+      else if ("undefined" !== typeof MessageChannel) {
+        var channel = new MessageChannel(), port = channel.port2;
+        channel.port1.onmessage = performWorkUntilDeadline;
+        schedulePerformWorkUntilDeadline = function() {
+          port.postMessage(null);
+        };
+      } else
+        schedulePerformWorkUntilDeadline = function() {
+          localSetTimeout(performWorkUntilDeadline, 0);
+        };
+      exports.unstable_IdlePriority = 5;
+      exports.unstable_ImmediatePriority = 1;
+      exports.unstable_LowPriority = 4;
+      exports.unstable_NormalPriority = 3;
+      exports.unstable_Profiling = null;
+      exports.unstable_UserBlockingPriority = 2;
+      exports.unstable_cancelCallback = function(task) {
+        task.callback = null;
+      };
+      exports.unstable_continueExecution = function() {
+        isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, requestHostCallback());
+      };
+      exports.unstable_forceFrameRate = function(fps) {
+        0 > fps || 125 < fps ? console.error(
+          "forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"
+        ) : frameInterval = 0 < fps ? Math.floor(1e3 / fps) : 5;
+      };
+      exports.unstable_getCurrentPriorityLevel = function() {
+        return currentPriorityLevel;
+      };
+      exports.unstable_getFirstCallbackNode = function() {
+        return peek(taskQueue);
+      };
+      exports.unstable_next = function(eventHandler) {
+        switch (currentPriorityLevel) {
+          case 1:
+          case 2:
+          case 3:
+            var priorityLevel = 3;
+            break;
+          default:
+            priorityLevel = currentPriorityLevel;
+        }
+        var previousPriorityLevel = currentPriorityLevel;
+        currentPriorityLevel = priorityLevel;
+        try {
+          return eventHandler();
+        } finally {
+          currentPriorityLevel = previousPriorityLevel;
+        }
+      };
+      exports.unstable_pauseExecution = function() {
+      };
+      exports.unstable_requestPaint = function() {
+      };
+      exports.unstable_runWithPriority = function(priorityLevel, eventHandler) {
+        switch (priorityLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+            break;
+          default:
+            priorityLevel = 3;
+        }
+        var previousPriorityLevel = currentPriorityLevel;
+        currentPriorityLevel = priorityLevel;
+        try {
+          return eventHandler();
+        } finally {
+          currentPriorityLevel = previousPriorityLevel;
+        }
+      };
+      exports.unstable_scheduleCallback = function(priorityLevel, callback, options) {
+        var currentTime = exports.unstable_now();
+        "object" === typeof options && null !== options ? (options = options.delay, options = "number" === typeof options && 0 < options ? currentTime + options : currentTime) : options = currentTime;
+        switch (priorityLevel) {
+          case 1:
+            var timeout = -1;
+            break;
+          case 2:
+            timeout = 250;
+            break;
+          case 5:
+            timeout = 1073741823;
+            break;
+          case 4:
+            timeout = 1e4;
+            break;
+          default:
+            timeout = 5e3;
+        }
+        timeout = options + timeout;
+        priorityLevel = {
+          id: taskIdCounter++,
+          callback,
+          priorityLevel,
+          startTime: options,
+          expirationTime: timeout,
+          sortIndex: -1
+        };
+        options > currentTime ? (priorityLevel.sortIndex = options, push(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, requestHostCallback()));
+        return priorityLevel;
+      };
+      exports.unstable_shouldYield = shouldYieldToHost;
+      exports.unstable_wrapCallback = function(callback) {
+        var parentPriorityLevel = currentPriorityLevel;
+        return function() {
+          var previousPriorityLevel = currentPriorityLevel;
+          currentPriorityLevel = parentPriorityLevel;
+          try {
+            return callback.apply(this, arguments);
+          } finally {
+            currentPriorityLevel = previousPriorityLevel;
+          }
+        };
+      };
+      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
+    })();
+  }
+});
+
+// node_modules/scheduler/index.js
+var require_scheduler = __commonJS({
+  "node_modules/scheduler/index.js"(exports, module) {
+    "use strict";
+    if (false) {
+      module.exports = null;
+    } else {
+      module.exports = require_scheduler_development();
+    }
   }
 });
 
@@ -2708,12 +616,12 @@ var require_react_development = __commonJS({
         var dispatcher = ReactSharedInternals.A;
         return null === dispatcher ? null : dispatcher.getOwner();
       }
-      function hasValidKey(config) {
-        if (hasOwnProperty.call(config, "key")) {
-          var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+      function hasValidKey(config2) {
+        if (hasOwnProperty.call(config2, "key")) {
+          var getter = Object.getOwnPropertyDescriptor(config2, "key").get;
           if (getter && getter.isReactWarning) return false;
         }
-        return void 0 !== config.key;
+        return void 0 !== config2.key;
       }
       function defineKeyPropWarningGetter(props, displayName) {
         function warnAboutAccessingKey() {
@@ -2736,8 +644,8 @@ var require_react_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      function ReactElement(type, key, self2, source, owner, props) {
-        self2 = props.ref;
+      function ReactElement(type, key, self, source, owner, props) {
+        self = props.ref;
         type = {
           $$typeof: REACT_ELEMENT_TYPE,
           type,
@@ -2745,7 +653,7 @@ var require_react_development = __commonJS({
           props,
           _owner: owner
         };
-        null !== (void 0 !== self2 ? self2 : null) ? Object.defineProperty(type, "ref", {
+        null !== (void 0 !== self ? self : null) ? Object.defineProperty(type, "ref", {
           enumerable: false,
           get: elementRefGetterWithDeprecationWarning
         }) : Object.defineProperty(type, "ref", { enumerable: false, value: null });
@@ -3252,28 +1160,28 @@ var require_react_development = __commonJS({
           return fn.apply(null, arguments);
         };
       };
-      exports.cloneElement = function(element, config, children) {
+      exports.cloneElement = function(element, config2, children) {
         if (null === element || void 0 === element)
           throw Error(
             "The argument must be a React element, but you passed " + element + "."
           );
         var props = assign({}, element.props), key = element.key, owner = element._owner;
-        if (null != config) {
+        if (null != config2) {
           var JSCompiler_inline_result;
           a: {
-            if (hasOwnProperty.call(config, "ref") && (JSCompiler_inline_result = Object.getOwnPropertyDescriptor(
-              config,
+            if (hasOwnProperty.call(config2, "ref") && (JSCompiler_inline_result = Object.getOwnPropertyDescriptor(
+              config2,
               "ref"
             ).get) && JSCompiler_inline_result.isReactWarning) {
               JSCompiler_inline_result = false;
               break a;
             }
-            JSCompiler_inline_result = void 0 !== config.ref;
+            JSCompiler_inline_result = void 0 !== config2.ref;
           }
           JSCompiler_inline_result && (owner = getOwner());
-          hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key);
-          for (propName in config)
-            !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
+          hasValidKey(config2) && (checkKeyStringCoercion(config2.key), key = "" + config2.key);
+          for (propName in config2)
+            !hasOwnProperty.call(config2, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config2.ref || (props[propName] = config2[propName]);
         }
         var propName = arguments.length - 2;
         if (1 === propName) props.children = children;
@@ -3306,7 +1214,7 @@ var require_react_development = __commonJS({
         defaultValue._currentRenderer2 = null;
         return defaultValue;
       };
-      exports.createElement = function(type, config, children) {
+      exports.createElement = function(type, config2, children) {
         if (isValidElementType(type))
           for (var i = 2; i < arguments.length; i++)
             validateChildKeys(arguments[i], type);
@@ -3326,11 +1234,11 @@ var require_react_development = __commonJS({
         var propName;
         i = {};
         typeString = null;
-        if (null != config)
-          for (propName in didWarnAboutOldJSXRuntime || !("__self" in config) || "key" in config || (didWarnAboutOldJSXRuntime = true, console.warn(
+        if (null != config2)
+          for (propName in didWarnAboutOldJSXRuntime || !("__self" in config2) || "key" in config2 || (didWarnAboutOldJSXRuntime = true, console.warn(
             "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
-          )), hasValidKey(config) && (checkKeyStringCoercion(config.key), typeString = "" + config.key), config)
-            hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i[propName] = config[propName]);
+          )), hasValidKey(config2) && (checkKeyStringCoercion(config2.key), typeString = "" + config2.key), config2)
+            hasOwnProperty.call(config2, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i[propName] = config2[propName]);
         var childrenLength = arguments.length - 2;
         if (1 === childrenLength) i.children = children;
         else if (1 < childrenLength) {
@@ -3511,286 +1419,6 @@ var require_react = __commonJS({
       module.exports = null;
     } else {
       module.exports = require_react_development();
-    }
-  }
-});
-
-// node_modules/scheduler/cjs/scheduler.development.js
-var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
-    "use strict";
-    (function() {
-      function performWorkUntilDeadline() {
-        if (isMessageLoopRunning) {
-          var currentTime = exports.unstable_now();
-          startTime = currentTime;
-          var hasMoreWork = true;
-          try {
-            a: {
-              isHostCallbackScheduled = false;
-              isHostTimeoutScheduled && (isHostTimeoutScheduled = false, localClearTimeout(taskTimeoutID), taskTimeoutID = -1);
-              isPerformingWork = true;
-              var previousPriorityLevel = currentPriorityLevel;
-              try {
-                b: {
-                  advanceTimers(currentTime);
-                  for (currentTask = peek(taskQueue); null !== currentTask && !(currentTask.expirationTime > currentTime && shouldYieldToHost()); ) {
-                    var callback = currentTask.callback;
-                    if ("function" === typeof callback) {
-                      currentTask.callback = null;
-                      currentPriorityLevel = currentTask.priorityLevel;
-                      var continuationCallback = callback(
-                        currentTask.expirationTime <= currentTime
-                      );
-                      currentTime = exports.unstable_now();
-                      if ("function" === typeof continuationCallback) {
-                        currentTask.callback = continuationCallback;
-                        advanceTimers(currentTime);
-                        hasMoreWork = true;
-                        break b;
-                      }
-                      currentTask === peek(taskQueue) && pop(taskQueue);
-                      advanceTimers(currentTime);
-                    } else pop(taskQueue);
-                    currentTask = peek(taskQueue);
-                  }
-                  if (null !== currentTask) hasMoreWork = true;
-                  else {
-                    var firstTimer = peek(timerQueue);
-                    null !== firstTimer && requestHostTimeout(
-                      handleTimeout,
-                      firstTimer.startTime - currentTime
-                    );
-                    hasMoreWork = false;
-                  }
-                }
-                break a;
-              } finally {
-                currentTask = null, currentPriorityLevel = previousPriorityLevel, isPerformingWork = false;
-              }
-              hasMoreWork = void 0;
-            }
-          } finally {
-            hasMoreWork ? schedulePerformWorkUntilDeadline() : isMessageLoopRunning = false;
-          }
-        }
-      }
-      function push(heap, node) {
-        var index = heap.length;
-        heap.push(node);
-        a: for (; 0 < index; ) {
-          var parentIndex = index - 1 >>> 1, parent = heap[parentIndex];
-          if (0 < compare(parent, node))
-            heap[parentIndex] = node, heap[index] = parent, index = parentIndex;
-          else break a;
-        }
-      }
-      function peek(heap) {
-        return 0 === heap.length ? null : heap[0];
-      }
-      function pop(heap) {
-        if (0 === heap.length) return null;
-        var first = heap[0], last = heap.pop();
-        if (last !== first) {
-          heap[0] = last;
-          a: for (var index = 0, length = heap.length, halfLength = length >>> 1; index < halfLength; ) {
-            var leftIndex = 2 * (index + 1) - 1, left = heap[leftIndex], rightIndex = leftIndex + 1, right = heap[rightIndex];
-            if (0 > compare(left, last))
-              rightIndex < length && 0 > compare(right, left) ? (heap[index] = right, heap[rightIndex] = last, index = rightIndex) : (heap[index] = left, heap[leftIndex] = last, index = leftIndex);
-            else if (rightIndex < length && 0 > compare(right, last))
-              heap[index] = right, heap[rightIndex] = last, index = rightIndex;
-            else break a;
-          }
-        }
-        return first;
-      }
-      function compare(a, b) {
-        var diff = a.sortIndex - b.sortIndex;
-        return 0 !== diff ? diff : a.id - b.id;
-      }
-      function advanceTimers(currentTime) {
-        for (var timer = peek(timerQueue); null !== timer; ) {
-          if (null === timer.callback) pop(timerQueue);
-          else if (timer.startTime <= currentTime)
-            pop(timerQueue), timer.sortIndex = timer.expirationTime, push(taskQueue, timer);
-          else break;
-          timer = peek(timerQueue);
-        }
-      }
-      function handleTimeout(currentTime) {
-        isHostTimeoutScheduled = false;
-        advanceTimers(currentTime);
-        if (!isHostCallbackScheduled)
-          if (null !== peek(taskQueue))
-            isHostCallbackScheduled = true, requestHostCallback();
-          else {
-            var firstTimer = peek(timerQueue);
-            null !== firstTimer && requestHostTimeout(
-              handleTimeout,
-              firstTimer.startTime - currentTime
-            );
-          }
-      }
-      function shouldYieldToHost() {
-        return exports.unstable_now() - startTime < frameInterval ? false : true;
-      }
-      function requestHostCallback() {
-        isMessageLoopRunning || (isMessageLoopRunning = true, schedulePerformWorkUntilDeadline());
-      }
-      function requestHostTimeout(callback, ms) {
-        taskTimeoutID = localSetTimeout(function() {
-          callback(exports.unstable_now());
-        }, ms);
-      }
-      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-      exports.unstable_now = void 0;
-      if ("object" === typeof performance && "function" === typeof performance.now) {
-        var localPerformance = performance;
-        exports.unstable_now = function() {
-          return localPerformance.now();
-        };
-      } else {
-        var localDate = Date, initialTime = localDate.now();
-        exports.unstable_now = function() {
-          return localDate.now() - initialTime;
-        };
-      }
-      var taskQueue = [], timerQueue = [], taskIdCounter = 1, currentTask = null, currentPriorityLevel = 3, isPerformingWork = false, isHostCallbackScheduled = false, isHostTimeoutScheduled = false, localSetTimeout = "function" === typeof setTimeout ? setTimeout : null, localClearTimeout = "function" === typeof clearTimeout ? clearTimeout : null, localSetImmediate = "undefined" !== typeof setImmediate ? setImmediate : null, isMessageLoopRunning = false, taskTimeoutID = -1, frameInterval = 5, startTime = -1;
-      if ("function" === typeof localSetImmediate)
-        var schedulePerformWorkUntilDeadline = function() {
-          localSetImmediate(performWorkUntilDeadline);
-        };
-      else if ("undefined" !== typeof MessageChannel) {
-        var channel = new MessageChannel(), port = channel.port2;
-        channel.port1.onmessage = performWorkUntilDeadline;
-        schedulePerformWorkUntilDeadline = function() {
-          port.postMessage(null);
-        };
-      } else
-        schedulePerformWorkUntilDeadline = function() {
-          localSetTimeout(performWorkUntilDeadline, 0);
-        };
-      exports.unstable_IdlePriority = 5;
-      exports.unstable_ImmediatePriority = 1;
-      exports.unstable_LowPriority = 4;
-      exports.unstable_NormalPriority = 3;
-      exports.unstable_Profiling = null;
-      exports.unstable_UserBlockingPriority = 2;
-      exports.unstable_cancelCallback = function(task) {
-        task.callback = null;
-      };
-      exports.unstable_continueExecution = function() {
-        isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, requestHostCallback());
-      };
-      exports.unstable_forceFrameRate = function(fps) {
-        0 > fps || 125 < fps ? console.error(
-          "forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"
-        ) : frameInterval = 0 < fps ? Math.floor(1e3 / fps) : 5;
-      };
-      exports.unstable_getCurrentPriorityLevel = function() {
-        return currentPriorityLevel;
-      };
-      exports.unstable_getFirstCallbackNode = function() {
-        return peek(taskQueue);
-      };
-      exports.unstable_next = function(eventHandler) {
-        switch (currentPriorityLevel) {
-          case 1:
-          case 2:
-          case 3:
-            var priorityLevel = 3;
-            break;
-          default:
-            priorityLevel = currentPriorityLevel;
-        }
-        var previousPriorityLevel = currentPriorityLevel;
-        currentPriorityLevel = priorityLevel;
-        try {
-          return eventHandler();
-        } finally {
-          currentPriorityLevel = previousPriorityLevel;
-        }
-      };
-      exports.unstable_pauseExecution = function() {
-      };
-      exports.unstable_requestPaint = function() {
-      };
-      exports.unstable_runWithPriority = function(priorityLevel, eventHandler) {
-        switch (priorityLevel) {
-          case 1:
-          case 2:
-          case 3:
-          case 4:
-          case 5:
-            break;
-          default:
-            priorityLevel = 3;
-        }
-        var previousPriorityLevel = currentPriorityLevel;
-        currentPriorityLevel = priorityLevel;
-        try {
-          return eventHandler();
-        } finally {
-          currentPriorityLevel = previousPriorityLevel;
-        }
-      };
-      exports.unstable_scheduleCallback = function(priorityLevel, callback, options) {
-        var currentTime = exports.unstable_now();
-        "object" === typeof options && null !== options ? (options = options.delay, options = "number" === typeof options && 0 < options ? currentTime + options : currentTime) : options = currentTime;
-        switch (priorityLevel) {
-          case 1:
-            var timeout = -1;
-            break;
-          case 2:
-            timeout = 250;
-            break;
-          case 5:
-            timeout = 1073741823;
-            break;
-          case 4:
-            timeout = 1e4;
-            break;
-          default:
-            timeout = 5e3;
-        }
-        timeout = options + timeout;
-        priorityLevel = {
-          id: taskIdCounter++,
-          callback,
-          priorityLevel,
-          startTime: options,
-          expirationTime: timeout,
-          sortIndex: -1
-        };
-        options > currentTime ? (priorityLevel.sortIndex = options, push(timerQueue, priorityLevel), null === peek(taskQueue) && priorityLevel === peek(timerQueue) && (isHostTimeoutScheduled ? (localClearTimeout(taskTimeoutID), taskTimeoutID = -1) : isHostTimeoutScheduled = true, requestHostTimeout(handleTimeout, options - currentTime))) : (priorityLevel.sortIndex = timeout, push(taskQueue, priorityLevel), isHostCallbackScheduled || isPerformingWork || (isHostCallbackScheduled = true, requestHostCallback()));
-        return priorityLevel;
-      };
-      exports.unstable_shouldYield = shouldYieldToHost;
-      exports.unstable_wrapCallback = function(callback) {
-        var parentPriorityLevel = currentPriorityLevel;
-        return function() {
-          var previousPriorityLevel = currentPriorityLevel;
-          currentPriorityLevel = parentPriorityLevel;
-          try {
-            return callback.apply(this, arguments);
-          } finally {
-            currentPriorityLevel = previousPriorityLevel;
-          }
-        };
-      };
-      "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-    })();
-  }
-});
-
-// node_modules/scheduler/index.js
-var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
-    "use strict";
-    if (false) {
-      module.exports = null;
-    } else {
-      module.exports = require_scheduler_development();
     }
   }
 });
@@ -4105,8 +1733,8 @@ var require_react_dom_client_development = __commonJS({
       function shouldErrorImpl() {
         return null;
       }
-      function createFiber(tag, pendingProps, key, mode) {
-        return new FiberNode(tag, pendingProps, key, mode);
+      function createFiber(tag2, pendingProps, key, mode) {
+        return new FiberNode(tag2, pendingProps, key, mode);
       }
       function warnInvalidHookAccess() {
         console.error(
@@ -4129,16 +1757,16 @@ var require_react_dom_client_development = __commonJS({
         });
         return array.sort().join(", ");
       }
-      function scheduleRoot(root2, element) {
-        root2.context === emptyContextObject && (updateContainerSync(element, root2, null, null), flushSyncWork$1());
+      function scheduleRoot(root3, element) {
+        root3.context === emptyContextObject && (updateContainerSync(element, root3, null, null), flushSyncWork$1());
       }
-      function scheduleRefresh(root2, update) {
+      function scheduleRefresh(root3, update) {
         if (null !== resolveFamily) {
           var staleFamilies = update.staleFamilies;
           update = update.updatedFamilies;
           flushPassiveEffects();
           scheduleFibersWithFamiliesRecursively(
-            root2.current,
+            root3.current,
             update,
             staleFamilies
           );
@@ -4595,11 +2223,11 @@ var require_react_dom_client_development = __commonJS({
         return a.stateNode.current === a ? fiber : alternate;
       }
       function findCurrentHostFiberImpl(node) {
-        var tag = node.tag;
-        if (5 === tag || 26 === tag || 27 === tag || 6 === tag) return node;
+        var tag2 = node.tag;
+        if (5 === tag2 || 26 === tag2 || 27 === tag2 || 6 === tag2) return node;
         for (node = node.child; null !== node; ) {
-          tag = findCurrentHostFiberImpl(node);
-          if (null !== tag) return tag;
+          tag2 = findCurrentHostFiberImpl(node);
+          if (null !== tag2) return tag2;
           node = node.sibling;
         }
         return null;
@@ -4732,10 +2360,10 @@ var require_react_dom_client_development = __commonJS({
         }
         return hook.checkDCE ? true : false;
       }
-      function onCommitRoot$1(root2, eventPriority) {
+      function onCommitRoot$1(root3, eventPriority) {
         if (injectedHook && "function" === typeof injectedHook.onCommitFiberRoot)
           try {
-            var didError = 128 === (root2.current.flags & 128);
+            var didError = 128 === (root3.current.flags & 128);
             switch (eventPriority) {
               case DiscreteEventPriority:
                 var schedulerPriority = ImmediatePriority;
@@ -4754,7 +2382,7 @@ var require_react_dom_client_development = __commonJS({
             }
             injectedHook.onCommitFiberRoot(
               rendererID,
-              root2,
+              root3,
               schedulerPriority,
               didError
             );
@@ -4800,7 +2428,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function clz32Fallback(x) {
         x >>>= 0;
-        return 0 === x ? 32 : 31 - (log(x) / LN2 | 0) | 0;
+        return 0 === x ? 32 : 31 - (log3(x) / LN2 | 0) | 0;
       }
       function getLabelForLane(lane) {
         if (lane & 1) return "SyncHydrationLane";
@@ -4873,17 +2501,17 @@ var require_react_dom_client_development = __commonJS({
             ), lanes;
         }
       }
-      function getNextLanes(root2, wipLanes) {
-        var pendingLanes = root2.pendingLanes;
+      function getNextLanes(root3, wipLanes) {
+        var pendingLanes = root3.pendingLanes;
         if (0 === pendingLanes) return 0;
-        var nextLanes = 0, suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes, warmLanes = root2.warmLanes;
-        root2 = 0 !== root2.finishedLanes;
+        var nextLanes = 0, suspendedLanes = root3.suspendedLanes, pingedLanes = root3.pingedLanes, warmLanes = root3.warmLanes;
+        root3 = 0 !== root3.finishedLanes;
         var nonIdlePendingLanes = pendingLanes & 134217727;
-        0 !== nonIdlePendingLanes ? (pendingLanes = nonIdlePendingLanes & ~suspendedLanes, 0 !== pendingLanes ? nextLanes = getHighestPriorityLanes(pendingLanes) : (pingedLanes &= nonIdlePendingLanes, 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : root2 || (warmLanes = nonIdlePendingLanes & ~warmLanes, 0 !== warmLanes && (nextLanes = getHighestPriorityLanes(warmLanes))))) : (nonIdlePendingLanes = pendingLanes & ~suspendedLanes, 0 !== nonIdlePendingLanes ? nextLanes = getHighestPriorityLanes(nonIdlePendingLanes) : 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : root2 || (warmLanes = pendingLanes & ~warmLanes, 0 !== warmLanes && (nextLanes = getHighestPriorityLanes(warmLanes))));
+        0 !== nonIdlePendingLanes ? (pendingLanes = nonIdlePendingLanes & ~suspendedLanes, 0 !== pendingLanes ? nextLanes = getHighestPriorityLanes(pendingLanes) : (pingedLanes &= nonIdlePendingLanes, 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : root3 || (warmLanes = nonIdlePendingLanes & ~warmLanes, 0 !== warmLanes && (nextLanes = getHighestPriorityLanes(warmLanes))))) : (nonIdlePendingLanes = pendingLanes & ~suspendedLanes, 0 !== nonIdlePendingLanes ? nextLanes = getHighestPriorityLanes(nonIdlePendingLanes) : 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : root3 || (warmLanes = pendingLanes & ~warmLanes, 0 !== warmLanes && (nextLanes = getHighestPriorityLanes(warmLanes))));
         return 0 === nextLanes ? 0 : 0 !== wipLanes && wipLanes !== nextLanes && 0 === (wipLanes & suspendedLanes) && (suspendedLanes = nextLanes & -nextLanes, warmLanes = wipLanes & -wipLanes, suspendedLanes >= warmLanes || 32 === suspendedLanes && 0 !== (warmLanes & 4194176)) ? wipLanes : nextLanes;
       }
-      function checkIfRootIsPrerendering(root2, renderLanes2) {
-        return 0 === (root2.pendingLanes & ~(root2.suspendedLanes & ~root2.pingedLanes) & renderLanes2);
+      function checkIfRootIsPrerendering(root3, renderLanes2) {
+        return 0 === (root3.pendingLanes & ~(root3.suspendedLanes & ~root3.pingedLanes) & renderLanes2);
       }
       function computeExpirationTime(lane, currentTime) {
         switch (lane) {
@@ -4944,21 +2572,21 @@ var require_react_dom_client_development = __commonJS({
         for (var laneMap = [], i = 0; 31 > i; i++) laneMap.push(initial);
         return laneMap;
       }
-      function markRootUpdated$1(root2, updateLane) {
-        root2.pendingLanes |= updateLane;
-        268435456 !== updateLane && (root2.suspendedLanes = 0, root2.pingedLanes = 0, root2.warmLanes = 0);
+      function markRootUpdated$1(root3, updateLane) {
+        root3.pendingLanes |= updateLane;
+        268435456 !== updateLane && (root3.suspendedLanes = 0, root3.pingedLanes = 0, root3.warmLanes = 0);
       }
-      function markRootFinished(root2, finishedLanes, remainingLanes, spawnedLane, updatedLanes, suspendedRetryLanes) {
-        var previouslyPendingLanes = root2.pendingLanes;
-        root2.pendingLanes = remainingLanes;
-        root2.suspendedLanes = 0;
-        root2.pingedLanes = 0;
-        root2.warmLanes = 0;
-        root2.expiredLanes &= remainingLanes;
-        root2.entangledLanes &= remainingLanes;
-        root2.errorRecoveryDisabledLanes &= remainingLanes;
-        root2.shellSuspendCounter = 0;
-        var entanglements = root2.entanglements, expirationTimes = root2.expirationTimes, hiddenUpdates = root2.hiddenUpdates;
+      function markRootFinished(root3, finishedLanes, remainingLanes, spawnedLane, updatedLanes, suspendedRetryLanes) {
+        var previouslyPendingLanes = root3.pendingLanes;
+        root3.pendingLanes = remainingLanes;
+        root3.suspendedLanes = 0;
+        root3.pingedLanes = 0;
+        root3.warmLanes = 0;
+        root3.expiredLanes &= remainingLanes;
+        root3.entangledLanes &= remainingLanes;
+        root3.errorRecoveryDisabledLanes &= remainingLanes;
+        root3.shellSuspendCounter = 0;
+        var entanglements = root3.entanglements, expirationTimes = root3.expirationTimes, hiddenUpdates = root3.hiddenUpdates;
         for (remainingLanes = previouslyPendingLanes & ~remainingLanes; 0 < remainingLanes; ) {
           var index = 31 - clz32(remainingLanes), lane = 1 << index;
           entanglements[index] = 0;
@@ -4971,43 +2599,43 @@ var require_react_dom_client_development = __commonJS({
             }
           remainingLanes &= ~lane;
         }
-        0 !== spawnedLane && markSpawnedDeferredLane(root2, spawnedLane, 0);
-        0 !== suspendedRetryLanes && 0 === updatedLanes && 0 !== root2.tag && (root2.suspendedLanes |= suspendedRetryLanes & ~(previouslyPendingLanes & ~finishedLanes));
+        0 !== spawnedLane && markSpawnedDeferredLane(root3, spawnedLane, 0);
+        0 !== suspendedRetryLanes && 0 === updatedLanes && 0 !== root3.tag && (root3.suspendedLanes |= suspendedRetryLanes & ~(previouslyPendingLanes & ~finishedLanes));
       }
-      function markSpawnedDeferredLane(root2, spawnedLane, entangledLanes) {
-        root2.pendingLanes |= spawnedLane;
-        root2.suspendedLanes &= ~spawnedLane;
+      function markSpawnedDeferredLane(root3, spawnedLane, entangledLanes) {
+        root3.pendingLanes |= spawnedLane;
+        root3.suspendedLanes &= ~spawnedLane;
         var spawnedLaneIndex = 31 - clz32(spawnedLane);
-        root2.entangledLanes |= spawnedLane;
-        root2.entanglements[spawnedLaneIndex] = root2.entanglements[spawnedLaneIndex] | 1073741824 | entangledLanes & 4194218;
+        root3.entangledLanes |= spawnedLane;
+        root3.entanglements[spawnedLaneIndex] = root3.entanglements[spawnedLaneIndex] | 1073741824 | entangledLanes & 4194218;
       }
-      function markRootEntangled(root2, entangledLanes) {
-        var rootEntangledLanes = root2.entangledLanes |= entangledLanes;
-        for (root2 = root2.entanglements; rootEntangledLanes; ) {
+      function markRootEntangled(root3, entangledLanes) {
+        var rootEntangledLanes = root3.entangledLanes |= entangledLanes;
+        for (root3 = root3.entanglements; rootEntangledLanes; ) {
           var index = 31 - clz32(rootEntangledLanes), lane = 1 << index;
-          lane & entangledLanes | root2[index] & entangledLanes && (root2[index] |= entangledLanes);
+          lane & entangledLanes | root3[index] & entangledLanes && (root3[index] |= entangledLanes);
           rootEntangledLanes &= ~lane;
         }
       }
-      function addFiberToLanesMap(root2, fiber, lanes) {
+      function addFiberToLanesMap(root3, fiber, lanes) {
         if (isDevToolsPresent)
-          for (root2 = root2.pendingUpdatersLaneMap; 0 < lanes; ) {
+          for (root3 = root3.pendingUpdatersLaneMap; 0 < lanes; ) {
             var index = 31 - clz32(lanes), lane = 1 << index;
-            root2[index].add(fiber);
+            root3[index].add(fiber);
             lanes &= ~lane;
           }
       }
-      function movePendingFibersToMemoized(root2, lanes) {
+      function movePendingFibersToMemoized(root3, lanes) {
         if (isDevToolsPresent)
-          for (var pendingUpdatersLaneMap = root2.pendingUpdatersLaneMap, memoizedUpdaters = root2.memoizedUpdaters; 0 < lanes; ) {
+          for (var pendingUpdatersLaneMap = root3.pendingUpdatersLaneMap, memoizedUpdaters = root3.memoizedUpdaters; 0 < lanes; ) {
             var index = 31 - clz32(lanes);
-            root2 = 1 << index;
+            root3 = 1 << index;
             index = pendingUpdatersLaneMap[index];
             0 < index.size && (index.forEach(function(fiber) {
               var alternate = fiber.alternate;
               null !== alternate && memoizedUpdaters.has(alternate) || memoizedUpdaters.add(fiber);
             }), index.clear());
-            lanes &= ~root2;
+            lanes &= ~root3;
           }
       }
       function lanesToEventPriority(lanes) {
@@ -5056,21 +2684,21 @@ var require_react_dom_client_development = __commonJS({
       }
       function getInstanceFromNode(node) {
         if (node = node[internalInstanceKey] || node[internalContainerInstanceKey]) {
-          var tag = node.tag;
-          if (5 === tag || 6 === tag || 13 === tag || 26 === tag || 27 === tag || 3 === tag)
+          var tag2 = node.tag;
+          if (5 === tag2 || 6 === tag2 || 13 === tag2 || 26 === tag2 || 27 === tag2 || 3 === tag2)
             return node;
         }
         return null;
       }
       function getNodeFromInstance(inst) {
-        var tag = inst.tag;
-        if (5 === tag || 26 === tag || 27 === tag || 6 === tag)
+        var tag2 = inst.tag;
+        if (5 === tag2 || 26 === tag2 || 27 === tag2 || 6 === tag2)
           return inst.stateNode;
         throw Error("getNodeFromInstance: Invalid argument.");
       }
-      function getResourcesFromRoot(root2) {
-        var resources = root2[internalRootNodeResourcesKey];
-        resources || (resources = root2[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
+      function getResourcesFromRoot(root3) {
+        var resources = root3[internalRootNodeResourcesKey];
+        resources || (resources = root3[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
         return resources;
       }
       function markNodeAsHoistable(node) {
@@ -5679,51 +3307,51 @@ var require_react_dom_client_development = __commonJS({
           }, distanceFromLeaf++, fiber = fiber.return;
         return null !== node ? describeDiff(node).replaceAll(/^[+-]/gm, ">") : "";
       }
-      function updatedAncestorInfoDev(oldInfo, tag) {
+      function updatedAncestorInfoDev(oldInfo, tag2) {
         oldInfo = assign({}, oldInfo || emptyAncestorInfoDev);
-        var info = { tag };
-        -1 !== inScopeTags.indexOf(tag) && (oldInfo.aTagInScope = null, oldInfo.buttonTagInScope = null, oldInfo.nobrTagInScope = null);
-        -1 !== buttonScopeTags.indexOf(tag) && (oldInfo.pTagInButtonScope = null);
-        -1 !== specialTags.indexOf(tag) && "address" !== tag && "div" !== tag && "p" !== tag && (oldInfo.listItemTagAutoclosing = null, oldInfo.dlItemTagAutoclosing = null);
+        var info = { tag: tag2 };
+        -1 !== inScopeTags.indexOf(tag2) && (oldInfo.aTagInScope = null, oldInfo.buttonTagInScope = null, oldInfo.nobrTagInScope = null);
+        -1 !== buttonScopeTags.indexOf(tag2) && (oldInfo.pTagInButtonScope = null);
+        -1 !== specialTags.indexOf(tag2) && "address" !== tag2 && "div" !== tag2 && "p" !== tag2 && (oldInfo.listItemTagAutoclosing = null, oldInfo.dlItemTagAutoclosing = null);
         oldInfo.current = info;
-        "form" === tag && (oldInfo.formTag = info);
-        "a" === tag && (oldInfo.aTagInScope = info);
-        "button" === tag && (oldInfo.buttonTagInScope = info);
-        "nobr" === tag && (oldInfo.nobrTagInScope = info);
-        "p" === tag && (oldInfo.pTagInButtonScope = info);
-        "li" === tag && (oldInfo.listItemTagAutoclosing = info);
-        if ("dd" === tag || "dt" === tag) oldInfo.dlItemTagAutoclosing = info;
-        "#document" === tag || "html" === tag ? oldInfo.containerTagInScope = null : oldInfo.containerTagInScope || (oldInfo.containerTagInScope = info);
+        "form" === tag2 && (oldInfo.formTag = info);
+        "a" === tag2 && (oldInfo.aTagInScope = info);
+        "button" === tag2 && (oldInfo.buttonTagInScope = info);
+        "nobr" === tag2 && (oldInfo.nobrTagInScope = info);
+        "p" === tag2 && (oldInfo.pTagInButtonScope = info);
+        "li" === tag2 && (oldInfo.listItemTagAutoclosing = info);
+        if ("dd" === tag2 || "dt" === tag2) oldInfo.dlItemTagAutoclosing = info;
+        "#document" === tag2 || "html" === tag2 ? oldInfo.containerTagInScope = null : oldInfo.containerTagInScope || (oldInfo.containerTagInScope = info);
         return oldInfo;
       }
-      function isTagValidWithParent(tag, parentTag) {
+      function isTagValidWithParent(tag2, parentTag) {
         switch (parentTag) {
           case "select":
-            return "hr" === tag || "option" === tag || "optgroup" === tag || "#text" === tag;
+            return "hr" === tag2 || "option" === tag2 || "optgroup" === tag2 || "#text" === tag2;
           case "optgroup":
-            return "option" === tag || "#text" === tag;
+            return "option" === tag2 || "#text" === tag2;
           case "option":
-            return "#text" === tag;
+            return "#text" === tag2;
           case "tr":
-            return "th" === tag || "td" === tag || "style" === tag || "script" === tag || "template" === tag;
+            return "th" === tag2 || "td" === tag2 || "style" === tag2 || "script" === tag2 || "template" === tag2;
           case "tbody":
           case "thead":
           case "tfoot":
-            return "tr" === tag || "style" === tag || "script" === tag || "template" === tag;
+            return "tr" === tag2 || "style" === tag2 || "script" === tag2 || "template" === tag2;
           case "colgroup":
-            return "col" === tag || "template" === tag;
+            return "col" === tag2 || "template" === tag2;
           case "table":
-            return "caption" === tag || "colgroup" === tag || "tbody" === tag || "tfoot" === tag || "thead" === tag || "style" === tag || "script" === tag || "template" === tag;
+            return "caption" === tag2 || "colgroup" === tag2 || "tbody" === tag2 || "tfoot" === tag2 || "thead" === tag2 || "style" === tag2 || "script" === tag2 || "template" === tag2;
           case "head":
-            return "base" === tag || "basefont" === tag || "bgsound" === tag || "link" === tag || "meta" === tag || "title" === tag || "noscript" === tag || "noframes" === tag || "style" === tag || "script" === tag || "template" === tag;
+            return "base" === tag2 || "basefont" === tag2 || "bgsound" === tag2 || "link" === tag2 || "meta" === tag2 || "title" === tag2 || "noscript" === tag2 || "noframes" === tag2 || "style" === tag2 || "script" === tag2 || "template" === tag2;
           case "html":
-            return "head" === tag || "body" === tag || "frameset" === tag;
+            return "head" === tag2 || "body" === tag2 || "frameset" === tag2;
           case "frameset":
-            return "frame" === tag;
+            return "frame" === tag2;
           case "#document":
-            return "html" === tag;
+            return "html" === tag2;
         }
-        switch (tag) {
+        switch (tag2) {
           case "h1":
           case "h2":
           case "h3":
@@ -5752,8 +3380,8 @@ var require_react_dom_client_development = __commonJS({
         }
         return true;
       }
-      function findInvalidAncestorForTag(tag, ancestorInfo) {
-        switch (tag) {
+      function findInvalidAncestorForTag(tag2, ancestorInfo) {
+        switch (tag2) {
           case "address":
           case "article":
           case "aside":
@@ -6342,7 +3970,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function getData() {
         if (fallbackText) return fallbackText;
-        var start, startValue = startText, startLength = startValue.length, end, endValue = "value" in root ? root.value : root.textContent, endLength = endValue.length;
+        var start, startValue = startText, startLength = startValue.length, end, endValue = "value" in root2 ? root2.value : root2.textContent, endLength = endValue.length;
         for (start = 0; start < startLength && startValue[start] === endValue[start]; start++) ;
         var minEnd = startLength - start;
         for (end = 1; end <= minEnd && startValue[startLength - end] === endValue[endLength - end]; end++) ;
@@ -6431,7 +4059,7 @@ var require_react_dom_client_development = __commonJS({
       }
       function getFallbackBeforeInputChars(domEventName, nativeEvent) {
         if (isComposing)
-          return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData(), fallbackText = startText = root = null, isComposing = false, domEventName) : null;
+          return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData(), fallbackText = startText = root2 = null, isComposing = false, domEventName) : null;
         switch (domEventName) {
           case "paste":
             return null;
@@ -6530,15 +4158,15 @@ var require_react_dom_client_development = __commonJS({
         for (; node && node.firstChild; ) node = node.firstChild;
         return node;
       }
-      function getNodeForCharacterOffset(root2, offset) {
-        var node = getLeafNode(root2);
-        root2 = 0;
+      function getNodeForCharacterOffset(root3, offset) {
+        var node = getLeafNode(root3);
+        root3 = 0;
         for (var nodeEnd; node; ) {
           if (3 === node.nodeType) {
-            nodeEnd = root2 + node.textContent.length;
-            if (root2 <= offset && nodeEnd >= offset)
-              return { node, offset: offset - root2 };
-            root2 = nodeEnd;
+            nodeEnd = root3 + node.textContent.length;
+            if (root3 <= offset && nodeEnd >= offset)
+              return { node, offset: offset - root3 };
+            root3 = nodeEnd;
           }
           a: {
             for (; node; ) {
@@ -6743,8 +4371,8 @@ var require_react_dom_client_development = __commonJS({
         null !== resolveFamily && "function" === typeof WeakSet && (null === failedBoundaries && (failedBoundaries = /* @__PURE__ */ new WeakSet()), failedBoundaries.add(fiber));
       }
       function scheduleFibersWithFamiliesRecursively(fiber, updatedFamilies, staleFamilies) {
-        var alternate = fiber.alternate, child = fiber.child, sibling = fiber.sibling, tag = fiber.tag, type = fiber.type, candidateType = null;
-        switch (tag) {
+        var alternate = fiber.alternate, child = fiber.child, sibling = fiber.sibling, tag2 = fiber.tag, type = fiber.type, candidateType = null;
+        switch (tag2) {
           case 0:
           case 15:
           case 1:
@@ -6757,7 +4385,7 @@ var require_react_dom_client_development = __commonJS({
           throw Error("Expected resolveFamily to be set during hot reload.");
         var needsRender = false;
         type = false;
-        null !== candidateType && (candidateType = resolveFamily(candidateType), void 0 !== candidateType && (staleFamilies.has(candidateType) ? type = true : updatedFamilies.has(candidateType) && (1 === tag ? type = true : needsRender = true)));
+        null !== candidateType && (candidateType = resolveFamily(candidateType), void 0 !== candidateType && (staleFamilies.has(candidateType) ? type = true : updatedFamilies.has(candidateType) && (1 === tag2 ? type = true : needsRender = true)));
         null !== failedBoundaries && (failedBoundaries.has(fiber) || null !== alternate && failedBoundaries.has(alternate)) && (type = true);
         type && (fiber._debugNeedsRemount = true);
         if (type || needsRender)
@@ -8228,7 +5856,7 @@ var require_react_dom_client_development = __commonJS({
         null === (null === workInProgressHook ? index.memoizedState : workInProgressHook.next) && (index = index.alternate, ReactSharedInternals.H = null !== index && null !== index.memoizedState ? HooksDispatcherOnUpdateInDEV : HooksDispatcherOnMountInDEV);
         return thenable;
       }
-      function use2(usable) {
+      function use(usable) {
         if (null !== usable && "object" === typeof usable) {
           if ("function" === typeof usable.then) return useThenable(usable);
           if (usable.$$typeof === REACT_CONTEXT_TYPE) return readContext(usable);
@@ -8511,8 +6139,8 @@ var require_react_dom_client_development = __commonJS({
         }
       }
       function forceStoreRerender(fiber) {
-        var root2 = enqueueConcurrentRenderForLane(fiber, 2);
-        null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2);
+        var root3 = enqueueConcurrentRenderForLane(fiber, 2);
+        null !== root3 && scheduleUpdateOnFiber(root3, fiber, 2);
       }
       function mountStateImpl(initialState) {
         var hook = mountWorkInProgressHook();
@@ -8791,13 +6419,13 @@ var require_react_dom_client_development = __commonJS({
         currentStateHook.memoizedState = action;
         return [stateHook, dispatch, false];
       }
-      function pushEffect(tag, create, inst, deps) {
-        tag = { tag, create, inst, deps, next: null };
+      function pushEffect(tag2, create, inst, deps) {
+        tag2 = { tag: tag2, create, inst, deps, next: null };
         create = currentlyRenderingFiber$1.updateQueue;
         null === create && (create = createFunctionComponentUpdateQueue(), currentlyRenderingFiber$1.updateQueue = create);
         inst = create.lastEffect;
-        null === inst ? create.lastEffect = tag.next = tag : (deps = inst.next, inst.next = tag, tag.next = deps, create.lastEffect = tag);
-        return tag;
+        null === inst ? create.lastEffect = tag2.next = tag2 : (deps = inst.next, inst.next = tag2, tag2.next = deps, create.lastEffect = tag2);
+        return tag2;
       }
       function mountRef(initialValue) {
         var hook = mountWorkInProgressHook();
@@ -9130,10 +6758,10 @@ var require_react_dom_client_development = __commonJS({
             case 3:
               var lane = requestUpdateLane(provider);
               fiber = createUpdate(lane);
-              var root2 = enqueueUpdate(provider, fiber, lane);
-              null !== root2 && (scheduleUpdateOnFiber(root2, provider, lane), entangleTransitions(root2, provider, lane));
+              var root3 = enqueueUpdate(provider, fiber, lane);
+              null !== root3 && (scheduleUpdateOnFiber(root3, provider, lane), entangleTransitions(root3, provider, lane));
               provider = createCache();
-              null !== seedKey && void 0 !== seedKey && null !== root2 && console.error(
+              null !== seedKey && void 0 !== seedKey && null !== root3 && console.error(
                 "The seed argument is not enabled outside experimental channels."
               );
               fiber.payload = { cache: provider };
@@ -9251,13 +6879,13 @@ var require_react_dom_client_development = __commonJS({
         null === pending ? update.next = update : (update.next = pending.next, pending.next = update);
         queue.pending = update;
       }
-      function entangleTransitionUpdate(root2, queue, lane) {
+      function entangleTransitionUpdate(root3, queue, lane) {
         if (0 !== (lane & 4194176)) {
           var queueLanes = queue.lanes;
-          queueLanes &= root2.pendingLanes;
+          queueLanes &= root3.pendingLanes;
           lane |= queueLanes;
           queue.lanes = lane;
-          markRootEntangled(root2, lane);
+          markRootEntangled(root3, lane);
         }
       }
       function warnOnInvalidCallback(callback) {
@@ -9387,7 +7015,7 @@ var require_react_dom_client_development = __commonJS({
       function defaultOnRecoverableError(error) {
         reportGlobalError(error);
       }
-      function logUncaughtError(root2, errorInfo) {
+      function logUncaughtError(root3, errorInfo) {
         try {
           componentName = errorInfo.source ? getComponentNameFromFiber(errorInfo.source) : null;
           errorBoundaryName = null;
@@ -9395,7 +7023,7 @@ var require_react_dom_client_development = __commonJS({
           if (null !== ReactSharedInternals.actQueue)
             ReactSharedInternals.thrownErrors.push(error);
           else {
-            var onUncaughtError = root2.onUncaughtError;
+            var onUncaughtError = root3.onUncaughtError;
             onUncaughtError(error, { componentStack: errorInfo.stack });
           }
         } catch (e$4) {
@@ -9404,11 +7032,11 @@ var require_react_dom_client_development = __commonJS({
           });
         }
       }
-      function logCaughtError(root2, boundary, errorInfo) {
+      function logCaughtError(root3, boundary, errorInfo) {
         try {
           componentName = errorInfo.source ? getComponentNameFromFiber(errorInfo.source) : null;
           errorBoundaryName = getComponentNameFromFiber(boundary);
-          var onCaughtError = root2.onCaughtError;
+          var onCaughtError = root3.onCaughtError;
           onCaughtError(errorInfo.value, {
             componentStack: errorInfo.stack,
             errorBoundary: 1 === boundary.tag ? boundary.stateNode : null
@@ -9419,12 +7047,12 @@ var require_react_dom_client_development = __commonJS({
           });
         }
       }
-      function createRootErrorUpdate(root2, errorInfo, lane) {
+      function createRootErrorUpdate(root3, errorInfo, lane) {
         lane = createUpdate(lane);
         lane.tag = CaptureUpdate;
         lane.payload = { element: null };
         lane.callback = function() {
-          runWithFiberInDEV(errorInfo.source, logUncaughtError, root2, errorInfo);
+          runWithFiberInDEV(errorInfo.source, logUncaughtError, root3, errorInfo);
         };
         return lane;
       }
@@ -9433,7 +7061,7 @@ var require_react_dom_client_development = __commonJS({
         lane.tag = CaptureUpdate;
         return lane;
       }
-      function initializeClassErrorUpdate(update, root2, fiber, errorInfo) {
+      function initializeClassErrorUpdate(update, root3, fiber, errorInfo) {
         var getDerivedStateFromError = fiber.type.getDerivedStateFromError;
         if ("function" === typeof getDerivedStateFromError) {
           var error = errorInfo.value;
@@ -9445,7 +7073,7 @@ var require_react_dom_client_development = __commonJS({
             runWithFiberInDEV(
               errorInfo.source,
               logCaughtError,
-              root2,
+              root3,
               fiber,
               errorInfo
             );
@@ -9457,7 +7085,7 @@ var require_react_dom_client_development = __commonJS({
           runWithFiberInDEV(
             errorInfo.source,
             logCaughtError,
-            root2,
+            root3,
             fiber,
             errorInfo
           );
@@ -9469,9 +7097,9 @@ var require_react_dom_client_development = __commonJS({
           );
         });
       }
-      function throwException(root2, returnFiber, sourceFiber, value, rootRenderLanes) {
+      function throwException(root3, returnFiber, sourceFiber, value, rootRenderLanes) {
         sourceFiber.flags |= 32768;
-        isDevToolsPresent && restorePendingUpdaters(root2, rootRenderLanes);
+        isDevToolsPresent && restorePendingUpdaters(root3, rootRenderLanes);
         if (null !== value && "object" === typeof value && "function" === typeof value.then) {
           returnFiber = sourceFiber.alternate;
           null !== returnFiber && propagateParentContextChanges(
@@ -9485,19 +7113,19 @@ var require_react_dom_client_development = __commonJS({
           if (null !== sourceFiber) {
             switch (sourceFiber.tag) {
               case 13:
-                return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && workInProgressRootExitStatus === RootInProgress && (workInProgressRootExitStatus = RootSuspended), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root2, value, rootRenderLanes)), false;
+                return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && workInProgressRootExitStatus === RootInProgress && (workInProgressRootExitStatus = RootSuspended), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root3, value, rootRenderLanes)), false;
               case 22:
                 return sourceFiber.flags |= 65536, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? (returnFiber = {
                   transitions: null,
                   markerInstances: null,
                   retryQueue: /* @__PURE__ */ new Set([value])
-                }, sourceFiber.updateQueue = returnFiber) : (sourceFiber = returnFiber.retryQueue, null === sourceFiber ? returnFiber.retryQueue = /* @__PURE__ */ new Set([value]) : sourceFiber.add(value)), attachPingListener(root2, value, rootRenderLanes)), false;
+                }, sourceFiber.updateQueue = returnFiber) : (sourceFiber = returnFiber.retryQueue, null === sourceFiber ? returnFiber.retryQueue = /* @__PURE__ */ new Set([value]) : sourceFiber.add(value)), attachPingListener(root3, value, rootRenderLanes)), false;
             }
             throw Error(
               "Unexpected Suspense handler tag (" + sourceFiber.tag + "). This is a bug in React."
             );
           }
-          attachPingListener(root2, value, rootRenderLanes);
+          attachPingListener(root3, value, rootRenderLanes);
           renderDidSuspendDelayIfPossible();
           return false;
         }
@@ -9518,11 +7146,11 @@ var require_react_dom_client_development = __commonJS({
               ),
               sourceFiber
             )
-          ), root2 = root2.current.alternate, root2.flags |= 65536, rootRenderLanes &= -rootRenderLanes, root2.lanes |= rootRenderLanes, value = createCapturedValueAtFiber(value, sourceFiber), rootRenderLanes = createRootErrorUpdate(
-            root2.stateNode,
+          ), root3 = root3.current.alternate, root3.flags |= 65536, rootRenderLanes &= -rootRenderLanes, root3.lanes |= rootRenderLanes, value = createCapturedValueAtFiber(value, sourceFiber), rootRenderLanes = createRootErrorUpdate(
+            root3.stateNode,
             value,
             rootRenderLanes
-          ), enqueueCapturedUpdate(root2, rootRenderLanes), workInProgressRootExitStatus !== RootSuspendedWithDelay && (workInProgressRootExitStatus = RootErrored)), false;
+          ), enqueueCapturedUpdate(root3, rootRenderLanes), workInProgressRootExitStatus !== RootSuspendedWithDelay && (workInProgressRootExitStatus = RootErrored)), false;
         var error = createCapturedValueAtFiber(
           Error(
             "There was an error during concurrent rendering but React was able to recover by instead synchronously rendering the entire root.",
@@ -9538,16 +7166,16 @@ var require_react_dom_client_development = __commonJS({
         do {
           switch (sourceFiber.tag) {
             case 3:
-              return sourceFiber.flags |= 65536, root2 = rootRenderLanes & -rootRenderLanes, sourceFiber.lanes |= root2, root2 = createRootErrorUpdate(
+              return sourceFiber.flags |= 65536, root3 = rootRenderLanes & -rootRenderLanes, sourceFiber.lanes |= root3, root3 = createRootErrorUpdate(
                 sourceFiber.stateNode,
                 value,
-                root2
-              ), enqueueCapturedUpdate(sourceFiber, root2), false;
+                root3
+              ), enqueueCapturedUpdate(sourceFiber, root3), false;
             case 1:
               if (returnFiber = sourceFiber.type, error = sourceFiber.stateNode, 0 === (sourceFiber.flags & 128) && ("function" === typeof returnFiber.getDerivedStateFromError || null !== error && "function" === typeof error.componentDidCatch && (null === legacyErrorBoundariesThatAlreadyFailed || !legacyErrorBoundariesThatAlreadyFailed.has(error))))
                 return sourceFiber.flags |= 65536, rootRenderLanes &= -rootRenderLanes, sourceFiber.lanes |= rootRenderLanes, rootRenderLanes = createClassErrorUpdate(rootRenderLanes), initializeClassErrorUpdate(
                   rootRenderLanes,
-                  root2,
+                  root3,
                   sourceFiber,
                   value
                 ), enqueueCapturedUpdate(sourceFiber, rootRenderLanes), false;
@@ -11317,14 +8945,14 @@ var require_react_dom_client_development = __commonJS({
         enqueueUpdate$1(fiber, updateQueue, update, lane);
         return getRootForUpdatedFiber(fiber);
       }
-      function entangleTransitions(root2, fiber, lane) {
+      function entangleTransitions(root3, fiber, lane) {
         fiber = fiber.updateQueue;
         if (null !== fiber && (fiber = fiber.shared, 0 !== (lane & 4194176))) {
           var queueLanes = fiber.lanes;
-          queueLanes &= root2.pendingLanes;
+          queueLanes &= root3.pendingLanes;
           lane |= queueLanes;
           fiber.lanes = lane;
-          markRootEntangled(root2, lane);
+          markRootEntangled(root3, lane);
         }
       }
       function enqueueCapturedUpdate(workInProgress2, capturedUpdate) {
@@ -11334,14 +8962,14 @@ var require_react_dom_client_development = __commonJS({
           queue = queue.firstBaseUpdate;
           if (null !== queue) {
             do {
-              var clone = {
+              var clone2 = {
                 lane: queue.lane,
                 tag: queue.tag,
                 payload: queue.payload,
                 callback: null,
                 next: null
               };
-              null === newLast ? newFirst = newLast = clone : newLast = newLast.next = clone;
+              null === newLast ? newFirst = newLast = clone2 : newLast = newLast.next = clone2;
               queue = queue.next;
             } while (null !== queue);
             null === newLast ? newFirst = newLast = capturedUpdate : newLast = newLast.next = capturedUpdate;
@@ -11819,18 +9447,18 @@ var require_react_dom_client_development = __commonJS({
         }
       }
       function insertOrAppendPlacementNodeIntoContainer(node, before, parent) {
-        var tag = node.tag;
-        if (5 === tag || 6 === tag)
+        var tag2 = node.tag;
+        if (5 === tag2 || 6 === tag2)
           node = node.stateNode, before ? 8 === parent.nodeType ? parent.parentNode.insertBefore(node, before) : parent.insertBefore(node, before) : (8 === parent.nodeType ? (before = parent.parentNode, before.insertBefore(node, parent)) : (before = parent, before.appendChild(node)), parent = parent._reactRootContainer, null !== parent && void 0 !== parent || null !== before.onclick || (before.onclick = noop$1));
-        else if (4 !== tag && 27 !== tag && (node = node.child, null !== node))
+        else if (4 !== tag2 && 27 !== tag2 && (node = node.child, null !== node))
           for (insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling; null !== node; )
             insertOrAppendPlacementNodeIntoContainer(node, before, parent), node = node.sibling;
       }
       function insertOrAppendPlacementNode(node, before, parent) {
-        var tag = node.tag;
-        if (5 === tag || 6 === tag)
+        var tag2 = node.tag;
+        if (5 === tag2 || 6 === tag2)
           node = node.stateNode, before ? parent.insertBefore(node, before) : parent.appendChild(node);
-        else if (4 !== tag && 27 !== tag && (node = node.child, null !== node))
+        else if (4 !== tag2 && 27 !== tag2 && (node = node.child, null !== node))
           for (insertOrAppendPlacementNode(node, before, parent), node = node.sibling; null !== node; )
             insertOrAppendPlacementNode(node, before, parent), node = node.sibling;
       }
@@ -11877,19 +9505,19 @@ var require_react_dom_client_development = __commonJS({
           }
         }
       }
-      function commitBeforeMutationEffects(root2, firstChild) {
-        root2 = root2.containerInfo;
+      function commitBeforeMutationEffects(root3, firstChild) {
+        root3 = root3.containerInfo;
         eventsEnabled = _enabled;
-        root2 = getActiveElementDeep(root2);
-        if (hasSelectionCapabilities(root2)) {
-          if ("selectionStart" in root2)
+        root3 = getActiveElementDeep(root3);
+        if (hasSelectionCapabilities(root3)) {
+          if ("selectionStart" in root3)
             var JSCompiler_temp = {
-              start: root2.selectionStart,
-              end: root2.selectionEnd
+              start: root3.selectionStart,
+              end: root3.selectionEnd
             };
           else
             a: {
-              JSCompiler_temp = (JSCompiler_temp = root2.ownerDocument) && JSCompiler_temp.defaultView || window;
+              JSCompiler_temp = (JSCompiler_temp = root3.ownerDocument) && JSCompiler_temp.defaultView || window;
               var selection = JSCompiler_temp.getSelection && JSCompiler_temp.getSelection();
               if (selection && 0 !== selection.rangeCount) {
                 JSCompiler_temp = selection.anchorNode;
@@ -11901,7 +9529,7 @@ var require_react_dom_client_development = __commonJS({
                   JSCompiler_temp = null;
                   break a;
                 }
-                var length = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node = root2, parentNode = null;
+                var length = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node = root3, parentNode = null;
                 b: for (; ; ) {
                   for (var next; ; ) {
                     node !== JSCompiler_temp || 0 !== anchorOffset && 3 !== node.nodeType || (start = length + anchorOffset);
@@ -11912,7 +9540,7 @@ var require_react_dom_client_development = __commonJS({
                     node = next;
                   }
                   for (; ; ) {
-                    if (node === root2) break b;
+                    if (node === root3) break b;
                     parentNode === JSCompiler_temp && ++indexWithinAnchor === anchorOffset && (start = length);
                     parentNode === focusNode && ++indexWithinFocus === selection && (end = length);
                     if (null !== (next = node.nextSibling)) break;
@@ -11927,40 +9555,40 @@ var require_react_dom_client_development = __commonJS({
           JSCompiler_temp = JSCompiler_temp || { start: 0, end: 0 };
         } else JSCompiler_temp = null;
         selectionInformation = {
-          focusedElem: root2,
+          focusedElem: root3,
           selectionRange: JSCompiler_temp
         };
         _enabled = false;
         for (nextEffect = firstChild; null !== nextEffect; )
-          if (firstChild = nextEffect, root2 = firstChild.child, 0 !== (firstChild.subtreeFlags & 1028) && null !== root2)
-            root2.return = firstChild, nextEffect = root2;
+          if (firstChild = nextEffect, root3 = firstChild.child, 0 !== (firstChild.subtreeFlags & 1028) && null !== root3)
+            root3.return = firstChild, nextEffect = root3;
           else
             for (; null !== nextEffect; ) {
-              root2 = firstChild = nextEffect;
-              JSCompiler_temp = root2.alternate;
-              anchorOffset = root2.flags;
-              switch (root2.tag) {
+              root3 = firstChild = nextEffect;
+              JSCompiler_temp = root3.alternate;
+              anchorOffset = root3.flags;
+              switch (root3.tag) {
                 case 0:
                   break;
                 case 11:
                 case 15:
                   break;
                 case 1:
-                  0 !== (anchorOffset & 1024) && null !== JSCompiler_temp && commitClassSnapshot(root2, JSCompiler_temp);
+                  0 !== (anchorOffset & 1024) && null !== JSCompiler_temp && commitClassSnapshot(root3, JSCompiler_temp);
                   break;
                 case 3:
                   if (0 !== (anchorOffset & 1024)) {
-                    if (root2 = root2.stateNode.containerInfo, JSCompiler_temp = root2.nodeType, 9 === JSCompiler_temp)
-                      clearContainerSparingly(root2);
+                    if (root3 = root3.stateNode.containerInfo, JSCompiler_temp = root3.nodeType, 9 === JSCompiler_temp)
+                      clearContainerSparingly(root3);
                     else if (1 === JSCompiler_temp)
-                      switch (root2.nodeName) {
+                      switch (root3.nodeName) {
                         case "HEAD":
                         case "HTML":
                         case "BODY":
-                          clearContainerSparingly(root2);
+                          clearContainerSparingly(root3);
                           break;
                         default:
-                          root2.textContent = "";
+                          root3.textContent = "";
                       }
                   }
                   break;
@@ -11977,10 +9605,10 @@ var require_react_dom_client_development = __commonJS({
                       "This unit of work tag should not have side-effects. This error is likely caused by a bug in React. Please file an issue."
                     );
               }
-              root2 = firstChild.sibling;
-              if (null !== root2) {
-                root2.return = firstChild.return;
-                nextEffect = root2;
+              root3 = firstChild.sibling;
+              if (null !== root3) {
+                root3.return = firstChild.return;
+                nextEffect = root3;
                 break;
               }
               nextEffect = firstChild.return;
@@ -12357,17 +9985,17 @@ var require_react_dom_client_development = __commonJS({
           }
         });
       }
-      function commitMutationEffects(root2, finishedWork, committedLanes) {
+      function commitMutationEffects(root3, finishedWork, committedLanes) {
         inProgressLanes = committedLanes;
-        inProgressRoot = root2;
-        commitMutationEffectsOnFiber(finishedWork, root2);
+        inProgressRoot = root3;
+        commitMutationEffectsOnFiber(finishedWork, root3);
         inProgressRoot = inProgressLanes = null;
       }
       function recursivelyTraverseMutationEffects(root$jscomp$0, parentFiber) {
         var deletions = parentFiber.deletions;
         if (null !== deletions)
           for (var i = 0; i < deletions.length; i++) {
-            var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i], parent = returnFiber;
+            var root3 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i], parent = returnFiber;
             a: for (; null !== parent; ) {
               switch (parent.tag) {
                 case 27:
@@ -12390,26 +10018,26 @@ var require_react_dom_client_development = __commonJS({
               throw Error(
                 "Expected to find a host parent. This error is likely caused by a bug in React. Please file an issue."
               );
-            commitDeletionEffectsOnFiber(root2, returnFiber, deletedFiber);
+            commitDeletionEffectsOnFiber(root3, returnFiber, deletedFiber);
             hostParent = null;
             hostParentIsContainer = false;
-            root2 = deletedFiber;
-            returnFiber = root2.alternate;
+            root3 = deletedFiber;
+            returnFiber = root3.alternate;
             null !== returnFiber && (returnFiber.return = null);
-            root2.return = null;
+            root3.return = null;
           }
         if (parentFiber.subtreeFlags & 13878)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
             commitMutationEffectsOnFiber(parentFiber, root$jscomp$0), parentFiber = parentFiber.sibling;
       }
-      function commitMutationEffectsOnFiber(finishedWork, root2) {
+      function commitMutationEffectsOnFiber(finishedWork, root3) {
         var current2 = finishedWork.alternate, flags = finishedWork.flags;
         switch (finishedWork.tag) {
           case 0:
           case 11:
           case 14:
           case 15:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (commitHookEffectListUnmount(
               Insertion | HasEffect,
@@ -12422,31 +10050,31 @@ var require_react_dom_client_development = __commonJS({
             ));
             break;
           case 1:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
             flags & 64 && offscreenSubtreeIsHidden && (finishedWork = finishedWork.updateQueue, null !== finishedWork && (flags = finishedWork.callbacks, null !== flags && (current2 = finishedWork.shared.hiddenCallbacks, finishedWork.shared.hiddenCallbacks = null === current2 ? flags : current2.concat(flags))));
             break;
           case 26:
             var hoistableRoot = currentHoistableRoot;
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
             if (flags & 4)
-              if (root2 = null !== current2 ? current2.memoizedState : null, flags = finishedWork.memoizedState, null === current2)
+              if (root3 = null !== current2 ? current2.memoizedState : null, flags = finishedWork.memoizedState, null === current2)
                 if (null === flags)
                   if (null === finishedWork.stateNode) {
                     a: {
                       flags = finishedWork.type;
                       current2 = finishedWork.memoizedProps;
-                      root2 = hoistableRoot.ownerDocument || hoistableRoot;
+                      root3 = hoistableRoot.ownerDocument || hoistableRoot;
                       b: switch (flags) {
                         case "title":
-                          hoistableRoot = root2.getElementsByTagName("title")[0];
+                          hoistableRoot = root3.getElementsByTagName("title")[0];
                           if (!hoistableRoot || hoistableRoot[internalHoistableMarker] || hoistableRoot[internalInstanceKey] || hoistableRoot.namespaceURI === SVG_NAMESPACE || hoistableRoot.hasAttribute("itemprop"))
-                            hoistableRoot = root2.createElement(flags), root2.head.insertBefore(
+                            hoistableRoot = root3.createElement(flags), root3.head.insertBefore(
                               hoistableRoot,
-                              root2.querySelector("head > title")
+                              root3.querySelector("head > title")
                             );
                           setInitialProperties(hoistableRoot, flags, current2);
                           hoistableRoot[internalInstanceKey] = finishedWork;
@@ -12457,7 +10085,7 @@ var require_react_dom_client_development = __commonJS({
                           var maybeNodes = getHydratableHoistableCache(
                             "link",
                             "href",
-                            root2
+                            root3
                           ).get(flags + (current2.href || ""));
                           if (maybeNodes) {
                             for (var i = 0; i < maybeNodes.length; i++)
@@ -12466,15 +10094,15 @@ var require_react_dom_client_development = __commonJS({
                                 break b;
                               }
                           }
-                          hoistableRoot = root2.createElement(flags);
+                          hoistableRoot = root3.createElement(flags);
                           setInitialProperties(hoistableRoot, flags, current2);
-                          root2.head.appendChild(hoistableRoot);
+                          root3.head.appendChild(hoistableRoot);
                           break;
                         case "meta":
                           if (maybeNodes = getHydratableHoistableCache(
                             "meta",
                             "content",
-                            root2
+                            root3
                           ).get(flags + (current2.content || ""))) {
                             for (i = 0; i < maybeNodes.length; i++)
                               if (hoistableRoot = maybeNodes[i], checkAttributeStringCoercion(
@@ -12485,9 +10113,9 @@ var require_react_dom_client_development = __commonJS({
                                 break b;
                               }
                           }
-                          hoistableRoot = root2.createElement(flags);
+                          hoistableRoot = root3.createElement(flags);
                           setInitialProperties(hoistableRoot, flags, current2);
-                          root2.head.appendChild(hoistableRoot);
+                          root3.head.appendChild(hoistableRoot);
                           break;
                         default:
                           throw Error(
@@ -12512,7 +10140,7 @@ var require_react_dom_client_development = __commonJS({
                     finishedWork.memoizedProps
                   );
               else
-                root2 !== flags ? (null === root2 ? null !== current2.stateNode && (current2 = current2.stateNode, current2.parentNode.removeChild(current2)) : root2.count--, null === flags ? mountHoistable(
+                root3 !== flags ? (null === root3 ? null !== current2.stateNode && (current2 = current2.stateNode, current2.parentNode.removeChild(current2)) : root3.count--, null === flags ? mountHoistable(
                   hoistableRoot,
                   finishedWork.type,
                   finishedWork.stateNode
@@ -12549,28 +10177,28 @@ var require_react_dom_client_development = __commonJS({
               }
             }
           case 5:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current2 || safelyDetachRef(current2, current2.return));
             if (finishedWork.flags & 32) {
-              root2 = finishedWork.stateNode;
+              root3 = finishedWork.stateNode;
               try {
-                runWithFiberInDEV(finishedWork, resetTextContent, root2);
+                runWithFiberInDEV(finishedWork, resetTextContent, root3);
               } catch (error) {
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
             }
-            flags & 4 && null != finishedWork.stateNode && (root2 = finishedWork.memoizedProps, commitHostUpdate(
+            flags & 4 && null != finishedWork.stateNode && (root3 = finishedWork.memoizedProps, commitHostUpdate(
               finishedWork,
-              root2,
-              null !== current2 ? current2.memoizedProps : root2
+              root3,
+              null !== current2 ? current2.memoizedProps : root3
             ));
             flags & 1024 && (needsFormReset = true, "form" !== finishedWork.type && console.error(
               "Unexpected host component type. Expected a form. This is a bug in React."
             ));
             break;
           case 6:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             if (flags & 4) {
               if (null === finishedWork.stateNode)
@@ -12579,12 +10207,12 @@ var require_react_dom_client_development = __commonJS({
                 );
               flags = finishedWork.memoizedProps;
               current2 = null !== current2 ? current2.memoizedProps : flags;
-              root2 = finishedWork.stateNode;
+              root3 = finishedWork.stateNode;
               try {
                 runWithFiberInDEV(
                   finishedWork,
                   commitTextUpdate,
-                  root2,
+                  root3,
                   current2,
                   flags
                 );
@@ -12597,8 +10225,8 @@ var require_react_dom_client_development = __commonJS({
             hoistableRoot = pushNestedEffectDurations();
             tagCaches = null;
             maybeNodes = currentHoistableRoot;
-            currentHoistableRoot = getHoistableRoot(root2.containerInfo);
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            currentHoistableRoot = getHoistableRoot(root3.containerInfo);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             currentHoistableRoot = maybeNodes;
             commitReconciliationEffects(finishedWork);
             if (flags & 4 && null !== current2 && current2.memoizedState.isDehydrated)
@@ -12606,31 +10234,31 @@ var require_react_dom_client_development = __commonJS({
                 runWithFiberInDEV(
                   finishedWork,
                   commitHydratedContainer,
-                  root2.containerInfo
+                  root3.containerInfo
                 );
               } catch (error) {
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
             needsFormReset && (needsFormReset = false, recursivelyResetForms(finishedWork));
-            root2.effectDuration += popNestedEffectDurations(hoistableRoot);
+            root3.effectDuration += popNestedEffectDurations(hoistableRoot);
             break;
           case 4:
             flags = currentHoistableRoot;
             currentHoistableRoot = getHoistableRoot(
               finishedWork.stateNode.containerInfo
             );
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             currentHoistableRoot = flags;
             break;
           case 12:
             flags = pushNestedEffectDurations();
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             finishedWork.stateNode.effectDuration += bubbleNestedEffectDurations(flags);
             break;
           case 13:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current2 && null !== current2.memoizedState) && (globalMostRecentFallbackTime = now$1());
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
@@ -12643,19 +10271,19 @@ var require_react_dom_client_development = __commonJS({
             var prevOffscreenSubtreeWasHidden = offscreenSubtreeWasHidden;
             offscreenSubtreeIsHidden = nodeName || i;
             offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden || nextNode;
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden;
             offscreenSubtreeIsHidden = nodeName;
             commitReconciliationEffects(finishedWork);
-            root2 = finishedWork.stateNode;
-            root2._current = finishedWork;
-            root2._visibility &= ~OffscreenDetached;
-            root2._visibility |= root2._pendingVisibility & OffscreenDetached;
-            if (flags & 8192 && (root2._visibility = i ? root2._visibility & ~OffscreenVisible : root2._visibility | OffscreenVisible, i && (root2 = offscreenSubtreeIsHidden || offscreenSubtreeWasHidden, null === current2 || nextNode || root2 || recursivelyTraverseDisappearLayoutEffects(finishedWork)), null === finishedWork.memoizedProps || "manual" !== finishedWork.memoizedProps.mode))
-              a: for (current2 = null, root2 = finishedWork; ; ) {
-                if (5 === root2.tag || 26 === root2.tag || 27 === root2.tag) {
+            root3 = finishedWork.stateNode;
+            root3._current = finishedWork;
+            root3._visibility &= ~OffscreenDetached;
+            root3._visibility |= root3._pendingVisibility & OffscreenDetached;
+            if (flags & 8192 && (root3._visibility = i ? root3._visibility & ~OffscreenVisible : root3._visibility | OffscreenVisible, i && (root3 = offscreenSubtreeIsHidden || offscreenSubtreeWasHidden, null === current2 || nextNode || root3 || recursivelyTraverseDisappearLayoutEffects(finishedWork)), null === finishedWork.memoizedProps || "manual" !== finishedWork.memoizedProps.mode))
+              a: for (current2 = null, root3 = finishedWork; ; ) {
+                if (5 === root3.tag || 26 === root3.tag || 27 === root3.tag) {
                   if (null === current2) {
-                    nextNode = current2 = root2;
+                    nextNode = current2 = root3;
                     try {
                       hoistableRoot = nextNode.stateNode, i ? runWithFiberInDEV(
                         nextNode,
@@ -12671,9 +10299,9 @@ var require_react_dom_client_development = __commonJS({
                       captureCommitPhaseError(nextNode, nextNode.return, error);
                     }
                   }
-                } else if (6 === root2.tag) {
+                } else if (6 === root3.tag) {
                   if (null === current2) {
-                    nextNode = root2;
+                    nextNode = root3;
                     try {
                       maybeNodes = nextNode.stateNode, i ? runWithFiberInDEV(
                         nextNode,
@@ -12689,33 +10317,33 @@ var require_react_dom_client_development = __commonJS({
                       captureCommitPhaseError(nextNode, nextNode.return, error);
                     }
                   }
-                } else if ((22 !== root2.tag && 23 !== root2.tag || null === root2.memoizedState || root2 === finishedWork) && null !== root2.child) {
-                  root2.child.return = root2;
-                  root2 = root2.child;
+                } else if ((22 !== root3.tag && 23 !== root3.tag || null === root3.memoizedState || root3 === finishedWork) && null !== root3.child) {
+                  root3.child.return = root3;
+                  root3 = root3.child;
                   continue;
                 }
-                if (root2 === finishedWork) break a;
-                for (; null === root2.sibling; ) {
-                  if (null === root2.return || root2.return === finishedWork)
+                if (root3 === finishedWork) break a;
+                for (; null === root3.sibling; ) {
+                  if (null === root3.return || root3.return === finishedWork)
                     break a;
-                  current2 === root2 && (current2 = null);
-                  root2 = root2.return;
+                  current2 === root3 && (current2 = null);
+                  root3 = root3.return;
                 }
-                current2 === root2 && (current2 = null);
-                root2.sibling.return = root2.return;
-                root2 = root2.sibling;
+                current2 === root3 && (current2 = null);
+                root3.sibling.return = root3.return;
+                root3 = root3.sibling;
               }
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (current2 = flags.retryQueue, null !== current2 && (flags.retryQueue = null, attachSuspenseRetryListeners(finishedWork, current2))));
             break;
           case 19:
-            recursivelyTraverseMutationEffects(root2, finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
             break;
           case 21:
             break;
           default:
-            recursivelyTraverseMutationEffects(root2, finishedWork), commitReconciliationEffects(finishedWork);
+            recursivelyTraverseMutationEffects(root3, finishedWork), commitReconciliationEffects(finishedWork);
         }
       }
       function commitReconciliationEffects(finishedWork) {
@@ -12739,16 +10367,16 @@ var require_react_dom_client_development = __commonJS({
             parentFiber = parentFiber.sibling;
           }
       }
-      function commitLayoutEffects(finishedWork, root2, committedLanes) {
+      function commitLayoutEffects(finishedWork, root3, committedLanes) {
         inProgressLanes = committedLanes;
-        inProgressRoot = root2;
-        commitLayoutEffectOnFiber(root2, finishedWork.alternate, finishedWork);
+        inProgressRoot = root3;
+        commitLayoutEffectOnFiber(root3, finishedWork.alternate, finishedWork);
         inProgressRoot = inProgressLanes = null;
       }
-      function recursivelyTraverseLayoutEffects(root2, parentFiber) {
+      function recursivelyTraverseLayoutEffects(root3, parentFiber) {
         if (parentFiber.subtreeFlags & 8772)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
-            commitLayoutEffectOnFiber(root2, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
+            commitLayoutEffectOnFiber(root3, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
       }
       function disappearLayoutEffects(finishedWork) {
         switch (finishedWork.tag) {
@@ -12921,11 +10549,11 @@ var require_react_dom_client_development = __commonJS({
         finishedWork = finishedWork.memoizedState.cache;
         finishedWork !== current2 && (retainCache(finishedWork), null != current2 && releaseCache(current2));
       }
-      function recursivelyTraversePassiveMountEffects(root2, parentFiber, committedLanes, committedTransitions) {
+      function recursivelyTraversePassiveMountEffects(root3, parentFiber, committedLanes, committedTransitions) {
         if (parentFiber.subtreeFlags & 10256)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
             commitPassiveMountOnFiber(
-              root2,
+              root3,
               parentFiber,
               committedLanes,
               committedTransitions
@@ -13307,8 +10935,8 @@ var require_react_dom_client_development = __commonJS({
             }
         }
       }
-      function FiberNode(tag, pendingProps, key, mode) {
-        this.tag = tag;
+      function FiberNode(tag2, pendingProps, key, mode) {
+        this.tag = tag2;
         this.key = key;
         this.sibling = this.child = this.return = this.stateNode = this.type = this.elementType = null;
         this.index = 0;
@@ -13490,8 +11118,8 @@ var require_react_dom_client_development = __commonJS({
                 "Calling Offscreen.detach before instance handle has been set."
               );
             if (0 === (instance._pendingVisibility & OffscreenDetached)) {
-              var root2 = enqueueConcurrentRenderForLane(fiber, 2);
-              null !== root2 && (instance._pendingVisibility |= OffscreenDetached, scheduleUpdateOnFiber(root2, fiber, 2));
+              var root3 = enqueueConcurrentRenderForLane(fiber, 2);
+              null !== root3 && (instance._pendingVisibility |= OffscreenDetached, scheduleUpdateOnFiber(root3, fiber, 2));
             }
           },
           attach: function() {
@@ -13501,8 +11129,8 @@ var require_react_dom_client_development = __commonJS({
                 "Calling Offscreen.detach before instance handle has been set."
               );
             if (0 !== (instance._pendingVisibility & OffscreenDetached)) {
-              var root2 = enqueueConcurrentRenderForLane(fiber, 2);
-              null !== root2 && (instance._pendingVisibility &= ~OffscreenDetached, scheduleUpdateOnFiber(root2, fiber, 2));
+              var root3 = enqueueConcurrentRenderForLane(fiber, 2);
+              null !== root3 && (instance._pendingVisibility &= ~OffscreenDetached, scheduleUpdateOnFiber(root3, fiber, 2));
             }
           }
         };
@@ -14007,29 +11635,29 @@ var require_react_dom_client_development = __commonJS({
         null !== suspenseHandler && (suspenseHandler.flags |= 32);
         return workInProgressDeferredLane;
       }
-      function scheduleUpdateOnFiber(root2, fiber, lane) {
+      function scheduleUpdateOnFiber(root3, fiber, lane) {
         isRunningInsertionEffect && console.error("useInsertionEffect must not schedule updates.");
         isFlushingPassiveEffects && (didScheduleUpdateDuringPassiveEffects = true);
-        if (root2 === workInProgressRoot && workInProgressSuspendedReason === SuspendedOnData || null !== root2.cancelPendingCommit)
-          prepareFreshStack(root2, 0), markRootSuspended(
-            root2,
+        if (root3 === workInProgressRoot && workInProgressSuspendedReason === SuspendedOnData || null !== root3.cancelPendingCommit)
+          prepareFreshStack(root3, 0), markRootSuspended(
+            root3,
             workInProgressRootRenderLanes,
             workInProgressDeferredLane,
             false
           );
-        markRootUpdated$1(root2, lane);
-        if (0 !== (executionContext & RenderContext) && root2 === workInProgressRoot) {
+        markRootUpdated$1(root3, lane);
+        if (0 !== (executionContext & RenderContext) && root3 === workInProgressRoot) {
           if (isRendering)
             switch (fiber.tag) {
               case 0:
               case 11:
               case 15:
-                root2 = workInProgress && getComponentNameFromFiber(workInProgress) || "Unknown";
-                didWarnAboutUpdateInRenderForAnotherComponent.has(root2) || (didWarnAboutUpdateInRenderForAnotherComponent.add(root2), fiber = getComponentNameFromFiber(fiber) || "Unknown", console.error(
+                root3 = workInProgress && getComponentNameFromFiber(workInProgress) || "Unknown";
+                didWarnAboutUpdateInRenderForAnotherComponent.has(root3) || (didWarnAboutUpdateInRenderForAnotherComponent.add(root3), fiber = getComponentNameFromFiber(fiber) || "Unknown", console.error(
                   "Cannot update a component (`%s`) while rendering a different component (`%s`). To locate the bad setState() call inside `%s`, follow the stack trace as described in https://react.dev/link/setstate-in-render",
                   fiber,
-                  root2,
-                  root2
+                  root3,
+                  root3
                 ));
                 break;
               case 1:
@@ -14038,45 +11666,45 @@ var require_react_dom_client_development = __commonJS({
                 ), didWarnAboutUpdateInRender = true);
             }
         } else
-          isDevToolsPresent && addFiberToLanesMap(root2, fiber, lane), warnIfUpdatesNotWrappedWithActDEV(fiber), root2 === workInProgressRoot && ((executionContext & RenderContext) === NoContext && (workInProgressRootInterleavedUpdatedLanes |= lane), workInProgressRootExitStatus === RootSuspendedWithDelay && markRootSuspended(
-            root2,
+          isDevToolsPresent && addFiberToLanesMap(root3, fiber, lane), warnIfUpdatesNotWrappedWithActDEV(fiber), root3 === workInProgressRoot && ((executionContext & RenderContext) === NoContext && (workInProgressRootInterleavedUpdatedLanes |= lane), workInProgressRootExitStatus === RootSuspendedWithDelay && markRootSuspended(
+            root3,
             workInProgressRootRenderLanes,
             workInProgressDeferredLane,
             false
-          )), ensureRootIsScheduled(root2);
+          )), ensureRootIsScheduled(root3);
       }
-      function performWorkOnRoot(root2, lanes, forceSync) {
+      function performWorkOnRoot(root3, lanes, forceSync) {
         if ((executionContext & (RenderContext | CommitContext)) !== NoContext)
           throw Error("Should not already be working.");
-        var shouldTimeSlice = !forceSync && 0 === (lanes & 60) && 0 === (lanes & root2.expiredLanes) || checkIfRootIsPrerendering(root2, lanes), exitStatus = shouldTimeSlice ? renderRootConcurrent(root2, lanes) : renderRootSync(root2, lanes, true), renderWasConcurrent = shouldTimeSlice;
+        var shouldTimeSlice = !forceSync && 0 === (lanes & 60) && 0 === (lanes & root3.expiredLanes) || checkIfRootIsPrerendering(root3, lanes), exitStatus = shouldTimeSlice ? renderRootConcurrent(root3, lanes) : renderRootSync(root3, lanes, true), renderWasConcurrent = shouldTimeSlice;
         do {
           if (exitStatus === RootInProgress) {
-            workInProgressRootIsPrerendering && !shouldTimeSlice && markRootSuspended(root2, lanes, 0, false);
+            workInProgressRootIsPrerendering && !shouldTimeSlice && markRootSuspended(root3, lanes, 0, false);
             break;
           } else if (exitStatus === RootDidNotComplete)
             markRootSuspended(
-              root2,
+              root3,
               lanes,
               0,
               !workInProgressRootDidSkipSuspendedSiblings
             );
           else {
-            forceSync = root2.current.alternate;
+            forceSync = root3.current.alternate;
             if (renderWasConcurrent && !isRenderConsistentWithExternalStores(forceSync)) {
-              exitStatus = renderRootSync(root2, lanes, false);
+              exitStatus = renderRootSync(root3, lanes, false);
               renderWasConcurrent = false;
               continue;
             }
             if (exitStatus === RootErrored) {
               renderWasConcurrent = lanes;
-              if (root2.errorRecoveryDisabledLanes & renderWasConcurrent)
+              if (root3.errorRecoveryDisabledLanes & renderWasConcurrent)
                 var errorRetryLanes = 0;
               else
-                errorRetryLanes = root2.pendingLanes & -536870913, errorRetryLanes = 0 !== errorRetryLanes ? errorRetryLanes : errorRetryLanes & 536870912 ? 536870912 : 0;
+                errorRetryLanes = root3.pendingLanes & -536870913, errorRetryLanes = 0 !== errorRetryLanes ? errorRetryLanes : errorRetryLanes & 536870912 ? 536870912 : 0;
               if (0 !== errorRetryLanes) {
                 lanes = errorRetryLanes;
                 a: {
-                  exitStatus = root2;
+                  exitStatus = root3;
                   var errorRetryLanes$jscomp$0 = errorRetryLanes;
                   errorRetryLanes = workInProgressRootConcurrentErrors;
                   var wasRootDehydrated = exitStatus.current.memoizedState.isDehydrated;
@@ -14107,12 +11735,12 @@ var require_react_dom_client_development = __commonJS({
               }
             }
             if (exitStatus === RootFatalErrored) {
-              prepareFreshStack(root2, 0);
-              markRootSuspended(root2, lanes, 0, true);
+              prepareFreshStack(root3, 0);
+              markRootSuspended(root3, lanes, 0, true);
               break;
             }
             a: {
-              shouldTimeSlice = root2;
+              shouldTimeSlice = root3;
               switch (exitStatus) {
                 case RootInProgress:
                 case RootFatalErrored:
@@ -14202,7 +11830,7 @@ var require_react_dom_client_development = __commonJS({
           }
           break;
         } while (1);
-        ensureRootIsScheduled(root2);
+        ensureRootIsScheduled(root3);
       }
       function queueRecoverableErrors(errors) {
         null === workInProgressRootRecoverableErrors ? workInProgressRootRecoverableErrors = errors : workInProgressRootRecoverableErrors.push.apply(
@@ -14210,14 +11838,14 @@ var require_react_dom_client_development = __commonJS({
           errors
         );
       }
-      function commitRootWhenReady(root2, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
+      function commitRootWhenReady(root3, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
         var subtreeFlags = finishedWork.subtreeFlags;
         if (subtreeFlags & 8192 || 16785408 === (subtreeFlags & 16785408)) {
           if (suspendedState = { stylesheets: null, count: 0, unsuspend: noop }, accumulateSuspenseyCommitOnFiber(finishedWork), finishedWork = waitForCommitToBeReady(), null !== finishedWork) {
-            root2.cancelPendingCommit = finishedWork(
+            root3.cancelPendingCommit = finishedWork(
               commitRoot.bind(
                 null,
-                root2,
+                root3,
                 recoverableErrors,
                 transitions,
                 didIncludeRenderPhaseUpdate,
@@ -14230,7 +11858,7 @@ var require_react_dom_client_development = __commonJS({
               )
             );
             markRootSuspended(
-              root2,
+              root3,
               lanes,
               spawnedLane,
               !didSkipSuspendedSiblings
@@ -14239,7 +11867,7 @@ var require_react_dom_client_development = __commonJS({
           }
         }
         commitRoot(
-          root2,
+          root3,
           recoverableErrors,
           transitions,
           didIncludeRenderPhaseUpdate,
@@ -14253,10 +11881,10 @@ var require_react_dom_client_development = __commonJS({
       }
       function isRenderConsistentWithExternalStores(finishedWork) {
         for (var node = finishedWork; ; ) {
-          var tag = node.tag;
-          if ((0 === tag || 11 === tag || 15 === tag) && node.flags & 16384 && (tag = node.updateQueue, null !== tag && (tag = tag.stores, null !== tag)))
-            for (var i = 0; i < tag.length; i++) {
-              var check = tag[i], getSnapshot = check.getSnapshot;
+          var tag2 = node.tag;
+          if ((0 === tag2 || 11 === tag2 || 15 === tag2) && node.flags & 16384 && (tag2 = node.updateQueue, null !== tag2 && (tag2 = tag2.stores, null !== tag2)))
+            for (var i = 0; i < tag2.length; i++) {
+              var check = tag2[i], getSnapshot = check.getSnapshot;
               check = check.value;
               try {
                 if (!objectIs(getSnapshot(), check)) return false;
@@ -14264,9 +11892,9 @@ var require_react_dom_client_development = __commonJS({
                 return false;
               }
             }
-          tag = node.child;
-          if (node.subtreeFlags & 16384 && null !== tag)
-            tag.return = node, node = tag;
+          tag2 = node.child;
+          if (node.subtreeFlags & 16384 && null !== tag2)
+            tag2.return = node, node = tag2;
           else {
             if (node === finishedWork) break;
             for (; null === node.sibling; ) {
@@ -14279,19 +11907,19 @@ var require_react_dom_client_development = __commonJS({
         }
         return true;
       }
-      function markRootSuspended(root2, suspendedLanes, spawnedLane, didAttemptEntireTree) {
+      function markRootSuspended(root3, suspendedLanes, spawnedLane, didAttemptEntireTree) {
         suspendedLanes &= ~workInProgressRootPingedLanes;
         suspendedLanes &= ~workInProgressRootInterleavedUpdatedLanes;
-        root2.suspendedLanes |= suspendedLanes;
-        root2.pingedLanes &= ~suspendedLanes;
-        didAttemptEntireTree && (root2.warmLanes |= suspendedLanes);
-        didAttemptEntireTree = root2.expirationTimes;
+        root3.suspendedLanes |= suspendedLanes;
+        root3.pingedLanes &= ~suspendedLanes;
+        didAttemptEntireTree && (root3.warmLanes |= suspendedLanes);
+        didAttemptEntireTree = root3.expirationTimes;
         for (var lanes = suspendedLanes; 0 < lanes; ) {
           var index = 31 - clz32(lanes), lane = 1 << index;
           didAttemptEntireTree[index] = -1;
           lanes &= ~lane;
         }
-        0 !== spawnedLane && markSpawnedDeferredLane(root2, spawnedLane, suspendedLanes);
+        0 !== spawnedLane && markSpawnedDeferredLane(root3, spawnedLane, suspendedLanes);
       }
       function flushSyncWork$1() {
         return (executionContext & (RenderContext | CommitContext)) === NoContext ? (flushSyncWorkAcrossRoots_impl(0, false), false) : true;
@@ -14307,32 +11935,32 @@ var require_react_dom_client_development = __commonJS({
           workInProgress = null;
         }
       }
-      function prepareFreshStack(root2, lanes) {
-        root2.finishedWork = null;
-        root2.finishedLanes = 0;
-        var timeoutHandle = root2.timeoutHandle;
-        timeoutHandle !== noTimeout && (root2.timeoutHandle = noTimeout, cancelTimeout(timeoutHandle));
-        timeoutHandle = root2.cancelPendingCommit;
-        null !== timeoutHandle && (root2.cancelPendingCommit = null, timeoutHandle());
+      function prepareFreshStack(root3, lanes) {
+        root3.finishedWork = null;
+        root3.finishedLanes = 0;
+        var timeoutHandle = root3.timeoutHandle;
+        timeoutHandle !== noTimeout && (root3.timeoutHandle = noTimeout, cancelTimeout(timeoutHandle));
+        timeoutHandle = root3.cancelPendingCommit;
+        null !== timeoutHandle && (root3.cancelPendingCommit = null, timeoutHandle());
         resetWorkInProgressStack();
-        workInProgressRoot = root2;
-        workInProgress = timeoutHandle = createWorkInProgress(root2.current, null);
+        workInProgressRoot = root3;
+        workInProgress = timeoutHandle = createWorkInProgress(root3.current, null);
         workInProgressRootRenderLanes = lanes;
         workInProgressSuspendedReason = NotSuspended;
         workInProgressThrownValue = null;
         workInProgressRootDidSkipSuspendedSiblings = false;
-        workInProgressRootIsPrerendering = checkIfRootIsPrerendering(root2, lanes);
+        workInProgressRootIsPrerendering = checkIfRootIsPrerendering(root3, lanes);
         workInProgressRootDidAttachPingListener = false;
         workInProgressRootExitStatus = RootInProgress;
         workInProgressSuspendedRetryLanes = workInProgressDeferredLane = workInProgressRootPingedLanes = workInProgressRootInterleavedUpdatedLanes = workInProgressRootSkippedLanes = 0;
         workInProgressRootRecoverableErrors = workInProgressRootConcurrentErrors = null;
         workInProgressRootDidIncludeRecursiveRenderUpdate = false;
         0 !== (lanes & 8) && (lanes |= lanes & 32);
-        var allEntangledLanes = root2.entangledLanes;
+        var allEntangledLanes = root3.entangledLanes;
         if (0 !== allEntangledLanes)
-          for (root2 = root2.entanglements, allEntangledLanes &= lanes; 0 < allEntangledLanes; ) {
+          for (root3 = root3.entanglements, allEntangledLanes &= lanes; 0 < allEntangledLanes; ) {
             var index = 31 - clz32(allEntangledLanes), lane = 1 << index;
-            lanes |= root2[index];
+            lanes |= root3[index];
             allEntangledLanes &= ~lane;
           }
         entangledRenderLanes = lanes;
@@ -14340,7 +11968,7 @@ var require_react_dom_client_development = __commonJS({
         ReactStrictModeWarnings.discardPendingWarnings();
         return timeoutHandle;
       }
-      function handleThrow(root2, thrownValue) {
+      function handleThrow(root3, thrownValue) {
         currentlyRenderingFiber$1 = null;
         ReactSharedInternals.H = ContextOnlyDispatcher;
         ReactSharedInternals.getCurrentStack = null;
@@ -14351,8 +11979,8 @@ var require_react_dom_client_development = __commonJS({
         var erroredWork = workInProgress;
         if (null === erroredWork)
           workInProgressRootExitStatus = RootFatalErrored, logUncaughtError(
-            root2,
-            createCapturedValueAtFiber(thrownValue, root2.current)
+            root3,
+            createCapturedValueAtFiber(thrownValue, root3.current)
           );
         else
           switch (erroredWork.mode & ProfileMode && stopProfilerTimerIfRunningAndRecordDuration(erroredWork), markComponentRenderStopped(), workInProgressSuspendedReason) {
@@ -14394,18 +12022,18 @@ var require_react_dom_client_development = __commonJS({
           false
         );
       }
-      function renderRootSync(root2, lanes, shouldYieldForPrerendering) {
+      function renderRootSync(root3, lanes, shouldYieldForPrerendering) {
         var prevExecutionContext = executionContext;
         executionContext |= RenderContext;
         var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
-        if (workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes) {
+        if (workInProgressRoot !== root3 || workInProgressRootRenderLanes !== lanes) {
           if (isDevToolsPresent) {
-            var memoizedUpdaters = root2.memoizedUpdaters;
-            0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear());
-            movePendingFibersToMemoized(root2, lanes);
+            var memoizedUpdaters = root3.memoizedUpdaters;
+            0 < memoizedUpdaters.size && (restorePendingUpdaters(root3, workInProgressRootRenderLanes), memoizedUpdaters.clear());
+            movePendingFibersToMemoized(root3, lanes);
           }
           workInProgressTransitions = null;
-          prepareFreshStack(root2, lanes);
+          prepareFreshStack(root3, lanes);
         }
         markRenderStarted(lanes);
         lanes = false;
@@ -14426,24 +12054,24 @@ var require_react_dom_client_development = __commonJS({
                   var reason = workInProgressSuspendedReason;
                   workInProgressSuspendedReason = NotSuspended;
                   workInProgressThrownValue = null;
-                  throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, reason);
+                  throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, reason);
                   if (shouldYieldForPrerendering && workInProgressRootIsPrerendering) {
                     memoizedUpdaters = RootInProgress;
                     break a;
                   }
                   break;
                 default:
-                  reason = workInProgressSuspendedReason, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, reason);
+                  reason = workInProgressSuspendedReason, workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, reason);
               }
             }
             workLoopSync();
             memoizedUpdaters = workInProgressRootExitStatus;
             break;
           } catch (thrownValue$8) {
-            handleThrow(root2, thrownValue$8);
+            handleThrow(root3, thrownValue$8);
           }
         while (1);
-        lanes && root2.shellSuspendCounter++;
+        lanes && root3.shellSuspendCounter++;
         resetContextDependencies();
         executionContext = prevExecutionContext;
         ReactSharedInternals.H = prevDispatcher;
@@ -14455,22 +12083,22 @@ var require_react_dom_client_development = __commonJS({
       function workLoopSync() {
         for (; null !== workInProgress; ) performUnitOfWork(workInProgress);
       }
-      function renderRootConcurrent(root2, lanes) {
+      function renderRootConcurrent(root3, lanes) {
         var prevExecutionContext = executionContext;
         executionContext |= RenderContext;
         var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
-        if (workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes) {
+        if (workInProgressRoot !== root3 || workInProgressRootRenderLanes !== lanes) {
           if (isDevToolsPresent) {
-            var memoizedUpdaters = root2.memoizedUpdaters;
-            0 < memoizedUpdaters.size && (restorePendingUpdaters(root2, workInProgressRootRenderLanes), memoizedUpdaters.clear());
-            movePendingFibersToMemoized(root2, lanes);
+            var memoizedUpdaters = root3.memoizedUpdaters;
+            0 < memoizedUpdaters.size && (restorePendingUpdaters(root3, workInProgressRootRenderLanes), memoizedUpdaters.clear());
+            movePendingFibersToMemoized(root3, lanes);
           }
           workInProgressTransitions = null;
           workInProgressRootRenderTargetTime = now$1() + RENDER_TIMEOUT_MS;
-          prepareFreshStack(root2, lanes);
+          prepareFreshStack(root3, lanes);
         } else
           workInProgressRootIsPrerendering = checkIfRootIsPrerendering(
-            root2,
+            root3,
             lanes
           );
         markRenderStarted(lanes);
@@ -14482,7 +12110,7 @@ var require_react_dom_client_development = __commonJS({
                   workInProgressSuspendedReason = NotSuspended;
                   workInProgressThrownValue = null;
                   throwAndUnwindWorkLoop(
-                    root2,
+                    root3,
                     lanes,
                     memoizedUpdaters,
                     SuspendedOnError
@@ -14496,8 +12124,8 @@ var require_react_dom_client_development = __commonJS({
                     break;
                   }
                   lanes = function() {
-                    workInProgressSuspendedReason === SuspendedOnData && workInProgressRoot === root2 && (workInProgressSuspendedReason = SuspendedAndReadyToContinue);
-                    ensureRootIsScheduled(root2);
+                    workInProgressSuspendedReason === SuspendedOnData && workInProgressRoot === root3 && (workInProgressSuspendedReason = SuspendedAndReadyToContinue);
+                    ensureRootIsScheduled(root3);
                   };
                   memoizedUpdaters.then(lanes, lanes);
                   break a;
@@ -14509,7 +12137,7 @@ var require_react_dom_client_development = __commonJS({
                   break a;
                 case SuspendedAndReadyToContinue:
                   isThenableResolved(memoizedUpdaters) ? (workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, replaySuspendedUnitOfWork(lanes)) : (workInProgressSuspendedReason = NotSuspended, workInProgressThrownValue = null, throwAndUnwindWorkLoop(
-                    root2,
+                    root3,
                     lanes,
                     memoizedUpdaters,
                     SuspendedAndReadyToContinue
@@ -14543,7 +12171,7 @@ var require_react_dom_client_development = __commonJS({
                   workInProgressSuspendedReason = NotSuspended;
                   workInProgressThrownValue = null;
                   throwAndUnwindWorkLoop(
-                    root2,
+                    root3,
                     lanes,
                     memoizedUpdaters,
                     SuspendedOnInstanceAndReadyToContinue
@@ -14553,7 +12181,7 @@ var require_react_dom_client_development = __commonJS({
                   workInProgressSuspendedReason = NotSuspended;
                   workInProgressThrownValue = null;
                   throwAndUnwindWorkLoop(
-                    root2,
+                    root3,
                     lanes,
                     memoizedUpdaters,
                     SuspendedOnDeprecatedThrowPromise
@@ -14571,7 +12199,7 @@ var require_react_dom_client_development = __commonJS({
             null !== ReactSharedInternals.actQueue ? workLoopSync() : workLoopConcurrent();
             break;
           } catch (thrownValue$9) {
-            handleThrow(root2, thrownValue$9);
+            handleThrow(root3, thrownValue$9);
           }
         while (1);
         resetContextDependencies();
@@ -14646,7 +12274,7 @@ var require_react_dom_client_development = __commonJS({
         isProfilingMode && stopProfilerTimerIfRunningAndRecordDuration(unitOfWork);
         return current2;
       }
-      function throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, suspendedReason) {
+      function throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, suspendedReason) {
         resetContextDependencies();
         resetHooksOnUnwind(unitOfWork);
         thenableState$1 = null;
@@ -14654,7 +12282,7 @@ var require_react_dom_client_development = __commonJS({
         var returnFiber = unitOfWork.return;
         try {
           if (throwException(
-            root2,
+            root3,
             returnFiber,
             unitOfWork,
             thrownValue,
@@ -14662,8 +12290,8 @@ var require_react_dom_client_development = __commonJS({
           )) {
             workInProgressRootExitStatus = RootFatalErrored;
             logUncaughtError(
-              root2,
-              createCapturedValueAtFiber(thrownValue, root2.current)
+              root3,
+              createCapturedValueAtFiber(thrownValue, root3.current)
             );
             workInProgress = null;
             return;
@@ -14672,19 +12300,19 @@ var require_react_dom_client_development = __commonJS({
           if (null !== returnFiber) throw workInProgress = returnFiber, error;
           workInProgressRootExitStatus = RootFatalErrored;
           logUncaughtError(
-            root2,
-            createCapturedValueAtFiber(thrownValue, root2.current)
+            root3,
+            createCapturedValueAtFiber(thrownValue, root3.current)
           );
           workInProgress = null;
           return;
         }
         if (unitOfWork.flags & 32768) {
-          if (isHydrating || suspendedReason === SuspendedOnError) root2 = true;
+          if (isHydrating || suspendedReason === SuspendedOnError) root3 = true;
           else if (workInProgressRootIsPrerendering || 0 !== (workInProgressRootRenderLanes & 536870912))
-            root2 = false;
-          else if (workInProgressRootDidSkipSuspendedSiblings = root2 = true, suspendedReason === SuspendedOnData || suspendedReason === SuspendedOnImmediate || suspendedReason === SuspendedOnDeprecatedThrowPromise)
+            root3 = false;
+          else if (workInProgressRootDidSkipSuspendedSiblings = root3 = true, suspendedReason === SuspendedOnData || suspendedReason === SuspendedOnImmediate || suspendedReason === SuspendedOnDeprecatedThrowPromise)
             suspendedReason = suspenseHandlerStackCursor.current, null !== suspendedReason && 13 === suspendedReason.tag && (suspendedReason.flags |= 16384);
-          unwindUnitOfWork(unitOfWork, root2);
+          unwindUnitOfWork(unitOfWork, root3);
         } else completeUnitOfWork(unitOfWork);
       }
       function completeUnitOfWork(unitOfWork) {
@@ -14747,11 +12375,11 @@ var require_react_dom_client_development = __commonJS({
         workInProgressRootExitStatus = RootDidNotComplete;
         workInProgress = null;
       }
-      function commitRoot(root2, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
+      function commitRoot(root3, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
         var prevTransition = ReactSharedInternals.T, previousUpdateLanePriority = ReactDOMSharedInternals.p;
         try {
           ReactDOMSharedInternals.p = DiscreteEventPriority, ReactSharedInternals.T = null, commitRootImpl(
-            root2,
+            root3,
             recoverableErrors,
             transitions,
             didIncludeRenderPhaseUpdate,
@@ -14767,7 +12395,7 @@ var require_react_dom_client_development = __commonJS({
           ReactSharedInternals.T = prevTransition, ReactDOMSharedInternals.p = previousUpdateLanePriority;
         }
       }
-      function commitRootImpl(root2, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, renderPriorityLevel, spawnedLane, updatedLanes, suspendedRetryLanes) {
+      function commitRootImpl(root3, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, renderPriorityLevel, spawnedLane, updatedLanes, suspendedRetryLanes) {
         do
           flushPassiveEffects();
         while (null !== rootWithPendingPassiveEffects);
@@ -14775,56 +12403,56 @@ var require_react_dom_client_development = __commonJS({
         ReactStrictModeWarnings.flushPendingUnsafeLifecycleWarnings();
         if ((executionContext & (RenderContext | CommitContext)) !== NoContext)
           throw Error("Should not already be working.");
-        var finishedWork = root2.finishedWork;
-        didIncludeRenderPhaseUpdate = root2.finishedLanes;
+        var finishedWork = root3.finishedWork;
+        didIncludeRenderPhaseUpdate = root3.finishedLanes;
         null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markCommitStarted && injectedProfilingHooks.markCommitStarted(didIncludeRenderPhaseUpdate);
         if (null === finishedWork) return markCommitStopped(), null;
         0 === didIncludeRenderPhaseUpdate && console.error(
           "root.finishedLanes should not be empty during a commit. This is a bug in React."
         );
-        root2.finishedWork = null;
-        root2.finishedLanes = 0;
-        if (finishedWork === root2.current)
+        root3.finishedWork = null;
+        root3.finishedLanes = 0;
+        if (finishedWork === root3.current)
           throw Error(
             "Cannot commit the same tree as before. This error is likely caused by a bug in React. Please file an issue."
           );
-        root2.callbackNode = null;
-        root2.callbackPriority = 0;
-        root2.cancelPendingCommit = null;
+        root3.callbackNode = null;
+        root3.callbackPriority = 0;
+        root3.cancelPendingCommit = null;
         var remainingLanes = finishedWork.lanes | finishedWork.childLanes;
         remainingLanes |= concurrentlyUpdatedLanes;
         markRootFinished(
-          root2,
+          root3,
           didIncludeRenderPhaseUpdate,
           remainingLanes,
           spawnedLane,
           updatedLanes,
           suspendedRetryLanes
         );
-        root2 === workInProgressRoot && (workInProgress = workInProgressRoot = null, workInProgressRootRenderLanes = 0);
+        root3 === workInProgressRoot && (workInProgress = workInProgressRoot = null, workInProgressRootRenderLanes = 0);
         0 === (finishedWork.subtreeFlags & 10256) && 0 === (finishedWork.flags & 10256) || rootDoesHavePassiveEffects || (rootDoesHavePassiveEffects = true, pendingPassiveEffectsRemainingLanes = remainingLanes, pendingPassiveTransitions = transitions, scheduleCallback$1(NormalPriority$1, function() {
           flushPassiveEffects(true);
           return null;
         }));
         commitStartTime = now();
         transitions = 0 !== (finishedWork.flags & 15990);
-        0 !== (finishedWork.subtreeFlags & 15990) || transitions ? (transitions = ReactSharedInternals.T, ReactSharedInternals.T = null, spawnedLane = ReactDOMSharedInternals.p, ReactDOMSharedInternals.p = DiscreteEventPriority, updatedLanes = executionContext, executionContext |= CommitContext, commitBeforeMutationEffects(root2, finishedWork), commitMutationEffects(
-          root2,
+        0 !== (finishedWork.subtreeFlags & 15990) || transitions ? (transitions = ReactSharedInternals.T, ReactSharedInternals.T = null, spawnedLane = ReactDOMSharedInternals.p, ReactDOMSharedInternals.p = DiscreteEventPriority, updatedLanes = executionContext, executionContext |= CommitContext, commitBeforeMutationEffects(root3, finishedWork), commitMutationEffects(
+          root3,
           finishedWork,
           didIncludeRenderPhaseUpdate
-        ), restoreSelection(selectionInformation, root2.containerInfo), _enabled = !!eventsEnabled, selectionInformation = eventsEnabled = null, root2.current = finishedWork, null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markLayoutEffectsStarted && injectedProfilingHooks.markLayoutEffectsStarted(
+        ), restoreSelection(selectionInformation, root3.containerInfo), _enabled = !!eventsEnabled, selectionInformation = eventsEnabled = null, root3.current = finishedWork, null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markLayoutEffectsStarted && injectedProfilingHooks.markLayoutEffectsStarted(
           didIncludeRenderPhaseUpdate
-        ), commitLayoutEffects(finishedWork, root2, didIncludeRenderPhaseUpdate), null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markLayoutEffectsStopped && injectedProfilingHooks.markLayoutEffectsStopped(), requestPaint(), executionContext = updatedLanes, ReactDOMSharedInternals.p = spawnedLane, ReactSharedInternals.T = transitions) : root2.current = finishedWork;
-        (transitions = rootDoesHavePassiveEffects) ? (rootDoesHavePassiveEffects = false, rootWithPendingPassiveEffects = root2, pendingPassiveEffectsLanes = didIncludeRenderPhaseUpdate) : (releaseRootPooledCache(root2, remainingLanes), nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null);
-        remainingLanes = root2.pendingLanes;
+        ), commitLayoutEffects(finishedWork, root3, didIncludeRenderPhaseUpdate), null !== injectedProfilingHooks && "function" === typeof injectedProfilingHooks.markLayoutEffectsStopped && injectedProfilingHooks.markLayoutEffectsStopped(), requestPaint(), executionContext = updatedLanes, ReactDOMSharedInternals.p = spawnedLane, ReactSharedInternals.T = transitions) : root3.current = finishedWork;
+        (transitions = rootDoesHavePassiveEffects) ? (rootDoesHavePassiveEffects = false, rootWithPendingPassiveEffects = root3, pendingPassiveEffectsLanes = didIncludeRenderPhaseUpdate) : (releaseRootPooledCache(root3, remainingLanes), nestedPassiveUpdateCount = 0, rootWithPassiveNestedUpdates = null);
+        remainingLanes = root3.pendingLanes;
         0 === remainingLanes && (legacyErrorBoundariesThatAlreadyFailed = null);
-        transitions || commitDoubleInvokeEffectsInDEV(root2);
+        transitions || commitDoubleInvokeEffectsInDEV(root3);
         onCommitRoot$1(finishedWork.stateNode, renderPriorityLevel);
-        isDevToolsPresent && root2.memoizedUpdaters.clear();
+        isDevToolsPresent && root3.memoizedUpdaters.clear();
         onCommitRoot();
-        ensureRootIsScheduled(root2);
+        ensureRootIsScheduled(root3);
         if (null !== recoverableErrors)
-          for (renderPriorityLevel = root2.onRecoverableError, finishedWork = 0; finishedWork < recoverableErrors.length; finishedWork++)
+          for (renderPriorityLevel = root3.onRecoverableError, finishedWork = 0; finishedWork < recoverableErrors.length; finishedWork++)
             remainingLanes = recoverableErrors[finishedWork], transitions = makeErrorInfo(remainingLanes.stack), runWithFiberInDEV(
               remainingLanes.source,
               renderPriorityLevel,
@@ -14832,8 +12460,8 @@ var require_react_dom_client_development = __commonJS({
               transitions
             );
         0 !== (pendingPassiveEffectsLanes & 3) && flushPassiveEffects();
-        remainingLanes = root2.pendingLanes;
-        0 !== (didIncludeRenderPhaseUpdate & 4194218) && 0 !== (remainingLanes & 42) ? (nestedUpdateScheduled = true, root2 === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = root2)) : nestedUpdateCount = 0;
+        remainingLanes = root3.pendingLanes;
+        0 !== (didIncludeRenderPhaseUpdate & 4194218) && 0 !== (remainingLanes & 42) ? (nestedUpdateScheduled = true, root3 === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = root3)) : nestedUpdateCount = 0;
         flushSyncWorkAcrossRoots_impl(0, false);
         markCommitStopped();
         return null;
@@ -14849,12 +12477,12 @@ var require_react_dom_client_development = __commonJS({
         });
         return componentStack;
       }
-      function releaseRootPooledCache(root2, remainingLanes) {
-        0 === (root2.pooledCacheLanes &= remainingLanes) && (remainingLanes = root2.pooledCache, null != remainingLanes && (root2.pooledCache = null, releaseCache(remainingLanes)));
+      function releaseRootPooledCache(root3, remainingLanes) {
+        0 === (root3.pooledCacheLanes &= remainingLanes) && (remainingLanes = root3.pooledCache, null != remainingLanes && (root3.pooledCache = null, releaseCache(remainingLanes)));
       }
       function flushPassiveEffects() {
         if (null !== rootWithPendingPassiveEffects) {
-          var root2 = rootWithPendingPassiveEffects, remainingLanes = pendingPassiveEffectsRemainingLanes;
+          var root3 = rootWithPendingPassiveEffects, remainingLanes = pendingPassiveEffectsRemainingLanes;
           pendingPassiveEffectsRemainingLanes = 0;
           var renderPriority = lanesToEventPriority(pendingPassiveEffectsLanes), priority = 0 === DefaultEventPriority || DefaultEventPriority > renderPriority ? DefaultEventPriority : renderPriority;
           renderPriority = ReactSharedInternals.T;
@@ -14908,7 +12536,7 @@ var require_react_dom_client_development = __commonJS({
             }
             return JSCompiler_inline_result;
           } finally {
-            ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = renderPriority, releaseRootPooledCache(root2, remainingLanes);
+            ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = renderPriority, releaseRootPooledCache(root3, remainingLanes);
           }
         }
         return false;
@@ -14956,26 +12584,26 @@ var require_react_dom_client_development = __commonJS({
           );
         }
       }
-      function attachPingListener(root2, wakeable, lanes) {
-        var pingCache = root2.pingCache;
+      function attachPingListener(root3, wakeable, lanes) {
+        var pingCache = root3.pingCache;
         if (null === pingCache) {
-          pingCache = root2.pingCache = new PossiblyWeakMap();
+          pingCache = root3.pingCache = new PossiblyWeakMap();
           var threadIDs = /* @__PURE__ */ new Set();
           pingCache.set(wakeable, threadIDs);
         } else
           threadIDs = pingCache.get(wakeable), void 0 === threadIDs && (threadIDs = /* @__PURE__ */ new Set(), pingCache.set(wakeable, threadIDs));
-        threadIDs.has(lanes) || (workInProgressRootDidAttachPingListener = true, threadIDs.add(lanes), pingCache = pingSuspendedRoot.bind(null, root2, wakeable, lanes), isDevToolsPresent && restorePendingUpdaters(root2, lanes), wakeable.then(pingCache, pingCache));
+        threadIDs.has(lanes) || (workInProgressRootDidAttachPingListener = true, threadIDs.add(lanes), pingCache = pingSuspendedRoot.bind(null, root3, wakeable, lanes), isDevToolsPresent && restorePendingUpdaters(root3, lanes), wakeable.then(pingCache, pingCache));
       }
-      function pingSuspendedRoot(root2, wakeable, pingedLanes) {
-        var pingCache = root2.pingCache;
+      function pingSuspendedRoot(root3, wakeable, pingedLanes) {
+        var pingCache = root3.pingCache;
         null !== pingCache && pingCache.delete(wakeable);
-        root2.pingedLanes |= root2.suspendedLanes & pingedLanes;
-        root2.warmLanes &= ~pingedLanes;
+        root3.pingedLanes |= root3.suspendedLanes & pingedLanes;
+        root3.warmLanes &= ~pingedLanes;
         isConcurrentActEnvironment() && null === ReactSharedInternals.actQueue && console.error(
           "A suspended resource finished loading inside a test, but the event was not wrapped in act(...).\n\nWhen testing, code that resolves suspended data should be wrapped into act(...):\n\nact(() => {\n  /* finish loading suspended data */\n});\n/* assert on the output */\n\nThis ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act"
         );
-        workInProgressRoot === root2 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root2, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
-        ensureRootIsScheduled(root2);
+        workInProgressRoot === root3 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (workInProgressRootExitStatus === RootSuspendedWithDelay || workInProgressRootExitStatus === RootSuspended && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && now$1() - globalMostRecentFallbackTime < FALLBACK_THROTTLE_MS ? (executionContext & RenderContext) === NoContext && prepareFreshStack(root3, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
+        ensureRootIsScheduled(root3);
       }
       function retryTimedOutBoundary(boundaryFiber, retryLane) {
         0 === retryLane && (retryLane = claimNextRetryLane());
@@ -15012,60 +12640,60 @@ var require_react_dom_client_development = __commonJS({
       function recursivelyTraverseAndDoubleInvokeEffectsInDEV(root$jscomp$0, parentFiber, isInStrictMode) {
         if (0 !== (parentFiber.subtreeFlags & 33562624))
           for (parentFiber = parentFiber.child; null !== parentFiber; ) {
-            var root2 = root$jscomp$0, fiber = parentFiber, isStrictModeFiber = fiber.type === REACT_STRICT_MODE_TYPE;
+            var root3 = root$jscomp$0, fiber = parentFiber, isStrictModeFiber = fiber.type === REACT_STRICT_MODE_TYPE;
             isStrictModeFiber = isInStrictMode || isStrictModeFiber;
             22 !== fiber.tag ? fiber.flags & 33554432 ? isStrictModeFiber && runWithFiberInDEV(
               fiber,
               doubleInvokeEffectsOnFiber,
-              root2,
+              root3,
               fiber,
               (fiber.mode & NoStrictPassiveEffectsMode) === NoMode
             ) : recursivelyTraverseAndDoubleInvokeEffectsInDEV(
-              root2,
+              root3,
               fiber,
               isStrictModeFiber
             ) : null === fiber.memoizedState && (isStrictModeFiber && fiber.flags & 8192 ? runWithFiberInDEV(
               fiber,
               doubleInvokeEffectsOnFiber,
-              root2,
+              root3,
               fiber
             ) : fiber.subtreeFlags & 33554432 && runWithFiberInDEV(
               fiber,
               recursivelyTraverseAndDoubleInvokeEffectsInDEV,
-              root2,
+              root3,
               fiber,
               isStrictModeFiber
             ));
             parentFiber = parentFiber.sibling;
           }
       }
-      function doubleInvokeEffectsOnFiber(root2, fiber) {
+      function doubleInvokeEffectsOnFiber(root3, fiber) {
         var shouldDoubleInvokePassiveEffects = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : true;
         setIsStrictModeForDevtools(true);
         try {
-          disappearLayoutEffects(fiber), shouldDoubleInvokePassiveEffects && disconnectPassiveEffect(fiber), reappearLayoutEffects(root2, fiber.alternate, fiber, false), shouldDoubleInvokePassiveEffects && reconnectPassiveEffects(root2, fiber, 0, null, false);
+          disappearLayoutEffects(fiber), shouldDoubleInvokePassiveEffects && disconnectPassiveEffect(fiber), reappearLayoutEffects(root3, fiber.alternate, fiber, false), shouldDoubleInvokePassiveEffects && reconnectPassiveEffects(root3, fiber, 0, null, false);
         } finally {
           setIsStrictModeForDevtools(false);
         }
       }
-      function commitDoubleInvokeEffectsInDEV(root2) {
+      function commitDoubleInvokeEffectsInDEV(root3) {
         var doubleInvokeEffects = true;
-        root2.current.mode & (StrictLegacyMode | StrictEffectsMode) || (doubleInvokeEffects = false);
+        root3.current.mode & (StrictLegacyMode | StrictEffectsMode) || (doubleInvokeEffects = false);
         recursivelyTraverseAndDoubleInvokeEffectsInDEV(
-          root2,
-          root2.current,
+          root3,
+          root3.current,
           doubleInvokeEffects
         );
       }
       function warnAboutUpdateOnNotYetMountedFiberInDEV(fiber) {
         if ((executionContext & RenderContext) === NoContext) {
-          var tag = fiber.tag;
-          if (3 === tag || 1 === tag || 0 === tag || 11 === tag || 14 === tag || 15 === tag) {
-            tag = getComponentNameFromFiber(fiber) || "ReactComponent";
+          var tag2 = fiber.tag;
+          if (3 === tag2 || 1 === tag2 || 0 === tag2 || 11 === tag2 || 14 === tag2 || 15 === tag2) {
+            tag2 = getComponentNameFromFiber(fiber) || "ReactComponent";
             if (null !== didWarnStateUpdateForNotYetMountedComponent) {
-              if (didWarnStateUpdateForNotYetMountedComponent.has(tag)) return;
-              didWarnStateUpdateForNotYetMountedComponent.add(tag);
-            } else didWarnStateUpdateForNotYetMountedComponent = /* @__PURE__ */ new Set([tag]);
+              if (didWarnStateUpdateForNotYetMountedComponent.has(tag2)) return;
+              didWarnStateUpdateForNotYetMountedComponent.add(tag2);
+            } else didWarnStateUpdateForNotYetMountedComponent = /* @__PURE__ */ new Set([tag2]);
             runWithFiberInDEV(fiber, function() {
               console.error(
                 "Can't perform a React state update on a component that hasn't mounted yet. This indicates that you have a side-effect in your render function that asynchronously later calls tries to update the component. Move this work to useEffect instead."
@@ -15074,9 +12702,9 @@ var require_react_dom_client_development = __commonJS({
           }
         }
       }
-      function restorePendingUpdaters(root2, lanes) {
-        isDevToolsPresent && root2.memoizedUpdaters.forEach(function(schedulingFiber) {
-          addFiberToLanesMap(root2, schedulingFiber, lanes);
+      function restorePendingUpdaters(root3, lanes) {
+        isDevToolsPresent && root3.memoizedUpdaters.forEach(function(schedulingFiber) {
+          addFiberToLanesMap(root3, schedulingFiber, lanes);
         });
       }
       function scheduleCallback$1(priorityLevel, callback) {
@@ -15091,8 +12719,8 @@ var require_react_dom_client_development = __commonJS({
           );
         });
       }
-      function ensureRootIsScheduled(root2) {
-        root2 !== lastScheduledRoot && null === root2.next && (null === lastScheduledRoot ? firstScheduledRoot = lastScheduledRoot = root2 : lastScheduledRoot = lastScheduledRoot.next = root2);
+      function ensureRootIsScheduled(root3) {
+        root3 !== lastScheduledRoot && null === root3.next && (null === lastScheduledRoot ? firstScheduledRoot = lastScheduledRoot = root3 : lastScheduledRoot = lastScheduledRoot.next = root3);
         mightHavePendingSyncWork = true;
         null !== ReactSharedInternals.actQueue ? didScheduleMicrotask_act || (didScheduleMicrotask_act = true, scheduleImmediateTask(processRootScheduleInMicrotask)) : didScheduleMicrotask || (didScheduleMicrotask = true, scheduleImmediateTask(processRootScheduleInMicrotask));
       }
@@ -15101,24 +12729,24 @@ var require_react_dom_client_development = __commonJS({
           isFlushingWork = true;
           do {
             var didPerformSomeWork = false;
-            for (var root2 = firstScheduledRoot; null !== root2; ) {
+            for (var root3 = firstScheduledRoot; null !== root3; ) {
               if (!onlyLegacy)
                 if (0 !== syncTransitionLanes) {
-                  var pendingLanes = root2.pendingLanes;
+                  var pendingLanes = root3.pendingLanes;
                   if (0 === pendingLanes) var nextLanes = 0;
                   else {
-                    var suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes;
+                    var suspendedLanes = root3.suspendedLanes, pingedLanes = root3.pingedLanes;
                     nextLanes = (1 << 31 - clz32(42 | syncTransitionLanes) + 1) - 1;
                     nextLanes &= pendingLanes & ~(suspendedLanes & ~pingedLanes);
                     nextLanes = nextLanes & 201326677 ? nextLanes & 201326677 | 1 : nextLanes ? nextLanes | 2 : 0;
                   }
-                  0 !== nextLanes && (didPerformSomeWork = true, performSyncWorkOnRoot(root2, nextLanes));
+                  0 !== nextLanes && (didPerformSomeWork = true, performSyncWorkOnRoot(root3, nextLanes));
                 } else
                   nextLanes = workInProgressRootRenderLanes, nextLanes = getNextLanes(
-                    root2,
-                    root2 === workInProgressRoot ? nextLanes : 0
-                  ), 0 === (nextLanes & 3) || checkIfRootIsPrerendering(root2, nextLanes) || (didPerformSomeWork = true, performSyncWorkOnRoot(root2, nextLanes));
-              root2 = root2.next;
+                    root3,
+                    root3 === workInProgressRoot ? nextLanes : 0
+                  ), 0 === (nextLanes & 3) || checkIfRootIsPrerendering(root3, nextLanes) || (didPerformSomeWork = true, performSyncWorkOnRoot(root3, nextLanes));
+              root3 = root3.next;
             }
           } while (didPerformSomeWork);
           isFlushingWork = false;
@@ -15128,37 +12756,37 @@ var require_react_dom_client_development = __commonJS({
         mightHavePendingSyncWork = didScheduleMicrotask_act = didScheduleMicrotask = false;
         var syncTransitionLanes = 0;
         0 !== currentEventTransitionLane && (shouldAttemptEagerTransition() && (syncTransitionLanes = currentEventTransitionLane), currentEventTransitionLane = 0);
-        for (var currentTime = now$1(), prev = null, root2 = firstScheduledRoot; null !== root2; ) {
-          var next = root2.next, nextLanes = scheduleTaskForRootDuringMicrotask(root2, currentTime);
+        for (var currentTime = now$1(), prev = null, root3 = firstScheduledRoot; null !== root3; ) {
+          var next = root3.next, nextLanes = scheduleTaskForRootDuringMicrotask(root3, currentTime);
           if (0 === nextLanes)
-            root2.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
-          else if (prev = root2, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
+            root3.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
+          else if (prev = root3, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
             mightHavePendingSyncWork = true;
-          root2 = next;
+          root3 = next;
         }
         flushSyncWorkAcrossRoots_impl(syncTransitionLanes, false);
       }
-      function scheduleTaskForRootDuringMicrotask(root2, currentTime) {
-        for (var suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes, expirationTimes = root2.expirationTimes, lanes = root2.pendingLanes & -62914561; 0 < lanes; ) {
+      function scheduleTaskForRootDuringMicrotask(root3, currentTime) {
+        for (var suspendedLanes = root3.suspendedLanes, pingedLanes = root3.pingedLanes, expirationTimes = root3.expirationTimes, lanes = root3.pendingLanes & -62914561; 0 < lanes; ) {
           var index = 31 - clz32(lanes), lane = 1 << index, expirationTime = expirationTimes[index];
           if (-1 === expirationTime) {
             if (0 === (lane & suspendedLanes) || 0 !== (lane & pingedLanes))
               expirationTimes[index] = computeExpirationTime(lane, currentTime);
-          } else expirationTime <= currentTime && (root2.expiredLanes |= lane);
+          } else expirationTime <= currentTime && (root3.expiredLanes |= lane);
           lanes &= ~lane;
         }
         currentTime = workInProgressRoot;
         suspendedLanes = workInProgressRootRenderLanes;
         suspendedLanes = getNextLanes(
-          root2,
-          root2 === currentTime ? suspendedLanes : 0
+          root3,
+          root3 === currentTime ? suspendedLanes : 0
         );
-        pingedLanes = root2.callbackNode;
-        if (0 === suspendedLanes || root2 === currentTime && workInProgressSuspendedReason === SuspendedOnData || null !== root2.cancelPendingCommit)
-          return null !== pingedLanes && cancelCallback(pingedLanes), root2.callbackNode = null, root2.callbackPriority = 0;
-        if (0 === (suspendedLanes & 3) || checkIfRootIsPrerendering(root2, suspendedLanes)) {
+        pingedLanes = root3.callbackNode;
+        if (0 === suspendedLanes || root3 === currentTime && workInProgressSuspendedReason === SuspendedOnData || null !== root3.cancelPendingCommit)
+          return null !== pingedLanes && cancelCallback(pingedLanes), root3.callbackNode = null, root3.callbackPriority = 0;
+        if (0 === (suspendedLanes & 3) || checkIfRootIsPrerendering(root3, suspendedLanes)) {
           currentTime = suspendedLanes & -suspendedLanes;
-          if (currentTime !== root2.callbackPriority || null !== ReactSharedInternals.actQueue && pingedLanes !== fakeActCallbackNode)
+          if (currentTime !== root3.callbackPriority || null !== ReactSharedInternals.actQueue && pingedLanes !== fakeActCallbackNode)
             cancelCallback(pingedLanes);
           else return currentTime;
           switch (lanesToEventPriority(suspendedLanes)) {
@@ -15175,41 +12803,41 @@ var require_react_dom_client_development = __commonJS({
             default:
               suspendedLanes = NormalPriority$1;
           }
-          pingedLanes = performWorkOnRootViaSchedulerTask.bind(null, root2);
+          pingedLanes = performWorkOnRootViaSchedulerTask.bind(null, root3);
           null !== ReactSharedInternals.actQueue ? (ReactSharedInternals.actQueue.push(pingedLanes), suspendedLanes = fakeActCallbackNode) : suspendedLanes = scheduleCallback$3(suspendedLanes, pingedLanes);
-          root2.callbackPriority = currentTime;
-          root2.callbackNode = suspendedLanes;
+          root3.callbackPriority = currentTime;
+          root3.callbackNode = suspendedLanes;
           return currentTime;
         }
         null !== pingedLanes && cancelCallback(pingedLanes);
-        root2.callbackPriority = 2;
-        root2.callbackNode = null;
+        root3.callbackPriority = 2;
+        root3.callbackNode = null;
         return 2;
       }
-      function performWorkOnRootViaSchedulerTask(root2, didTimeout) {
+      function performWorkOnRootViaSchedulerTask(root3, didTimeout) {
         nestedUpdateScheduled = currentUpdateIsNested = false;
-        var originalCallbackNode = root2.callbackNode;
-        if (flushPassiveEffects() && root2.callbackNode !== originalCallbackNode)
+        var originalCallbackNode = root3.callbackNode;
+        if (flushPassiveEffects() && root3.callbackNode !== originalCallbackNode)
           return null;
         var workInProgressRootRenderLanes$jscomp$0 = workInProgressRootRenderLanes;
         workInProgressRootRenderLanes$jscomp$0 = getNextLanes(
-          root2,
-          root2 === workInProgressRoot ? workInProgressRootRenderLanes$jscomp$0 : 0
+          root3,
+          root3 === workInProgressRoot ? workInProgressRootRenderLanes$jscomp$0 : 0
         );
         if (0 === workInProgressRootRenderLanes$jscomp$0) return null;
         performWorkOnRoot(
-          root2,
+          root3,
           workInProgressRootRenderLanes$jscomp$0,
           didTimeout
         );
-        scheduleTaskForRootDuringMicrotask(root2, now$1());
-        return null != root2.callbackNode && root2.callbackNode === originalCallbackNode ? performWorkOnRootViaSchedulerTask.bind(null, root2) : null;
+        scheduleTaskForRootDuringMicrotask(root3, now$1());
+        return null != root3.callbackNode && root3.callbackNode === originalCallbackNode ? performWorkOnRootViaSchedulerTask.bind(null, root3) : null;
       }
-      function performSyncWorkOnRoot(root2, lanes) {
+      function performSyncWorkOnRoot(root3, lanes) {
         if (flushPassiveEffects()) return null;
         currentUpdateIsNested = nestedUpdateScheduled;
         nestedUpdateScheduled = false;
-        performWorkOnRoot(root2, lanes, true);
+        performWorkOnRoot(root3, lanes, true);
       }
       function cancelCallback(callbackNode) {
         callbackNode !== fakeActCallbackNode && null !== callbackNode && cancelCallback$1(callbackNode);
@@ -15714,7 +13342,7 @@ var require_react_dom_client_development = __commonJS({
               }
             else
               isComposing ? isFallbackCompositionEnd(domEventName, nativeEvent) && (eventType = "onCompositionEnd") : "keydown" === domEventName && nativeEvent.keyCode === START_KEYCODE && (eventType = "onCompositionStart");
-            eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData()) : (root = nativeEventTarget, startText = "value" in root ? root.value : root.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(
+            eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData()) : (root2 = nativeEventTarget, startText = "value" in root2 ? root2.value : root2.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(
               targetInst,
               eventType
             ), 0 < handleEventFunc.length && (eventType = new SyntheticCompositionEvent(
@@ -15852,13 +13480,13 @@ var require_react_dom_client_development = __commonJS({
       }
       function noop$1() {
       }
-      function setProp(domElement, tag, key, value, props, prevValue) {
+      function setProp(domElement, tag2, key, value, props, prevValue) {
         switch (key) {
           case "children":
             if ("string" === typeof value)
-              validateTextNesting(value, tag), "body" === tag || "textarea" === tag && "" === value || setTextContent(domElement, value);
+              validateTextNesting(value, tag2), "body" === tag2 || "textarea" === tag2 && "" === value || setTextContent(domElement, value);
             else if ("number" === typeof value || "bigint" === typeof value)
-              validateTextNesting("" + value, tag), "body" !== tag && setTextContent(domElement, "" + value);
+              validateTextNesting("" + value, tag2), "body" !== tag2 && setTextContent(domElement, "" + value);
             break;
           case "className":
             setValueForKnownAttribute(domElement, "class", value);
@@ -15877,13 +13505,13 @@ var require_react_dom_client_development = __commonJS({
             setValueForStyles(domElement, value, prevValue);
             break;
           case "data":
-            if ("object" !== tag) {
+            if ("object" !== tag2) {
               setValueForKnownAttribute(domElement, "data", value);
               break;
             }
           case "src":
           case "href":
-            if ("" === value && ("a" !== tag || "href" !== key)) {
+            if ("" === value && ("a" !== tag2 || "href" !== key)) {
               "src" === key ? console.error(
                 'An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string.',
                 key,
@@ -15906,15 +13534,15 @@ var require_react_dom_client_development = __commonJS({
             break;
           case "action":
           case "formAction":
-            null != value && ("form" === tag ? "formAction" === key ? console.error(
+            null != value && ("form" === tag2 ? "formAction" === key ? console.error(
               "You can only pass the formAction prop to <input> or <button>. Use the action prop on <form>."
             ) : "function" === typeof value && (null == props.encType && null == props.method || didWarnFormActionMethod || (didWarnFormActionMethod = true, console.error(
               "Cannot specify a encType or method for a form that specifies a function as the action. React provides those automatically. They will get overridden."
             )), null == props.target || didWarnFormActionTarget || (didWarnFormActionTarget = true, console.error(
               "Cannot specify a target for a form that specifies a function as the action. The function will always be executed in the same window."
-            ))) : "input" === tag || "button" === tag ? "action" === key ? console.error(
+            ))) : "input" === tag2 || "button" === tag2 ? "action" === key ? console.error(
               "You can only pass the action prop to <form>. Use the formAction prop on <input> or <button>."
-            ) : "input" !== tag || "submit" === props.type || "image" === props.type || didWarnFormActionType ? "button" !== tag || null == props.type || "submit" === props.type || didWarnFormActionType ? "function" === typeof value && (null == props.name || didWarnFormActionName || (didWarnFormActionName = true, console.error(
+            ) : "input" !== tag2 || "submit" === props.type || "image" === props.type || didWarnFormActionType ? "button" !== tag2 || null == props.type || "submit" === props.type || didWarnFormActionType ? "function" === typeof value && (null == props.name || didWarnFormActionName || (didWarnFormActionName = true, console.error(
               'Cannot specify a "name" prop for a button that specifies a function as a formAction. React needs it to encode which action should be invoked. It will get overridden.'
             )), null == props.formEncType && null == props.formMethod || didWarnFormActionMethod || (didWarnFormActionMethod = true, console.error(
               "Cannot specify a formEncType or formMethod for a button that specifies a function as a formAction. React provides those automatically. They will get overridden."
@@ -15936,37 +13564,37 @@ var require_react_dom_client_development = __commonJS({
               );
               break;
             } else
-              "function" === typeof prevValue && ("formAction" === key ? ("input" !== tag && setProp(domElement, tag, "name", props.name, props, null), setProp(
+              "function" === typeof prevValue && ("formAction" === key ? ("input" !== tag2 && setProp(domElement, tag2, "name", props.name, props, null), setProp(
                 domElement,
-                tag,
+                tag2,
                 "formEncType",
                 props.formEncType,
                 props,
                 null
               ), setProp(
                 domElement,
-                tag,
+                tag2,
                 "formMethod",
                 props.formMethod,
                 props,
                 null
               ), setProp(
                 domElement,
-                tag,
+                tag2,
                 "formTarget",
                 props.formTarget,
                 props,
                 null
               )) : (setProp(
                 domElement,
-                tag,
+                tag2,
                 "encType",
                 props.encType,
                 props,
                 null
-              ), setProp(domElement, tag, "method", props.method, props, null), setProp(
+              ), setProp(domElement, tag2, "method", props.method, props, null), setProp(
                 domElement,
-                tag,
+                tag2,
                 "target",
                 props.target,
                 props,
@@ -16177,7 +13805,7 @@ var require_react_dom_client_development = __commonJS({
             !(2 < key.length) || "o" !== key[0] && "O" !== key[0] || "n" !== key[1] && "N" !== key[1] ? (key = getAttributeAlias(key), setValueForAttribute(domElement, key, value)) : registrationNameDependencies.hasOwnProperty(key) && null != value && "function" !== typeof value && warnForInvalidEventListener(key, value);
         }
       }
-      function setPropOnCustomElement(domElement, tag, key, value, props, prevValue) {
+      function setPropOnCustomElement(domElement, tag2, key, value, props, prevValue) {
         switch (key) {
           case "style":
             setValueForStyles(domElement, value, prevValue);
@@ -16223,18 +13851,18 @@ var require_react_dom_client_development = __commonJS({
               null != value && "function" !== typeof value && warnForInvalidEventListener(key, value);
             else
               a: {
-                if ("o" === key[0] && "n" === key[1] && (props = key.endsWith("Capture"), tag = key.slice(2, props ? key.length - 7 : void 0), prevValue = domElement[internalPropsKey] || null, prevValue = null != prevValue ? prevValue[key] : null, "function" === typeof prevValue && domElement.removeEventListener(tag, prevValue, props), "function" === typeof value)) {
+                if ("o" === key[0] && "n" === key[1] && (props = key.endsWith("Capture"), tag2 = key.slice(2, props ? key.length - 7 : void 0), prevValue = domElement[internalPropsKey] || null, prevValue = null != prevValue ? prevValue[key] : null, "function" === typeof prevValue && domElement.removeEventListener(tag2, prevValue, props), "function" === typeof value)) {
                   "function" !== typeof prevValue && null !== prevValue && (key in domElement ? domElement[key] = null : domElement.hasAttribute(key) && domElement.removeAttribute(key));
-                  domElement.addEventListener(tag, value, props);
+                  domElement.addEventListener(tag2, value, props);
                   break a;
                 }
                 key in domElement ? domElement[key] = value : true === value ? domElement.setAttribute(key, "") : setValueForAttribute(domElement, key, value);
               }
         }
       }
-      function setInitialProperties(domElement, tag, props) {
-        validatePropertiesInDevelopment(tag, props);
-        switch (tag) {
+      function setInitialProperties(domElement, tag2, props) {
+        validatePropertiesInDevelopment(tag2, props);
+        switch (tag2) {
           case "div":
           case "span":
           case "svg":
@@ -16262,14 +13890,14 @@ var require_react_dom_client_development = __commonJS({
                     case "children":
                     case "dangerouslySetInnerHTML":
                       throw Error(
-                        tag + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
+                        tag2 + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
                       );
                     default:
-                      setProp(domElement, tag, propKey, propValue, props, null);
+                      setProp(domElement, tag2, propKey, propValue, props, null);
                   }
               }
-            hasSrcSet && setProp(domElement, tag, "srcSet", props.srcSet, props, null);
-            hasSrc && setProp(domElement, tag, "src", props.src, props, null);
+            hasSrcSet && setProp(domElement, tag2, "srcSet", props.srcSet, props, null);
+            hasSrc && setProp(domElement, tag2, "src", props.src, props, null);
             return;
           case "input":
             checkControlledValueProps("input", props);
@@ -16302,11 +13930,11 @@ var require_react_dom_client_development = __commonJS({
                     case "dangerouslySetInnerHTML":
                       if (null != _propValue)
                         throw Error(
-                          tag + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
+                          tag2 + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
                         );
                       break;
                     default:
-                      setProp(domElement, tag, hasSrc, _propValue, props, null);
+                      setProp(domElement, tag2, hasSrc, _propValue, props, null);
                   }
               }
             validateInputProps(domElement, props);
@@ -16340,7 +13968,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     setProp(
                       domElement,
-                      tag,
+                      tag2,
                       hasSrcSet,
                       defaultValue,
                       props,
@@ -16348,10 +13976,10 @@ var require_react_dom_client_development = __commonJS({
                     );
                 }
             validateSelectProps(domElement, props);
-            tag = propKey;
+            tag2 = propKey;
             props = propValue;
             domElement.multiple = !!hasSrc;
-            null != tag ? updateOptions(domElement, !!hasSrc, tag, false) : null != props && updateOptions(domElement, !!hasSrc, props, true);
+            null != tag2 ? updateOptions(domElement, !!hasSrc, tag2, false) : null != props && updateOptions(domElement, !!hasSrc, props, true);
             return;
           case "textarea":
             checkControlledValueProps("textarea", props);
@@ -16378,7 +14006,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     setProp(
                       domElement,
-                      tag,
+                      tag2,
                       propValue,
                       defaultValue,
                       props,
@@ -16398,7 +14026,7 @@ var require_react_dom_client_development = __commonJS({
                     domElement.selected = hasSrc && "function" !== typeof hasSrc && "symbol" !== typeof hasSrc;
                     break;
                   default:
-                    setProp(domElement, tag, checked, hasSrc, props, null);
+                    setProp(domElement, tag2, checked, hasSrc, props, null);
                 }
             return;
           case "dialog":
@@ -16442,18 +14070,18 @@ var require_react_dom_client_development = __commonJS({
                   case "children":
                   case "dangerouslySetInnerHTML":
                     throw Error(
-                      tag + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
+                      tag2 + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
                     );
                   default:
-                    setProp(domElement, tag, defaultChecked, hasSrc, props, null);
+                    setProp(domElement, tag2, defaultChecked, hasSrc, props, null);
                 }
             return;
           default:
-            if (isCustomElement(tag)) {
+            if (isCustomElement(tag2)) {
               for (_propValue in props)
                 props.hasOwnProperty(_propValue) && (hasSrc = props[_propValue], void 0 !== hasSrc && setPropOnCustomElement(
                   domElement,
-                  tag,
+                  tag2,
                   _propValue,
                   hasSrc,
                   props,
@@ -16463,11 +14091,11 @@ var require_react_dom_client_development = __commonJS({
             }
         }
         for (defaultValue in props)
-          props.hasOwnProperty(defaultValue) && (hasSrc = props[defaultValue], null != hasSrc && setProp(domElement, tag, defaultValue, hasSrc, props, null));
+          props.hasOwnProperty(defaultValue) && (hasSrc = props[defaultValue], null != hasSrc && setProp(domElement, tag2, defaultValue, hasSrc, props, null));
       }
-      function updateProperties(domElement, tag, lastProps, nextProps) {
-        validatePropertiesInDevelopment(tag, nextProps);
-        switch (tag) {
+      function updateProperties(domElement, tag2, lastProps, nextProps) {
+        validatePropertiesInDevelopment(tag2, nextProps);
+        switch (tag2) {
           case "div":
           case "span":
           case "svg":
@@ -16492,7 +14120,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     nextProps.hasOwnProperty(propKey) || setProp(
                       domElement,
-                      tag,
+                      tag2,
                       propKey,
                       null,
                       nextProps,
@@ -16527,13 +14155,13 @@ var require_react_dom_client_development = __commonJS({
                   case "dangerouslySetInnerHTML":
                     if (null != propKey)
                       throw Error(
-                        tag + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
+                        tag2 + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
                       );
                     break;
                   default:
                     propKey !== lastProp && setProp(
                       domElement,
-                      tag,
+                      tag2,
                       _propKey8,
                       propKey,
                       nextProps,
@@ -16541,12 +14169,12 @@ var require_react_dom_client_development = __commonJS({
                     );
                 }
             }
-            tag = "checkbox" === lastProps.type || "radio" === lastProps.type ? null != lastProps.checked : null != lastProps.value;
+            tag2 = "checkbox" === lastProps.type || "radio" === lastProps.type ? null != lastProps.checked : null != lastProps.value;
             nextProps = "checkbox" === nextProps.type || "radio" === nextProps.type ? null != nextProps.checked : null != nextProps.value;
-            tag || !nextProps || didWarnUncontrolledToControlled || (console.error(
+            tag2 || !nextProps || didWarnUncontrolledToControlled || (console.error(
               "A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components"
             ), didWarnUncontrolledToControlled = true);
-            !tag || nextProps || didWarnControlledToUncontrolled || (console.error(
+            !tag2 || nextProps || didWarnControlledToUncontrolled || (console.error(
               "A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://react.dev/link/controlled-components"
             ), didWarnControlledToUncontrolled = true);
             updateInput(
@@ -16572,7 +14200,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     nextProps.hasOwnProperty(type) || setProp(
                       domElement,
-                      tag,
+                      tag2,
                       type,
                       null,
                       nextProps,
@@ -16593,7 +14221,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     type !== lastDefaultValue && setProp(
                       domElement,
-                      tag,
+                      tag2,
                       name,
                       type,
                       nextProps,
@@ -16601,9 +14229,9 @@ var require_react_dom_client_development = __commonJS({
                     );
                 }
             nextProps = defaultValue;
-            tag = value;
+            tag2 = value;
             lastProps = propKey;
-            null != _propKey8 ? updateOptions(domElement, !!tag, _propKey8, false) : !!lastProps !== !!tag && (null != nextProps ? updateOptions(domElement, !!tag, nextProps, true) : updateOptions(domElement, !!tag, tag ? [] : "", false));
+            null != _propKey8 ? updateOptions(domElement, !!tag2, _propKey8, false) : !!lastProps !== !!tag2 && (null != nextProps ? updateOptions(domElement, !!tag2, nextProps, true) : updateOptions(domElement, !!tag2, tag2 ? [] : "", false));
             return;
           case "textarea":
             propKey = _propKey8 = null;
@@ -16615,7 +14243,7 @@ var require_react_dom_client_development = __commonJS({
                   case "children":
                     break;
                   default:
-                    setProp(domElement, tag, defaultValue, null, nextProps, name);
+                    setProp(domElement, tag2, defaultValue, null, nextProps, name);
                 }
             for (value in nextProps)
               if (name = nextProps[value], type = lastProps[value], nextProps.hasOwnProperty(value) && (null != name || null != type))
@@ -16635,7 +14263,7 @@ var require_react_dom_client_development = __commonJS({
                       );
                     break;
                   default:
-                    name !== type && setProp(domElement, tag, value, name, nextProps, type);
+                    name !== type && setProp(domElement, tag2, value, name, nextProps, type);
                 }
             updateTextarea(domElement, _propKey8, propKey);
             return;
@@ -16649,7 +14277,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     setProp(
                       domElement,
-                      tag,
+                      tag2,
                       _propKey13,
                       null,
                       nextProps,
@@ -16665,7 +14293,7 @@ var require_react_dom_client_development = __commonJS({
                   default:
                     setProp(
                       domElement,
-                      tag,
+                      tag2,
                       lastDefaultValue,
                       _propKey8,
                       nextProps,
@@ -16691,7 +14319,7 @@ var require_react_dom_client_development = __commonJS({
             for (var _propKey15 in lastProps)
               _propKey8 = lastProps[_propKey15], lastProps.hasOwnProperty(_propKey15) && null != _propKey8 && !nextProps.hasOwnProperty(_propKey15) && setProp(
                 domElement,
-                tag,
+                tag2,
                 _propKey15,
                 null,
                 nextProps,
@@ -16704,13 +14332,13 @@ var require_react_dom_client_development = __commonJS({
                   case "dangerouslySetInnerHTML":
                     if (null != _propKey8)
                       throw Error(
-                        tag + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
+                        tag2 + " is a void element tag and must neither have `children` nor use `dangerouslySetInnerHTML`."
                       );
                     break;
                   default:
                     setProp(
                       domElement,
-                      tag,
+                      tag2,
                       checked,
                       _propKey8,
                       nextProps,
@@ -16719,11 +14347,11 @@ var require_react_dom_client_development = __commonJS({
                 }
             return;
           default:
-            if (isCustomElement(tag)) {
+            if (isCustomElement(tag2)) {
               for (var _propKey17 in lastProps)
                 _propKey8 = lastProps[_propKey17], lastProps.hasOwnProperty(_propKey17) && void 0 !== _propKey8 && !nextProps.hasOwnProperty(_propKey17) && setPropOnCustomElement(
                   domElement,
-                  tag,
+                  tag2,
                   _propKey17,
                   void 0,
                   nextProps,
@@ -16732,7 +14360,7 @@ var require_react_dom_client_development = __commonJS({
               for (defaultChecked in nextProps)
                 _propKey8 = nextProps[defaultChecked], propKey = lastProps[defaultChecked], !nextProps.hasOwnProperty(defaultChecked) || _propKey8 === propKey || void 0 === _propKey8 && void 0 === propKey || setPropOnCustomElement(
                   domElement,
-                  tag,
+                  tag2,
                   defaultChecked,
                   _propKey8,
                   nextProps,
@@ -16742,9 +14370,9 @@ var require_react_dom_client_development = __commonJS({
             }
         }
         for (var _propKey19 in lastProps)
-          _propKey8 = lastProps[_propKey19], lastProps.hasOwnProperty(_propKey19) && null != _propKey8 && !nextProps.hasOwnProperty(_propKey19) && setProp(domElement, tag, _propKey19, null, nextProps, _propKey8);
+          _propKey8 = lastProps[_propKey19], lastProps.hasOwnProperty(_propKey19) && null != _propKey8 && !nextProps.hasOwnProperty(_propKey19) && setProp(domElement, tag2, _propKey19, null, nextProps, _propKey8);
         for (lastProp in nextProps)
-          _propKey8 = nextProps[lastProp], propKey = lastProps[lastProp], !nextProps.hasOwnProperty(lastProp) || _propKey8 === propKey || null == _propKey8 && null == propKey || setProp(domElement, tag, lastProp, _propKey8, nextProps, propKey);
+          _propKey8 = nextProps[lastProp], propKey = lastProps[lastProp], !nextProps.hasOwnProperty(lastProp) || _propKey8 === propKey || null == _propKey8 && null == propKey || setProp(domElement, tag2, lastProp, _propKey8, nextProps, propKey);
       }
       function getPropNameFromAttributeName(attrName) {
         switch (attrName) {
@@ -16895,7 +14523,7 @@ var require_react_dom_client_development = __commonJS({
           }
         warnForPropDifference(propKey, domElement, value, serverDifferences);
       }
-      function diffHydratedProperties(domElement, tag, props, hostContext) {
+      function diffHydratedProperties(domElement, tag2, props, hostContext) {
         for (var serverDifferences = {}, extraAttributes = /* @__PURE__ */ new Set(), attributes = domElement.attributes, i = 0; i < attributes.length; i++)
           switch (attributes[i].name.toLowerCase()) {
             case "value":
@@ -16907,7 +14535,7 @@ var require_react_dom_client_development = __commonJS({
             default:
               extraAttributes.add(attributes[i].name);
           }
-        if (isCustomElement(tag))
+        if (isCustomElement(tag2))
           for (var propKey in props) {
             if (props.hasOwnProperty(propKey)) {
               var value = props[propKey];
@@ -16974,7 +14602,7 @@ var require_react_dom_client_development = __commonJS({
                       );
                       continue;
                     default:
-                      hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(propKey.toLowerCase()) : extraAttributes.delete(propKey), attributes = getValueForAttributeOnCustomComponent(
+                      hostContext.context === HostContextNamespaceNone && "svg" !== tag2 && "math" !== tag2 ? extraAttributes.delete(propKey.toLowerCase()) : extraAttributes.delete(propKey), attributes = getValueForAttributeOnCustomComponent(
                         domElement,
                         propKey,
                         value
@@ -17070,7 +14698,7 @@ var require_react_dom_client_development = __commonJS({
                     );
                     continue;
                   case "data":
-                    if ("object" !== tag) {
+                    if ("object" !== tag2) {
                       extraAttributes.delete(value);
                       attributes = domElement.getAttribute("data");
                       warnForPropDifference(
@@ -17083,7 +14711,7 @@ var require_react_dom_client_development = __commonJS({
                     }
                   case "src":
                   case "href":
-                    if (!("" !== propKey || "a" === tag && "href" === value || "object" === tag && "data" === value)) {
+                    if (!("" !== propKey || "a" === tag2 && "href" === value || "object" === tag2 && "data" === value)) {
                       "src" === value ? console.error(
                         'An empty string ("") was passed to the %s attribute. This may cause the browser to download the whole page again over the network. To fix this, either do not render the element at all or pass null to %s instead of an empty string.',
                         value,
@@ -17425,7 +15053,7 @@ var require_react_dom_client_development = __commonJS({
                     if (!(2 < value.length) || "o" !== value[0] && "O" !== value[0] || "n" !== value[1] && "N" !== value[1]) {
                       i = getAttributeAlias(value);
                       attributes = false;
-                      hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(i.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(
+                      hostContext.context === HostContextNamespaceNone && "svg" !== tag2 && "math" !== tag2 ? extraAttributes.delete(i.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(
                         attributeName
                       ) ? possibleStandardNames[attributeName] || null : null, null !== attributeName && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i));
                       a: if (attributeName = domElement, serverDifferences$jscomp$0 = i, i = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
@@ -17680,13 +15308,13 @@ var require_react_dom_client_development = __commonJS({
         suspenseInstance = suspenseInstance.nextSibling;
         for (var depth = 0; suspenseInstance; ) {
           if (8 === suspenseInstance.nodeType) {
-            var data = suspenseInstance.data;
-            if (data === SUSPENSE_END_DATA) {
+            var data2 = suspenseInstance.data;
+            if (data2 === SUSPENSE_END_DATA) {
               if (0 === depth)
                 return getNextHydratable(suspenseInstance.nextSibling);
               depth--;
             } else
-              data !== SUSPENSE_START_DATA && data !== SUSPENSE_FALLBACK_START_DATA && data !== SUSPENSE_PENDING_START_DATA || depth++;
+              data2 !== SUSPENSE_START_DATA && data2 !== SUSPENSE_FALLBACK_START_DATA && data2 !== SUSPENSE_PENDING_START_DATA || depth++;
           }
           suspenseInstance = suspenseInstance.nextSibling;
         }
@@ -17696,11 +15324,11 @@ var require_react_dom_client_development = __commonJS({
         targetInstance = targetInstance.previousSibling;
         for (var depth = 0; targetInstance; ) {
           if (8 === targetInstance.nodeType) {
-            var data = targetInstance.data;
-            if (data === SUSPENSE_START_DATA || data === SUSPENSE_FALLBACK_START_DATA || data === SUSPENSE_PENDING_START_DATA) {
+            var data2 = targetInstance.data;
+            if (data2 === SUSPENSE_START_DATA || data2 === SUSPENSE_FALLBACK_START_DATA || data2 === SUSPENSE_PENDING_START_DATA) {
               if (0 === depth) return targetInstance;
               depth--;
-            } else data === SUSPENSE_END_DATA && depth++;
+            } else data2 === SUSPENSE_END_DATA && depth++;
           }
           targetInstance = targetInstance.previousSibling;
         }
@@ -17954,15 +15582,15 @@ var require_react_dom_client_development = __commonJS({
           "stylesheet" === resource.type && (resource.state.loading & Inserted) === NotLoaded && (instance = resource.instance, resource.state.loading |= Inserted, insertStylesheet(instance, props.precedence, hoistableRoot));
         return resource.instance;
       }
-      function insertStylesheet(instance, precedence, root2) {
-        for (var nodes = root2.querySelectorAll(
+      function insertStylesheet(instance, precedence, root3) {
+        for (var nodes = root3.querySelectorAll(
           'link[rel="stylesheet"][data-precedence],style[data-precedence]'
         ), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i = 0; i < nodes.length; i++) {
           var node = nodes[i];
           if (node.dataset.precedence === precedence) prior = node;
           else if (prior !== last) break;
         }
-        prior ? prior.parentNode.insertBefore(instance, prior.nextSibling) : (precedence = 9 === root2.nodeType ? root2.head : root2, precedence.insertBefore(instance, precedence.firstChild));
+        prior ? prior.parentNode.insertBefore(instance, prior.nextSibling) : (precedence = 9 === root3.nodeType ? root3.head : root3, precedence.insertBefore(instance, precedence.firstChild));
       }
       function adoptPreloadPropsForStylesheet(stylesheetProps, preloadProps) {
         null == stylesheetProps.crossOrigin && (stylesheetProps.crossOrigin = preloadProps.crossOrigin);
@@ -18159,14 +15787,14 @@ var require_react_dom_client_development = __commonJS({
         state.stylesheets = null;
         null !== state.unsuspend && (state.count++, precedencesByRoot = /* @__PURE__ */ new Map(), resources.forEach(insertStylesheetIntoRoot, state), precedencesByRoot = null, onUnsuspend.call(state));
       }
-      function insertStylesheetIntoRoot(root2, resource) {
+      function insertStylesheetIntoRoot(root3, resource) {
         if (!(resource.state.loading & Inserted)) {
-          var precedences = precedencesByRoot.get(root2);
+          var precedences = precedencesByRoot.get(root3);
           if (precedences) var last = precedences.get(LAST_PRECEDENCE);
           else {
             precedences = /* @__PURE__ */ new Map();
-            precedencesByRoot.set(root2, precedences);
-            for (var nodes = root2.querySelectorAll(
+            precedencesByRoot.set(root3, precedences);
+            for (var nodes = root3.querySelectorAll(
               "link[data-precedence],style[data-precedence]"
             ), i = 0; i < nodes.length; i++) {
               var node = nodes[i];
@@ -18184,7 +15812,7 @@ var require_react_dom_client_development = __commonJS({
           last = onUnsuspend.bind(this);
           nodes.addEventListener("load", last);
           nodes.addEventListener("error", last);
-          i ? i.parentNode.insertBefore(nodes, i.nextSibling) : (root2 = 9 === root2.nodeType ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
+          i ? i.parentNode.insertBefore(nodes, i.nextSibling) : (root3 = 9 === root3.nodeType ? root3.head : root3, root3.insertBefore(nodes, root3.firstChild));
           resource.state.loading |= Inserted;
         }
       }
@@ -18218,7 +15846,7 @@ var require_react_dom_client_development = __commonJS({
         args.unshift(console);
         return bind.apply(console[methodName], args);
       }
-      function FiberRootNode(containerInfo, tag, hydrate, identifierPrefix, onUncaughtError, onCaughtError, onRecoverableError, formState) {
+      function FiberRootNode(containerInfo, tag2, hydrate, identifierPrefix, onUncaughtError, onCaughtError, onRecoverableError, formState) {
         this.tag = 1;
         this.containerInfo = containerInfo;
         this.finishedWork = this.pingCache = this.current = this.pendingChildren = null;
@@ -18240,13 +15868,13 @@ var require_react_dom_client_development = __commonJS({
         this.passiveEffectDuration = this.effectDuration = -0;
         this.memoizedUpdaters = /* @__PURE__ */ new Set();
         containerInfo = this.pendingUpdatersLaneMap = [];
-        for (tag = 0; 31 > tag; tag++) containerInfo.push(/* @__PURE__ */ new Set());
+        for (tag2 = 0; 31 > tag2; tag2++) containerInfo.push(/* @__PURE__ */ new Set());
         this._debugRootType = hydrate ? "hydrateRoot()" : "createRoot()";
       }
-      function createFiberRoot(containerInfo, tag, hydrate, initialChildren, hydrationCallbacks, isStrictMode, identifierPrefix, onUncaughtError, onCaughtError, onRecoverableError, transitionCallbacks, formState) {
+      function createFiberRoot(containerInfo, tag2, hydrate, initialChildren, hydrationCallbacks, isStrictMode, identifierPrefix, onUncaughtError, onCaughtError, onRecoverableError, transitionCallbacks, formState) {
         containerInfo = new FiberRootNode(
           containerInfo,
-          tag,
+          tag2,
           hydrate,
           identifierPrefix,
           onUncaughtError,
@@ -18254,20 +15882,20 @@ var require_react_dom_client_development = __commonJS({
           onRecoverableError,
           formState
         );
-        tag = ConcurrentMode;
-        true === isStrictMode && (tag |= StrictLegacyMode | StrictEffectsMode);
-        isDevToolsPresent && (tag |= ProfileMode);
-        isStrictMode = createFiber(3, null, null, tag);
+        tag2 = ConcurrentMode;
+        true === isStrictMode && (tag2 |= StrictLegacyMode | StrictEffectsMode);
+        isDevToolsPresent && (tag2 |= ProfileMode);
+        isStrictMode = createFiber(3, null, null, tag2);
         containerInfo.current = isStrictMode;
         isStrictMode.stateNode = containerInfo;
-        tag = createCache();
-        retainCache(tag);
-        containerInfo.pooledCache = tag;
-        retainCache(tag);
+        tag2 = createCache();
+        retainCache(tag2);
+        containerInfo.pooledCache = tag2;
+        retainCache(tag2);
         isStrictMode.memoizedState = {
           element: initialChildren,
           isDehydrated: hydrate,
-          cache: tag
+          cache: tag2
         };
         initializeUpdateQueue(isStrictMode);
         return containerInfo;
@@ -18329,8 +15957,8 @@ var require_react_dom_client_development = __commonJS({
       }
       function attemptContinuousHydration(fiber) {
         if (13 === fiber.tag) {
-          var root2 = enqueueConcurrentRenderForLane(fiber, 67108864);
-          null !== root2 && scheduleUpdateOnFiber(root2, fiber, 67108864);
+          var root3 = enqueueConcurrentRenderForLane(fiber, 67108864);
+          null !== root3 && scheduleUpdateOnFiber(root3, fiber, 67108864);
           markRetryLaneIfNotHydrated(fiber, 67108864);
         }
       }
@@ -18394,11 +16022,11 @@ var require_react_dom_client_development = __commonJS({
                     if (fiber.current.memoizedState.isDehydrated) {
                       var lanes = getHighestPriorityLanes(fiber.pendingLanes);
                       if (0 !== lanes) {
-                        var root2 = fiber;
-                        root2.pendingLanes |= 2;
-                        for (root2.entangledLanes |= 2; lanes; ) {
+                        var root3 = fiber;
+                        root3.pendingLanes |= 2;
+                        for (root3.entangledLanes |= 2; lanes; ) {
                           var lane = 1 << 31 - clz32(lanes);
-                          root2.entanglements[1] |= lane;
+                          root3.entanglements[1] |= lane;
                           lanes &= ~lane;
                         }
                         ensureRootIsScheduled(fiber);
@@ -18407,7 +16035,7 @@ var require_react_dom_client_development = __commonJS({
                     }
                     break;
                   case 13:
-                    root2 = enqueueConcurrentRenderForLane(fiber, 2), null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2), flushSyncWork$1(), markRetryLaneIfNotHydrated(fiber, 2);
+                    root3 = enqueueConcurrentRenderForLane(fiber, 2), null !== root3 && scheduleUpdateOnFiber(root3, fiber, 2), flushSyncWork$1(), markRetryLaneIfNotHydrated(fiber, 2);
                 }
               fiber = findInstanceBlockingEvent(nativeEvent);
               null === fiber && dispatchEventForPluginEventSystem(
@@ -18442,12 +16070,12 @@ var require_react_dom_client_development = __commonJS({
           var nearestMounted = getNearestMountedFiber(targetNode);
           if (null === nearestMounted) targetNode = null;
           else {
-            var tag = nearestMounted.tag;
-            if (13 === tag) {
+            var tag2 = nearestMounted.tag;
+            if (13 === tag2) {
               targetNode = getSuspenseInstanceFromFiber(nearestMounted);
               if (null !== targetNode) return targetNode;
               targetNode = null;
-            } else if (3 === tag) {
+            } else if (3 === tag2) {
               if (nearestMounted.stateNode.current.memoizedState.isDehydrated)
                 return 3 === nearestMounted.tag ? nearestMounted.stateNode.containerInfo : null;
               targetNode = null;
@@ -18655,8 +16283,8 @@ var require_react_dom_client_development = __commonJS({
                 queuedTarget.blockedOn = targetInst;
                 runWithPriority(queuedTarget.priority, function() {
                   if (13 === nearestMounted.tag) {
-                    var lane = requestUpdateLane(nearestMounted), root2 = enqueueConcurrentRenderForLane(nearestMounted, lane);
-                    null !== root2 && scheduleUpdateOnFiber(root2, nearestMounted, lane);
+                    var lane = requestUpdateLane(nearestMounted), root3 = enqueueConcurrentRenderForLane(nearestMounted, lane);
+                    null !== root3 && scheduleUpdateOnFiber(root3, nearestMounted, lane);
                     markRetryLaneIfNotHydrated(nearestMounted, lane);
                   }
                 });
@@ -18805,7 +16433,7 @@ var require_react_dom_client_development = __commonJS({
         action: null
       }), valueStack = [];
       var fiberStack = [];
-      var index$jscomp$0 = -1, contextStackCursor = createCursor(null), contextFiberStackCursor = createCursor(null), rootInstanceStackCursor = createCursor(null), hostTransitionProviderCursor = createCursor(null), hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler.unstable_scheduleCallback, cancelCallback$1 = Scheduler.unstable_cancelCallback, shouldYield = Scheduler.unstable_shouldYield, requestPaint = Scheduler.unstable_requestPaint, now$1 = Scheduler.unstable_now, getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler.unstable_ImmediatePriority, UserBlockingPriority = Scheduler.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler.unstable_NormalPriority, LowPriority = Scheduler.unstable_LowPriority, IdlePriority = Scheduler.unstable_IdlePriority, log$1 = Scheduler.log, unstable_setDisableYieldValue = Scheduler.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, injectedProfilingHooks = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log = Math.log, LN2 = Math.LN2, nextTransitionLane = 128, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, canUseDOM = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), hasReadOnlyValue = {
+      var index$jscomp$0 = -1, contextStackCursor = createCursor(null), contextFiberStackCursor = createCursor(null), rootInstanceStackCursor = createCursor(null), hostTransitionProviderCursor = createCursor(null), hasOwnProperty = Object.prototype.hasOwnProperty, scheduleCallback$3 = Scheduler.unstable_scheduleCallback, cancelCallback$1 = Scheduler.unstable_cancelCallback, shouldYield = Scheduler.unstable_shouldYield, requestPaint = Scheduler.unstable_requestPaint, now$1 = Scheduler.unstable_now, getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel, ImmediatePriority = Scheduler.unstable_ImmediatePriority, UserBlockingPriority = Scheduler.unstable_UserBlockingPriority, NormalPriority$1 = Scheduler.unstable_NormalPriority, LowPriority = Scheduler.unstable_LowPriority, IdlePriority = Scheduler.unstable_IdlePriority, log$1 = Scheduler.log, unstable_setDisableYieldValue = Scheduler.unstable_setDisableYieldValue, rendererID = null, injectedHook = null, injectedProfilingHooks = null, hasLoggedError = false, isDevToolsPresent = "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__, clz32 = Math.clz32 ? Math.clz32 : clz32Fallback, log3 = Math.log, LN2 = Math.LN2, nextTransitionLane = 128, nextRetryLane = 4194304, DiscreteEventPriority = 2, ContinuousEventPriority = 8, DefaultEventPriority = 32, IdleEventPriority = 268435456, randomKey = Math.random().toString(36).slice(2), internalInstanceKey = "__reactFiber$" + randomKey, internalPropsKey = "__reactProps$" + randomKey, internalContainerInstanceKey = "__reactContainer$" + randomKey, internalEventHandlersKey = "__reactEvents$" + randomKey, internalEventHandlerListenersKey = "__reactListeners$" + randomKey, internalEventHandlesSetKey = "__reactHandles$" + randomKey, internalRootNodeResourcesKey = "__reactResources$" + randomKey, internalHoistableMarker = "__reactMarker$" + randomKey, allNativeEvents = /* @__PURE__ */ new Set(), registrationNameDependencies = {}, possibleRegistrationNames = {}, canUseDOM = !("undefined" === typeof window || "undefined" === typeof window.document || "undefined" === typeof window.document.createElement), hasReadOnlyValue = {
         button: true,
         checkbox: true,
         image: true,
@@ -19609,7 +17237,7 @@ var require_react_dom_client_development = __commonJS({
         } catch (e) {
           passiveBrowserEventsSupported = false;
         }
-      var root = null, startText = null, fallbackText = null, EventInterface = {
+      var root2 = null, startText = null, fallbackText = null, EventInterface = {
         eventPhase: 0,
         bubbles: 0,
         cancelable: 0,
@@ -20089,7 +17717,7 @@ var require_react_dom_client_development = __commonJS({
       };
       var ContextOnlyDispatcher = {
         readContext,
-        use: use2,
+        use,
         useCallback: throwInvalidHookError,
         useContext: throwInvalidHookError,
         useEffect: throwInvalidHookError,
@@ -20117,7 +17745,7 @@ var require_react_dom_client_development = __commonJS({
         readContext: function(context) {
           return readContext(context);
         },
-        use: use2,
+        use,
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
           mountHookTypesDev();
@@ -20248,7 +17876,7 @@ var require_react_dom_client_development = __commonJS({
         readContext: function(context) {
           return readContext(context);
         },
-        use: use2,
+        use,
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
           updateHookTypesDev();
@@ -20373,7 +18001,7 @@ var require_react_dom_client_development = __commonJS({
         readContext: function(context) {
           return readContext(context);
         },
-        use: use2,
+        use,
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
           updateHookTypesDev();
@@ -20498,7 +18126,7 @@ var require_react_dom_client_development = __commonJS({
         readContext: function(context) {
           return readContext(context);
         },
-        use: use2,
+        use,
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
           updateHookTypesDev();
@@ -20626,7 +18254,7 @@ var require_react_dom_client_development = __commonJS({
         },
         use: function(usable) {
           warnInvalidHookAccess();
-          return use2(usable);
+          return use(usable);
         },
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
@@ -20775,7 +18403,7 @@ var require_react_dom_client_development = __commonJS({
         },
         use: function(usable) {
           warnInvalidHookAccess();
-          return use2(usable);
+          return use(usable);
         },
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
@@ -20924,7 +18552,7 @@ var require_react_dom_client_development = __commonJS({
         },
         use: function(usable) {
           warnInvalidHookAccess();
-          return use2(usable);
+          return use(usable);
         },
         useCallback: function(callback, deps) {
           currentHookNameInDev = "useCallback";
@@ -21450,8 +19078,8 @@ var require_react_dom_client_development = __commonJS({
         null !== oldPath && scheduleUpdateOnFiber(oldPath, fiber, 2);
       };
       scheduleUpdate = function(fiber) {
-        var root2 = enqueueConcurrentRenderForLane(fiber, 2);
-        null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2);
+        var root3 = enqueueConcurrentRenderForLane(fiber, 2);
+        null !== root3 && scheduleUpdateOnFiber(root3, fiber, 2);
       };
       setErrorHandler = function(newShouldErrorImpl) {
         shouldErrorImpl = newShouldErrorImpl;
@@ -21463,8 +19091,8 @@ var require_react_dom_client_development = __commonJS({
         " "
       ), lastScheduledReplayQueue = null;
       ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function(children, JSCompiler_OptimizeArgumentsArray_p2) {
-        var root2 = this._internalRoot;
-        if (null === root2) throw Error("Cannot update an unmounted root.");
+        var root3 = this._internalRoot;
+        if (null === root3) throw Error("Cannot update an unmounted root.");
         "function" === typeof JSCompiler_OptimizeArgumentsArray_p2 ? console.error(
           "does not support the second callback argument. To execute a side effect after rendering, declare it in a component body with useEffect()."
         ) : isValidContainer(JSCompiler_OptimizeArgumentsArray_p2) ? console.error(
@@ -21472,13 +19100,13 @@ var require_react_dom_client_development = __commonJS({
         ) : "undefined" !== typeof JSCompiler_OptimizeArgumentsArray_p2 && console.error(
           "You passed a second argument to root.render(...) but it only accepts one argument."
         );
-        JSCompiler_OptimizeArgumentsArray_p2 = root2.current;
+        JSCompiler_OptimizeArgumentsArray_p2 = root3.current;
         var lane = requestUpdateLane(JSCompiler_OptimizeArgumentsArray_p2);
         updateContainerImpl(
           JSCompiler_OptimizeArgumentsArray_p2,
           lane,
           children,
-          root2,
+          root3,
           null,
           null
         );
@@ -21924,12 +19552,12 @@ var require_react_jsx_runtime_development = __commonJS({
         var dispatcher = ReactSharedInternals.A;
         return null === dispatcher ? null : dispatcher.getOwner();
       }
-      function hasValidKey(config) {
-        if (hasOwnProperty.call(config, "key")) {
-          var getter = Object.getOwnPropertyDescriptor(config, "key").get;
+      function hasValidKey(config2) {
+        if (hasOwnProperty.call(config2, "key")) {
+          var getter = Object.getOwnPropertyDescriptor(config2, "key").get;
           if (getter && getter.isReactWarning) return false;
         }
-        return void 0 !== config.key;
+        return void 0 !== config2.key;
       }
       function defineKeyPropWarningGetter(props, displayName) {
         function warnAboutAccessingKey() {
@@ -21952,8 +19580,8 @@ var require_react_jsx_runtime_development = __commonJS({
         componentName = this.props.ref;
         return void 0 !== componentName ? componentName : null;
       }
-      function ReactElement(type, key, self2, source, owner, props) {
-        self2 = props.ref;
+      function ReactElement(type, key, self, source, owner, props) {
+        self = props.ref;
         type = {
           $$typeof: REACT_ELEMENT_TYPE,
           type,
@@ -21961,7 +19589,7 @@ var require_react_jsx_runtime_development = __commonJS({
           props,
           _owner: owner
         };
-        null !== (void 0 !== self2 ? self2 : null) ? Object.defineProperty(type, "ref", {
+        null !== (void 0 !== self ? self : null) ? Object.defineProperty(type, "ref", {
           enumerable: false,
           get: elementRefGetterWithDeprecationWarning
         }) : Object.defineProperty(type, "ref", { enumerable: false, value: null });
@@ -21981,9 +19609,9 @@ var require_react_jsx_runtime_development = __commonJS({
         Object.freeze && (Object.freeze(type.props), Object.freeze(type));
         return type;
       }
-      function jsxDEVImpl(type, config, maybeKey, isStaticChildren, source, self2) {
+      function jsxDEVImpl(type, config2, maybeKey, isStaticChildren, source, self) {
         if ("string" === typeof type || "function" === typeof type || type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_OFFSCREEN_TYPE || "object" === typeof type && null !== type && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_CONSUMER_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_CLIENT_REFERENCE$1 || void 0 !== type.getModuleId)) {
-          var children = config.children;
+          var children = config2.children;
           if (void 0 !== children)
             if (isStaticChildren)
               if (isArrayImpl(children)) {
@@ -22006,9 +19634,9 @@ var require_react_jsx_runtime_development = __commonJS({
             children
           );
         }
-        if (hasOwnProperty.call(config, "key")) {
+        if (hasOwnProperty.call(config2, "key")) {
           children = getComponentNameFromType(type);
-          var keys = Object.keys(config).filter(function(k) {
+          var keys = Object.keys(config2).filter(function(k) {
             return "key" !== k;
           });
           isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
@@ -22022,17 +19650,17 @@ var require_react_jsx_runtime_development = __commonJS({
         }
         children = null;
         void 0 !== maybeKey && (checkKeyStringCoercion(maybeKey), children = "" + maybeKey);
-        hasValidKey(config) && (checkKeyStringCoercion(config.key), children = "" + config.key);
-        if ("key" in config) {
+        hasValidKey(config2) && (checkKeyStringCoercion(config2.key), children = "" + config2.key);
+        if ("key" in config2) {
           maybeKey = {};
-          for (var propName in config)
-            "key" !== propName && (maybeKey[propName] = config[propName]);
-        } else maybeKey = config;
+          for (var propName in config2)
+            "key" !== propName && (maybeKey[propName] = config2[propName]);
+        } else maybeKey = config2;
         children && defineKeyPropWarningGetter(
           maybeKey,
           "function" === typeof type ? type.displayName || type.name || "Unknown" : type
         );
-        return ReactElement(type, children, self2, source, getOwner(), maybeKey);
+        return ReactElement(type, children, self, source, getOwner(), maybeKey);
       }
       function validateChildKeys(node, parentType) {
         if ("object" === typeof node && node && node.$$typeof !== REACT_CLIENT_REFERENCE) {
@@ -22086,11 +19714,11 @@ var require_react_jsx_runtime_development = __commonJS({
       var didWarnAboutElementRef = {};
       var didWarnAboutKeySpread = {}, ownerHasKeyUseWarning = {};
       exports.Fragment = REACT_FRAGMENT_TYPE;
-      exports.jsx = function(type, config, maybeKey, source, self2) {
-        return jsxDEVImpl(type, config, maybeKey, false, source, self2);
+      exports.jsx = function(type, config2, maybeKey, source, self) {
+        return jsxDEVImpl(type, config2, maybeKey, false, source, self);
       };
-      exports.jsxs = function(type, config, maybeKey, source, self2) {
-        return jsxDEVImpl(type, config, maybeKey, true, source, self2);
+      exports.jsxs = function(type, config2, maybeKey, source, self) {
+        return jsxDEVImpl(type, config2, maybeKey, true, source, self);
       };
     })();
   }
@@ -22108,248 +19736,5387 @@ var require_jsx_runtime = __commonJS({
   }
 });
 
-// src/experiments/ico.client.tsx
-var import_jszip = __toESM(require_jszip_min(), 1);
-var import_react = __toESM(require_react(), 1);
+// src/articles/equal-infinity/index.client.tsx
 var import_client = __toESM(require_client(), 1);
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
-var sizes = [16, 24, 32, 48, 64, 128, 256];
-var emojiRanges = [
-  [128513, 128591],
-  [9986, 10160],
-  [128640, 128704]
-];
-function App() {
-  const [emoji, setEmoji] = (0, import_react.useState)("\u{1F918}");
-  const emojis = (0, import_react.useMemo)(
-    () => emojiRanges.map(expand).flat(1).map((number) => {
-      const $emoji = String.fromCodePoint(Number(number));
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        "button",
-        {
-          type: "button",
-          name: "emoji",
-          value: number,
-          className: "border border-slate-700 rounded p-1 bg-white/5 hocus:bg-white/15 cursor-pointer",
-          onClick: () => {
-            setEmoji($emoji);
-          },
-          children: $emoji
-        },
-        number
-      );
-    }),
-    []
-  );
-  const renderedIconsPromise = (0, import_react.useMemo)(() => renderIcons(emoji), [emoji]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { className: "p-8 border-b border-b-slate-800", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "flex flex-col justify-between md:flex-row gap-4 w-full", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "text-2xl font-semibold p-4", children: "Emoji to generate" }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-        import_react.Suspense,
-        {
-          fallback: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "min-h-16 grid place-items-center", children: "loading..." }),
-          children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Output, { renderedIconsPromise })
+
+// src/articles/equal-infinity/App.tsx
+var import_react = __toESM(require_react(), 1);
+
+// node_modules/tailwind-merge/dist/bundle-mjs.mjs
+var CLASS_PART_SEPARATOR = "-";
+var createClassGroupUtils = (config2) => {
+  const classMap = createClassMap(config2);
+  const {
+    conflictingClassGroups,
+    conflictingClassGroupModifiers
+  } = config2;
+  const getClassGroupId = (className) => {
+    const classParts = className.split(CLASS_PART_SEPARATOR);
+    if (classParts[0] === "" && classParts.length !== 1) {
+      classParts.shift();
+    }
+    return getGroupRecursive(classParts, classMap) || getGroupIdForArbitraryProperty(className);
+  };
+  const getConflictingClassGroupIds = (classGroupId, hasPostfixModifier) => {
+    const conflicts = conflictingClassGroups[classGroupId] || [];
+    if (hasPostfixModifier && conflictingClassGroupModifiers[classGroupId]) {
+      return [...conflicts, ...conflictingClassGroupModifiers[classGroupId]];
+    }
+    return conflicts;
+  };
+  return {
+    getClassGroupId,
+    getConflictingClassGroupIds
+  };
+};
+var getGroupRecursive = (classParts, classPartObject) => {
+  if (classParts.length === 0) {
+    return classPartObject.classGroupId;
+  }
+  const currentClassPart = classParts[0];
+  const nextClassPartObject = classPartObject.nextPart.get(currentClassPart);
+  const classGroupFromNextClassPart = nextClassPartObject ? getGroupRecursive(classParts.slice(1), nextClassPartObject) : void 0;
+  if (classGroupFromNextClassPart) {
+    return classGroupFromNextClassPart;
+  }
+  if (classPartObject.validators.length === 0) {
+    return void 0;
+  }
+  const classRest = classParts.join(CLASS_PART_SEPARATOR);
+  return classPartObject.validators.find(({
+    validator
+  }) => validator(classRest))?.classGroupId;
+};
+var arbitraryPropertyRegex = /^\[(.+)\]$/;
+var getGroupIdForArbitraryProperty = (className) => {
+  if (arbitraryPropertyRegex.test(className)) {
+    const arbitraryPropertyClassName = arbitraryPropertyRegex.exec(className)[1];
+    const property = arbitraryPropertyClassName?.substring(0, arbitraryPropertyClassName.indexOf(":"));
+    if (property) {
+      return "arbitrary.." + property;
+    }
+  }
+};
+var createClassMap = (config2) => {
+  const {
+    theme,
+    classGroups
+  } = config2;
+  const classMap = {
+    nextPart: /* @__PURE__ */ new Map(),
+    validators: []
+  };
+  for (const classGroupId in classGroups) {
+    processClassesRecursively(classGroups[classGroupId], classMap, classGroupId, theme);
+  }
+  return classMap;
+};
+var processClassesRecursively = (classGroup, classPartObject, classGroupId, theme) => {
+  classGroup.forEach((classDefinition) => {
+    if (typeof classDefinition === "string") {
+      const classPartObjectToEdit = classDefinition === "" ? classPartObject : getPart(classPartObject, classDefinition);
+      classPartObjectToEdit.classGroupId = classGroupId;
+      return;
+    }
+    if (typeof classDefinition === "function") {
+      if (isThemeGetter(classDefinition)) {
+        processClassesRecursively(classDefinition(theme), classPartObject, classGroupId, theme);
+        return;
+      }
+      classPartObject.validators.push({
+        validator: classDefinition,
+        classGroupId
+      });
+      return;
+    }
+    Object.entries(classDefinition).forEach(([key, classGroup2]) => {
+      processClassesRecursively(classGroup2, getPart(classPartObject, key), classGroupId, theme);
+    });
+  });
+};
+var getPart = (classPartObject, path) => {
+  let currentClassPartObject = classPartObject;
+  path.split(CLASS_PART_SEPARATOR).forEach((pathPart) => {
+    if (!currentClassPartObject.nextPart.has(pathPart)) {
+      currentClassPartObject.nextPart.set(pathPart, {
+        nextPart: /* @__PURE__ */ new Map(),
+        validators: []
+      });
+    }
+    currentClassPartObject = currentClassPartObject.nextPart.get(pathPart);
+  });
+  return currentClassPartObject;
+};
+var isThemeGetter = (func) => func.isThemeGetter;
+var createLruCache = (maxCacheSize) => {
+  if (maxCacheSize < 1) {
+    return {
+      get: () => void 0,
+      set: () => {
+      }
+    };
+  }
+  let cacheSize = 0;
+  let cache = /* @__PURE__ */ new Map();
+  let previousCache = /* @__PURE__ */ new Map();
+  const update = (key, value) => {
+    cache.set(key, value);
+    cacheSize++;
+    if (cacheSize > maxCacheSize) {
+      cacheSize = 0;
+      previousCache = cache;
+      cache = /* @__PURE__ */ new Map();
+    }
+  };
+  return {
+    get(key) {
+      let value = cache.get(key);
+      if (value !== void 0) {
+        return value;
+      }
+      if ((value = previousCache.get(key)) !== void 0) {
+        update(key, value);
+        return value;
+      }
+    },
+    set(key, value) {
+      if (cache.has(key)) {
+        cache.set(key, value);
+      } else {
+        update(key, value);
+      }
+    }
+  };
+};
+var IMPORTANT_MODIFIER = "!";
+var MODIFIER_SEPARATOR = ":";
+var MODIFIER_SEPARATOR_LENGTH = MODIFIER_SEPARATOR.length;
+var createParseClassName = (config2) => {
+  const {
+    prefix,
+    experimentalParseClassName
+  } = config2;
+  let parseClassName = (className) => {
+    const modifiers = [];
+    let bracketDepth = 0;
+    let parenDepth = 0;
+    let modifierStart = 0;
+    let postfixModifierPosition;
+    for (let index = 0; index < className.length; index++) {
+      let currentCharacter = className[index];
+      if (bracketDepth === 0 && parenDepth === 0) {
+        if (currentCharacter === MODIFIER_SEPARATOR) {
+          modifiers.push(className.slice(modifierStart, index));
+          modifierStart = index + MODIFIER_SEPARATOR_LENGTH;
+          continue;
         }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex justify-center gap-2", children: [
+        if (currentCharacter === "/") {
+          postfixModifierPosition = index;
+          continue;
+        }
+      }
+      if (currentCharacter === "[") {
+        bracketDepth++;
+      } else if (currentCharacter === "]") {
+        bracketDepth--;
+      } else if (currentCharacter === "(") {
+        parenDepth++;
+      } else if (currentCharacter === ")") {
+        parenDepth--;
+      }
+    }
+    const baseClassNameWithImportantModifier = modifiers.length === 0 ? className : className.substring(modifierStart);
+    const baseClassName = stripImportantModifier(baseClassNameWithImportantModifier);
+    const hasImportantModifier = baseClassName !== baseClassNameWithImportantModifier;
+    const maybePostfixModifierPosition = postfixModifierPosition && postfixModifierPosition > modifierStart ? postfixModifierPosition - modifierStart : void 0;
+    return {
+      modifiers,
+      hasImportantModifier,
+      baseClassName,
+      maybePostfixModifierPosition
+    };
+  };
+  if (prefix) {
+    const fullPrefix = prefix + MODIFIER_SEPARATOR;
+    const parseClassNameOriginal = parseClassName;
+    parseClassName = (className) => className.startsWith(fullPrefix) ? parseClassNameOriginal(className.substring(fullPrefix.length)) : {
+      isExternal: true,
+      modifiers: [],
+      hasImportantModifier: false,
+      baseClassName: className,
+      maybePostfixModifierPosition: void 0
+    };
+  }
+  if (experimentalParseClassName) {
+    const parseClassNameOriginal = parseClassName;
+    parseClassName = (className) => experimentalParseClassName({
+      className,
+      parseClassName: parseClassNameOriginal
+    });
+  }
+  return parseClassName;
+};
+var stripImportantModifier = (baseClassName) => {
+  if (baseClassName.endsWith(IMPORTANT_MODIFIER)) {
+    return baseClassName.substring(0, baseClassName.length - 1);
+  }
+  if (baseClassName.startsWith(IMPORTANT_MODIFIER)) {
+    return baseClassName.substring(1);
+  }
+  return baseClassName;
+};
+var createSortModifiers = (config2) => {
+  const orderSensitiveModifiers = Object.fromEntries(config2.orderSensitiveModifiers.map((modifier) => [modifier, true]));
+  const sortModifiers = (modifiers) => {
+    if (modifiers.length <= 1) {
+      return modifiers;
+    }
+    const sortedModifiers = [];
+    let unsortedModifiers = [];
+    modifiers.forEach((modifier) => {
+      const isPositionSensitive = modifier[0] === "[" || orderSensitiveModifiers[modifier];
+      if (isPositionSensitive) {
+        sortedModifiers.push(...unsortedModifiers.sort(), modifier);
+        unsortedModifiers = [];
+      } else {
+        unsortedModifiers.push(modifier);
+      }
+    });
+    sortedModifiers.push(...unsortedModifiers.sort());
+    return sortedModifiers;
+  };
+  return sortModifiers;
+};
+var createConfigUtils = (config2) => ({
+  cache: createLruCache(config2.cacheSize),
+  parseClassName: createParseClassName(config2),
+  sortModifiers: createSortModifiers(config2),
+  ...createClassGroupUtils(config2)
+});
+var SPLIT_CLASSES_REGEX = /\s+/;
+var mergeClassList = (classList, configUtils) => {
+  const {
+    parseClassName,
+    getClassGroupId,
+    getConflictingClassGroupIds,
+    sortModifiers
+  } = configUtils;
+  const classGroupsInConflict = [];
+  const classNames = classList.trim().split(SPLIT_CLASSES_REGEX);
+  let result = "";
+  for (let index = classNames.length - 1; index >= 0; index -= 1) {
+    const originalClassName = classNames[index];
+    const {
+      isExternal,
+      modifiers,
+      hasImportantModifier,
+      baseClassName,
+      maybePostfixModifierPosition
+    } = parseClassName(originalClassName);
+    if (isExternal) {
+      result = originalClassName + (result.length > 0 ? " " + result : result);
+      continue;
+    }
+    let hasPostfixModifier = !!maybePostfixModifierPosition;
+    let classGroupId = getClassGroupId(hasPostfixModifier ? baseClassName.substring(0, maybePostfixModifierPosition) : baseClassName);
+    if (!classGroupId) {
+      if (!hasPostfixModifier) {
+        result = originalClassName + (result.length > 0 ? " " + result : result);
+        continue;
+      }
+      classGroupId = getClassGroupId(baseClassName);
+      if (!classGroupId) {
+        result = originalClassName + (result.length > 0 ? " " + result : result);
+        continue;
+      }
+      hasPostfixModifier = false;
+    }
+    const variantModifier = sortModifiers(modifiers).join(":");
+    const modifierId = hasImportantModifier ? variantModifier + IMPORTANT_MODIFIER : variantModifier;
+    const classId = modifierId + classGroupId;
+    if (classGroupsInConflict.includes(classId)) {
+      continue;
+    }
+    classGroupsInConflict.push(classId);
+    const conflictGroups = getConflictingClassGroupIds(classGroupId, hasPostfixModifier);
+    for (let i = 0; i < conflictGroups.length; ++i) {
+      const group = conflictGroups[i];
+      classGroupsInConflict.push(modifierId + group);
+    }
+    result = originalClassName + (result.length > 0 ? " " + result : result);
+  }
+  return result;
+};
+function twJoin() {
+  let index = 0;
+  let argument;
+  let resolvedValue;
+  let string = "";
+  while (index < arguments.length) {
+    if (argument = arguments[index++]) {
+      if (resolvedValue = toValue(argument)) {
+        string && (string += " ");
+        string += resolvedValue;
+      }
+    }
+  }
+  return string;
+}
+var toValue = (mix) => {
+  if (typeof mix === "string") {
+    return mix;
+  }
+  let resolvedValue;
+  let string = "";
+  for (let k = 0; k < mix.length; k++) {
+    if (mix[k]) {
+      if (resolvedValue = toValue(mix[k])) {
+        string && (string += " ");
+        string += resolvedValue;
+      }
+    }
+  }
+  return string;
+};
+function createTailwindMerge(createConfigFirst, ...createConfigRest) {
+  let configUtils;
+  let cacheGet;
+  let cacheSet;
+  let functionToCall = initTailwindMerge;
+  function initTailwindMerge(classList) {
+    const config2 = createConfigRest.reduce((previousConfig, createConfigCurrent) => createConfigCurrent(previousConfig), createConfigFirst());
+    configUtils = createConfigUtils(config2);
+    cacheGet = configUtils.cache.get;
+    cacheSet = configUtils.cache.set;
+    functionToCall = tailwindMerge;
+    return tailwindMerge(classList);
+  }
+  function tailwindMerge(classList) {
+    const cachedResult = cacheGet(classList);
+    if (cachedResult) {
+      return cachedResult;
+    }
+    const result = mergeClassList(classList, configUtils);
+    cacheSet(classList, result);
+    return result;
+  }
+  return function callTailwindMerge() {
+    return functionToCall(twJoin.apply(null, arguments));
+  };
+}
+var fromTheme = (key) => {
+  const themeGetter = (theme) => theme[key] || [];
+  themeGetter.isThemeGetter = true;
+  return themeGetter;
+};
+var arbitraryValueRegex = /^\[(?:(\w[\w-]*):)?(.+)\]$/i;
+var arbitraryVariableRegex = /^\((?:(\w[\w-]*):)?(.+)\)$/i;
+var fractionRegex = /^\d+\/\d+$/;
+var tshirtUnitRegex = /^(\d+(\.\d+)?)?(xs|sm|md|lg|xl)$/;
+var lengthUnitRegex = /\d+(%|px|r?em|[sdl]?v([hwib]|min|max)|pt|pc|in|cm|mm|cap|ch|ex|r?lh|cq(w|h|i|b|min|max))|\b(calc|min|max|clamp)\(.+\)|^0$/;
+var colorFunctionRegex = /^(rgba?|hsla?|hwb|(ok)?(lab|lch))\(.+\)$/;
+var shadowRegex = /^(inset_)?-?((\d+)?\.?(\d+)[a-z]+|0)_-?((\d+)?\.?(\d+)[a-z]+|0)/;
+var imageRegex = /^(url|image|image-set|cross-fade|element|(repeating-)?(linear|radial|conic)-gradient)\(.+\)$/;
+var isFraction = (value) => fractionRegex.test(value);
+var isNumber = (value) => Boolean(value) && !Number.isNaN(Number(value));
+var isInteger = (value) => Boolean(value) && Number.isInteger(Number(value));
+var isPercent = (value) => value.endsWith("%") && isNumber(value.slice(0, -1));
+var isTshirtSize = (value) => tshirtUnitRegex.test(value);
+var isAny = () => true;
+var isLengthOnly = (value) => (
+  // `colorFunctionRegex` check is necessary because color functions can have percentages in them which which would be incorrectly classified as lengths.
+  // For example, `hsl(0 0% 0%)` would be classified as a length without this check.
+  // I could also use lookbehind assertion in `lengthUnitRegex` but that isn't supported widely enough.
+  lengthUnitRegex.test(value) && !colorFunctionRegex.test(value)
+);
+var isNever = () => false;
+var isShadow = (value) => shadowRegex.test(value);
+var isImage = (value) => imageRegex.test(value);
+var isAnyNonArbitrary = (value) => !isArbitraryValue(value) && !isArbitraryVariable(value);
+var isArbitrarySize = (value) => getIsArbitraryValue(value, isLabelSize, isNever);
+var isArbitraryValue = (value) => arbitraryValueRegex.test(value);
+var isArbitraryLength = (value) => getIsArbitraryValue(value, isLabelLength, isLengthOnly);
+var isArbitraryNumber = (value) => getIsArbitraryValue(value, isLabelNumber, isNumber);
+var isArbitraryPosition = (value) => getIsArbitraryValue(value, isLabelPosition, isNever);
+var isArbitraryImage = (value) => getIsArbitraryValue(value, isLabelImage, isImage);
+var isArbitraryShadow = (value) => getIsArbitraryValue(value, isNever, isShadow);
+var isArbitraryVariable = (value) => arbitraryVariableRegex.test(value);
+var isArbitraryVariableLength = (value) => getIsArbitraryVariable(value, isLabelLength);
+var isArbitraryVariableFamilyName = (value) => getIsArbitraryVariable(value, isLabelFamilyName);
+var isArbitraryVariablePosition = (value) => getIsArbitraryVariable(value, isLabelPosition);
+var isArbitraryVariableSize = (value) => getIsArbitraryVariable(value, isLabelSize);
+var isArbitraryVariableImage = (value) => getIsArbitraryVariable(value, isLabelImage);
+var isArbitraryVariableShadow = (value) => getIsArbitraryVariable(value, isLabelShadow, true);
+var getIsArbitraryValue = (value, testLabel, testValue) => {
+  const result = arbitraryValueRegex.exec(value);
+  if (result) {
+    if (result[1]) {
+      return testLabel(result[1]);
+    }
+    return testValue(result[2]);
+  }
+  return false;
+};
+var getIsArbitraryVariable = (value, testLabel, shouldMatchNoLabel = false) => {
+  const result = arbitraryVariableRegex.exec(value);
+  if (result) {
+    if (result[1]) {
+      return testLabel(result[1]);
+    }
+    return shouldMatchNoLabel;
+  }
+  return false;
+};
+var isLabelPosition = (label) => label === "position";
+var imageLabels = /* @__PURE__ */ new Set(["image", "url"]);
+var isLabelImage = (label) => imageLabels.has(label);
+var sizeLabels = /* @__PURE__ */ new Set(["length", "size", "percentage"]);
+var isLabelSize = (label) => sizeLabels.has(label);
+var isLabelLength = (label) => label === "length";
+var isLabelNumber = (label) => label === "number";
+var isLabelFamilyName = (label) => label === "family-name";
+var isLabelShadow = (label) => label === "shadow";
+var getDefaultConfig = () => {
+  const themeColor = fromTheme("color");
+  const themeFont = fromTheme("font");
+  const themeText = fromTheme("text");
+  const themeFontWeight = fromTheme("font-weight");
+  const themeTracking = fromTheme("tracking");
+  const themeLeading = fromTheme("leading");
+  const themeBreakpoint = fromTheme("breakpoint");
+  const themeContainer = fromTheme("container");
+  const themeSpacing = fromTheme("spacing");
+  const themeRadius = fromTheme("radius");
+  const themeShadow = fromTheme("shadow");
+  const themeInsetShadow = fromTheme("inset-shadow");
+  const themeDropShadow = fromTheme("drop-shadow");
+  const themeBlur = fromTheme("blur");
+  const themePerspective = fromTheme("perspective");
+  const themeAspect = fromTheme("aspect");
+  const themeEase = fromTheme("ease");
+  const themeAnimate = fromTheme("animate");
+  const scaleBreak = () => ["auto", "avoid", "all", "avoid-page", "page", "left", "right", "column"];
+  const scalePosition = () => ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
+  const scaleOverflow = () => ["auto", "hidden", "clip", "visible", "scroll"];
+  const scaleOverscroll = () => ["auto", "contain", "none"];
+  const scaleInset = () => [isFraction, "px", "full", "auto", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleGridTemplateColsRows = () => [isInteger, "none", "subgrid", isArbitraryVariable, isArbitraryValue];
+  const scaleGridColRowStartAndEnd = () => ["auto", {
+    span: ["full", isInteger, isArbitraryVariable, isArbitraryValue]
+  }, isArbitraryVariable, isArbitraryValue];
+  const scaleGridColRowStartOrEnd = () => [isInteger, "auto", isArbitraryVariable, isArbitraryValue];
+  const scaleGridAutoColsRows = () => ["auto", "min", "max", "fr", isArbitraryVariable, isArbitraryValue];
+  const scaleGap = () => [isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleAlignPrimaryAxis = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline"];
+  const scaleAlignSecondaryAxis = () => ["start", "end", "center", "stretch"];
+  const scaleUnambiguousSpacing = () => [isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scalePadding = () => ["px", ...scaleUnambiguousSpacing()];
+  const scaleMargin = () => ["px", "auto", ...scaleUnambiguousSpacing()];
+  const scaleSizing = () => [isFraction, "auto", "px", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleColor = () => [themeColor, isArbitraryVariable, isArbitraryValue];
+  const scaleGradientStopPosition = () => [isPercent, isArbitraryLength];
+  const scaleRadius = () => [
+    // Deprecated since Tailwind CSS v4.0.0
+    "",
+    "none",
+    "full",
+    themeRadius,
+    isArbitraryVariable,
+    isArbitraryValue
+  ];
+  const scaleBorderWidth = () => ["", isNumber, isArbitraryVariableLength, isArbitraryLength];
+  const scaleLineStyle = () => ["solid", "dashed", "dotted", "double"];
+  const scaleBlendMode = () => ["normal", "multiply", "screen", "overlay", "darken", "lighten", "color-dodge", "color-burn", "hard-light", "soft-light", "difference", "exclusion", "hue", "saturation", "color", "luminosity"];
+  const scaleBlur = () => [
+    // Deprecated since Tailwind CSS v4.0.0
+    "",
+    "none",
+    themeBlur,
+    isArbitraryVariable,
+    isArbitraryValue
+  ];
+  const scaleOrigin = () => ["center", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left", "top-left", isArbitraryVariable, isArbitraryValue];
+  const scaleRotate = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
+  const scaleScale = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
+  const scaleSkew = () => [isNumber, isArbitraryVariable, isArbitraryValue];
+  const scaleTranslate = () => [isFraction, "full", "px", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  return {
+    cacheSize: 500,
+    theme: {
+      animate: ["spin", "ping", "pulse", "bounce"],
+      aspect: ["video"],
+      blur: [isTshirtSize],
+      breakpoint: [isTshirtSize],
+      color: [isAny],
+      container: [isTshirtSize],
+      "drop-shadow": [isTshirtSize],
+      ease: ["in", "out", "in-out"],
+      font: [isAnyNonArbitrary],
+      "font-weight": ["thin", "extralight", "light", "normal", "medium", "semibold", "bold", "extrabold", "black"],
+      "inset-shadow": [isTshirtSize],
+      leading: ["none", "tight", "snug", "normal", "relaxed", "loose"],
+      perspective: ["dramatic", "near", "normal", "midrange", "distant", "none"],
+      radius: [isTshirtSize],
+      shadow: [isTshirtSize],
+      spacing: [isNumber],
+      text: [isTshirtSize],
+      tracking: ["tighter", "tight", "normal", "wide", "wider", "widest"]
+    },
+    classGroups: {
+      // --------------
+      // --- Layout ---
+      // --------------
+      /**
+       * Aspect Ratio
+       * @see https://tailwindcss.com/docs/aspect-ratio
+       */
+      aspect: [{
+        aspect: ["auto", "square", isFraction, isArbitraryValue, isArbitraryVariable, themeAspect]
+      }],
+      /**
+       * Container
+       * @see https://tailwindcss.com/docs/container
+       * @deprecated since Tailwind CSS v4.0.0
+       */
+      container: ["container"],
+      /**
+       * Columns
+       * @see https://tailwindcss.com/docs/columns
+       */
+      columns: [{
+        columns: [isNumber, isArbitraryValue, isArbitraryVariable, themeContainer]
+      }],
+      /**
+       * Break After
+       * @see https://tailwindcss.com/docs/break-after
+       */
+      "break-after": [{
+        "break-after": scaleBreak()
+      }],
+      /**
+       * Break Before
+       * @see https://tailwindcss.com/docs/break-before
+       */
+      "break-before": [{
+        "break-before": scaleBreak()
+      }],
+      /**
+       * Break Inside
+       * @see https://tailwindcss.com/docs/break-inside
+       */
+      "break-inside": [{
+        "break-inside": ["auto", "avoid", "avoid-page", "avoid-column"]
+      }],
+      /**
+       * Box Decoration Break
+       * @see https://tailwindcss.com/docs/box-decoration-break
+       */
+      "box-decoration": [{
+        "box-decoration": ["slice", "clone"]
+      }],
+      /**
+       * Box Sizing
+       * @see https://tailwindcss.com/docs/box-sizing
+       */
+      box: [{
+        box: ["border", "content"]
+      }],
+      /**
+       * Display
+       * @see https://tailwindcss.com/docs/display
+       */
+      display: ["block", "inline-block", "inline", "flex", "inline-flex", "table", "inline-table", "table-caption", "table-cell", "table-column", "table-column-group", "table-footer-group", "table-header-group", "table-row-group", "table-row", "flow-root", "grid", "inline-grid", "contents", "list-item", "hidden"],
+      /**
+       * Screen Reader Only
+       * @see https://tailwindcss.com/docs/display#screen-reader-only
+       */
+      sr: ["sr-only", "not-sr-only"],
+      /**
+       * Floats
+       * @see https://tailwindcss.com/docs/float
+       */
+      float: [{
+        float: ["right", "left", "none", "start", "end"]
+      }],
+      /**
+       * Clear
+       * @see https://tailwindcss.com/docs/clear
+       */
+      clear: [{
+        clear: ["left", "right", "both", "none", "start", "end"]
+      }],
+      /**
+       * Isolation
+       * @see https://tailwindcss.com/docs/isolation
+       */
+      isolation: ["isolate", "isolation-auto"],
+      /**
+       * Object Fit
+       * @see https://tailwindcss.com/docs/object-fit
+       */
+      "object-fit": [{
+        object: ["contain", "cover", "fill", "none", "scale-down"]
+      }],
+      /**
+       * Object Position
+       * @see https://tailwindcss.com/docs/object-position
+       */
+      "object-position": [{
+        object: [...scalePosition(), isArbitraryValue, isArbitraryVariable]
+      }],
+      /**
+       * Overflow
+       * @see https://tailwindcss.com/docs/overflow
+       */
+      overflow: [{
+        overflow: scaleOverflow()
+      }],
+      /**
+       * Overflow X
+       * @see https://tailwindcss.com/docs/overflow
+       */
+      "overflow-x": [{
+        "overflow-x": scaleOverflow()
+      }],
+      /**
+       * Overflow Y
+       * @see https://tailwindcss.com/docs/overflow
+       */
+      "overflow-y": [{
+        "overflow-y": scaleOverflow()
+      }],
+      /**
+       * Overscroll Behavior
+       * @see https://tailwindcss.com/docs/overscroll-behavior
+       */
+      overscroll: [{
+        overscroll: scaleOverscroll()
+      }],
+      /**
+       * Overscroll Behavior X
+       * @see https://tailwindcss.com/docs/overscroll-behavior
+       */
+      "overscroll-x": [{
+        "overscroll-x": scaleOverscroll()
+      }],
+      /**
+       * Overscroll Behavior Y
+       * @see https://tailwindcss.com/docs/overscroll-behavior
+       */
+      "overscroll-y": [{
+        "overscroll-y": scaleOverscroll()
+      }],
+      /**
+       * Position
+       * @see https://tailwindcss.com/docs/position
+       */
+      position: ["static", "fixed", "absolute", "relative", "sticky"],
+      /**
+       * Top / Right / Bottom / Left
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      inset: [{
+        inset: scaleInset()
+      }],
+      /**
+       * Right / Left
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      "inset-x": [{
+        "inset-x": scaleInset()
+      }],
+      /**
+       * Top / Bottom
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      "inset-y": [{
+        "inset-y": scaleInset()
+      }],
+      /**
+       * Start
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      start: [{
+        start: scaleInset()
+      }],
+      /**
+       * End
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      end: [{
+        end: scaleInset()
+      }],
+      /**
+       * Top
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      top: [{
+        top: scaleInset()
+      }],
+      /**
+       * Right
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      right: [{
+        right: scaleInset()
+      }],
+      /**
+       * Bottom
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      bottom: [{
+        bottom: scaleInset()
+      }],
+      /**
+       * Left
+       * @see https://tailwindcss.com/docs/top-right-bottom-left
+       */
+      left: [{
+        left: scaleInset()
+      }],
+      /**
+       * Visibility
+       * @see https://tailwindcss.com/docs/visibility
+       */
+      visibility: ["visible", "invisible", "collapse"],
+      /**
+       * Z-Index
+       * @see https://tailwindcss.com/docs/z-index
+       */
+      z: [{
+        z: [isInteger, "auto", isArbitraryVariable, isArbitraryValue]
+      }],
+      // ------------------------
+      // --- Flexbox and Grid ---
+      // ------------------------
+      /**
+       * Flex Basis
+       * @see https://tailwindcss.com/docs/flex-basis
+       */
+      basis: [{
+        basis: [isFraction, "full", "auto", isArbitraryVariable, isArbitraryValue, themeContainer, themeSpacing]
+      }],
+      /**
+       * Flex Direction
+       * @see https://tailwindcss.com/docs/flex-direction
+       */
+      "flex-direction": [{
+        flex: ["row", "row-reverse", "col", "col-reverse"]
+      }],
+      /**
+       * Flex Wrap
+       * @see https://tailwindcss.com/docs/flex-wrap
+       */
+      "flex-wrap": [{
+        flex: ["nowrap", "wrap", "wrap-reverse"]
+      }],
+      /**
+       * Flex
+       * @see https://tailwindcss.com/docs/flex
+       */
+      flex: [{
+        flex: [isNumber, isFraction, "auto", "initial", "none", isArbitraryValue]
+      }],
+      /**
+       * Flex Grow
+       * @see https://tailwindcss.com/docs/flex-grow
+       */
+      grow: [{
+        grow: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Flex Shrink
+       * @see https://tailwindcss.com/docs/flex-shrink
+       */
+      shrink: [{
+        shrink: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Order
+       * @see https://tailwindcss.com/docs/order
+       */
+      order: [{
+        order: [isInteger, "first", "last", "none", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Grid Template Columns
+       * @see https://tailwindcss.com/docs/grid-template-columns
+       */
+      "grid-cols": [{
+        "grid-cols": scaleGridTemplateColsRows()
+      }],
+      /**
+       * Grid Column Start / End
+       * @see https://tailwindcss.com/docs/grid-column
+       */
+      "col-start-end": [{
+        col: scaleGridColRowStartAndEnd()
+      }],
+      /**
+       * Grid Column Start
+       * @see https://tailwindcss.com/docs/grid-column
+       */
+      "col-start": [{
+        "col-start": scaleGridColRowStartOrEnd()
+      }],
+      /**
+       * Grid Column End
+       * @see https://tailwindcss.com/docs/grid-column
+       */
+      "col-end": [{
+        "col-end": scaleGridColRowStartOrEnd()
+      }],
+      /**
+       * Grid Template Rows
+       * @see https://tailwindcss.com/docs/grid-template-rows
+       */
+      "grid-rows": [{
+        "grid-rows": scaleGridTemplateColsRows()
+      }],
+      /**
+       * Grid Row Start / End
+       * @see https://tailwindcss.com/docs/grid-row
+       */
+      "row-start-end": [{
+        row: scaleGridColRowStartAndEnd()
+      }],
+      /**
+       * Grid Row Start
+       * @see https://tailwindcss.com/docs/grid-row
+       */
+      "row-start": [{
+        "row-start": scaleGridColRowStartOrEnd()
+      }],
+      /**
+       * Grid Row End
+       * @see https://tailwindcss.com/docs/grid-row
+       */
+      "row-end": [{
+        "row-end": scaleGridColRowStartOrEnd()
+      }],
+      /**
+       * Grid Auto Flow
+       * @see https://tailwindcss.com/docs/grid-auto-flow
+       */
+      "grid-flow": [{
+        "grid-flow": ["row", "col", "dense", "row-dense", "col-dense"]
+      }],
+      /**
+       * Grid Auto Columns
+       * @see https://tailwindcss.com/docs/grid-auto-columns
+       */
+      "auto-cols": [{
+        "auto-cols": scaleGridAutoColsRows()
+      }],
+      /**
+       * Grid Auto Rows
+       * @see https://tailwindcss.com/docs/grid-auto-rows
+       */
+      "auto-rows": [{
+        "auto-rows": scaleGridAutoColsRows()
+      }],
+      /**
+       * Gap
+       * @see https://tailwindcss.com/docs/gap
+       */
+      gap: [{
+        gap: scaleGap()
+      }],
+      /**
+       * Gap X
+       * @see https://tailwindcss.com/docs/gap
+       */
+      "gap-x": [{
+        "gap-x": scaleGap()
+      }],
+      /**
+       * Gap Y
+       * @see https://tailwindcss.com/docs/gap
+       */
+      "gap-y": [{
+        "gap-y": scaleGap()
+      }],
+      /**
+       * Justify Content
+       * @see https://tailwindcss.com/docs/justify-content
+       */
+      "justify-content": [{
+        justify: [...scaleAlignPrimaryAxis(), "normal"]
+      }],
+      /**
+       * Justify Items
+       * @see https://tailwindcss.com/docs/justify-items
+       */
+      "justify-items": [{
+        "justify-items": [...scaleAlignSecondaryAxis(), "normal"]
+      }],
+      /**
+       * Justify Self
+       * @see https://tailwindcss.com/docs/justify-self
+       */
+      "justify-self": [{
+        "justify-self": ["auto", ...scaleAlignSecondaryAxis()]
+      }],
+      /**
+       * Align Content
+       * @see https://tailwindcss.com/docs/align-content
+       */
+      "align-content": [{
+        content: ["normal", ...scaleAlignPrimaryAxis()]
+      }],
+      /**
+       * Align Items
+       * @see https://tailwindcss.com/docs/align-items
+       */
+      "align-items": [{
+        items: [...scaleAlignSecondaryAxis(), "baseline"]
+      }],
+      /**
+       * Align Self
+       * @see https://tailwindcss.com/docs/align-self
+       */
+      "align-self": [{
+        self: ["auto", ...scaleAlignSecondaryAxis(), "baseline"]
+      }],
+      /**
+       * Place Content
+       * @see https://tailwindcss.com/docs/place-content
+       */
+      "place-content": [{
+        "place-content": scaleAlignPrimaryAxis()
+      }],
+      /**
+       * Place Items
+       * @see https://tailwindcss.com/docs/place-items
+       */
+      "place-items": [{
+        "place-items": [...scaleAlignSecondaryAxis(), "baseline"]
+      }],
+      /**
+       * Place Self
+       * @see https://tailwindcss.com/docs/place-self
+       */
+      "place-self": [{
+        "place-self": ["auto", ...scaleAlignSecondaryAxis()]
+      }],
+      // Spacing
+      /**
+       * Padding
+       * @see https://tailwindcss.com/docs/padding
+       */
+      p: [{
+        p: scalePadding()
+      }],
+      /**
+       * Padding X
+       * @see https://tailwindcss.com/docs/padding
+       */
+      px: [{
+        px: scalePadding()
+      }],
+      /**
+       * Padding Y
+       * @see https://tailwindcss.com/docs/padding
+       */
+      py: [{
+        py: scalePadding()
+      }],
+      /**
+       * Padding Start
+       * @see https://tailwindcss.com/docs/padding
+       */
+      ps: [{
+        ps: scalePadding()
+      }],
+      /**
+       * Padding End
+       * @see https://tailwindcss.com/docs/padding
+       */
+      pe: [{
+        pe: scalePadding()
+      }],
+      /**
+       * Padding Top
+       * @see https://tailwindcss.com/docs/padding
+       */
+      pt: [{
+        pt: scalePadding()
+      }],
+      /**
+       * Padding Right
+       * @see https://tailwindcss.com/docs/padding
+       */
+      pr: [{
+        pr: scalePadding()
+      }],
+      /**
+       * Padding Bottom
+       * @see https://tailwindcss.com/docs/padding
+       */
+      pb: [{
+        pb: scalePadding()
+      }],
+      /**
+       * Padding Left
+       * @see https://tailwindcss.com/docs/padding
+       */
+      pl: [{
+        pl: scalePadding()
+      }],
+      /**
+       * Margin
+       * @see https://tailwindcss.com/docs/margin
+       */
+      m: [{
+        m: scaleMargin()
+      }],
+      /**
+       * Margin X
+       * @see https://tailwindcss.com/docs/margin
+       */
+      mx: [{
+        mx: scaleMargin()
+      }],
+      /**
+       * Margin Y
+       * @see https://tailwindcss.com/docs/margin
+       */
+      my: [{
+        my: scaleMargin()
+      }],
+      /**
+       * Margin Start
+       * @see https://tailwindcss.com/docs/margin
+       */
+      ms: [{
+        ms: scaleMargin()
+      }],
+      /**
+       * Margin End
+       * @see https://tailwindcss.com/docs/margin
+       */
+      me: [{
+        me: scaleMargin()
+      }],
+      /**
+       * Margin Top
+       * @see https://tailwindcss.com/docs/margin
+       */
+      mt: [{
+        mt: scaleMargin()
+      }],
+      /**
+       * Margin Right
+       * @see https://tailwindcss.com/docs/margin
+       */
+      mr: [{
+        mr: scaleMargin()
+      }],
+      /**
+       * Margin Bottom
+       * @see https://tailwindcss.com/docs/margin
+       */
+      mb: [{
+        mb: scaleMargin()
+      }],
+      /**
+       * Margin Left
+       * @see https://tailwindcss.com/docs/margin
+       */
+      ml: [{
+        ml: scaleMargin()
+      }],
+      /**
+       * Space Between X
+       * @see https://tailwindcss.com/docs/margin#adding-space-between-children
+       */
+      "space-x": [{
+        "space-x": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Space Between X Reverse
+       * @see https://tailwindcss.com/docs/margin#adding-space-between-children
+       */
+      "space-x-reverse": ["space-x-reverse"],
+      /**
+       * Space Between Y
+       * @see https://tailwindcss.com/docs/margin#adding-space-between-children
+       */
+      "space-y": [{
+        "space-y": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Space Between Y Reverse
+       * @see https://tailwindcss.com/docs/margin#adding-space-between-children
+       */
+      "space-y-reverse": ["space-y-reverse"],
+      // --------------
+      // --- Sizing ---
+      // --------------
+      /**
+       * Width
+       * @see https://tailwindcss.com/docs/width
+       */
+      /**
+       * Size
+       * @see https://tailwindcss.com/docs/width#setting-both-width-and-height
+       */
+      size: [{
+        size: scaleSizing()
+      }],
+      w: [{
+        w: [themeContainer, "screen", ...scaleSizing()]
+      }],
+      /**
+       * Min-Width
+       * @see https://tailwindcss.com/docs/min-width
+       */
+      "min-w": [{
+        "min-w": [
+          themeContainer,
+          "screen",
+          /** Deprecated. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
+          "none",
+          ...scaleSizing()
+        ]
+      }],
+      /**
+       * Max-Width
+       * @see https://tailwindcss.com/docs/max-width
+       */
+      "max-w": [{
+        "max-w": [
+          themeContainer,
+          "screen",
+          "none",
+          /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
+          "prose",
+          /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
+          {
+            screen: [themeBreakpoint]
+          },
+          ...scaleSizing()
+        ]
+      }],
+      /**
+       * Height
+       * @see https://tailwindcss.com/docs/height
+       */
+      h: [{
+        h: ["screen", ...scaleSizing()]
+      }],
+      /**
+       * Min-Height
+       * @see https://tailwindcss.com/docs/min-height
+       */
+      "min-h": [{
+        "min-h": ["screen", "none", ...scaleSizing()]
+      }],
+      /**
+       * Max-Height
+       * @see https://tailwindcss.com/docs/max-height
+       */
+      "max-h": [{
+        "max-h": ["screen", ...scaleSizing()]
+      }],
+      // ------------------
+      // --- Typography ---
+      // ------------------
+      /**
+       * Font Size
+       * @see https://tailwindcss.com/docs/font-size
+       */
+      "font-size": [{
+        text: ["base", themeText, isArbitraryVariableLength, isArbitraryLength]
+      }],
+      /**
+       * Font Smoothing
+       * @see https://tailwindcss.com/docs/font-smoothing
+       */
+      "font-smoothing": ["antialiased", "subpixel-antialiased"],
+      /**
+       * Font Style
+       * @see https://tailwindcss.com/docs/font-style
+       */
+      "font-style": ["italic", "not-italic"],
+      /**
+       * Font Weight
+       * @see https://tailwindcss.com/docs/font-weight
+       */
+      "font-weight": [{
+        font: [themeFontWeight, isArbitraryVariable, isArbitraryNumber]
+      }],
+      /**
+       * Font Stretch
+       * @see https://tailwindcss.com/docs/font-stretch
+       */
+      "font-stretch": [{
+        "font-stretch": ["ultra-condensed", "extra-condensed", "condensed", "semi-condensed", "normal", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded", isPercent, isArbitraryValue]
+      }],
+      /**
+       * Font Family
+       * @see https://tailwindcss.com/docs/font-family
+       */
+      "font-family": [{
+        font: [isArbitraryVariableFamilyName, isArbitraryValue, themeFont]
+      }],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-normal": ["normal-nums"],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-ordinal": ["ordinal"],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-slashed-zero": ["slashed-zero"],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-figure": ["lining-nums", "oldstyle-nums"],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-spacing": ["proportional-nums", "tabular-nums"],
+      /**
+       * Font Variant Numeric
+       * @see https://tailwindcss.com/docs/font-variant-numeric
+       */
+      "fvn-fraction": ["diagonal-fractions", "stacked-fractions"],
+      /**
+       * Letter Spacing
+       * @see https://tailwindcss.com/docs/letter-spacing
+       */
+      tracking: [{
+        tracking: [themeTracking, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Line Clamp
+       * @see https://tailwindcss.com/docs/line-clamp
+       */
+      "line-clamp": [{
+        "line-clamp": [isNumber, "none", isArbitraryVariable, isArbitraryNumber]
+      }],
+      /**
+       * Line Height
+       * @see https://tailwindcss.com/docs/line-height
+       */
+      leading: [{
+        leading: [
+          isArbitraryVariable,
+          isArbitraryValue,
+          /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
+          themeLeading,
+          themeSpacing
+        ]
+      }],
+      /**
+       * List Style Image
+       * @see https://tailwindcss.com/docs/list-style-image
+       */
+      "list-image": [{
+        "list-image": ["none", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * List Style Position
+       * @see https://tailwindcss.com/docs/list-style-position
+       */
+      "list-style-position": [{
+        list: ["inside", "outside"]
+      }],
+      /**
+       * List Style Type
+       * @see https://tailwindcss.com/docs/list-style-type
+       */
+      "list-style-type": [{
+        list: ["disc", "decimal", "none", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Text Alignment
+       * @see https://tailwindcss.com/docs/text-align
+       */
+      "text-alignment": [{
+        text: ["left", "center", "right", "justify", "start", "end"]
+      }],
+      /**
+       * Placeholder Color
+       * @deprecated since Tailwind CSS v3.0.0
+       * @see https://v3.tailwindcss.com/docs/placeholder-color
+       */
+      "placeholder-color": [{
+        placeholder: scaleColor()
+      }],
+      /**
+       * Text Color
+       * @see https://tailwindcss.com/docs/text-color
+       */
+      "text-color": [{
+        text: scaleColor()
+      }],
+      /**
+       * Text Decoration
+       * @see https://tailwindcss.com/docs/text-decoration
+       */
+      "text-decoration": ["underline", "overline", "line-through", "no-underline"],
+      /**
+       * Text Decoration Style
+       * @see https://tailwindcss.com/docs/text-decoration-style
+       */
+      "text-decoration-style": [{
+        decoration: [...scaleLineStyle(), "wavy"]
+      }],
+      /**
+       * Text Decoration Thickness
+       * @see https://tailwindcss.com/docs/text-decoration-thickness
+       */
+      "text-decoration-thickness": [{
+        decoration: [isNumber, "from-font", "auto", isArbitraryVariable, isArbitraryLength]
+      }],
+      /**
+       * Text Decoration Color
+       * @see https://tailwindcss.com/docs/text-decoration-color
+       */
+      "text-decoration-color": [{
+        decoration: scaleColor()
+      }],
+      /**
+       * Text Underline Offset
+       * @see https://tailwindcss.com/docs/text-underline-offset
+       */
+      "underline-offset": [{
+        "underline-offset": [isNumber, "auto", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Text Transform
+       * @see https://tailwindcss.com/docs/text-transform
+       */
+      "text-transform": ["uppercase", "lowercase", "capitalize", "normal-case"],
+      /**
+       * Text Overflow
+       * @see https://tailwindcss.com/docs/text-overflow
+       */
+      "text-overflow": ["truncate", "text-ellipsis", "text-clip"],
+      /**
+       * Text Wrap
+       * @see https://tailwindcss.com/docs/text-wrap
+       */
+      "text-wrap": [{
+        text: ["wrap", "nowrap", "balance", "pretty"]
+      }],
+      /**
+       * Text Indent
+       * @see https://tailwindcss.com/docs/text-indent
+       */
+      indent: [{
+        indent: ["px", ...scaleUnambiguousSpacing()]
+      }],
+      /**
+       * Vertical Alignment
+       * @see https://tailwindcss.com/docs/vertical-align
+       */
+      "vertical-align": [{
+        align: ["baseline", "top", "middle", "bottom", "text-top", "text-bottom", "sub", "super", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Whitespace
+       * @see https://tailwindcss.com/docs/whitespace
+       */
+      whitespace: [{
+        whitespace: ["normal", "nowrap", "pre", "pre-line", "pre-wrap", "break-spaces"]
+      }],
+      /**
+       * Word Break
+       * @see https://tailwindcss.com/docs/word-break
+       */
+      break: [{
+        break: ["normal", "words", "all", "keep"]
+      }],
+      /**
+       * Hyphens
+       * @see https://tailwindcss.com/docs/hyphens
+       */
+      hyphens: [{
+        hyphens: ["none", "manual", "auto"]
+      }],
+      /**
+       * Content
+       * @see https://tailwindcss.com/docs/content
+       */
+      content: [{
+        content: ["none", isArbitraryVariable, isArbitraryValue]
+      }],
+      // -------------------
+      // --- Backgrounds ---
+      // -------------------
+      /**
+       * Background Attachment
+       * @see https://tailwindcss.com/docs/background-attachment
+       */
+      "bg-attachment": [{
+        bg: ["fixed", "local", "scroll"]
+      }],
+      /**
+       * Background Clip
+       * @see https://tailwindcss.com/docs/background-clip
+       */
+      "bg-clip": [{
+        "bg-clip": ["border", "padding", "content", "text"]
+      }],
+      /**
+       * Background Origin
+       * @see https://tailwindcss.com/docs/background-origin
+       */
+      "bg-origin": [{
+        "bg-origin": ["border", "padding", "content"]
+      }],
+      /**
+       * Background Position
+       * @see https://tailwindcss.com/docs/background-position
+       */
+      "bg-position": [{
+        bg: [...scalePosition(), isArbitraryVariablePosition, isArbitraryPosition]
+      }],
+      /**
+       * Background Repeat
+       * @see https://tailwindcss.com/docs/background-repeat
+       */
+      "bg-repeat": [{
+        bg: ["no-repeat", {
+          repeat: ["", "x", "y", "space", "round"]
+        }]
+      }],
+      /**
+       * Background Size
+       * @see https://tailwindcss.com/docs/background-size
+       */
+      "bg-size": [{
+        bg: ["auto", "cover", "contain", isArbitraryVariableSize, isArbitrarySize]
+      }],
+      /**
+       * Background Image
+       * @see https://tailwindcss.com/docs/background-image
+       */
+      "bg-image": [{
+        bg: ["none", {
+          linear: [{
+            to: ["t", "tr", "r", "br", "b", "bl", "l", "tl"]
+          }, isInteger, isArbitraryVariable, isArbitraryValue],
+          radial: ["", isArbitraryVariable, isArbitraryValue],
+          conic: [isInteger, isArbitraryVariable, isArbitraryValue]
+        }, isArbitraryVariableImage, isArbitraryImage]
+      }],
+      /**
+       * Background Color
+       * @see https://tailwindcss.com/docs/background-color
+       */
+      "bg-color": [{
+        bg: scaleColor()
+      }],
+      /**
+       * Gradient Color Stops From Position
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-from-pos": [{
+        from: scaleGradientStopPosition()
+      }],
+      /**
+       * Gradient Color Stops Via Position
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-via-pos": [{
+        via: scaleGradientStopPosition()
+      }],
+      /**
+       * Gradient Color Stops To Position
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-to-pos": [{
+        to: scaleGradientStopPosition()
+      }],
+      /**
+       * Gradient Color Stops From
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-from": [{
+        from: scaleColor()
+      }],
+      /**
+       * Gradient Color Stops Via
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-via": [{
+        via: scaleColor()
+      }],
+      /**
+       * Gradient Color Stops To
+       * @see https://tailwindcss.com/docs/gradient-color-stops
+       */
+      "gradient-to": [{
+        to: scaleColor()
+      }],
+      // ---------------
+      // --- Borders ---
+      // ---------------
+      /**
+       * Border Radius
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      rounded: [{
+        rounded: scaleRadius()
+      }],
+      /**
+       * Border Radius Start
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-s": [{
+        "rounded-s": scaleRadius()
+      }],
+      /**
+       * Border Radius End
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-e": [{
+        "rounded-e": scaleRadius()
+      }],
+      /**
+       * Border Radius Top
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-t": [{
+        "rounded-t": scaleRadius()
+      }],
+      /**
+       * Border Radius Right
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-r": [{
+        "rounded-r": scaleRadius()
+      }],
+      /**
+       * Border Radius Bottom
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-b": [{
+        "rounded-b": scaleRadius()
+      }],
+      /**
+       * Border Radius Left
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-l": [{
+        "rounded-l": scaleRadius()
+      }],
+      /**
+       * Border Radius Start Start
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-ss": [{
+        "rounded-ss": scaleRadius()
+      }],
+      /**
+       * Border Radius Start End
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-se": [{
+        "rounded-se": scaleRadius()
+      }],
+      /**
+       * Border Radius End End
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-ee": [{
+        "rounded-ee": scaleRadius()
+      }],
+      /**
+       * Border Radius End Start
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-es": [{
+        "rounded-es": scaleRadius()
+      }],
+      /**
+       * Border Radius Top Left
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-tl": [{
+        "rounded-tl": scaleRadius()
+      }],
+      /**
+       * Border Radius Top Right
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-tr": [{
+        "rounded-tr": scaleRadius()
+      }],
+      /**
+       * Border Radius Bottom Right
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-br": [{
+        "rounded-br": scaleRadius()
+      }],
+      /**
+       * Border Radius Bottom Left
+       * @see https://tailwindcss.com/docs/border-radius
+       */
+      "rounded-bl": [{
+        "rounded-bl": scaleRadius()
+      }],
+      /**
+       * Border Width
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w": [{
+        border: scaleBorderWidth()
+      }],
+      /**
+       * Border Width X
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-x": [{
+        "border-x": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Y
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-y": [{
+        "border-y": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Start
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-s": [{
+        "border-s": scaleBorderWidth()
+      }],
+      /**
+       * Border Width End
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-e": [{
+        "border-e": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Top
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-t": [{
+        "border-t": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Right
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-r": [{
+        "border-r": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Bottom
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-b": [{
+        "border-b": scaleBorderWidth()
+      }],
+      /**
+       * Border Width Left
+       * @see https://tailwindcss.com/docs/border-width
+       */
+      "border-w-l": [{
+        "border-l": scaleBorderWidth()
+      }],
+      /**
+       * Divide Width X
+       * @see https://tailwindcss.com/docs/border-width#between-children
+       */
+      "divide-x": [{
+        "divide-x": scaleBorderWidth()
+      }],
+      /**
+       * Divide Width X Reverse
+       * @see https://tailwindcss.com/docs/border-width#between-children
+       */
+      "divide-x-reverse": ["divide-x-reverse"],
+      /**
+       * Divide Width Y
+       * @see https://tailwindcss.com/docs/border-width#between-children
+       */
+      "divide-y": [{
+        "divide-y": scaleBorderWidth()
+      }],
+      /**
+       * Divide Width Y Reverse
+       * @see https://tailwindcss.com/docs/border-width#between-children
+       */
+      "divide-y-reverse": ["divide-y-reverse"],
+      /**
+       * Border Style
+       * @see https://tailwindcss.com/docs/border-style
+       */
+      "border-style": [{
+        border: [...scaleLineStyle(), "hidden", "none"]
+      }],
+      /**
+       * Divide Style
+       * @see https://tailwindcss.com/docs/border-style#setting-the-divider-style
+       */
+      "divide-style": [{
+        divide: [...scaleLineStyle(), "hidden", "none"]
+      }],
+      /**
+       * Border Color
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color": [{
+        border: scaleColor()
+      }],
+      /**
+       * Border Color X
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-x": [{
+        "border-x": scaleColor()
+      }],
+      /**
+       * Border Color Y
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-y": [{
+        "border-y": scaleColor()
+      }],
+      /**
+       * Border Color S
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-s": [{
+        "border-s": scaleColor()
+      }],
+      /**
+       * Border Color E
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-e": [{
+        "border-e": scaleColor()
+      }],
+      /**
+       * Border Color Top
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-t": [{
+        "border-t": scaleColor()
+      }],
+      /**
+       * Border Color Right
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-r": [{
+        "border-r": scaleColor()
+      }],
+      /**
+       * Border Color Bottom
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-b": [{
+        "border-b": scaleColor()
+      }],
+      /**
+       * Border Color Left
+       * @see https://tailwindcss.com/docs/border-color
+       */
+      "border-color-l": [{
+        "border-l": scaleColor()
+      }],
+      /**
+       * Divide Color
+       * @see https://tailwindcss.com/docs/divide-color
+       */
+      "divide-color": [{
+        divide: scaleColor()
+      }],
+      /**
+       * Outline Style
+       * @see https://tailwindcss.com/docs/outline-style
+       */
+      "outline-style": [{
+        outline: [...scaleLineStyle(), "none", "hidden"]
+      }],
+      /**
+       * Outline Offset
+       * @see https://tailwindcss.com/docs/outline-offset
+       */
+      "outline-offset": [{
+        "outline-offset": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Outline Width
+       * @see https://tailwindcss.com/docs/outline-width
+       */
+      "outline-w": [{
+        outline: ["", isNumber, isArbitraryVariableLength, isArbitraryLength]
+      }],
+      /**
+       * Outline Color
+       * @see https://tailwindcss.com/docs/outline-color
+       */
+      "outline-color": [{
+        outline: [themeColor]
+      }],
+      // ---------------
+      // --- Effects ---
+      // ---------------
+      /**
+       * Box Shadow
+       * @see https://tailwindcss.com/docs/box-shadow
+       */
+      shadow: [{
+        shadow: [
+          // Deprecated since Tailwind CSS v4.0.0
+          "",
+          "none",
+          themeShadow,
+          isArbitraryVariableShadow,
+          isArbitraryShadow
+        ]
+      }],
+      /**
+       * Box Shadow Color
+       * @see https://tailwindcss.com/docs/box-shadow#setting-the-shadow-color
+       */
+      "shadow-color": [{
+        shadow: scaleColor()
+      }],
+      /**
+       * Inset Box Shadow
+       * @see https://tailwindcss.com/docs/box-shadow#adding-an-inset-shadow
+       */
+      "inset-shadow": [{
+        "inset-shadow": ["none", isArbitraryVariable, isArbitraryValue, themeInsetShadow]
+      }],
+      /**
+       * Inset Box Shadow Color
+       * @see https://tailwindcss.com/docs/box-shadow#setting-the-inset-shadow-color
+       */
+      "inset-shadow-color": [{
+        "inset-shadow": scaleColor()
+      }],
+      /**
+       * Ring Width
+       * @see https://tailwindcss.com/docs/box-shadow#adding-a-ring
+       */
+      "ring-w": [{
+        ring: scaleBorderWidth()
+      }],
+      /**
+       * Ring Width Inset
+       * @see https://v3.tailwindcss.com/docs/ring-width#inset-rings
+       * @deprecated since Tailwind CSS v4.0.0
+       * @see https://github.com/tailwindlabs/tailwindcss/blob/v4.0.0/packages/tailwindcss/src/utilities.ts#L4158
+       */
+      "ring-w-inset": ["ring-inset"],
+      /**
+       * Ring Color
+       * @see https://tailwindcss.com/docs/box-shadow#setting-the-ring-color
+       */
+      "ring-color": [{
+        ring: scaleColor()
+      }],
+      /**
+       * Ring Offset Width
+       * @see https://v3.tailwindcss.com/docs/ring-offset-width
+       * @deprecated since Tailwind CSS v4.0.0
+       * @see https://github.com/tailwindlabs/tailwindcss/blob/v4.0.0/packages/tailwindcss/src/utilities.ts#L4158
+       */
+      "ring-offset-w": [{
+        "ring-offset": [isNumber, isArbitraryLength]
+      }],
+      /**
+       * Ring Offset Color
+       * @see https://v3.tailwindcss.com/docs/ring-offset-color
+       * @deprecated since Tailwind CSS v4.0.0
+       * @see https://github.com/tailwindlabs/tailwindcss/blob/v4.0.0/packages/tailwindcss/src/utilities.ts#L4158
+       */
+      "ring-offset-color": [{
+        "ring-offset": scaleColor()
+      }],
+      /**
+       * Inset Ring Width
+       * @see https://tailwindcss.com/docs/box-shadow#adding-an-inset-ring
+       */
+      "inset-ring-w": [{
+        "inset-ring": scaleBorderWidth()
+      }],
+      /**
+       * Inset Ring Color
+       * @see https://tailwindcss.com/docs/box-shadow#setting-the-inset-ring-color
+       */
+      "inset-ring-color": [{
+        "inset-ring": scaleColor()
+      }],
+      /**
+       * Opacity
+       * @see https://tailwindcss.com/docs/opacity
+       */
+      opacity: [{
+        opacity: [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Mix Blend Mode
+       * @see https://tailwindcss.com/docs/mix-blend-mode
+       */
+      "mix-blend": [{
+        "mix-blend": [...scaleBlendMode(), "plus-darker", "plus-lighter"]
+      }],
+      /**
+       * Background Blend Mode
+       * @see https://tailwindcss.com/docs/background-blend-mode
+       */
+      "bg-blend": [{
+        "bg-blend": scaleBlendMode()
+      }],
+      // ---------------
+      // --- Filters ---
+      // ---------------
+      /**
+       * Filter
+       * @see https://tailwindcss.com/docs/filter
+       */
+      filter: [{
+        filter: [
+          // Deprecated since Tailwind CSS v3.0.0
+          "",
+          "none",
+          isArbitraryVariable,
+          isArbitraryValue
+        ]
+      }],
+      /**
+       * Blur
+       * @see https://tailwindcss.com/docs/blur
+       */
+      blur: [{
+        blur: scaleBlur()
+      }],
+      /**
+       * Brightness
+       * @see https://tailwindcss.com/docs/brightness
+       */
+      brightness: [{
+        brightness: [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Contrast
+       * @see https://tailwindcss.com/docs/contrast
+       */
+      contrast: [{
+        contrast: [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Drop Shadow
+       * @see https://tailwindcss.com/docs/drop-shadow
+       */
+      "drop-shadow": [{
+        "drop-shadow": [
+          // Deprecated since Tailwind CSS v4.0.0
+          "",
+          "none",
+          themeDropShadow,
+          isArbitraryVariable,
+          isArbitraryValue
+        ]
+      }],
+      /**
+       * Grayscale
+       * @see https://tailwindcss.com/docs/grayscale
+       */
+      grayscale: [{
+        grayscale: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Hue Rotate
+       * @see https://tailwindcss.com/docs/hue-rotate
+       */
+      "hue-rotate": [{
+        "hue-rotate": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Invert
+       * @see https://tailwindcss.com/docs/invert
+       */
+      invert: [{
+        invert: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Saturate
+       * @see https://tailwindcss.com/docs/saturate
+       */
+      saturate: [{
+        saturate: [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Sepia
+       * @see https://tailwindcss.com/docs/sepia
+       */
+      sepia: [{
+        sepia: ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Filter
+       * @see https://tailwindcss.com/docs/backdrop-filter
+       */
+      "backdrop-filter": [{
+        "backdrop-filter": [
+          // Deprecated since Tailwind CSS v3.0.0
+          "",
+          "none",
+          isArbitraryVariable,
+          isArbitraryValue
+        ]
+      }],
+      /**
+       * Backdrop Blur
+       * @see https://tailwindcss.com/docs/backdrop-blur
+       */
+      "backdrop-blur": [{
+        "backdrop-blur": scaleBlur()
+      }],
+      /**
+       * Backdrop Brightness
+       * @see https://tailwindcss.com/docs/backdrop-brightness
+       */
+      "backdrop-brightness": [{
+        "backdrop-brightness": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Contrast
+       * @see https://tailwindcss.com/docs/backdrop-contrast
+       */
+      "backdrop-contrast": [{
+        "backdrop-contrast": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Grayscale
+       * @see https://tailwindcss.com/docs/backdrop-grayscale
+       */
+      "backdrop-grayscale": [{
+        "backdrop-grayscale": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Hue Rotate
+       * @see https://tailwindcss.com/docs/backdrop-hue-rotate
+       */
+      "backdrop-hue-rotate": [{
+        "backdrop-hue-rotate": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Invert
+       * @see https://tailwindcss.com/docs/backdrop-invert
+       */
+      "backdrop-invert": [{
+        "backdrop-invert": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Opacity
+       * @see https://tailwindcss.com/docs/backdrop-opacity
+       */
+      "backdrop-opacity": [{
+        "backdrop-opacity": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Saturate
+       * @see https://tailwindcss.com/docs/backdrop-saturate
+       */
+      "backdrop-saturate": [{
+        "backdrop-saturate": [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Backdrop Sepia
+       * @see https://tailwindcss.com/docs/backdrop-sepia
+       */
+      "backdrop-sepia": [{
+        "backdrop-sepia": ["", isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      // --------------
+      // --- Tables ---
+      // --------------
+      /**
+       * Border Collapse
+       * @see https://tailwindcss.com/docs/border-collapse
+       */
+      "border-collapse": [{
+        border: ["collapse", "separate"]
+      }],
+      /**
+       * Border Spacing
+       * @see https://tailwindcss.com/docs/border-spacing
+       */
+      "border-spacing": [{
+        "border-spacing": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Border Spacing X
+       * @see https://tailwindcss.com/docs/border-spacing
+       */
+      "border-spacing-x": [{
+        "border-spacing-x": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Border Spacing Y
+       * @see https://tailwindcss.com/docs/border-spacing
+       */
+      "border-spacing-y": [{
+        "border-spacing-y": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Table Layout
+       * @see https://tailwindcss.com/docs/table-layout
+       */
+      "table-layout": [{
+        table: ["auto", "fixed"]
+      }],
+      /**
+       * Caption Side
+       * @see https://tailwindcss.com/docs/caption-side
+       */
+      caption: [{
+        caption: ["top", "bottom"]
+      }],
+      // ---------------------------------
+      // --- Transitions and Animation ---
+      // ---------------------------------
+      /**
+       * Transition Property
+       * @see https://tailwindcss.com/docs/transition-property
+       */
+      transition: [{
+        transition: ["", "all", "colors", "opacity", "shadow", "transform", "none", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Transition Behavior
+       * @see https://tailwindcss.com/docs/transition-behavior
+       */
+      "transition-behavior": [{
+        transition: ["normal", "discrete"]
+      }],
+      /**
+       * Transition Duration
+       * @see https://tailwindcss.com/docs/transition-duration
+       */
+      duration: [{
+        duration: [isNumber, "initial", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Transition Timing Function
+       * @see https://tailwindcss.com/docs/transition-timing-function
+       */
+      ease: [{
+        ease: ["linear", "initial", themeEase, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Transition Delay
+       * @see https://tailwindcss.com/docs/transition-delay
+       */
+      delay: [{
+        delay: [isNumber, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Animation
+       * @see https://tailwindcss.com/docs/animation
+       */
+      animate: [{
+        animate: ["none", themeAnimate, isArbitraryVariable, isArbitraryValue]
+      }],
+      // ------------------
+      // --- Transforms ---
+      // ------------------
+      /**
+       * Backface Visibility
+       * @see https://tailwindcss.com/docs/backface-visibility
+       */
+      backface: [{
+        backface: ["hidden", "visible"]
+      }],
+      /**
+       * Perspective
+       * @see https://tailwindcss.com/docs/perspective
+       */
+      perspective: [{
+        perspective: [themePerspective, isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Perspective Origin
+       * @see https://tailwindcss.com/docs/perspective-origin
+       */
+      "perspective-origin": [{
+        "perspective-origin": scaleOrigin()
+      }],
+      /**
+       * Rotate
+       * @see https://tailwindcss.com/docs/rotate
+       */
+      rotate: [{
+        rotate: scaleRotate()
+      }],
+      /**
+       * Rotate X
+       * @see https://tailwindcss.com/docs/rotate
+       */
+      "rotate-x": [{
+        "rotate-x": scaleRotate()
+      }],
+      /**
+       * Rotate Y
+       * @see https://tailwindcss.com/docs/rotate
+       */
+      "rotate-y": [{
+        "rotate-y": scaleRotate()
+      }],
+      /**
+       * Rotate Z
+       * @see https://tailwindcss.com/docs/rotate
+       */
+      "rotate-z": [{
+        "rotate-z": scaleRotate()
+      }],
+      /**
+       * Scale
+       * @see https://tailwindcss.com/docs/scale
+       */
+      scale: [{
+        scale: scaleScale()
+      }],
+      /**
+       * Scale X
+       * @see https://tailwindcss.com/docs/scale
+       */
+      "scale-x": [{
+        "scale-x": scaleScale()
+      }],
+      /**
+       * Scale Y
+       * @see https://tailwindcss.com/docs/scale
+       */
+      "scale-y": [{
+        "scale-y": scaleScale()
+      }],
+      /**
+       * Scale Z
+       * @see https://tailwindcss.com/docs/scale
+       */
+      "scale-z": [{
+        "scale-z": scaleScale()
+      }],
+      /**
+       * Scale 3D
+       * @see https://tailwindcss.com/docs/scale
+       */
+      "scale-3d": ["scale-3d"],
+      /**
+       * Skew
+       * @see https://tailwindcss.com/docs/skew
+       */
+      skew: [{
+        skew: scaleSkew()
+      }],
+      /**
+       * Skew X
+       * @see https://tailwindcss.com/docs/skew
+       */
+      "skew-x": [{
+        "skew-x": scaleSkew()
+      }],
+      /**
+       * Skew Y
+       * @see https://tailwindcss.com/docs/skew
+       */
+      "skew-y": [{
+        "skew-y": scaleSkew()
+      }],
+      /**
+       * Transform
+       * @see https://tailwindcss.com/docs/transform
+       */
+      transform: [{
+        transform: [isArbitraryVariable, isArbitraryValue, "", "none", "gpu", "cpu"]
+      }],
+      /**
+       * Transform Origin
+       * @see https://tailwindcss.com/docs/transform-origin
+       */
+      "transform-origin": [{
+        origin: scaleOrigin()
+      }],
+      /**
+       * Transform Style
+       * @see https://tailwindcss.com/docs/transform-style
+       */
+      "transform-style": [{
+        transform: ["3d", "flat"]
+      }],
+      /**
+       * Translate
+       * @see https://tailwindcss.com/docs/translate
+       */
+      translate: [{
+        translate: scaleTranslate()
+      }],
+      /**
+       * Translate X
+       * @see https://tailwindcss.com/docs/translate
+       */
+      "translate-x": [{
+        "translate-x": scaleTranslate()
+      }],
+      /**
+       * Translate Y
+       * @see https://tailwindcss.com/docs/translate
+       */
+      "translate-y": [{
+        "translate-y": scaleTranslate()
+      }],
+      /**
+       * Translate Z
+       * @see https://tailwindcss.com/docs/translate
+       */
+      "translate-z": [{
+        "translate-z": scaleTranslate()
+      }],
+      /**
+       * Translate None
+       * @see https://tailwindcss.com/docs/translate
+       */
+      "translate-none": ["translate-none"],
+      // ---------------------
+      // --- Interactivity ---
+      // ---------------------
+      /**
+       * Accent Color
+       * @see https://tailwindcss.com/docs/accent-color
+       */
+      accent: [{
+        accent: scaleColor()
+      }],
+      /**
+       * Appearance
+       * @see https://tailwindcss.com/docs/appearance
+       */
+      appearance: [{
+        appearance: ["none", "auto"]
+      }],
+      /**
+       * Caret Color
+       * @see https://tailwindcss.com/docs/just-in-time-mode#caret-color-utilities
+       */
+      "caret-color": [{
+        caret: scaleColor()
+      }],
+      /**
+       * Color Scheme
+       * @see https://tailwindcss.com/docs/color-scheme
+       */
+      "color-scheme": [{
+        scheme: ["normal", "dark", "light", "light-dark", "only-dark", "only-light"]
+      }],
+      /**
+       * Cursor
+       * @see https://tailwindcss.com/docs/cursor
+       */
+      cursor: [{
+        cursor: ["auto", "default", "pointer", "wait", "text", "move", "help", "not-allowed", "none", "context-menu", "progress", "cell", "crosshair", "vertical-text", "alias", "copy", "no-drop", "grab", "grabbing", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "ne-resize", "nw-resize", "se-resize", "sw-resize", "ew-resize", "ns-resize", "nesw-resize", "nwse-resize", "zoom-in", "zoom-out", isArbitraryVariable, isArbitraryValue]
+      }],
+      /**
+       * Field Sizing
+       * @see https://tailwindcss.com/docs/field-sizing
+       */
+      "field-sizing": [{
+        "field-sizing": ["fixed", "content"]
+      }],
+      /**
+       * Pointer Events
+       * @see https://tailwindcss.com/docs/pointer-events
+       */
+      "pointer-events": [{
+        "pointer-events": ["auto", "none"]
+      }],
+      /**
+       * Resize
+       * @see https://tailwindcss.com/docs/resize
+       */
+      resize: [{
+        resize: ["none", "", "y", "x"]
+      }],
+      /**
+       * Scroll Behavior
+       * @see https://tailwindcss.com/docs/scroll-behavior
+       */
+      "scroll-behavior": [{
+        scroll: ["auto", "smooth"]
+      }],
+      /**
+       * Scroll Margin
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-m": [{
+        "scroll-m": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin X
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-mx": [{
+        "scroll-mx": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Y
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-my": [{
+        "scroll-my": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Start
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-ms": [{
+        "scroll-ms": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin End
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-me": [{
+        "scroll-me": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Top
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-mt": [{
+        "scroll-mt": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Right
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-mr": [{
+        "scroll-mr": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Bottom
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-mb": [{
+        "scroll-mb": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Margin Left
+       * @see https://tailwindcss.com/docs/scroll-margin
+       */
+      "scroll-ml": [{
+        "scroll-ml": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-p": [{
+        "scroll-p": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding X
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-px": [{
+        "scroll-px": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Y
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-py": [{
+        "scroll-py": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Start
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-ps": [{
+        "scroll-ps": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding End
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-pe": [{
+        "scroll-pe": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Top
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-pt": [{
+        "scroll-pt": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Right
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-pr": [{
+        "scroll-pr": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Bottom
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-pb": [{
+        "scroll-pb": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Padding Left
+       * @see https://tailwindcss.com/docs/scroll-padding
+       */
+      "scroll-pl": [{
+        "scroll-pl": scaleUnambiguousSpacing()
+      }],
+      /**
+       * Scroll Snap Align
+       * @see https://tailwindcss.com/docs/scroll-snap-align
+       */
+      "snap-align": [{
+        snap: ["start", "end", "center", "align-none"]
+      }],
+      /**
+       * Scroll Snap Stop
+       * @see https://tailwindcss.com/docs/scroll-snap-stop
+       */
+      "snap-stop": [{
+        snap: ["normal", "always"]
+      }],
+      /**
+       * Scroll Snap Type
+       * @see https://tailwindcss.com/docs/scroll-snap-type
+       */
+      "snap-type": [{
+        snap: ["none", "x", "y", "both"]
+      }],
+      /**
+       * Scroll Snap Type Strictness
+       * @see https://tailwindcss.com/docs/scroll-snap-type
+       */
+      "snap-strictness": [{
+        snap: ["mandatory", "proximity"]
+      }],
+      /**
+       * Touch Action
+       * @see https://tailwindcss.com/docs/touch-action
+       */
+      touch: [{
+        touch: ["auto", "none", "manipulation"]
+      }],
+      /**
+       * Touch Action X
+       * @see https://tailwindcss.com/docs/touch-action
+       */
+      "touch-x": [{
+        "touch-pan": ["x", "left", "right"]
+      }],
+      /**
+       * Touch Action Y
+       * @see https://tailwindcss.com/docs/touch-action
+       */
+      "touch-y": [{
+        "touch-pan": ["y", "up", "down"]
+      }],
+      /**
+       * Touch Action Pinch Zoom
+       * @see https://tailwindcss.com/docs/touch-action
+       */
+      "touch-pz": ["touch-pinch-zoom"],
+      /**
+       * User Select
+       * @see https://tailwindcss.com/docs/user-select
+       */
+      select: [{
+        select: ["none", "text", "all", "auto"]
+      }],
+      /**
+       * Will Change
+       * @see https://tailwindcss.com/docs/will-change
+       */
+      "will-change": [{
+        "will-change": ["auto", "scroll", "contents", "transform", isArbitraryVariable, isArbitraryValue]
+      }],
+      // -----------
+      // --- SVG ---
+      // -----------
+      /**
+       * Fill
+       * @see https://tailwindcss.com/docs/fill
+       */
+      fill: [{
+        fill: ["none", ...scaleColor()]
+      }],
+      /**
+       * Stroke Width
+       * @see https://tailwindcss.com/docs/stroke-width
+       */
+      "stroke-w": [{
+        stroke: [isNumber, isArbitraryVariableLength, isArbitraryLength, isArbitraryNumber]
+      }],
+      /**
+       * Stroke
+       * @see https://tailwindcss.com/docs/stroke
+       */
+      stroke: [{
+        stroke: ["none", ...scaleColor()]
+      }],
+      // ---------------------
+      // --- Accessibility ---
+      // ---------------------
+      /**
+       * Forced Color Adjust
+       * @see https://tailwindcss.com/docs/forced-color-adjust
+       */
+      "forced-color-adjust": [{
+        "forced-color-adjust": ["auto", "none"]
+      }]
+    },
+    conflictingClassGroups: {
+      overflow: ["overflow-x", "overflow-y"],
+      overscroll: ["overscroll-x", "overscroll-y"],
+      inset: ["inset-x", "inset-y", "start", "end", "top", "right", "bottom", "left"],
+      "inset-x": ["right", "left"],
+      "inset-y": ["top", "bottom"],
+      flex: ["basis", "grow", "shrink"],
+      gap: ["gap-x", "gap-y"],
+      p: ["px", "py", "ps", "pe", "pt", "pr", "pb", "pl"],
+      px: ["pr", "pl"],
+      py: ["pt", "pb"],
+      m: ["mx", "my", "ms", "me", "mt", "mr", "mb", "ml"],
+      mx: ["mr", "ml"],
+      my: ["mt", "mb"],
+      size: ["w", "h"],
+      "font-size": ["leading"],
+      "fvn-normal": ["fvn-ordinal", "fvn-slashed-zero", "fvn-figure", "fvn-spacing", "fvn-fraction"],
+      "fvn-ordinal": ["fvn-normal"],
+      "fvn-slashed-zero": ["fvn-normal"],
+      "fvn-figure": ["fvn-normal"],
+      "fvn-spacing": ["fvn-normal"],
+      "fvn-fraction": ["fvn-normal"],
+      "line-clamp": ["display", "overflow"],
+      rounded: ["rounded-s", "rounded-e", "rounded-t", "rounded-r", "rounded-b", "rounded-l", "rounded-ss", "rounded-se", "rounded-ee", "rounded-es", "rounded-tl", "rounded-tr", "rounded-br", "rounded-bl"],
+      "rounded-s": ["rounded-ss", "rounded-es"],
+      "rounded-e": ["rounded-se", "rounded-ee"],
+      "rounded-t": ["rounded-tl", "rounded-tr"],
+      "rounded-r": ["rounded-tr", "rounded-br"],
+      "rounded-b": ["rounded-br", "rounded-bl"],
+      "rounded-l": ["rounded-tl", "rounded-bl"],
+      "border-spacing": ["border-spacing-x", "border-spacing-y"],
+      "border-w": ["border-w-s", "border-w-e", "border-w-t", "border-w-r", "border-w-b", "border-w-l"],
+      "border-w-x": ["border-w-r", "border-w-l"],
+      "border-w-y": ["border-w-t", "border-w-b"],
+      "border-color": ["border-color-s", "border-color-e", "border-color-t", "border-color-r", "border-color-b", "border-color-l"],
+      "border-color-x": ["border-color-r", "border-color-l"],
+      "border-color-y": ["border-color-t", "border-color-b"],
+      translate: ["translate-x", "translate-y", "translate-none"],
+      "translate-none": ["translate", "translate-x", "translate-y", "translate-z"],
+      "scroll-m": ["scroll-mx", "scroll-my", "scroll-ms", "scroll-me", "scroll-mt", "scroll-mr", "scroll-mb", "scroll-ml"],
+      "scroll-mx": ["scroll-mr", "scroll-ml"],
+      "scroll-my": ["scroll-mt", "scroll-mb"],
+      "scroll-p": ["scroll-px", "scroll-py", "scroll-ps", "scroll-pe", "scroll-pt", "scroll-pr", "scroll-pb", "scroll-pl"],
+      "scroll-px": ["scroll-pr", "scroll-pl"],
+      "scroll-py": ["scroll-pt", "scroll-pb"],
+      touch: ["touch-x", "touch-y", "touch-pz"],
+      "touch-x": ["touch"],
+      "touch-y": ["touch"],
+      "touch-pz": ["touch"]
+    },
+    conflictingClassGroupModifiers: {
+      "font-size": ["leading"]
+    },
+    orderSensitiveModifiers: ["before", "after", "placeholder", "file", "marker", "selection", "first-line", "first-letter", "backdrop", "*", "**"]
+  };
+};
+var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
+
+// node_modules/decimal.js/decimal.mjs
+var EXP_LIMIT = 9e15;
+var MAX_DIGITS = 1e9;
+var NUMERALS = "0123456789abcdef";
+var LN10 = "2.3025850929940456840179914546843642076011014886287729760333279009675726096773524802359972050895982983419677840422862486334095254650828067566662873690987816894829072083255546808437998948262331985283935053089653777326288461633662222876982198867465436674744042432743651550489343149393914796194044002221051017141748003688084012647080685567743216228355220114804663715659121373450747856947683463616792101806445070648000277502684916746550586856935673420670581136429224554405758925724208241314695689016758940256776311356919292033376587141660230105703089634572075440370847469940168269282808481184289314848524948644871927809676271275775397027668605952496716674183485704422507197965004714951050492214776567636938662976979522110718264549734772662425709429322582798502585509785265383207606726317164309505995087807523710333101197857547331541421808427543863591778117054309827482385045648019095610299291824318237525357709750539565187697510374970888692180205189339507238539205144634197265287286965110862571492198849978748873771345686209167058";
+var PI = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632789";
+var DEFAULTS = {
+  // These values must be integers within the stated ranges (inclusive).
+  // Most of these values can be changed at run-time using the `Decimal.config` method.
+  // The maximum number of significant digits of the result of a calculation or base conversion.
+  // E.g. `Decimal.config({ precision: 20 });`
+  precision: 20,
+  // 1 to MAX_DIGITS
+  // The rounding mode used when rounding to `precision`.
+  //
+  // ROUND_UP         0 Away from zero.
+  // ROUND_DOWN       1 Towards zero.
+  // ROUND_CEIL       2 Towards +Infinity.
+  // ROUND_FLOOR      3 Towards -Infinity.
+  // ROUND_HALF_UP    4 Towards nearest neighbour. If equidistant, up.
+  // ROUND_HALF_DOWN  5 Towards nearest neighbour. If equidistant, down.
+  // ROUND_HALF_EVEN  6 Towards nearest neighbour. If equidistant, towards even neighbour.
+  // ROUND_HALF_CEIL  7 Towards nearest neighbour. If equidistant, towards +Infinity.
+  // ROUND_HALF_FLOOR 8 Towards nearest neighbour. If equidistant, towards -Infinity.
+  //
+  // E.g.
+  // `Decimal.rounding = 4;`
+  // `Decimal.rounding = Decimal.ROUND_HALF_UP;`
+  rounding: 4,
+  // 0 to 8
+  // The modulo mode used when calculating the modulus: a mod n.
+  // The quotient (q = a / n) is calculated according to the corresponding rounding mode.
+  // The remainder (r) is calculated as: r = a - n * q.
+  //
+  // UP         0 The remainder is positive if the dividend is negative, else is negative.
+  // DOWN       1 The remainder has the same sign as the dividend (JavaScript %).
+  // FLOOR      3 The remainder has the same sign as the divisor (Python %).
+  // HALF_EVEN  6 The IEEE 754 remainder function.
+  // EUCLID     9 Euclidian division. q = sign(n) * floor(a / abs(n)). Always positive.
+  //
+  // Truncated division (1), floored division (3), the IEEE 754 remainder (6), and Euclidian
+  // division (9) are commonly used for the modulus operation. The other rounding modes can also
+  // be used, but they may not give useful results.
+  modulo: 1,
+  // 0 to 9
+  // The exponent value at and beneath which `toString` returns exponential notation.
+  // JavaScript numbers: -7
+  toExpNeg: -7,
+  // 0 to -EXP_LIMIT
+  // The exponent value at and above which `toString` returns exponential notation.
+  // JavaScript numbers: 21
+  toExpPos: 21,
+  // 0 to EXP_LIMIT
+  // The minimum exponent value, beneath which underflow to zero occurs.
+  // JavaScript numbers: -324  (5e-324)
+  minE: -EXP_LIMIT,
+  // -1 to -EXP_LIMIT
+  // The maximum exponent value, above which overflow to Infinity occurs.
+  // JavaScript numbers: 308  (1.7976931348623157e+308)
+  maxE: EXP_LIMIT,
+  // 1 to EXP_LIMIT
+  // Whether to use cryptographically-secure random number generation, if available.
+  crypto: false
+  // true/false
+};
+var inexact;
+var quadrant;
+var external = true;
+var decimalError = "[DecimalError] ";
+var invalidArgument = decimalError + "Invalid argument: ";
+var precisionLimitExceeded = decimalError + "Precision limit exceeded";
+var cryptoUnavailable = decimalError + "crypto unavailable";
+var tag = "[object Decimal]";
+var mathfloor = Math.floor;
+var mathpow = Math.pow;
+var isBinary = /^0b([01]+(\.[01]*)?|\.[01]+)(p[+-]?\d+)?$/i;
+var isHex = /^0x([0-9a-f]+(\.[0-9a-f]*)?|\.[0-9a-f]+)(p[+-]?\d+)?$/i;
+var isOctal = /^0o([0-7]+(\.[0-7]*)?|\.[0-7]+)(p[+-]?\d+)?$/i;
+var isDecimal = /^(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
+var BASE = 1e7;
+var LOG_BASE = 7;
+var MAX_SAFE_INTEGER = 9007199254740991;
+var LN10_PRECISION = LN10.length - 1;
+var PI_PRECISION = PI.length - 1;
+var P = { toStringTag: tag };
+P.absoluteValue = P.abs = function() {
+  var x = new this.constructor(this);
+  if (x.s < 0) x.s = 1;
+  return finalise(x);
+};
+P.ceil = function() {
+  return finalise(new this.constructor(this), this.e + 1, 2);
+};
+P.clampedTo = P.clamp = function(min2, max2) {
+  var k, x = this, Ctor = x.constructor;
+  min2 = new Ctor(min2);
+  max2 = new Ctor(max2);
+  if (!min2.s || !max2.s) return new Ctor(NaN);
+  if (min2.gt(max2)) throw Error(invalidArgument + max2);
+  k = x.cmp(min2);
+  return k < 0 ? min2 : x.cmp(max2) > 0 ? max2 : new Ctor(x);
+};
+P.comparedTo = P.cmp = function(y) {
+  var i, j, xdL, ydL, x = this, xd = x.d, yd = (y = new x.constructor(y)).d, xs = x.s, ys = y.s;
+  if (!xd || !yd) {
+    return !xs || !ys ? NaN : xs !== ys ? xs : xd === yd ? 0 : !xd ^ xs < 0 ? 1 : -1;
+  }
+  if (!xd[0] || !yd[0]) return xd[0] ? xs : yd[0] ? -ys : 0;
+  if (xs !== ys) return xs;
+  if (x.e !== y.e) return x.e > y.e ^ xs < 0 ? 1 : -1;
+  xdL = xd.length;
+  ydL = yd.length;
+  for (i = 0, j = xdL < ydL ? xdL : ydL; i < j; ++i) {
+    if (xd[i] !== yd[i]) return xd[i] > yd[i] ^ xs < 0 ? 1 : -1;
+  }
+  return xdL === ydL ? 0 : xdL > ydL ^ xs < 0 ? 1 : -1;
+};
+P.cosine = P.cos = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (!x.d) return new Ctor(NaN);
+  if (!x.d[0]) return new Ctor(1);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
+  Ctor.rounding = 1;
+  x = cosine(Ctor, toLessThanHalfPi(Ctor, x));
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return finalise(quadrant == 2 || quadrant == 3 ? x.neg() : x, pr, rm, true);
+};
+P.cubeRoot = P.cbrt = function() {
+  var e, m, n, r, rep, s, sd, t, t3, t3plusx, x = this, Ctor = x.constructor;
+  if (!x.isFinite() || x.isZero()) return new Ctor(x);
+  external = false;
+  s = x.s * mathpow(x.s * x, 1 / 3);
+  if (!s || Math.abs(s) == 1 / 0) {
+    n = digitsToString(x.d);
+    e = x.e;
+    if (s = (e - n.length + 1) % 3) n += s == 1 || s == -2 ? "0" : "00";
+    s = mathpow(n, 1 / 3);
+    e = mathfloor((e + 1) / 3) - (e % 3 == (e < 0 ? -1 : 2));
+    if (s == 1 / 0) {
+      n = "5e" + e;
+    } else {
+      n = s.toExponential();
+      n = n.slice(0, n.indexOf("e") + 1) + e;
+    }
+    r = new Ctor(n);
+    r.s = x.s;
+  } else {
+    r = new Ctor(s.toString());
+  }
+  sd = (e = Ctor.precision) + 3;
+  for (; ; ) {
+    t = r;
+    t3 = t.times(t).times(t);
+    t3plusx = t3.plus(x);
+    r = divide(t3plusx.plus(x).times(t), t3plusx.plus(t3), sd + 2, 1);
+    if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
+      n = n.slice(sd - 3, sd + 1);
+      if (n == "9999" || !rep && n == "4999") {
+        if (!rep) {
+          finalise(t, e + 1, 0);
+          if (t.times(t).times(t).eq(x)) {
+            r = t;
+            break;
+          }
+        }
+        sd += 4;
+        rep = 1;
+      } else {
+        if (!+n || !+n.slice(1) && n.charAt(0) == "5") {
+          finalise(r, e + 1, 1);
+          m = !r.times(r).times(r).eq(x);
+        }
+        break;
+      }
+    }
+  }
+  external = true;
+  return finalise(r, e, Ctor.rounding, m);
+};
+P.decimalPlaces = P.dp = function() {
+  var w, d = this.d, n = NaN;
+  if (d) {
+    w = d.length - 1;
+    n = (w - mathfloor(this.e / LOG_BASE)) * LOG_BASE;
+    w = d[w];
+    if (w) for (; w % 10 == 0; w /= 10) n--;
+    if (n < 0) n = 0;
+  }
+  return n;
+};
+P.dividedBy = P.div = function(y) {
+  return divide(this, new this.constructor(y));
+};
+P.dividedToIntegerBy = P.divToInt = function(y) {
+  var x = this, Ctor = x.constructor;
+  return finalise(divide(x, new Ctor(y), 0, 1, 1), Ctor.precision, Ctor.rounding);
+};
+P.equals = P.eq = function(y) {
+  return this.cmp(y) === 0;
+};
+P.floor = function() {
+  return finalise(new this.constructor(this), this.e + 1, 3);
+};
+P.greaterThan = P.gt = function(y) {
+  return this.cmp(y) > 0;
+};
+P.greaterThanOrEqualTo = P.gte = function(y) {
+  var k = this.cmp(y);
+  return k == 1 || k === 0;
+};
+P.hyperbolicCosine = P.cosh = function() {
+  var k, n, pr, rm, len, x = this, Ctor = x.constructor, one = new Ctor(1);
+  if (!x.isFinite()) return new Ctor(x.s ? 1 / 0 : NaN);
+  if (x.isZero()) return one;
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + Math.max(x.e, x.sd()) + 4;
+  Ctor.rounding = 1;
+  len = x.d.length;
+  if (len < 32) {
+    k = Math.ceil(len / 3);
+    n = (1 / tinyPow(4, k)).toString();
+  } else {
+    k = 16;
+    n = "2.3283064365386962890625e-10";
+  }
+  x = taylorSeries(Ctor, 1, x.times(n), new Ctor(1), true);
+  var cosh2_x, i = k, d8 = new Ctor(8);
+  for (; i--; ) {
+    cosh2_x = x.times(x);
+    x = one.minus(cosh2_x.times(d8.minus(cosh2_x.times(d8))));
+  }
+  return finalise(x, Ctor.precision = pr, Ctor.rounding = rm, true);
+};
+P.hyperbolicSine = P.sinh = function() {
+  var k, pr, rm, len, x = this, Ctor = x.constructor;
+  if (!x.isFinite() || x.isZero()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + Math.max(x.e, x.sd()) + 4;
+  Ctor.rounding = 1;
+  len = x.d.length;
+  if (len < 3) {
+    x = taylorSeries(Ctor, 2, x, x, true);
+  } else {
+    k = 1.4 * Math.sqrt(len);
+    k = k > 16 ? 16 : k | 0;
+    x = x.times(1 / tinyPow(5, k));
+    x = taylorSeries(Ctor, 2, x, x, true);
+    var sinh2_x, d5 = new Ctor(5), d16 = new Ctor(16), d20 = new Ctor(20);
+    for (; k--; ) {
+      sinh2_x = x.times(x);
+      x = x.times(d5.plus(sinh2_x.times(d16.times(sinh2_x).plus(d20))));
+    }
+  }
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return finalise(x, pr, rm, true);
+};
+P.hyperbolicTangent = P.tanh = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (!x.isFinite()) return new Ctor(x.s);
+  if (x.isZero()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + 7;
+  Ctor.rounding = 1;
+  return divide(x.sinh(), x.cosh(), Ctor.precision = pr, Ctor.rounding = rm);
+};
+P.inverseCosine = P.acos = function() {
+  var x = this, Ctor = x.constructor, k = x.abs().cmp(1), pr = Ctor.precision, rm = Ctor.rounding;
+  if (k !== -1) {
+    return k === 0 ? x.isNeg() ? getPi(Ctor, pr, rm) : new Ctor(0) : new Ctor(NaN);
+  }
+  if (x.isZero()) return getPi(Ctor, pr + 4, rm).times(0.5);
+  Ctor.precision = pr + 6;
+  Ctor.rounding = 1;
+  x = new Ctor(1).minus(x).div(x.plus(1)).sqrt().atan();
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return x.times(2);
+};
+P.inverseHyperbolicCosine = P.acosh = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (x.lte(1)) return new Ctor(x.eq(1) ? 0 : NaN);
+  if (!x.isFinite()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + Math.max(Math.abs(x.e), x.sd()) + 4;
+  Ctor.rounding = 1;
+  external = false;
+  x = x.times(x).minus(1).sqrt().plus(x);
+  external = true;
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return x.ln();
+};
+P.inverseHyperbolicSine = P.asinh = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (!x.isFinite() || x.isZero()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + 2 * Math.max(Math.abs(x.e), x.sd()) + 6;
+  Ctor.rounding = 1;
+  external = false;
+  x = x.times(x).plus(1).sqrt().plus(x);
+  external = true;
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return x.ln();
+};
+P.inverseHyperbolicTangent = P.atanh = function() {
+  var pr, rm, wpr, xsd, x = this, Ctor = x.constructor;
+  if (!x.isFinite()) return new Ctor(NaN);
+  if (x.e >= 0) return new Ctor(x.abs().eq(1) ? x.s / 0 : x.isZero() ? x : NaN);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  xsd = x.sd();
+  if (Math.max(xsd, pr) < 2 * -x.e - 1) return finalise(new Ctor(x), pr, rm, true);
+  Ctor.precision = wpr = xsd - x.e;
+  x = divide(x.plus(1), new Ctor(1).minus(x), wpr + pr, 1);
+  Ctor.precision = pr + 4;
+  Ctor.rounding = 1;
+  x = x.ln();
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return x.times(0.5);
+};
+P.inverseSine = P.asin = function() {
+  var halfPi, k, pr, rm, x = this, Ctor = x.constructor;
+  if (x.isZero()) return new Ctor(x);
+  k = x.abs().cmp(1);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  if (k !== -1) {
+    if (k === 0) {
+      halfPi = getPi(Ctor, pr + 4, rm).times(0.5);
+      halfPi.s = x.s;
+      return halfPi;
+    }
+    return new Ctor(NaN);
+  }
+  Ctor.precision = pr + 6;
+  Ctor.rounding = 1;
+  x = x.div(new Ctor(1).minus(x.times(x)).sqrt().plus(1)).atan();
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return x.times(2);
+};
+P.inverseTangent = P.atan = function() {
+  var i, j, k, n, px, t, r, wpr, x2, x = this, Ctor = x.constructor, pr = Ctor.precision, rm = Ctor.rounding;
+  if (!x.isFinite()) {
+    if (!x.s) return new Ctor(NaN);
+    if (pr + 4 <= PI_PRECISION) {
+      r = getPi(Ctor, pr + 4, rm).times(0.5);
+      r.s = x.s;
+      return r;
+    }
+  } else if (x.isZero()) {
+    return new Ctor(x);
+  } else if (x.abs().eq(1) && pr + 4 <= PI_PRECISION) {
+    r = getPi(Ctor, pr + 4, rm).times(0.25);
+    r.s = x.s;
+    return r;
+  }
+  Ctor.precision = wpr = pr + 10;
+  Ctor.rounding = 1;
+  k = Math.min(28, wpr / LOG_BASE + 2 | 0);
+  for (i = k; i; --i) x = x.div(x.times(x).plus(1).sqrt().plus(1));
+  external = false;
+  j = Math.ceil(wpr / LOG_BASE);
+  n = 1;
+  x2 = x.times(x);
+  r = new Ctor(x);
+  px = x;
+  for (; i !== -1; ) {
+    px = px.times(x2);
+    t = r.minus(px.div(n += 2));
+    px = px.times(x2);
+    r = t.plus(px.div(n += 2));
+    if (r.d[j] !== void 0) for (i = j; r.d[i] === t.d[i] && i--; ) ;
+  }
+  if (k) r = r.times(2 << k - 1);
+  external = true;
+  return finalise(r, Ctor.precision = pr, Ctor.rounding = rm, true);
+};
+P.isFinite = function() {
+  return !!this.d;
+};
+P.isInteger = P.isInt = function() {
+  return !!this.d && mathfloor(this.e / LOG_BASE) > this.d.length - 2;
+};
+P.isNaN = function() {
+  return !this.s;
+};
+P.isNegative = P.isNeg = function() {
+  return this.s < 0;
+};
+P.isPositive = P.isPos = function() {
+  return this.s > 0;
+};
+P.isZero = function() {
+  return !!this.d && this.d[0] === 0;
+};
+P.lessThan = P.lt = function(y) {
+  return this.cmp(y) < 0;
+};
+P.lessThanOrEqualTo = P.lte = function(y) {
+  return this.cmp(y) < 1;
+};
+P.logarithm = P.log = function(base) {
+  var isBase10, d, denominator, k, inf, num, sd, r, arg = this, Ctor = arg.constructor, pr = Ctor.precision, rm = Ctor.rounding, guard = 5;
+  if (base == null) {
+    base = new Ctor(10);
+    isBase10 = true;
+  } else {
+    base = new Ctor(base);
+    d = base.d;
+    if (base.s < 0 || !d || !d[0] || base.eq(1)) return new Ctor(NaN);
+    isBase10 = base.eq(10);
+  }
+  d = arg.d;
+  if (arg.s < 0 || !d || !d[0] || arg.eq(1)) {
+    return new Ctor(d && !d[0] ? -1 / 0 : arg.s != 1 ? NaN : d ? 0 : 1 / 0);
+  }
+  if (isBase10) {
+    if (d.length > 1) {
+      inf = true;
+    } else {
+      for (k = d[0]; k % 10 === 0; ) k /= 10;
+      inf = k !== 1;
+    }
+  }
+  external = false;
+  sd = pr + guard;
+  num = naturalLogarithm(arg, sd);
+  denominator = isBase10 ? getLn10(Ctor, sd + 10) : naturalLogarithm(base, sd);
+  r = divide(num, denominator, sd, 1);
+  if (checkRoundingDigits(r.d, k = pr, rm)) {
+    do {
+      sd += 10;
+      num = naturalLogarithm(arg, sd);
+      denominator = isBase10 ? getLn10(Ctor, sd + 10) : naturalLogarithm(base, sd);
+      r = divide(num, denominator, sd, 1);
+      if (!inf) {
+        if (+digitsToString(r.d).slice(k + 1, k + 15) + 1 == 1e14) {
+          r = finalise(r, pr + 1, 0);
+        }
+        break;
+      }
+    } while (checkRoundingDigits(r.d, k += 10, rm));
+  }
+  external = true;
+  return finalise(r, pr, rm);
+};
+P.minus = P.sub = function(y) {
+  var d, e, i, j, k, len, pr, rm, xd, xe, xLTy, yd, x = this, Ctor = x.constructor;
+  y = new Ctor(y);
+  if (!x.d || !y.d) {
+    if (!x.s || !y.s) y = new Ctor(NaN);
+    else if (x.d) y.s = -y.s;
+    else y = new Ctor(y.d || x.s !== y.s ? x : NaN);
+    return y;
+  }
+  if (x.s != y.s) {
+    y.s = -y.s;
+    return x.plus(y);
+  }
+  xd = x.d;
+  yd = y.d;
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  if (!xd[0] || !yd[0]) {
+    if (yd[0]) y.s = -y.s;
+    else if (xd[0]) y = new Ctor(x);
+    else return new Ctor(rm === 3 ? -0 : 0);
+    return external ? finalise(y, pr, rm) : y;
+  }
+  e = mathfloor(y.e / LOG_BASE);
+  xe = mathfloor(x.e / LOG_BASE);
+  xd = xd.slice();
+  k = xe - e;
+  if (k) {
+    xLTy = k < 0;
+    if (xLTy) {
+      d = xd;
+      k = -k;
+      len = yd.length;
+    } else {
+      d = yd;
+      e = xe;
+      len = xd.length;
+    }
+    i = Math.max(Math.ceil(pr / LOG_BASE), len) + 2;
+    if (k > i) {
+      k = i;
+      d.length = 1;
+    }
+    d.reverse();
+    for (i = k; i--; ) d.push(0);
+    d.reverse();
+  } else {
+    i = xd.length;
+    len = yd.length;
+    xLTy = i < len;
+    if (xLTy) len = i;
+    for (i = 0; i < len; i++) {
+      if (xd[i] != yd[i]) {
+        xLTy = xd[i] < yd[i];
+        break;
+      }
+    }
+    k = 0;
+  }
+  if (xLTy) {
+    d = xd;
+    xd = yd;
+    yd = d;
+    y.s = -y.s;
+  }
+  len = xd.length;
+  for (i = yd.length - len; i > 0; --i) xd[len++] = 0;
+  for (i = yd.length; i > k; ) {
+    if (xd[--i] < yd[i]) {
+      for (j = i; j && xd[--j] === 0; ) xd[j] = BASE - 1;
+      --xd[j];
+      xd[i] += BASE;
+    }
+    xd[i] -= yd[i];
+  }
+  for (; xd[--len] === 0; ) xd.pop();
+  for (; xd[0] === 0; xd.shift()) --e;
+  if (!xd[0]) return new Ctor(rm === 3 ? -0 : 0);
+  y.d = xd;
+  y.e = getBase10Exponent(xd, e);
+  return external ? finalise(y, pr, rm) : y;
+};
+P.modulo = P.mod = function(y) {
+  var q, x = this, Ctor = x.constructor;
+  y = new Ctor(y);
+  if (!x.d || !y.s || y.d && !y.d[0]) return new Ctor(NaN);
+  if (!y.d || x.d && !x.d[0]) {
+    return finalise(new Ctor(x), Ctor.precision, Ctor.rounding);
+  }
+  external = false;
+  if (Ctor.modulo == 9) {
+    q = divide(x, y.abs(), 0, 3, 1);
+    q.s *= y.s;
+  } else {
+    q = divide(x, y, 0, Ctor.modulo, 1);
+  }
+  q = q.times(y);
+  external = true;
+  return x.minus(q);
+};
+P.naturalExponential = P.exp = function() {
+  return naturalExponential(this);
+};
+P.naturalLogarithm = P.ln = function() {
+  return naturalLogarithm(this);
+};
+P.negated = P.neg = function() {
+  var x = new this.constructor(this);
+  x.s = -x.s;
+  return finalise(x);
+};
+P.plus = P.add = function(y) {
+  var carry, d, e, i, k, len, pr, rm, xd, yd, x = this, Ctor = x.constructor;
+  y = new Ctor(y);
+  if (!x.d || !y.d) {
+    if (!x.s || !y.s) y = new Ctor(NaN);
+    else if (!x.d) y = new Ctor(y.d || x.s === y.s ? x : NaN);
+    return y;
+  }
+  if (x.s != y.s) {
+    y.s = -y.s;
+    return x.minus(y);
+  }
+  xd = x.d;
+  yd = y.d;
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  if (!xd[0] || !yd[0]) {
+    if (!yd[0]) y = new Ctor(x);
+    return external ? finalise(y, pr, rm) : y;
+  }
+  k = mathfloor(x.e / LOG_BASE);
+  e = mathfloor(y.e / LOG_BASE);
+  xd = xd.slice();
+  i = k - e;
+  if (i) {
+    if (i < 0) {
+      d = xd;
+      i = -i;
+      len = yd.length;
+    } else {
+      d = yd;
+      e = k;
+      len = xd.length;
+    }
+    k = Math.ceil(pr / LOG_BASE);
+    len = k > len ? k + 1 : len + 1;
+    if (i > len) {
+      i = len;
+      d.length = 1;
+    }
+    d.reverse();
+    for (; i--; ) d.push(0);
+    d.reverse();
+  }
+  len = xd.length;
+  i = yd.length;
+  if (len - i < 0) {
+    i = len;
+    d = yd;
+    yd = xd;
+    xd = d;
+  }
+  for (carry = 0; i; ) {
+    carry = (xd[--i] = xd[i] + yd[i] + carry) / BASE | 0;
+    xd[i] %= BASE;
+  }
+  if (carry) {
+    xd.unshift(carry);
+    ++e;
+  }
+  for (len = xd.length; xd[--len] == 0; ) xd.pop();
+  y.d = xd;
+  y.e = getBase10Exponent(xd, e);
+  return external ? finalise(y, pr, rm) : y;
+};
+P.precision = P.sd = function(z) {
+  var k, x = this;
+  if (z !== void 0 && z !== !!z && z !== 1 && z !== 0) throw Error(invalidArgument + z);
+  if (x.d) {
+    k = getPrecision(x.d);
+    if (z && x.e + 1 > k) k = x.e + 1;
+  } else {
+    k = NaN;
+  }
+  return k;
+};
+P.round = function() {
+  var x = this, Ctor = x.constructor;
+  return finalise(new Ctor(x), x.e + 1, Ctor.rounding);
+};
+P.sine = P.sin = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (!x.isFinite()) return new Ctor(NaN);
+  if (x.isZero()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + Math.max(x.e, x.sd()) + LOG_BASE;
+  Ctor.rounding = 1;
+  x = sine(Ctor, toLessThanHalfPi(Ctor, x));
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return finalise(quadrant > 2 ? x.neg() : x, pr, rm, true);
+};
+P.squareRoot = P.sqrt = function() {
+  var m, n, sd, r, rep, t, x = this, d = x.d, e = x.e, s = x.s, Ctor = x.constructor;
+  if (s !== 1 || !d || !d[0]) {
+    return new Ctor(!s || s < 0 && (!d || d[0]) ? NaN : d ? x : 1 / 0);
+  }
+  external = false;
+  s = Math.sqrt(+x);
+  if (s == 0 || s == 1 / 0) {
+    n = digitsToString(d);
+    if ((n.length + e) % 2 == 0) n += "0";
+    s = Math.sqrt(n);
+    e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
+    if (s == 1 / 0) {
+      n = "5e" + e;
+    } else {
+      n = s.toExponential();
+      n = n.slice(0, n.indexOf("e") + 1) + e;
+    }
+    r = new Ctor(n);
+  } else {
+    r = new Ctor(s.toString());
+  }
+  sd = (e = Ctor.precision) + 3;
+  for (; ; ) {
+    t = r;
+    r = t.plus(divide(x, t, sd + 2, 1)).times(0.5);
+    if (digitsToString(t.d).slice(0, sd) === (n = digitsToString(r.d)).slice(0, sd)) {
+      n = n.slice(sd - 3, sd + 1);
+      if (n == "9999" || !rep && n == "4999") {
+        if (!rep) {
+          finalise(t, e + 1, 0);
+          if (t.times(t).eq(x)) {
+            r = t;
+            break;
+          }
+        }
+        sd += 4;
+        rep = 1;
+      } else {
+        if (!+n || !+n.slice(1) && n.charAt(0) == "5") {
+          finalise(r, e + 1, 1);
+          m = !r.times(r).eq(x);
+        }
+        break;
+      }
+    }
+  }
+  external = true;
+  return finalise(r, e, Ctor.rounding, m);
+};
+P.tangent = P.tan = function() {
+  var pr, rm, x = this, Ctor = x.constructor;
+  if (!x.isFinite()) return new Ctor(NaN);
+  if (x.isZero()) return new Ctor(x);
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  Ctor.precision = pr + 10;
+  Ctor.rounding = 1;
+  x = x.sin();
+  x.s = 1;
+  x = divide(x, new Ctor(1).minus(x.times(x)).sqrt(), pr + 10, 0);
+  Ctor.precision = pr;
+  Ctor.rounding = rm;
+  return finalise(quadrant == 2 || quadrant == 4 ? x.neg() : x, pr, rm, true);
+};
+P.times = P.mul = function(y) {
+  var carry, e, i, k, r, rL, t, xdL, ydL, x = this, Ctor = x.constructor, xd = x.d, yd = (y = new Ctor(y)).d;
+  y.s *= x.s;
+  if (!xd || !xd[0] || !yd || !yd[0]) {
+    return new Ctor(!y.s || xd && !xd[0] && !yd || yd && !yd[0] && !xd ? NaN : !xd || !yd ? y.s / 0 : y.s * 0);
+  }
+  e = mathfloor(x.e / LOG_BASE) + mathfloor(y.e / LOG_BASE);
+  xdL = xd.length;
+  ydL = yd.length;
+  if (xdL < ydL) {
+    r = xd;
+    xd = yd;
+    yd = r;
+    rL = xdL;
+    xdL = ydL;
+    ydL = rL;
+  }
+  r = [];
+  rL = xdL + ydL;
+  for (i = rL; i--; ) r.push(0);
+  for (i = ydL; --i >= 0; ) {
+    carry = 0;
+    for (k = xdL + i; k > i; ) {
+      t = r[k] + yd[i] * xd[k - i - 1] + carry;
+      r[k--] = t % BASE | 0;
+      carry = t / BASE | 0;
+    }
+    r[k] = (r[k] + carry) % BASE | 0;
+  }
+  for (; !r[--rL]; ) r.pop();
+  if (carry) ++e;
+  else r.shift();
+  y.d = r;
+  y.e = getBase10Exponent(r, e);
+  return external ? finalise(y, Ctor.precision, Ctor.rounding) : y;
+};
+P.toBinary = function(sd, rm) {
+  return toStringBinary(this, 2, sd, rm);
+};
+P.toDecimalPlaces = P.toDP = function(dp, rm) {
+  var x = this, Ctor = x.constructor;
+  x = new Ctor(x);
+  if (dp === void 0) return x;
+  checkInt32(dp, 0, MAX_DIGITS);
+  if (rm === void 0) rm = Ctor.rounding;
+  else checkInt32(rm, 0, 8);
+  return finalise(x, dp + x.e + 1, rm);
+};
+P.toExponential = function(dp, rm) {
+  var str, x = this, Ctor = x.constructor;
+  if (dp === void 0) {
+    str = finiteToString(x, true);
+  } else {
+    checkInt32(dp, 0, MAX_DIGITS);
+    if (rm === void 0) rm = Ctor.rounding;
+    else checkInt32(rm, 0, 8);
+    x = finalise(new Ctor(x), dp + 1, rm);
+    str = finiteToString(x, true, dp + 1);
+  }
+  return x.isNeg() && !x.isZero() ? "-" + str : str;
+};
+P.toFixed = function(dp, rm) {
+  var str, y, x = this, Ctor = x.constructor;
+  if (dp === void 0) {
+    str = finiteToString(x);
+  } else {
+    checkInt32(dp, 0, MAX_DIGITS);
+    if (rm === void 0) rm = Ctor.rounding;
+    else checkInt32(rm, 0, 8);
+    y = finalise(new Ctor(x), dp + x.e + 1, rm);
+    str = finiteToString(y, false, dp + y.e + 1);
+  }
+  return x.isNeg() && !x.isZero() ? "-" + str : str;
+};
+P.toFraction = function(maxD) {
+  var d, d0, d1, d2, e, k, n, n0, n1, pr, q, r, x = this, xd = x.d, Ctor = x.constructor;
+  if (!xd) return new Ctor(x);
+  n1 = d0 = new Ctor(1);
+  d1 = n0 = new Ctor(0);
+  d = new Ctor(d1);
+  e = d.e = getPrecision(xd) - x.e - 1;
+  k = e % LOG_BASE;
+  d.d[0] = mathpow(10, k < 0 ? LOG_BASE + k : k);
+  if (maxD == null) {
+    maxD = e > 0 ? d : n1;
+  } else {
+    n = new Ctor(maxD);
+    if (!n.isInt() || n.lt(n1)) throw Error(invalidArgument + n);
+    maxD = n.gt(d) ? e > 0 ? d : n1 : n;
+  }
+  external = false;
+  n = new Ctor(digitsToString(xd));
+  pr = Ctor.precision;
+  Ctor.precision = e = xd.length * LOG_BASE * 2;
+  for (; ; ) {
+    q = divide(n, d, 0, 1, 1);
+    d2 = d0.plus(q.times(d1));
+    if (d2.cmp(maxD) == 1) break;
+    d0 = d1;
+    d1 = d2;
+    d2 = n1;
+    n1 = n0.plus(q.times(d2));
+    n0 = d2;
+    d2 = d;
+    d = n.minus(q.times(d2));
+    n = d2;
+  }
+  d2 = divide(maxD.minus(d0), d1, 0, 1, 1);
+  n0 = n0.plus(d2.times(n1));
+  d0 = d0.plus(d2.times(d1));
+  n0.s = n1.s = x.s;
+  r = divide(n1, d1, e, 1).minus(x).abs().cmp(divide(n0, d0, e, 1).minus(x).abs()) < 1 ? [n1, d1] : [n0, d0];
+  Ctor.precision = pr;
+  external = true;
+  return r;
+};
+P.toHexadecimal = P.toHex = function(sd, rm) {
+  return toStringBinary(this, 16, sd, rm);
+};
+P.toNearest = function(y, rm) {
+  var x = this, Ctor = x.constructor;
+  x = new Ctor(x);
+  if (y == null) {
+    if (!x.d) return x;
+    y = new Ctor(1);
+    rm = Ctor.rounding;
+  } else {
+    y = new Ctor(y);
+    if (rm === void 0) {
+      rm = Ctor.rounding;
+    } else {
+      checkInt32(rm, 0, 8);
+    }
+    if (!x.d) return y.s ? x : y;
+    if (!y.d) {
+      if (y.s) y.s = x.s;
+      return y;
+    }
+  }
+  if (y.d[0]) {
+    external = false;
+    x = divide(x, y, 0, rm, 1).times(y);
+    external = true;
+    finalise(x);
+  } else {
+    y.s = x.s;
+    x = y;
+  }
+  return x;
+};
+P.toNumber = function() {
+  return +this;
+};
+P.toOctal = function(sd, rm) {
+  return toStringBinary(this, 8, sd, rm);
+};
+P.toPower = P.pow = function(y) {
+  var e, k, pr, r, rm, s, x = this, Ctor = x.constructor, yn = +(y = new Ctor(y));
+  if (!x.d || !y.d || !x.d[0] || !y.d[0]) return new Ctor(mathpow(+x, yn));
+  x = new Ctor(x);
+  if (x.eq(1)) return x;
+  pr = Ctor.precision;
+  rm = Ctor.rounding;
+  if (y.eq(1)) return finalise(x, pr, rm);
+  e = mathfloor(y.e / LOG_BASE);
+  if (e >= y.d.length - 1 && (k = yn < 0 ? -yn : yn) <= MAX_SAFE_INTEGER) {
+    r = intPow(Ctor, x, k, pr);
+    return y.s < 0 ? new Ctor(1).div(r) : finalise(r, pr, rm);
+  }
+  s = x.s;
+  if (s < 0) {
+    if (e < y.d.length - 1) return new Ctor(NaN);
+    if ((y.d[e] & 1) == 0) s = 1;
+    if (x.e == 0 && x.d[0] == 1 && x.d.length == 1) {
+      x.s = s;
+      return x;
+    }
+  }
+  k = mathpow(+x, yn);
+  e = k == 0 || !isFinite(k) ? mathfloor(yn * (Math.log("0." + digitsToString(x.d)) / Math.LN10 + x.e + 1)) : new Ctor(k + "").e;
+  if (e > Ctor.maxE + 1 || e < Ctor.minE - 1) return new Ctor(e > 0 ? s / 0 : 0);
+  external = false;
+  Ctor.rounding = x.s = 1;
+  k = Math.min(12, (e + "").length);
+  r = naturalExponential(y.times(naturalLogarithm(x, pr + k)), pr);
+  if (r.d) {
+    r = finalise(r, pr + 5, 1);
+    if (checkRoundingDigits(r.d, pr, rm)) {
+      e = pr + 10;
+      r = finalise(naturalExponential(y.times(naturalLogarithm(x, e + k)), e), e + 5, 1);
+      if (+digitsToString(r.d).slice(pr + 1, pr + 15) + 1 == 1e14) {
+        r = finalise(r, pr + 1, 0);
+      }
+    }
+  }
+  r.s = s;
+  external = true;
+  Ctor.rounding = rm;
+  return finalise(r, pr, rm);
+};
+P.toPrecision = function(sd, rm) {
+  var str, x = this, Ctor = x.constructor;
+  if (sd === void 0) {
+    str = finiteToString(x, x.e <= Ctor.toExpNeg || x.e >= Ctor.toExpPos);
+  } else {
+    checkInt32(sd, 1, MAX_DIGITS);
+    if (rm === void 0) rm = Ctor.rounding;
+    else checkInt32(rm, 0, 8);
+    x = finalise(new Ctor(x), sd, rm);
+    str = finiteToString(x, sd <= x.e || x.e <= Ctor.toExpNeg, sd);
+  }
+  return x.isNeg() && !x.isZero() ? "-" + str : str;
+};
+P.toSignificantDigits = P.toSD = function(sd, rm) {
+  var x = this, Ctor = x.constructor;
+  if (sd === void 0) {
+    sd = Ctor.precision;
+    rm = Ctor.rounding;
+  } else {
+    checkInt32(sd, 1, MAX_DIGITS);
+    if (rm === void 0) rm = Ctor.rounding;
+    else checkInt32(rm, 0, 8);
+  }
+  return finalise(new Ctor(x), sd, rm);
+};
+P.toString = function() {
+  var x = this, Ctor = x.constructor, str = finiteToString(x, x.e <= Ctor.toExpNeg || x.e >= Ctor.toExpPos);
+  return x.isNeg() && !x.isZero() ? "-" + str : str;
+};
+P.truncated = P.trunc = function() {
+  return finalise(new this.constructor(this), this.e + 1, 1);
+};
+P.valueOf = P.toJSON = function() {
+  var x = this, Ctor = x.constructor, str = finiteToString(x, x.e <= Ctor.toExpNeg || x.e >= Ctor.toExpPos);
+  return x.isNeg() ? "-" + str : str;
+};
+function digitsToString(d) {
+  var i, k, ws, indexOfLastWord = d.length - 1, str = "", w = d[0];
+  if (indexOfLastWord > 0) {
+    str += w;
+    for (i = 1; i < indexOfLastWord; i++) {
+      ws = d[i] + "";
+      k = LOG_BASE - ws.length;
+      if (k) str += getZeroString(k);
+      str += ws;
+    }
+    w = d[i];
+    ws = w + "";
+    k = LOG_BASE - ws.length;
+    if (k) str += getZeroString(k);
+  } else if (w === 0) {
+    return "0";
+  }
+  for (; w % 10 === 0; ) w /= 10;
+  return str + w;
+}
+function checkInt32(i, min2, max2) {
+  if (i !== ~~i || i < min2 || i > max2) {
+    throw Error(invalidArgument + i);
+  }
+}
+function checkRoundingDigits(d, i, rm, repeating) {
+  var di, k, r, rd;
+  for (k = d[0]; k >= 10; k /= 10) --i;
+  if (--i < 0) {
+    i += LOG_BASE;
+    di = 0;
+  } else {
+    di = Math.ceil((i + 1) / LOG_BASE);
+    i %= LOG_BASE;
+  }
+  k = mathpow(10, LOG_BASE - i);
+  rd = d[di] % k | 0;
+  if (repeating == null) {
+    if (i < 3) {
+      if (i == 0) rd = rd / 100 | 0;
+      else if (i == 1) rd = rd / 10 | 0;
+      r = rm < 4 && rd == 99999 || rm > 3 && rd == 49999 || rd == 5e4 || rd == 0;
+    } else {
+      r = (rm < 4 && rd + 1 == k || rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 100 | 0) == mathpow(10, i - 2) - 1 || (rd == k / 2 || rd == 0) && (d[di + 1] / k / 100 | 0) == 0;
+    }
+  } else {
+    if (i < 4) {
+      if (i == 0) rd = rd / 1e3 | 0;
+      else if (i == 1) rd = rd / 100 | 0;
+      else if (i == 2) rd = rd / 10 | 0;
+      r = (repeating || rm < 4) && rd == 9999 || !repeating && rm > 3 && rd == 4999;
+    } else {
+      r = ((repeating || rm < 4) && rd + 1 == k || !repeating && rm > 3 && rd + 1 == k / 2) && (d[di + 1] / k / 1e3 | 0) == mathpow(10, i - 3) - 1;
+    }
+  }
+  return r;
+}
+function convertBase(str, baseIn, baseOut) {
+  var j, arr = [0], arrL, i = 0, strL = str.length;
+  for (; i < strL; ) {
+    for (arrL = arr.length; arrL--; ) arr[arrL] *= baseIn;
+    arr[0] += NUMERALS.indexOf(str.charAt(i++));
+    for (j = 0; j < arr.length; j++) {
+      if (arr[j] > baseOut - 1) {
+        if (arr[j + 1] === void 0) arr[j + 1] = 0;
+        arr[j + 1] += arr[j] / baseOut | 0;
+        arr[j] %= baseOut;
+      }
+    }
+  }
+  return arr.reverse();
+}
+function cosine(Ctor, x) {
+  var k, len, y;
+  if (x.isZero()) return x;
+  len = x.d.length;
+  if (len < 32) {
+    k = Math.ceil(len / 3);
+    y = (1 / tinyPow(4, k)).toString();
+  } else {
+    k = 16;
+    y = "2.3283064365386962890625e-10";
+  }
+  Ctor.precision += k;
+  x = taylorSeries(Ctor, 1, x.times(y), new Ctor(1));
+  for (var i = k; i--; ) {
+    var cos2x = x.times(x);
+    x = cos2x.times(cos2x).minus(cos2x).times(8).plus(1);
+  }
+  Ctor.precision -= k;
+  return x;
+}
+var divide = /* @__PURE__ */ function() {
+  function multiplyInteger(x, k, base) {
+    var temp, carry = 0, i = x.length;
+    for (x = x.slice(); i--; ) {
+      temp = x[i] * k + carry;
+      x[i] = temp % base | 0;
+      carry = temp / base | 0;
+    }
+    if (carry) x.unshift(carry);
+    return x;
+  }
+  function compare(a, b, aL, bL) {
+    var i, r;
+    if (aL != bL) {
+      r = aL > bL ? 1 : -1;
+    } else {
+      for (i = r = 0; i < aL; i++) {
+        if (a[i] != b[i]) {
+          r = a[i] > b[i] ? 1 : -1;
+          break;
+        }
+      }
+    }
+    return r;
+  }
+  function subtract(a, b, aL, base) {
+    var i = 0;
+    for (; aL--; ) {
+      a[aL] -= i;
+      i = a[aL] < b[aL] ? 1 : 0;
+      a[aL] = i * base + a[aL] - b[aL];
+    }
+    for (; !a[0] && a.length > 1; ) a.shift();
+  }
+  return function(x, y, pr, rm, dp, base) {
+    var cmp, e, i, k, logBase, more, prod, prodL, q, qd, rem, remL, rem0, sd, t, xi, xL, yd0, yL, yz, Ctor = x.constructor, sign2 = x.s == y.s ? 1 : -1, xd = x.d, yd = y.d;
+    if (!xd || !xd[0] || !yd || !yd[0]) {
+      return new Ctor(
+        // Return NaN if either NaN, or both Infinity or 0.
+        !x.s || !y.s || (xd ? yd && xd[0] == yd[0] : !yd) ? NaN : (
+          // Return ±0 if x is 0 or y is ±Infinity, or return ±Infinity as y is 0.
+          xd && xd[0] == 0 || !yd ? sign2 * 0 : sign2 / 0
+        )
+      );
+    }
+    if (base) {
+      logBase = 1;
+      e = x.e - y.e;
+    } else {
+      base = BASE;
+      logBase = LOG_BASE;
+      e = mathfloor(x.e / logBase) - mathfloor(y.e / logBase);
+    }
+    yL = yd.length;
+    xL = xd.length;
+    q = new Ctor(sign2);
+    qd = q.d = [];
+    for (i = 0; yd[i] == (xd[i] || 0); i++) ;
+    if (yd[i] > (xd[i] || 0)) e--;
+    if (pr == null) {
+      sd = pr = Ctor.precision;
+      rm = Ctor.rounding;
+    } else if (dp) {
+      sd = pr + (x.e - y.e) + 1;
+    } else {
+      sd = pr;
+    }
+    if (sd < 0) {
+      qd.push(1);
+      more = true;
+    } else {
+      sd = sd / logBase + 2 | 0;
+      i = 0;
+      if (yL == 1) {
+        k = 0;
+        yd = yd[0];
+        sd++;
+        for (; (i < xL || k) && sd--; i++) {
+          t = k * base + (xd[i] || 0);
+          qd[i] = t / yd | 0;
+          k = t % yd | 0;
+        }
+        more = k || i < xL;
+      } else {
+        k = base / (yd[0] + 1) | 0;
+        if (k > 1) {
+          yd = multiplyInteger(yd, k, base);
+          xd = multiplyInteger(xd, k, base);
+          yL = yd.length;
+          xL = xd.length;
+        }
+        xi = yL;
+        rem = xd.slice(0, yL);
+        remL = rem.length;
+        for (; remL < yL; ) rem[remL++] = 0;
+        yz = yd.slice();
+        yz.unshift(0);
+        yd0 = yd[0];
+        if (yd[1] >= base / 2) ++yd0;
+        do {
+          k = 0;
+          cmp = compare(yd, rem, yL, remL);
+          if (cmp < 0) {
+            rem0 = rem[0];
+            if (yL != remL) rem0 = rem0 * base + (rem[1] || 0);
+            k = rem0 / yd0 | 0;
+            if (k > 1) {
+              if (k >= base) k = base - 1;
+              prod = multiplyInteger(yd, k, base);
+              prodL = prod.length;
+              remL = rem.length;
+              cmp = compare(prod, rem, prodL, remL);
+              if (cmp == 1) {
+                k--;
+                subtract(prod, yL < prodL ? yz : yd, prodL, base);
+              }
+            } else {
+              if (k == 0) cmp = k = 1;
+              prod = yd.slice();
+            }
+            prodL = prod.length;
+            if (prodL < remL) prod.unshift(0);
+            subtract(rem, prod, remL, base);
+            if (cmp == -1) {
+              remL = rem.length;
+              cmp = compare(yd, rem, yL, remL);
+              if (cmp < 1) {
+                k++;
+                subtract(rem, yL < remL ? yz : yd, remL, base);
+              }
+            }
+            remL = rem.length;
+          } else if (cmp === 0) {
+            k++;
+            rem = [0];
+          }
+          qd[i++] = k;
+          if (cmp && rem[0]) {
+            rem[remL++] = xd[xi] || 0;
+          } else {
+            rem = [xd[xi]];
+            remL = 1;
+          }
+        } while ((xi++ < xL || rem[0] !== void 0) && sd--);
+        more = rem[0] !== void 0;
+      }
+      if (!qd[0]) qd.shift();
+    }
+    if (logBase == 1) {
+      q.e = e;
+      inexact = more;
+    } else {
+      for (i = 1, k = qd[0]; k >= 10; k /= 10) i++;
+      q.e = i + e * logBase - 1;
+      finalise(q, dp ? pr + q.e + 1 : pr, rm, more);
+    }
+    return q;
+  };
+}();
+function finalise(x, sd, rm, isTruncated) {
+  var digits, i, j, k, rd, roundUp, w, xd, xdi, Ctor = x.constructor;
+  out: if (sd != null) {
+    xd = x.d;
+    if (!xd) return x;
+    for (digits = 1, k = xd[0]; k >= 10; k /= 10) digits++;
+    i = sd - digits;
+    if (i < 0) {
+      i += LOG_BASE;
+      j = sd;
+      w = xd[xdi = 0];
+      rd = w / mathpow(10, digits - j - 1) % 10 | 0;
+    } else {
+      xdi = Math.ceil((i + 1) / LOG_BASE);
+      k = xd.length;
+      if (xdi >= k) {
+        if (isTruncated) {
+          for (; k++ <= xdi; ) xd.push(0);
+          w = rd = 0;
+          digits = 1;
+          i %= LOG_BASE;
+          j = i - LOG_BASE + 1;
+        } else {
+          break out;
+        }
+      } else {
+        w = k = xd[xdi];
+        for (digits = 1; k >= 10; k /= 10) digits++;
+        i %= LOG_BASE;
+        j = i - LOG_BASE + digits;
+        rd = j < 0 ? 0 : w / mathpow(10, digits - j - 1) % 10 | 0;
+      }
+    }
+    isTruncated = isTruncated || sd < 0 || xd[xdi + 1] !== void 0 || (j < 0 ? w : w % mathpow(10, digits - j - 1));
+    roundUp = rm < 4 ? (rd || isTruncated) && (rm == 0 || rm == (x.s < 0 ? 3 : 2)) : rd > 5 || rd == 5 && (rm == 4 || isTruncated || rm == 6 && // Check whether the digit to the left of the rounding digit is odd.
+    (i > 0 ? j > 0 ? w / mathpow(10, digits - j) : 0 : xd[xdi - 1]) % 10 & 1 || rm == (x.s < 0 ? 8 : 7));
+    if (sd < 1 || !xd[0]) {
+      xd.length = 0;
+      if (roundUp) {
+        sd -= x.e + 1;
+        xd[0] = mathpow(10, (LOG_BASE - sd % LOG_BASE) % LOG_BASE);
+        x.e = -sd || 0;
+      } else {
+        xd[0] = x.e = 0;
+      }
+      return x;
+    }
+    if (i == 0) {
+      xd.length = xdi;
+      k = 1;
+      xdi--;
+    } else {
+      xd.length = xdi + 1;
+      k = mathpow(10, LOG_BASE - i);
+      xd[xdi] = j > 0 ? (w / mathpow(10, digits - j) % mathpow(10, j) | 0) * k : 0;
+    }
+    if (roundUp) {
+      for (; ; ) {
+        if (xdi == 0) {
+          for (i = 1, j = xd[0]; j >= 10; j /= 10) i++;
+          j = xd[0] += k;
+          for (k = 1; j >= 10; j /= 10) k++;
+          if (i != k) {
+            x.e++;
+            if (xd[0] == BASE) xd[0] = 1;
+          }
+          break;
+        } else {
+          xd[xdi] += k;
+          if (xd[xdi] != BASE) break;
+          xd[xdi--] = 0;
+          k = 1;
+        }
+      }
+    }
+    for (i = xd.length; xd[--i] === 0; ) xd.pop();
+  }
+  if (external) {
+    if (x.e > Ctor.maxE) {
+      x.d = null;
+      x.e = NaN;
+    } else if (x.e < Ctor.minE) {
+      x.e = 0;
+      x.d = [0];
+    }
+  }
+  return x;
+}
+function finiteToString(x, isExp, sd) {
+  if (!x.isFinite()) return nonFiniteToString(x);
+  var k, e = x.e, str = digitsToString(x.d), len = str.length;
+  if (isExp) {
+    if (sd && (k = sd - len) > 0) {
+      str = str.charAt(0) + "." + str.slice(1) + getZeroString(k);
+    } else if (len > 1) {
+      str = str.charAt(0) + "." + str.slice(1);
+    }
+    str = str + (x.e < 0 ? "e" : "e+") + x.e;
+  } else if (e < 0) {
+    str = "0." + getZeroString(-e - 1) + str;
+    if (sd && (k = sd - len) > 0) str += getZeroString(k);
+  } else if (e >= len) {
+    str += getZeroString(e + 1 - len);
+    if (sd && (k = sd - e - 1) > 0) str = str + "." + getZeroString(k);
+  } else {
+    if ((k = e + 1) < len) str = str.slice(0, k) + "." + str.slice(k);
+    if (sd && (k = sd - len) > 0) {
+      if (e + 1 === len) str += ".";
+      str += getZeroString(k);
+    }
+  }
+  return str;
+}
+function getBase10Exponent(digits, e) {
+  var w = digits[0];
+  for (e *= LOG_BASE; w >= 10; w /= 10) e++;
+  return e;
+}
+function getLn10(Ctor, sd, pr) {
+  if (sd > LN10_PRECISION) {
+    external = true;
+    if (pr) Ctor.precision = pr;
+    throw Error(precisionLimitExceeded);
+  }
+  return finalise(new Ctor(LN10), sd, 1, true);
+}
+function getPi(Ctor, sd, rm) {
+  if (sd > PI_PRECISION) throw Error(precisionLimitExceeded);
+  return finalise(new Ctor(PI), sd, rm, true);
+}
+function getPrecision(digits) {
+  var w = digits.length - 1, len = w * LOG_BASE + 1;
+  w = digits[w];
+  if (w) {
+    for (; w % 10 == 0; w /= 10) len--;
+    for (w = digits[0]; w >= 10; w /= 10) len++;
+  }
+  return len;
+}
+function getZeroString(k) {
+  var zs = "";
+  for (; k--; ) zs += "0";
+  return zs;
+}
+function intPow(Ctor, x, n, pr) {
+  var isTruncated, r = new Ctor(1), k = Math.ceil(pr / LOG_BASE + 4);
+  external = false;
+  for (; ; ) {
+    if (n % 2) {
+      r = r.times(x);
+      if (truncate(r.d, k)) isTruncated = true;
+    }
+    n = mathfloor(n / 2);
+    if (n === 0) {
+      n = r.d.length - 1;
+      if (isTruncated && r.d[n] === 0) ++r.d[n];
+      break;
+    }
+    x = x.times(x);
+    truncate(x.d, k);
+  }
+  external = true;
+  return r;
+}
+function isOdd(n) {
+  return n.d[n.d.length - 1] & 1;
+}
+function maxOrMin(Ctor, args, n) {
+  var k, y, x = new Ctor(args[0]), i = 0;
+  for (; ++i < args.length; ) {
+    y = new Ctor(args[i]);
+    if (!y.s) {
+      x = y;
+      break;
+    }
+    k = x.cmp(y);
+    if (k === n || k === 0 && x.s === n) {
+      x = y;
+    }
+  }
+  return x;
+}
+function naturalExponential(x, sd) {
+  var denominator, guard, j, pow2, sum2, t, wpr, rep = 0, i = 0, k = 0, Ctor = x.constructor, rm = Ctor.rounding, pr = Ctor.precision;
+  if (!x.d || !x.d[0] || x.e > 17) {
+    return new Ctor(x.d ? !x.d[0] ? 1 : x.s < 0 ? 0 : 1 / 0 : x.s ? x.s < 0 ? 0 : x : 0 / 0);
+  }
+  if (sd == null) {
+    external = false;
+    wpr = pr;
+  } else {
+    wpr = sd;
+  }
+  t = new Ctor(0.03125);
+  while (x.e > -2) {
+    x = x.times(t);
+    k += 5;
+  }
+  guard = Math.log(mathpow(2, k)) / Math.LN10 * 2 + 5 | 0;
+  wpr += guard;
+  denominator = pow2 = sum2 = new Ctor(1);
+  Ctor.precision = wpr;
+  for (; ; ) {
+    pow2 = finalise(pow2.times(x), wpr, 1);
+    denominator = denominator.times(++i);
+    t = sum2.plus(divide(pow2, denominator, wpr, 1));
+    if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum2.d).slice(0, wpr)) {
+      j = k;
+      while (j--) sum2 = finalise(sum2.times(sum2), wpr, 1);
+      if (sd == null) {
+        if (rep < 3 && checkRoundingDigits(sum2.d, wpr - guard, rm, rep)) {
+          Ctor.precision = wpr += 10;
+          denominator = pow2 = t = new Ctor(1);
+          i = 0;
+          rep++;
+        } else {
+          return finalise(sum2, Ctor.precision = pr, rm, external = true);
+        }
+      } else {
+        Ctor.precision = pr;
+        return sum2;
+      }
+    }
+    sum2 = t;
+  }
+}
+function naturalLogarithm(y, sd) {
+  var c, c0, denominator, e, numerator, rep, sum2, t, wpr, x1, x2, n = 1, guard = 10, x = y, xd = x.d, Ctor = x.constructor, rm = Ctor.rounding, pr = Ctor.precision;
+  if (x.s < 0 || !xd || !xd[0] || !x.e && xd[0] == 1 && xd.length == 1) {
+    return new Ctor(xd && !xd[0] ? -1 / 0 : x.s != 1 ? NaN : xd ? 0 : x);
+  }
+  if (sd == null) {
+    external = false;
+    wpr = pr;
+  } else {
+    wpr = sd;
+  }
+  Ctor.precision = wpr += guard;
+  c = digitsToString(xd);
+  c0 = c.charAt(0);
+  if (Math.abs(e = x.e) < 15e14) {
+    while (c0 < 7 && c0 != 1 || c0 == 1 && c.charAt(1) > 3) {
+      x = x.times(y);
+      c = digitsToString(x.d);
+      c0 = c.charAt(0);
+      n++;
+    }
+    e = x.e;
+    if (c0 > 1) {
+      x = new Ctor("0." + c);
+      e++;
+    } else {
+      x = new Ctor(c0 + "." + c.slice(1));
+    }
+  } else {
+    t = getLn10(Ctor, wpr + 2, pr).times(e + "");
+    x = naturalLogarithm(new Ctor(c0 + "." + c.slice(1)), wpr - guard).plus(t);
+    Ctor.precision = pr;
+    return sd == null ? finalise(x, pr, rm, external = true) : x;
+  }
+  x1 = x;
+  sum2 = numerator = x = divide(x.minus(1), x.plus(1), wpr, 1);
+  x2 = finalise(x.times(x), wpr, 1);
+  denominator = 3;
+  for (; ; ) {
+    numerator = finalise(numerator.times(x2), wpr, 1);
+    t = sum2.plus(divide(numerator, new Ctor(denominator), wpr, 1));
+    if (digitsToString(t.d).slice(0, wpr) === digitsToString(sum2.d).slice(0, wpr)) {
+      sum2 = sum2.times(2);
+      if (e !== 0) sum2 = sum2.plus(getLn10(Ctor, wpr + 2, pr).times(e + ""));
+      sum2 = divide(sum2, new Ctor(n), wpr, 1);
+      if (sd == null) {
+        if (checkRoundingDigits(sum2.d, wpr - guard, rm, rep)) {
+          Ctor.precision = wpr += guard;
+          t = numerator = x = divide(x1.minus(1), x1.plus(1), wpr, 1);
+          x2 = finalise(x.times(x), wpr, 1);
+          denominator = rep = 1;
+        } else {
+          return finalise(sum2, Ctor.precision = pr, rm, external = true);
+        }
+      } else {
+        Ctor.precision = pr;
+        return sum2;
+      }
+    }
+    sum2 = t;
+    denominator += 2;
+  }
+}
+function nonFiniteToString(x) {
+  return String(x.s * x.s / 0);
+}
+function parseDecimal(x, str) {
+  var e, i, len;
+  if ((e = str.indexOf(".")) > -1) str = str.replace(".", "");
+  if ((i = str.search(/e/i)) > 0) {
+    if (e < 0) e = i;
+    e += +str.slice(i + 1);
+    str = str.substring(0, i);
+  } else if (e < 0) {
+    e = str.length;
+  }
+  for (i = 0; str.charCodeAt(i) === 48; i++) ;
+  for (len = str.length; str.charCodeAt(len - 1) === 48; --len) ;
+  str = str.slice(i, len);
+  if (str) {
+    len -= i;
+    x.e = e = e - i - 1;
+    x.d = [];
+    i = (e + 1) % LOG_BASE;
+    if (e < 0) i += LOG_BASE;
+    if (i < len) {
+      if (i) x.d.push(+str.slice(0, i));
+      for (len -= LOG_BASE; i < len; ) x.d.push(+str.slice(i, i += LOG_BASE));
+      str = str.slice(i);
+      i = LOG_BASE - str.length;
+    } else {
+      i -= len;
+    }
+    for (; i--; ) str += "0";
+    x.d.push(+str);
+    if (external) {
+      if (x.e > x.constructor.maxE) {
+        x.d = null;
+        x.e = NaN;
+      } else if (x.e < x.constructor.minE) {
+        x.e = 0;
+        x.d = [0];
+      }
+    }
+  } else {
+    x.e = 0;
+    x.d = [0];
+  }
+  return x;
+}
+function parseOther(x, str) {
+  var base, Ctor, divisor, i, isFloat, len, p, xd, xe;
+  if (str.indexOf("_") > -1) {
+    str = str.replace(/(\d)_(?=\d)/g, "$1");
+    if (isDecimal.test(str)) return parseDecimal(x, str);
+  } else if (str === "Infinity" || str === "NaN") {
+    if (!+str) x.s = NaN;
+    x.e = NaN;
+    x.d = null;
+    return x;
+  }
+  if (isHex.test(str)) {
+    base = 16;
+    str = str.toLowerCase();
+  } else if (isBinary.test(str)) {
+    base = 2;
+  } else if (isOctal.test(str)) {
+    base = 8;
+  } else {
+    throw Error(invalidArgument + str);
+  }
+  i = str.search(/p/i);
+  if (i > 0) {
+    p = +str.slice(i + 1);
+    str = str.substring(2, i);
+  } else {
+    str = str.slice(2);
+  }
+  i = str.indexOf(".");
+  isFloat = i >= 0;
+  Ctor = x.constructor;
+  if (isFloat) {
+    str = str.replace(".", "");
+    len = str.length;
+    i = len - i;
+    divisor = intPow(Ctor, new Ctor(base), i, i * 2);
+  }
+  xd = convertBase(str, base, BASE);
+  xe = xd.length - 1;
+  for (i = xe; xd[i] === 0; --i) xd.pop();
+  if (i < 0) return new Ctor(x.s * 0);
+  x.e = getBase10Exponent(xd, xe);
+  x.d = xd;
+  external = false;
+  if (isFloat) x = divide(x, divisor, len * 4);
+  if (p) x = x.times(Math.abs(p) < 54 ? mathpow(2, p) : Decimal.pow(2, p));
+  external = true;
+  return x;
+}
+function sine(Ctor, x) {
+  var k, len = x.d.length;
+  if (len < 3) {
+    return x.isZero() ? x : taylorSeries(Ctor, 2, x, x);
+  }
+  k = 1.4 * Math.sqrt(len);
+  k = k > 16 ? 16 : k | 0;
+  x = x.times(1 / tinyPow(5, k));
+  x = taylorSeries(Ctor, 2, x, x);
+  var sin2_x, d5 = new Ctor(5), d16 = new Ctor(16), d20 = new Ctor(20);
+  for (; k--; ) {
+    sin2_x = x.times(x);
+    x = x.times(d5.plus(sin2_x.times(d16.times(sin2_x).minus(d20))));
+  }
+  return x;
+}
+function taylorSeries(Ctor, n, x, y, isHyperbolic) {
+  var j, t, u, x2, i = 1, pr = Ctor.precision, k = Math.ceil(pr / LOG_BASE);
+  external = false;
+  x2 = x.times(x);
+  u = new Ctor(y);
+  for (; ; ) {
+    t = divide(u.times(x2), new Ctor(n++ * n++), pr, 1);
+    u = isHyperbolic ? y.plus(t) : y.minus(t);
+    y = divide(t.times(x2), new Ctor(n++ * n++), pr, 1);
+    t = u.plus(y);
+    if (t.d[k] !== void 0) {
+      for (j = k; t.d[j] === u.d[j] && j--; ) ;
+      if (j == -1) break;
+    }
+    j = u;
+    u = y;
+    y = t;
+    t = j;
+    i++;
+  }
+  external = true;
+  t.d.length = k + 1;
+  return t;
+}
+function tinyPow(b, e) {
+  var n = b;
+  while (--e) n *= b;
+  return n;
+}
+function toLessThanHalfPi(Ctor, x) {
+  var t, isNeg = x.s < 0, pi = getPi(Ctor, Ctor.precision, 1), halfPi = pi.times(0.5);
+  x = x.abs();
+  if (x.lte(halfPi)) {
+    quadrant = isNeg ? 4 : 1;
+    return x;
+  }
+  t = x.divToInt(pi);
+  if (t.isZero()) {
+    quadrant = isNeg ? 3 : 2;
+  } else {
+    x = x.minus(t.times(pi));
+    if (x.lte(halfPi)) {
+      quadrant = isOdd(t) ? isNeg ? 2 : 3 : isNeg ? 4 : 1;
+      return x;
+    }
+    quadrant = isOdd(t) ? isNeg ? 1 : 4 : isNeg ? 3 : 2;
+  }
+  return x.minus(pi).abs();
+}
+function toStringBinary(x, baseOut, sd, rm) {
+  var base, e, i, k, len, roundUp, str, xd, y, Ctor = x.constructor, isExp = sd !== void 0;
+  if (isExp) {
+    checkInt32(sd, 1, MAX_DIGITS);
+    if (rm === void 0) rm = Ctor.rounding;
+    else checkInt32(rm, 0, 8);
+  } else {
+    sd = Ctor.precision;
+    rm = Ctor.rounding;
+  }
+  if (!x.isFinite()) {
+    str = nonFiniteToString(x);
+  } else {
+    str = finiteToString(x);
+    i = str.indexOf(".");
+    if (isExp) {
+      base = 2;
+      if (baseOut == 16) {
+        sd = sd * 4 - 3;
+      } else if (baseOut == 8) {
+        sd = sd * 3 - 2;
+      }
+    } else {
+      base = baseOut;
+    }
+    if (i >= 0) {
+      str = str.replace(".", "");
+      y = new Ctor(1);
+      y.e = str.length - i;
+      y.d = convertBase(finiteToString(y), 10, base);
+      y.e = y.d.length;
+    }
+    xd = convertBase(str, 10, base);
+    e = len = xd.length;
+    for (; xd[--len] == 0; ) xd.pop();
+    if (!xd[0]) {
+      str = isExp ? "0p+0" : "0";
+    } else {
+      if (i < 0) {
+        e--;
+      } else {
+        x = new Ctor(x);
+        x.d = xd;
+        x.e = e;
+        x = divide(x, y, sd, rm, 0, base);
+        xd = x.d;
+        e = x.e;
+        roundUp = inexact;
+      }
+      i = xd[sd];
+      k = base / 2;
+      roundUp = roundUp || xd[sd + 1] !== void 0;
+      roundUp = rm < 4 ? (i !== void 0 || roundUp) && (rm === 0 || rm === (x.s < 0 ? 3 : 2)) : i > k || i === k && (rm === 4 || roundUp || rm === 6 && xd[sd - 1] & 1 || rm === (x.s < 0 ? 8 : 7));
+      xd.length = sd;
+      if (roundUp) {
+        for (; ++xd[--sd] > base - 1; ) {
+          xd[sd] = 0;
+          if (!sd) {
+            ++e;
+            xd.unshift(1);
+          }
+        }
+      }
+      for (len = xd.length; !xd[len - 1]; --len) ;
+      for (i = 0, str = ""; i < len; i++) str += NUMERALS.charAt(xd[i]);
+      if (isExp) {
+        if (len > 1) {
+          if (baseOut == 16 || baseOut == 8) {
+            i = baseOut == 16 ? 4 : 3;
+            for (--len; len % i; len++) str += "0";
+            xd = convertBase(str, base, baseOut);
+            for (len = xd.length; !xd[len - 1]; --len) ;
+            for (i = 1, str = "1."; i < len; i++) str += NUMERALS.charAt(xd[i]);
+          } else {
+            str = str.charAt(0) + "." + str.slice(1);
+          }
+        }
+        str = str + (e < 0 ? "p" : "p+") + e;
+      } else if (e < 0) {
+        for (; ++e; ) str = "0" + str;
+        str = "0." + str;
+      } else {
+        if (++e > len) for (e -= len; e--; ) str += "0";
+        else if (e < len) str = str.slice(0, e) + "." + str.slice(e);
+      }
+    }
+    str = (baseOut == 16 ? "0x" : baseOut == 2 ? "0b" : baseOut == 8 ? "0o" : "") + str;
+  }
+  return x.s < 0 ? "-" + str : str;
+}
+function truncate(arr, len) {
+  if (arr.length > len) {
+    arr.length = len;
+    return true;
+  }
+}
+function abs(x) {
+  return new this(x).abs();
+}
+function acos(x) {
+  return new this(x).acos();
+}
+function acosh(x) {
+  return new this(x).acosh();
+}
+function add(x, y) {
+  return new this(x).plus(y);
+}
+function asin(x) {
+  return new this(x).asin();
+}
+function asinh(x) {
+  return new this(x).asinh();
+}
+function atan(x) {
+  return new this(x).atan();
+}
+function atanh(x) {
+  return new this(x).atanh();
+}
+function atan2(y, x) {
+  y = new this(y);
+  x = new this(x);
+  var r, pr = this.precision, rm = this.rounding, wpr = pr + 4;
+  if (!y.s || !x.s) {
+    r = new this(NaN);
+  } else if (!y.d && !x.d) {
+    r = getPi(this, wpr, 1).times(x.s > 0 ? 0.25 : 0.75);
+    r.s = y.s;
+  } else if (!x.d || y.isZero()) {
+    r = x.s < 0 ? getPi(this, pr, rm) : new this(0);
+    r.s = y.s;
+  } else if (!y.d || x.isZero()) {
+    r = getPi(this, wpr, 1).times(0.5);
+    r.s = y.s;
+  } else if (x.s < 0) {
+    this.precision = wpr;
+    this.rounding = 1;
+    r = this.atan(divide(y, x, wpr, 1));
+    x = getPi(this, wpr, 1);
+    this.precision = pr;
+    this.rounding = rm;
+    r = y.s < 0 ? r.minus(x) : r.plus(x);
+  } else {
+    r = this.atan(divide(y, x, wpr, 1));
+  }
+  return r;
+}
+function cbrt(x) {
+  return new this(x).cbrt();
+}
+function ceil(x) {
+  return finalise(x = new this(x), x.e + 1, 2);
+}
+function clamp(x, min2, max2) {
+  return new this(x).clamp(min2, max2);
+}
+function config(obj) {
+  if (!obj || typeof obj !== "object") throw Error(decimalError + "Object expected");
+  var i, p, v, useDefaults = obj.defaults === true, ps = [
+    "precision",
+    1,
+    MAX_DIGITS,
+    "rounding",
+    0,
+    8,
+    "toExpNeg",
+    -EXP_LIMIT,
+    0,
+    "toExpPos",
+    0,
+    EXP_LIMIT,
+    "maxE",
+    0,
+    EXP_LIMIT,
+    "minE",
+    -EXP_LIMIT,
+    0,
+    "modulo",
+    0,
+    9
+  ];
+  for (i = 0; i < ps.length; i += 3) {
+    if (p = ps[i], useDefaults) this[p] = DEFAULTS[p];
+    if ((v = obj[p]) !== void 0) {
+      if (mathfloor(v) === v && v >= ps[i + 1] && v <= ps[i + 2]) this[p] = v;
+      else throw Error(invalidArgument + p + ": " + v);
+    }
+  }
+  if (p = "crypto", useDefaults) this[p] = DEFAULTS[p];
+  if ((v = obj[p]) !== void 0) {
+    if (v === true || v === false || v === 0 || v === 1) {
+      if (v) {
+        if (typeof crypto != "undefined" && crypto && (crypto.getRandomValues || crypto.randomBytes)) {
+          this[p] = true;
+        } else {
+          throw Error(cryptoUnavailable);
+        }
+      } else {
+        this[p] = false;
+      }
+    } else {
+      throw Error(invalidArgument + p + ": " + v);
+    }
+  }
+  return this;
+}
+function cos(x) {
+  return new this(x).cos();
+}
+function cosh(x) {
+  return new this(x).cosh();
+}
+function clone(obj) {
+  var i, p, ps;
+  function Decimal2(v) {
+    var e, i2, t, x = this;
+    if (!(x instanceof Decimal2)) return new Decimal2(v);
+    x.constructor = Decimal2;
+    if (isDecimalInstance(v)) {
+      x.s = v.s;
+      if (external) {
+        if (!v.d || v.e > Decimal2.maxE) {
+          x.e = NaN;
+          x.d = null;
+        } else if (v.e < Decimal2.minE) {
+          x.e = 0;
+          x.d = [0];
+        } else {
+          x.e = v.e;
+          x.d = v.d.slice();
+        }
+      } else {
+        x.e = v.e;
+        x.d = v.d ? v.d.slice() : v.d;
+      }
+      return;
+    }
+    t = typeof v;
+    if (t === "number") {
+      if (v === 0) {
+        x.s = 1 / v < 0 ? -1 : 1;
+        x.e = 0;
+        x.d = [0];
+        return;
+      }
+      if (v < 0) {
+        v = -v;
+        x.s = -1;
+      } else {
+        x.s = 1;
+      }
+      if (v === ~~v && v < 1e7) {
+        for (e = 0, i2 = v; i2 >= 10; i2 /= 10) e++;
+        if (external) {
+          if (e > Decimal2.maxE) {
+            x.e = NaN;
+            x.d = null;
+          } else if (e < Decimal2.minE) {
+            x.e = 0;
+            x.d = [0];
+          } else {
+            x.e = e;
+            x.d = [v];
+          }
+        } else {
+          x.e = e;
+          x.d = [v];
+        }
+        return;
+      }
+      if (v * 0 !== 0) {
+        if (!v) x.s = NaN;
+        x.e = NaN;
+        x.d = null;
+        return;
+      }
+      return parseDecimal(x, v.toString());
+    }
+    if (t === "string") {
+      if ((i2 = v.charCodeAt(0)) === 45) {
+        v = v.slice(1);
+        x.s = -1;
+      } else {
+        if (i2 === 43) v = v.slice(1);
+        x.s = 1;
+      }
+      return isDecimal.test(v) ? parseDecimal(x, v) : parseOther(x, v);
+    }
+    if (t === "bigint") {
+      if (v < 0) {
+        v = -v;
+        x.s = -1;
+      } else {
+        x.s = 1;
+      }
+      return parseDecimal(x, v.toString());
+    }
+    throw Error(invalidArgument + v);
+  }
+  Decimal2.prototype = P;
+  Decimal2.ROUND_UP = 0;
+  Decimal2.ROUND_DOWN = 1;
+  Decimal2.ROUND_CEIL = 2;
+  Decimal2.ROUND_FLOOR = 3;
+  Decimal2.ROUND_HALF_UP = 4;
+  Decimal2.ROUND_HALF_DOWN = 5;
+  Decimal2.ROUND_HALF_EVEN = 6;
+  Decimal2.ROUND_HALF_CEIL = 7;
+  Decimal2.ROUND_HALF_FLOOR = 8;
+  Decimal2.EUCLID = 9;
+  Decimal2.config = Decimal2.set = config;
+  Decimal2.clone = clone;
+  Decimal2.isDecimal = isDecimalInstance;
+  Decimal2.abs = abs;
+  Decimal2.acos = acos;
+  Decimal2.acosh = acosh;
+  Decimal2.add = add;
+  Decimal2.asin = asin;
+  Decimal2.asinh = asinh;
+  Decimal2.atan = atan;
+  Decimal2.atanh = atanh;
+  Decimal2.atan2 = atan2;
+  Decimal2.cbrt = cbrt;
+  Decimal2.ceil = ceil;
+  Decimal2.clamp = clamp;
+  Decimal2.cos = cos;
+  Decimal2.cosh = cosh;
+  Decimal2.div = div;
+  Decimal2.exp = exp;
+  Decimal2.floor = floor;
+  Decimal2.hypot = hypot;
+  Decimal2.ln = ln;
+  Decimal2.log = log;
+  Decimal2.log10 = log10;
+  Decimal2.log2 = log2;
+  Decimal2.max = max;
+  Decimal2.min = min;
+  Decimal2.mod = mod;
+  Decimal2.mul = mul;
+  Decimal2.pow = pow;
+  Decimal2.random = random;
+  Decimal2.round = round;
+  Decimal2.sign = sign;
+  Decimal2.sin = sin;
+  Decimal2.sinh = sinh;
+  Decimal2.sqrt = sqrt;
+  Decimal2.sub = sub;
+  Decimal2.sum = sum;
+  Decimal2.tan = tan;
+  Decimal2.tanh = tanh;
+  Decimal2.trunc = trunc;
+  if (obj === void 0) obj = {};
+  if (obj) {
+    if (obj.defaults !== true) {
+      ps = ["precision", "rounding", "toExpNeg", "toExpPos", "maxE", "minE", "modulo", "crypto"];
+      for (i = 0; i < ps.length; ) if (!obj.hasOwnProperty(p = ps[i++])) obj[p] = this[p];
+    }
+  }
+  Decimal2.config(obj);
+  return Decimal2;
+}
+function div(x, y) {
+  return new this(x).div(y);
+}
+function exp(x) {
+  return new this(x).exp();
+}
+function floor(x) {
+  return finalise(x = new this(x), x.e + 1, 3);
+}
+function hypot() {
+  var i, n, t = new this(0);
+  external = false;
+  for (i = 0; i < arguments.length; ) {
+    n = new this(arguments[i++]);
+    if (!n.d) {
+      if (n.s) {
+        external = true;
+        return new this(1 / 0);
+      }
+      t = n;
+    } else if (t.d) {
+      t = t.plus(n.times(n));
+    }
+  }
+  external = true;
+  return t.sqrt();
+}
+function isDecimalInstance(obj) {
+  return obj instanceof Decimal || obj && obj.toStringTag === tag || false;
+}
+function ln(x) {
+  return new this(x).ln();
+}
+function log(x, y) {
+  return new this(x).log(y);
+}
+function log2(x) {
+  return new this(x).log(2);
+}
+function log10(x) {
+  return new this(x).log(10);
+}
+function max() {
+  return maxOrMin(this, arguments, -1);
+}
+function min() {
+  return maxOrMin(this, arguments, 1);
+}
+function mod(x, y) {
+  return new this(x).mod(y);
+}
+function mul(x, y) {
+  return new this(x).mul(y);
+}
+function pow(x, y) {
+  return new this(x).pow(y);
+}
+function random(sd) {
+  var d, e, k, n, i = 0, r = new this(1), rd = [];
+  if (sd === void 0) sd = this.precision;
+  else checkInt32(sd, 1, MAX_DIGITS);
+  k = Math.ceil(sd / LOG_BASE);
+  if (!this.crypto) {
+    for (; i < k; ) rd[i++] = Math.random() * 1e7 | 0;
+  } else if (crypto.getRandomValues) {
+    d = crypto.getRandomValues(new Uint32Array(k));
+    for (; i < k; ) {
+      n = d[i];
+      if (n >= 429e7) {
+        d[i] = crypto.getRandomValues(new Uint32Array(1))[0];
+      } else {
+        rd[i++] = n % 1e7;
+      }
+    }
+  } else if (crypto.randomBytes) {
+    d = crypto.randomBytes(k *= 4);
+    for (; i < k; ) {
+      n = d[i] + (d[i + 1] << 8) + (d[i + 2] << 16) + ((d[i + 3] & 127) << 24);
+      if (n >= 214e7) {
+        crypto.randomBytes(4).copy(d, i);
+      } else {
+        rd.push(n % 1e7);
+        i += 4;
+      }
+    }
+    i = k / 4;
+  } else {
+    throw Error(cryptoUnavailable);
+  }
+  k = rd[--i];
+  sd %= LOG_BASE;
+  if (k && sd) {
+    n = mathpow(10, LOG_BASE - sd);
+    rd[i] = (k / n | 0) * n;
+  }
+  for (; rd[i] === 0; i--) rd.pop();
+  if (i < 0) {
+    e = 0;
+    rd = [0];
+  } else {
+    e = -1;
+    for (; rd[0] === 0; e -= LOG_BASE) rd.shift();
+    for (k = 1, n = rd[0]; n >= 10; n /= 10) k++;
+    if (k < LOG_BASE) e -= LOG_BASE - k;
+  }
+  r.e = e;
+  r.d = rd;
+  return r;
+}
+function round(x) {
+  return finalise(x = new this(x), x.e + 1, this.rounding);
+}
+function sign(x) {
+  x = new this(x);
+  return x.d ? x.d[0] ? x.s : 0 * x.s : x.s || NaN;
+}
+function sin(x) {
+  return new this(x).sin();
+}
+function sinh(x) {
+  return new this(x).sinh();
+}
+function sqrt(x) {
+  return new this(x).sqrt();
+}
+function sub(x, y) {
+  return new this(x).sub(y);
+}
+function sum() {
+  var i = 0, args = arguments, x = new this(args[i]);
+  external = false;
+  for (; x.s && ++i < args.length; ) x = x.plus(args[i]);
+  external = true;
+  return finalise(x, this.precision, this.rounding);
+}
+function tan(x) {
+  return new this(x).tan();
+}
+function tanh(x) {
+  return new this(x).tanh();
+}
+function trunc(x) {
+  return finalise(x = new this(x), x.e + 1, 1);
+}
+P[Symbol.for("nodejs.util.inspect.custom")] = P.toString;
+P[Symbol.toStringTag] = "Decimal";
+var Decimal = P.constructor = clone(DEFAULTS);
+LN10 = new Decimal(LN10);
+PI = new Decimal(PI);
+var decimal_default = Decimal;
+
+// src/articles/equal-infinity/App.tsx
+var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var data = getLevels(3).map((real, index) => ({
+  real: real.toString(),
+  natural: (index + 1).toString()
+}));
+function App() {
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("main", { className: "w-full overflow-x-hidden", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TextLayout, { className: "space-y-10", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H1, { children: "Experiment: Mapping real numbers between 0 to 1 to natural numbers." }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "mt-8", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { className: "bg-orange-500/5 border border-orange-500 text-orange-100 px-8 py-8", children: "TDLR: I failed, it is not possible to map real numbers between 0 and 1 to natural numbers." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { className: "mt-8", children: "My main misunderstanding was not understanding the different types of numbers. The symbols are the same (E.G. digits between 0 - 1), but the rules of the of numbers are not." })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mt-8", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { className: "mb-0", children: "Some lessons learned:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "pl-12", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { className: "list-decimal", children: "There are different types of numbers." }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { className: "list-decimal", children: "Natural numbers have finite digits." }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { className: "list-decimal", children: "Some real numbers can have infinite digits." })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "w-full p-4 bg-slate-950 text-sm mt-8", children: [
+            "Different types of numbers:",
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+              "iframe",
+              {
+                className: "aspect-video w-full my-4",
+                src: "https://www.youtube.com/embed/htYh-Tq7ZBI?si=9aijG7roZYIIHEKQ",
+                frameBorder: "0",
+                title: "Why can't I multiply matrices",
+                allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+                allowFullScreen: true
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { className: "w-full mt-2 table-fixed", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Examples" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "Name" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { className: "w-[8%]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "+" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { className: "w-[8%]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "X" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { className: "w-[8%]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "-" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { className: "w-[8%]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "/" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { className: "w-[8%]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "^" }) })
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tbody", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "0,1,2,3,4,5" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2115 - Natural" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2115" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2115" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2124" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2115" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "-2,-1,0,1,2" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2124 - Integers" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2124" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2124" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u2124" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "1/3" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q - Rational" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "Q" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u221A5" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D - Real" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u221A-5" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C - Complex" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "C" })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "(2.5, -3, 8.4)" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D3 - 3D Vectors" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D3" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {}),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: "\u211D3" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {}),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {})
+                ] })
+              ] })
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "w-full p-4 bg-slate-950 text-sm mt-8", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(P2, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://math.stackexchange.com/a/460479/1175828", children: "A similar question on math stack exchange:" }),
+            '. The accepted answer said: "natural numbers cannot be infinitely long".'
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "So the set of natural numbers is infinite, but each natural number in the set is not, each natural number has a finite set of digits." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "In response to the formula, So 1/3 returns a real number 0.3..., and this real number has infinite digits. Since natural numbers have finite digits, there is no way to represent this number." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(P2, { children: [
+            "A formula like ",
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: "(1 / 3) * 10^x" }),
+            ", returns an infinite set of natural numbers, not an actual natural number: [3, 33, 333, 3333, 33333, 333333, ...]."
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-full p-4 bg-slate-950 text-sm mt-8", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(P2, { children: [
+          "Originally shared this on",
+          " ",
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://news.ycombinator.com/item?id=35726944", children: "hacker news" }),
+          " ",
+          "and had some excellent feedback. The glaring problem with the first conclusion, and especially the mirror method, was irrational numbers. These numbers never stop getting bigger."
+        ] }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { children: "Original article:" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(P2, { children: [
+          "I enjoy watching",
+          " ",
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://www.veritasium.com", children: "Veritasium" }),
+          `'s math videos. His video "Math's Fundamental Flaw" is my easily favorite. However, the explanation of`,
+          " ",
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://en.wikipedia.org/wiki/Cantor's_diagonal_argument", children: "Cantor's Diagonalization Argument" }),
+          " ",
+          "consistently bothers me. It comes in at around 4m and 30s in the video."
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "iframe",
+          {
+            className: "aspect-video w-full my-4",
+            src: "https://www.youtube.com/embed/HeQX2HjkcNo",
+            title: "Math's Fundamental Flaw",
+            frameBorder: "0",
+            allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            allowFullScreen: true
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Each time I hear the argument, that real numbers between zero to one are a larger infinity than natural numbers, I want explore and see if it is possible to make a one to one mapping between these sets. This post is my attempt." }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: `The clearest hurdle is the set real numbers between zero and one is "uncountable". There isn't a clear starting point, both ends of the set can keep growing or shrinking forever, E.G.:` }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 leading-2 my-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: "Prepend 0 after the decimal" }),
+            ":",
+            " ",
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "0.1, 0.01, 0.001, 0.0001, 0.00001, ..." })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: "Append .9" }),
+            ":",
+            " ",
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "0.9, 0.99, 0.999, 0.9999, 0.99999, ..." })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "The most direct way of counting is not possible. There is no good starting point for that algorithm." })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { id: "argument", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { children: "A different approach" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Since the starting point to count this set is not straightforward, the counting algorithm needs to be more creative. Whatever method is used, it must consistently count and label the these numbers." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "What if instead of counting this set of numbers on a line, they are counted like branches on a tree?" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: "block", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: "./assets/tree.png" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("caption", { className: "text-xs block text-left py-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "opacity-80", children: "Original picture from " }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://www.publicdomainpictures.net/en/view-image.php?image=170902&picture=trees-without-leaves", children: "PublicDomainPictures.net - George Hodan" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "The two main tree branch counting methods are: " }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 leading-2 my-4 space-y-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                A,
+                {
+                  className: "text-md",
+                  href: "https://en.wikipedia.org/wiki/Depth-first_search",
+                  children: "Depth-first search"
+                }
+              ) }),
+              " ",
+              "- Follow each branch as deeply as possible counting all sub branches until there are no sub branches left. After each branch is exhausted move on to the next available branch. Do this until all branches on the tree have been counted."
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                A,
+                {
+                  className: "text-md",
+                  href: "https://en.wikipedia.org/wiki/Breadth-first_search",
+                  children: "Breadth-first search"
+                }
+              ) }),
+              " ",
+              "- Follow only the immediately connected branches to the current branch (or ground). Once all immediately connected branches are counted, go to the next level down of branches and count again until all branches have been reached (and counted). Do this until all branches have been counted."
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "To make these numbers into a tree, the individual branches could be each individual number, and they could be connected to the size of the number to count by. E.G: the first level .1 would be (.1 - .9), the second level .01 would result in (.01 -.99), the third .001 would be (.001-.999), the fourth would be .0001 (.0001 - .9999), and so on. Each level would then exclude numbers that have already been counted. It could be visualized like so:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "rounded relative", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "absolute h-full left-0", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "rounded-full bg-gray-500 w-3 h-3 absolute top-[-5px] left-[-5px]",
+                  "aria-hidden": true
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "absolute top-0 left-0 h-full w-[2px] bg-gray-500 z-0",
+                  "aria-hidden": true
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y-8 -translate-x-[12px]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "relative z-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "absolute top-1/2 left-0 w-full h-[2px] bg-gray-500 -z-10",
+                  "aria-hidden": true
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex space-x-4 py-4 justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-blue-600 inline-block px-2 relative", children: ".1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".2" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".4" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".5" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".6" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".7" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".8" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".9" })
+              ] })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y-8 -translate-x-[12px]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "relative z-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "absolute top-1/2 left-0 w-full h-[2px] bg-gray-500 -z-10",
+                  "aria-hidden": true
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex space-x-4 py-4 justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-blue-600 inline-block px-2 relative", children: ".01" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".01" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".02" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".03" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".04" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".05" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".06" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: "..." }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".99" })
+              ] })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y-8 -translate-x-[12px]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "relative z-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "absolute top-1/2 left-0 w-full h-[2px] bg-gray-500 -z-10",
+                  "aria-hidden": true
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex space-x-4 py-4 justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-blue-600 inline-block px-2 relative", children: ".001" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".001" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".002" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".003" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".004" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".005" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".006" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: "..." }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".999" })
+              ] })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y-8 -translate-x-[12px]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "relative z-10", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "div",
+                {
+                  className: "absolute top-1/2 left-0 w-full h-[2px] bg-gray-500 -z-10",
+                  "aria-hidden": true
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex space-x-4 py-4 justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-blue-600 inline-block px-2 relative", children: ".0001" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0001" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0002" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0003" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0004" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0005" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".0006" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: "..." }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded-full bg-gray-600 px-2", children: ".9999" })
+              ] })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "space-y-8 -translate-x-[12px]", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "relative z-10", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "flex space-x-4 py-4 justify-between", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-blue-600 inline-block px-2 relative", children: "..." }) }) }) })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Although this is inefficient compared to a simple counting algorithm it does provide a method to consistently count and label the set of real numbers between zero and one." })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { id: "argument", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { children: "Mapping: how do these sets map one to one?" }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Labeling each number with a simple index approach would work well:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-48 overflow-scroll relative my-12", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { className: "table-auto w-full", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { className: "sticky top-0 bg-slate-600", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { className: "w-1/2", children: "Natural Number" }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { className: "w-1/2", children: "Real Number" })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tbody", { children: [
+              data.map((item, index) => {
+                return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+                    TD,
+                    {
+                      className: index % 2 === 0 ? "bg-white/5" : "bg-transparent",
+                      children: [
+                        item.natural,
+                        ":"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    TD,
+                    {
+                      className: index % 2 === 0 ? "bg-white/5" : "bg-transparent",
+                      children: item.real
+                    }
+                  )
+                ] }, item.real);
+              }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "..." }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "..." })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "\u221E:" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "\u221E" })
+              ] })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H3, { children: "The mirror method" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "A less straightforward option for labeling could be to flip each real number. Similar to looking at the number in a mirror. Each flipped real number in this set reveals a unique natural number equivalent." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "My favorite part of this method is that it shows that every real number between zero and one has a natural number reflected representation." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "h-48 overflow-scroll relative my-12", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { className: "table-auto w-full", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { className: "sticky top-0 bg-slate-600", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { className: "w-1/2", children: "Natural Number (mirrored)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { className: "w-1/2", children: "Real Number" })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tbody", { children: [
+              data.map((item, index) => {
+                return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    TD,
+                    {
+                      className: index % 2 === 0 ? "bg-white/5" : "bg-transparent",
+                      children: inverse(item.real)
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                    TD,
+                    {
+                      className: index % 2 === 0 ? "bg-white/5" : "bg-transparent",
+                      children: item.real
+                    }
+                  )
+                ] }, item.real);
+              }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "..." }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "..." })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(TR, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "\u221E:" }),
+                /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TD, { children: "\u221E" })
+              ] })
+            ] })
+          ] }) })
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FullWidthLayout, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "bg-white/5 max-w-[800px] mx-auto p-4", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { children: "Mirror method example" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "This simplistic example shows how the mirror could function. On one side is a real number between zero and one. On the other is the natural number reflection that represents this number. Every real number entered has an equivalent natural number on the right." }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(InverseInput, {})
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TextLayout, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { children: "Conclusion" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Thinking of the set of real numbers between zero and one as a tree and then using a tree counting algorithm makes it possible to map this set one to one with natural numbers." })
+    ] }) })
+  ] }) });
+}
+var App_default = App;
+var tw = (className, as) => {
+  return function Component(props) {
+    return (0, import_react.createElement)(as ?? "div", {
+      ...props,
+      className: twMerge(className, props.className)
+    });
+  };
+};
+var TextLayout = tw("p-6 max-w-xl m-auto text-left");
+var FullWidthLayout = tw("p-6 m-auto text-left");
+var H1 = tw("text-2xl sm:text-3xl font-bold mb-2 mt-6");
+var H2 = tw("text-xl font-bold mb-2 mt-6");
+var H3 = tw("text-md font-bold mb-2 mt-6");
+var P2 = tw("mb-6");
+var Bold = tw("font-bold", "strong");
+var A = tw(
+  "text-emerald-400 transition-colors hover:text-emerald-400/90",
+  "a"
+);
+var TR = tw("hover:bg-white/10", "tr");
+var TD = tw("p-1", "td");
+function inverse(real) {
+  return real.toString().replace("0.", "").split("").reverse().join("");
+}
+function InverseInput() {
+  const [number, setNumber] = (0, import_react.useState)(
+    Math.random().toString().replace("0.", "")
+  );
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col md:flex-row items-center md:items-center justify-between space-y-2 md:space-x-8 w-full text-left", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex-1 w-full md:w-auto text-[17px] md:text-2xl", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", { htmlFor: "real-number-input", children: "Real number" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "rounded p-4 bg-white/10 focus-within:ring-2 flex", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "0." }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
           "input",
           {
-            id: "input",
-            className: "bg-transparent text-2xl rounded ring ring-slate-800 focus:ring-blue-500 p-4 w-[4em] text-center",
-            value: emoji,
+            type: "number",
+            id: "real-number-input",
+            className: "w-full focus:ring-0 border-0 bg-transparent focus:outline-none flex-1",
+            value: number,
             onChange: (event) => {
-              const value = event.currentTarget.value || "";
-              const firstChar = Array.from(value)[0] || "";
-              setEmoji(firstChar);
+              const value = event.currentTarget.value.replace(/\D{1}/g, "");
+              const nextValue = /^0{1,}$/.test(value) ? value : value.replace(/0{1,}$/, "");
+              setNumber(nextValue);
             }
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          import_react.Suspense,
-          {
-            fallback: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-              "div",
-              {
-                id: "link",
-                className: "cursor-pointer opacity-30 flex flex-col justify-center items-center text-xs text-center text-white px-4 rounded bg-blue-400 hocus:bg-blue-500",
-                tabIndex: 0,
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                    "svg",
-                    {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      width: "24",
-                      height: "24",
-                      viewBox: "0 0 24 24",
-                      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-                        "path",
-                        {
-                          fill: "currentColor",
-                          d: "m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"
-                        }
-                      )
-                    }
-                  ),
-                  /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "text-xs", children: "Download" })
-                ]
-              }
-            ),
-            children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DownloadLink, { renderedIconsPromise })
           }
         )
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { id: "fast-icons", className: "flex gap-2 flex-wrap mt-8", children: emojis })
-  ] }) });
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "text-3xl md:text-[50px] leading-none", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { "aria-hidden": true, className: "hidden md:inline-block", children: "\u2192" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { "aria-hidden": true, className: "inline-block md:hidden", children: "\u2193" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "sr-only", children: "becomes" })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex-1 w-full md:w-auto max-sm:w-full text-[17px] md:text-2xl", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "Natural number (mirrored)" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "rounded bg-white/10 p-4 focus-within:ring-2 w-full break-all", children: number.split("").reverse().join("") || /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: "\xA0" }) })
+    ] })
+  ] });
 }
-function DownloadLink({
-  renderedIconsPromise
-}) {
-  const { iconsLink } = (0, import_react.use)(renderedIconsPromise);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-    "a",
-    {
-      id: "link",
-      className: "cursor-pointer flex flex-col justify-center items-center text-xs text-center text-white px-4 rounded bg-blue-400 hocus:bg-blue-500",
-      download: "icons.zip",
-      href: iconsLink,
-      tabIndex: 0,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "svg",
-          {
-            xmlns: "http://www.w3.org/2000/svg",
-            width: "24",
-            height: "24",
-            viewBox: "0 0 24 24",
-            children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-              "path",
-              {
-                fill: "currentColor",
-                d: "m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "text-xs", children: "Download" })
-      ]
+function getLevels(maxLevel = 1) {
+  const list = [];
+  let level = 1;
+  let modifier = new decimal_default(1);
+  let at = new decimal_default(0);
+  while (level <= maxLevel) {
+    modifier = modifier.mul(new decimal_default(0.1));
+    at = new decimal_default(0);
+    while (true) {
+      at = at.add(modifier);
+      if (at.toNumber() < 1) {
+        if (!list.includes(at.toNumber())) {
+          list.push(at.toNumber());
+        }
+      } else {
+        break;
+      }
     }
-  );
-}
-function Output({
-  renderedIconsPromise
-}) {
-  const { images } = (0, import_react.use)(renderedIconsPromise);
-  (0, import_react.useEffect)(() => {
-    let link = document.querySelector(
-      "link[rel='shortcut icon']"
-    );
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "shortcut icon";
-      document.getElementsByTagName("head")[0].appendChild(link);
-    }
-    link.href = images.get(256) || "";
-  }, [images]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
-    "div",
-    {
-      id: "images",
-      className: "flex flex-wrap gap-3 justify-center items-center",
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: images.get(256), style: { width: 16, height: 16 } }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: images.get(256), style: { width: 64, height: 64 } })
-      ]
-    }
-  ) });
-}
-function expand(range) {
-  const result = [];
-  const [start, end] = range;
-  let i = start;
-  while (i <= end) {
-    result.push(i);
-    i++;
+    level += 1;
   }
-  return result;
+  return list;
 }
-function canvasToBlob(canvas, type = "image/png") {
-  return new Promise((resolve) => {
-    canvas.toBlob(resolve, type);
-  });
-}
-function blobToArrayBuffer(blob) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.addEventListener("loadend", () => {
-      resolve(new Uint8Array(reader.result));
-    });
-    reader.readAsArrayBuffer(blob);
-  });
-}
-function blobToUrl(blob, type = "image/png") {
-  return URL.createObjectURL(blob, type);
-}
-async function createImage({
-  size,
-  content,
-  type = "image/png"
-}) {
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return { blob: [], src: "", buffer: new Uint8Array() };
-  const unit = size * 0.01;
-  ctx.font = `normal ${unit * 80}px monospace`;
-  ctx.textAlign = "left";
-  ctx.textBaseline = "top";
-  ctx.fillText(content, unit * 10, unit * 10);
-  const blob = await canvasToBlob(canvas, type);
-  if (!blob) return { blob: [], src: "", buffer: new Uint8Array() };
-  const buffer = await blobToArrayBuffer(blob);
-  const src = blobToUrl(blob);
-  return { src, blob, buffer };
-}
-async function renderIcons(content) {
-  const zip = new import_jszip.default();
-  const images = /* @__PURE__ */ new Map();
-  for (const size of sizes) {
-    const { buffer: buffer2, src } = await createImage({ size, content });
-    images.set(size, src);
-    zip.file(`favicon_${size}.png`, buffer2);
-  }
-  const { buffer } = await createImage({
-    size: 256,
-    content,
-    type: "image/vnd.microsoft.icon"
-  });
-  zip.file(`favicon.ico`, buffer);
-  const zipBlob = await zip.generateAsync({ type: "blob" });
-  return { iconsLink: blobToUrl(zipBlob), images };
-}
-(0, import_client.createRoot)(document.body).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App, {}));
+
+// src/articles/equal-infinity/index.client.tsx
+var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var root = (0, import_client.createRoot)(document.body);
+root.render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}));
 /*! Bundled license information:
 
-jszip/dist/jszip.min.js:
-  (*!
-  
-  JSZip v3.10.1 - A JavaScript class for generating and reading zip files
-  <http://stuartk.com/jszip>
-  
-  (c) 2009-2016 Stuart Knightley <stuart [at] stuartk.com>
-  Dual licenced under the MIT license or GPLv3. See https://raw.github.com/Stuk/jszip/main/LICENSE.markdown.
-  
-  JSZip uses the library pako released under the MIT license :
-  https://github.com/nodeca/pako/blob/main/LICENSE
-  *)
-
-react/cjs/react.development.js:
+scheduler/cjs/scheduler.development.js:
   (**
    * @license React
-   * react.development.js
+   * scheduler.development.js
    *
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -22357,10 +25124,10 @@ react/cjs/react.development.js:
    * LICENSE file in the root directory of this source tree.
    *)
 
-scheduler/cjs/scheduler.development.js:
+react/cjs/react.development.js:
   (**
    * @license React
-   * scheduler.development.js
+   * react.development.js
    *
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -22399,5 +25166,14 @@ react/cjs/react-jsx-runtime.development.js:
    *
    * This source code is licensed under the MIT license found in the
    * LICENSE file in the root directory of this source tree.
+   *)
+
+decimal.js/decimal.mjs:
+  (*!
+   *  decimal.js v10.5.0
+   *  An arbitrary-precision Decimal type for JavaScript.
+   *  https://github.com/MikeMcl/decimal.js
+   *  Copyright (c) 2025 Michael Mclaughlin <M8ch88l@gmail.com>
+   *  MIT Licence
    *)
 */

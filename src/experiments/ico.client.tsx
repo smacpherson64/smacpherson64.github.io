@@ -28,6 +28,7 @@ function App() {
               type="button"
               name="emoji"
               value={number}
+              className="border border-slate-700 rounded p-1 bg-white/5 hocus:bg-white/15 cursor-pointer"
               key={number}
               onClick={() => {
                 setEmoji($emoji);
