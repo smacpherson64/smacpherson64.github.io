@@ -572,9 +572,6 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
-  .top-1 {
-    top: calc(var(--spacing) * 1);
-  }
   .top-1\/2 {
     top: calc(1/2 * 100%);
   }
@@ -592,9 +589,6 @@
   }
   .left-0 {
     left: calc(var(--spacing) * 0);
-  }
-  .left-1 {
-    left: calc(var(--spacing) * 1);
   }
   .left-1\/2 {
     left: calc(1/2 * 100%);
@@ -655,9 +649,6 @@
   }
   .m-auto {
     margin: auto;
-  }
-  .-mx-4 {
-    margin-inline: calc(var(--spacing) * -4);
   }
   .mx-auto {
     margin-inline: auto;
@@ -827,9 +818,6 @@
   .min-h-screen {
     min-height: 100vh;
   }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
-  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
@@ -857,8 +845,11 @@
   .w-\[1px\] {
     width: 1px;
   }
-  .w-\[8\%\] {
-    width: 8%;
+  .w-\[4em\] {
+    width: 4em;
+  }
+  .w-\[7px\] {
+    width: 7px;
   }
   .w-\[200px\] {
     width: 200px;
@@ -866,11 +857,8 @@
   .w-\[2px\] {
     width: 2px;
   }
-  .w-\[4em\] {
-    width: 4em;
-  }
-  .w-\[7px\] {
-    width: 7px;
+  .w-\[8\%\] {
+    width: 8%;
   }
   .w-full {
     width: 100%;
@@ -893,14 +881,8 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
   .shrink {
     flex-shrink: 1;
-  }
-  .flex-grow {
-    flex-grow: 1;
   }
   .grow {
     flex-grow: 1;
@@ -913,10 +895,6 @@
   }
   .border-collapse {
     border-collapse: collapse;
-  }
-  .-translate-x-1 {
-    --tw-translate-x: calc(var(--spacing) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-x-1\/2 {
     --tw-translate-x: calc(calc(1/2 * 100%) * -1);
@@ -1260,14 +1238,8 @@
   .bg-green-800 {
     background-color: var(--color-green-800);
   }
-  .bg-orange-500 {
-    background-color: var(--color-orange-500);
-  }
   .bg-orange-500\/5 {
     background-color: color-mix(in oklab, var(--color-orange-500) 5%, transparent);
-  }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
   }
   .bg-red-500\/50 {
     background-color: color-mix(in oklab, var(--color-red-500) 50%, transparent);
@@ -1292,9 +1264,6 @@
   }
   .bg-transparent {
     background-color: transparent;
-  }
-  .bg-white {
-    background-color: var(--color-white);
   }
   .bg-white\/5 {
     background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
@@ -1544,12 +1513,6 @@
   }
   .text-orange-100 {
     color: var(--color-orange-100);
-  }
-  .text-orange-200 {
-    color: var(--color-orange-200);
-  }
-  .text-orange-500 {
-    color: var(--color-orange-500);
   }
   .text-red-600 {
     color: var(--color-red-600);

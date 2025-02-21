@@ -27,6 +27,7 @@
         "npm:@jsr/std__media-types@^1.1.0",
         "npm:@sinclair/typebox@~0.34.25",
         "npm:@tailwindcss/cli@^4.0.6",
+        "npm:@types/decimal.js@^0.0.32",
         "npm:@types/react@^19.0.9",
         "npm:concurrently@^9.1.2",
         "npm:date-fns@^4.1.0",
