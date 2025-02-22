@@ -37,7 +37,7 @@ function App() {
               <P className="mt-8">
                 My main misunderstanding was not understanding the different
                 types of numbers. The symbols are the same (E.G. digits between
-                0 - 1), but the rules of the of numbers are not.
+                0 - 9), but the rules of the of numbers are not.
               </P>
             </header>
 

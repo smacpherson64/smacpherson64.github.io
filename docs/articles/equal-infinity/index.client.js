@@ -24635,7 +24635,7 @@ function App() {
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "mt-8", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(H2, { className: "bg-orange-500/5 border border-orange-500 text-orange-100 px-8 py-8", children: "TDLR: I failed, it is not possible to map real numbers between 0 and 1 to natural numbers." }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { className: "mt-8", children: "My main misunderstanding was not understanding the different types of numbers. The symbols are the same (E.G. digits between 0 - 1), but the rules of the of numbers are not." })
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { className: "mt-8", children: "My main misunderstanding was not understanding the different types of numbers. The symbols are the same (E.G. digits between 0 - 9), but the rules of the of numbers are not." })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mt-8", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { className: "mb-0", children: "Some lessons learned:" }),
