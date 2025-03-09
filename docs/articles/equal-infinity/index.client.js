@@ -24616,7 +24616,6 @@ P[Symbol.toStringTag] = "Decimal";
 var Decimal = P.constructor = clone(DEFAULTS);
 LN10 = new Decimal(LN10);
 PI = new Decimal(PI);
-var decimal_default = Decimal;
 
 // src/articles/equal-infinity/App.tsx
 var import_jsx_runtime = __toESM(require_jsx_runtime());
@@ -24650,7 +24649,8 @@ function App() {
                 frameBorder: "0",
                 title: "Why can't I multiply matrices",
                 allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-                allowFullScreen: true
+                allowFullScreen: true,
+                loading: "lazy"
               }
             ),
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { className: "w-full mt-2 table-fixed", children: [
@@ -24763,7 +24763,8 @@ function App() {
             title: "Math's Fundamental Flaw",
             frameBorder: "0",
             allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-            allowFullScreen: true
+            allowFullScreen: true,
+            loading: "lazy"
           }
         ),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Each time I hear the argument, that real numbers between zero to one are a larger infinity than natural numbers, I want explore and see if it is possible to make a one to one mapping between these sets. This post is my attempt." }),
@@ -25083,11 +25084,11 @@ function InverseInput() {
 function getLevels(maxLevel = 1) {
   const list = [];
   let level = 1;
-  let modifier = new decimal_default(1);
-  let at = new decimal_default(0);
+  let modifier = new Decimal(1);
+  let at = new Decimal(0);
   while (level <= maxLevel) {
-    modifier = modifier.mul(new decimal_default(0.1));
-    at = new decimal_default(0);
+    modifier = modifier.mul(new Decimal(0.1));
+    at = new Decimal(0);
     while (true) {
       at = at.add(modifier);
       if (at.toNumber() < 1) {

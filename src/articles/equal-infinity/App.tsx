@@ -1,6 +1,6 @@
 import { useState, createElement, ComponentProps } from "react";
 import { twMerge } from "tailwind-merge";
-import Decimal from "decimal.js";
+import { Decimal } from "decimal.js";
 
 ////////////////////////////////
 // #region . Constants
@@ -67,6 +67,7 @@ function App() {
                   title="Why can't I multiply matrices"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  loading="lazy"
                 />
                 <table className="w-full mt-2 table-fixed">
                   <thead>
@@ -219,6 +220,7 @@ function App() {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
+              loading="lazy"
             />
 
             <P>
