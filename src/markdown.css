@@ -1,0 +1,203 @@
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+.markdown {
+  @apply text-white font-sans font-extralight;
+}
+
+.markdown .wrapper {
+  @apply mx-auto max-w-xl p-4 sm:p-8 leading-normal;
+}
+
+:where(.markdown .wrapper > *) {
+  @apply mt-2;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply text-slate-200 font-extralight mt-8 first:mt-0;
+}
+
+.markdown h1 {
+  @apply text-3xl;
+}
+
+.markdown h2 {
+  @apply text-2xl;
+}
+
+.markdown h3 {
+  @apply text-xl;
+}
+
+.markdown h4 {
+  @apply text-lg;
+}
+
+.markdown h6 {
+  @apply text-sm;
+}
+
+.markdown hr {
+  @apply mx-auto w-3/4 border-slate-800 my-8;
+}
+
+.markdown p {
+  @apply leading-normal;
+}
+
+.markdown strong {
+  @apply font-semibold;
+}
+
+.markdown blockquote {
+  @apply ml-2 p-4 border-l-2 border-slate-800 text-lg leading-relaxed text-slate-400;
+}
+
+.markdown blockquote .header {
+  @apply text-sm capitalize;
+}
+
+.markdown blockquote.note .header {
+  @apply font-semibold text-blue-500;
+}
+
+.markdown blockquote.note {
+  @apply border-blue-500;
+}
+
+.markdown blockquote.tip .header {
+  @apply font-semibold text-green-300;
+}
+
+.markdown blockquote.tip {
+  @apply border-green-300;
+}
+
+.markdown blockquote.info .header {
+  @apply font-semibold text-violet-500;
+}
+
+.markdown blockquote.info {
+  @apply border-violet-500;
+}
+
+.markdown blockquote.warning .header {
+  @apply font-semibold text-orange-300;
+}
+
+.markdown blockquote.warning {
+  @apply border-orange-300;
+}
+
+.markdown blockquote.danger .header {
+  @apply font-semibold text-red-500;
+}
+
+.markdown blockquote.danger {
+  @apply border-red-500;
+}
+
+.markdown blockquote > blockquote {
+  @apply mt-4;
+}
+
+.markdown ul {
+  @apply pl-8 list-disc;
+}
+
+.markdown ol {
+  @apply pl-8 list-decimal;
+}
+
+.markdown li {
+  @apply mt-2 leading-tight;
+}
+
+.markdown table {
+  @apply rounded;
+}
+
+.markdown th {
+  @apply font-semibold;
+}
+
+.markdown th,
+.markdown td {
+  @apply px-4 py-3 border border-slate-700;
+}
+
+.markdown a {
+  @apply border-b border-current text-blue-400 hover:text-blue-500 focus:text-blue-500;
+}
+
+.markdown img,
+.markdown canvas,
+.markdown iframe,
+.markdown video,
+.markdown svg,
+.markdown select,
+.markdown textarea {
+  max-width: 100%;
+}
