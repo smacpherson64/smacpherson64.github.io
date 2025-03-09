@@ -24792,7 +24792,7 @@ function App() {
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "What if instead of counting this set of numbers on a line, they are counted like branches on a tree?" }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", { className: "block", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: "./assets/tree.png" }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("caption", { className: "text-xs block text-left py-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figcaption", { className: "text-xs block text-left py-2", children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "opacity-80", children: "Original picture from " }),
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)(A, { href: "https://www.publicdomainpictures.net/en/view-image.php?image=170902&picture=trees-without-leaves", children: "PublicDomainPictures.net - George Hodan" })
             ] })

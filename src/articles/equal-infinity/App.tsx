@@ -274,12 +274,12 @@ function App() {
               <figure className="block">
                 <img src="./assets/tree.png" />
 
-                <caption className="text-xs block text-left py-2">
+                <figcaption className="text-xs block text-left py-2">
                   <span className="opacity-80">Original picture from </span>
                   <A href="https://www.publicdomainpictures.net/en/view-image.php?image=170902&picture=trees-without-leaves">
                     PublicDomainPictures.net - George Hodan
                   </A>
-                </caption>
+                </figcaption>
               </figure>
 
               <P>The two main tree branch counting methods are: </P>
