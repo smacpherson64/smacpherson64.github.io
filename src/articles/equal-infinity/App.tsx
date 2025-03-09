@@ -234,7 +234,7 @@ function App() {
               the set can keep growing or shrinking forever, E.G.:
             </P>
 
-            <ul className="list-disc ml-12 leading-2 my-4">
+            <ul className="list-disc ml-12 my-4">
               <li>
                 <Bold>Prepend 0 after the decimal</Bold>:{" "}
                 <span>0.1, 0.01, 0.001, 0.0001, 0.00001, ...</span>
@@ -281,7 +281,7 @@ function App() {
               </figure>
 
               <P>The two main tree branch counting methods are: </P>
-              <ul className="list-disc ml-12 leading-2 my-4 space-y-4">
+              <ul className="list-disc ml-12 my-4 space-y-4">
                 <li>
                   <Bold>
                     <A

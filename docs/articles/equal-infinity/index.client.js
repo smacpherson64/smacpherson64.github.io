@@ -24768,7 +24768,7 @@ function App() {
         ),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "Each time I hear the argument, that real numbers between zero to one are a larger infinity than natural numbers, I want explore and see if it is possible to make a one to one mapping between these sets. This post is my attempt." }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: `The clearest hurdle is the set real numbers between zero and one is "uncountable". There isn't a clear starting point, both ends of the set can keep growing or shrinking forever, E.G.:` }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 leading-2 my-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 my-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: "Prepend 0 after the decimal" }),
             ":",
@@ -24797,7 +24797,7 @@ function App() {
             ] })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(P2, { children: "The two main tree branch counting methods are: " }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 leading-2 my-4 space-y-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", { className: "list-disc ml-12 my-4 space-y-4", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
               /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bold, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
                 A,
