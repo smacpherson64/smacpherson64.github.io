@@ -24,9 +24,9 @@ var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__
   mod2
 ));
 
-// node_modules/scheduler/cjs/scheduler.development.js
+// node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -292,9 +292,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// node_modules/scheduler/index.js
+// node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
+  "node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -304,9 +304,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react.development.js
+// node_modules/.deno/react@19.0.0/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "node_modules/react/cjs/react.development.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -1411,9 +1411,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// node_modules/react/index.js
+// node_modules/.deno/react@19.0.0/node_modules/react/index.js
 var require_react = __commonJS({
-  "node_modules/react/index.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -1423,9 +1423,9 @@ var require_react = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom.development.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop() {
@@ -1667,9 +1667,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/index.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "node_modules/react-dom/index.js"(exports, module) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -1680,9 +1680,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom-client.development.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id) {
@@ -19270,9 +19270,9 @@ var require_react_dom_client_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/client.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "node_modules/react-dom/client.js"(exports, module) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -19283,9 +19283,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
+// node_modules/.deno/react@19.0.0/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -19724,9 +19724,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// node_modules/react/jsx-runtime.js
+// node_modules/.deno/react@19.0.0/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -19737,12 +19737,12 @@ var require_jsx_runtime = __commonJS({
 });
 
 // src/articles/equal-infinity/index.client.tsx
-var import_client = __toESM(require_client(), 1);
+var import_client = __toESM(require_client());
 
 // src/articles/equal-infinity/App.tsx
-var import_react = __toESM(require_react(), 1);
+var import_react = __toESM(require_react());
 
-// node_modules/tailwind-merge/dist/bundle-mjs.mjs
+// node_modules/.deno/tailwind-merge@3.0.2/node_modules/tailwind-merge/dist/bundle-mjs.mjs
 var CLASS_PART_SEPARATOR = "-";
 var createClassGroupUtils = (config2) => {
   const classMap = createClassMap(config2);
@@ -20199,20 +20199,18 @@ var getDefaultConfig = () => {
   const scalePosition = () => ["bottom", "center", "left", "left-bottom", "left-top", "right", "right-bottom", "right-top", "top"];
   const scaleOverflow = () => ["auto", "hidden", "clip", "visible", "scroll"];
   const scaleOverscroll = () => ["auto", "contain", "none"];
-  const scaleInset = () => [isFraction, "px", "full", "auto", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleUnambiguousSpacing = () => [isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleInset = () => [isFraction, "full", "auto", ...scaleUnambiguousSpacing()];
   const scaleGridTemplateColsRows = () => [isInteger, "none", "subgrid", isArbitraryVariable, isArbitraryValue];
   const scaleGridColRowStartAndEnd = () => ["auto", {
     span: ["full", isInteger, isArbitraryVariable, isArbitraryValue]
   }, isArbitraryVariable, isArbitraryValue];
   const scaleGridColRowStartOrEnd = () => [isInteger, "auto", isArbitraryVariable, isArbitraryValue];
   const scaleGridAutoColsRows = () => ["auto", "min", "max", "fr", isArbitraryVariable, isArbitraryValue];
-  const scaleGap = () => [isArbitraryVariable, isArbitraryValue, themeSpacing];
   const scaleAlignPrimaryAxis = () => ["start", "end", "center", "between", "around", "evenly", "stretch", "baseline"];
   const scaleAlignSecondaryAxis = () => ["start", "end", "center", "stretch"];
-  const scaleUnambiguousSpacing = () => [isArbitraryVariable, isArbitraryValue, themeSpacing];
-  const scalePadding = () => ["px", ...scaleUnambiguousSpacing()];
-  const scaleMargin = () => ["px", "auto", ...scaleUnambiguousSpacing()];
-  const scaleSizing = () => [isFraction, "auto", "px", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleMargin = () => ["auto", ...scaleUnambiguousSpacing()];
+  const scaleSizing = () => [isFraction, "auto", "full", "dvw", "dvh", "lvw", "lvh", "svw", "svh", "min", "max", "fit", ...scaleUnambiguousSpacing()];
   const scaleColor = () => [themeColor, isArbitraryVariable, isArbitraryValue];
   const scaleGradientStopPosition = () => [isPercent, isArbitraryLength];
   const scaleRadius = () => [
@@ -20239,7 +20237,7 @@ var getDefaultConfig = () => {
   const scaleRotate = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
   const scaleScale = () => ["none", isNumber, isArbitraryVariable, isArbitraryValue];
   const scaleSkew = () => [isNumber, isArbitraryVariable, isArbitraryValue];
-  const scaleTranslate = () => [isFraction, "full", "px", isArbitraryVariable, isArbitraryValue, themeSpacing];
+  const scaleTranslate = () => [isFraction, "full", ...scaleUnambiguousSpacing()];
   return {
     cacheSize: 500,
     theme: {
@@ -20258,7 +20256,7 @@ var getDefaultConfig = () => {
       perspective: ["dramatic", "near", "normal", "midrange", "distant", "none"],
       radius: [isTshirtSize],
       shadow: [isTshirtSize],
-      spacing: [isNumber],
+      spacing: ["px", isNumber],
       text: [isTshirtSize],
       tracking: ["tighter", "tight", "normal", "wide", "wider", "widest"]
     },
@@ -20494,7 +20492,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/flex-basis
        */
       basis: [{
-        basis: [isFraction, "full", "auto", isArbitraryVariable, isArbitraryValue, themeContainer, themeSpacing]
+        basis: [isFraction, "full", "auto", themeContainer, ...scaleUnambiguousSpacing()]
       }],
       /**
        * Flex Direction
@@ -20620,21 +20618,21 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/gap
        */
       gap: [{
-        gap: scaleGap()
+        gap: scaleUnambiguousSpacing()
       }],
       /**
        * Gap X
        * @see https://tailwindcss.com/docs/gap
        */
       "gap-x": [{
-        "gap-x": scaleGap()
+        "gap-x": scaleUnambiguousSpacing()
       }],
       /**
        * Gap Y
        * @see https://tailwindcss.com/docs/gap
        */
       "gap-y": [{
-        "gap-y": scaleGap()
+        "gap-y": scaleUnambiguousSpacing()
       }],
       /**
        * Justify Content
@@ -20705,63 +20703,63 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/padding
        */
       p: [{
-        p: scalePadding()
+        p: scaleUnambiguousSpacing()
       }],
       /**
        * Padding X
        * @see https://tailwindcss.com/docs/padding
        */
       px: [{
-        px: scalePadding()
+        px: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Y
        * @see https://tailwindcss.com/docs/padding
        */
       py: [{
-        py: scalePadding()
+        py: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Start
        * @see https://tailwindcss.com/docs/padding
        */
       ps: [{
-        ps: scalePadding()
+        ps: scaleUnambiguousSpacing()
       }],
       /**
        * Padding End
        * @see https://tailwindcss.com/docs/padding
        */
       pe: [{
-        pe: scalePadding()
+        pe: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Top
        * @see https://tailwindcss.com/docs/padding
        */
       pt: [{
-        pt: scalePadding()
+        pt: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Right
        * @see https://tailwindcss.com/docs/padding
        */
       pr: [{
-        pr: scalePadding()
+        pr: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Bottom
        * @see https://tailwindcss.com/docs/padding
        */
       pb: [{
-        pb: scalePadding()
+        pb: scaleUnambiguousSpacing()
       }],
       /**
        * Padding Left
        * @see https://tailwindcss.com/docs/padding
        */
       pl: [{
-        pl: scalePadding()
+        pl: scaleUnambiguousSpacing()
       }],
       /**
        * Margin
@@ -20854,16 +20852,16 @@ var getDefaultConfig = () => {
       // --- Sizing ---
       // --------------
       /**
-       * Width
-       * @see https://tailwindcss.com/docs/width
-       */
-      /**
        * Size
        * @see https://tailwindcss.com/docs/width#setting-both-width-and-height
        */
       size: [{
         size: scaleSizing()
       }],
+      /**
+       * Width
+       * @see https://tailwindcss.com/docs/width
+       */
       w: [{
         w: [themeContainer, "screen", ...scaleSizing()]
       }],
@@ -21010,11 +21008,9 @@ var getDefaultConfig = () => {
        */
       leading: [{
         leading: [
-          isArbitraryVariable,
-          isArbitraryValue,
           /** Deprecated since Tailwind CSS v4.0.0. @see https://github.com/tailwindlabs/tailwindcss.com/issues/2027#issuecomment-2620152757 */
           themeLeading,
-          themeSpacing
+          ...scaleUnambiguousSpacing()
         ]
       }],
       /**
@@ -21115,7 +21111,7 @@ var getDefaultConfig = () => {
        * @see https://tailwindcss.com/docs/text-indent
        */
       indent: [{
-        indent: ["px", ...scaleUnambiguousSpacing()]
+        indent: scaleUnambiguousSpacing()
       }],
       /**
        * Vertical Alignment
@@ -22445,7 +22441,7 @@ var getDefaultConfig = () => {
 };
 var twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
 
-// node_modules/decimal.js/decimal.mjs
+// node_modules/.deno/decimal.js@10.5.0/node_modules/decimal.js/decimal.mjs
 var EXP_LIMIT = 9e15;
 var MAX_DIGITS = 1e9;
 var NUMERALS = "0123456789abcdef";
@@ -24623,7 +24619,7 @@ PI = new Decimal(PI);
 var decimal_default = Decimal;
 
 // src/articles/equal-infinity/App.tsx
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime = __toESM(require_jsx_runtime());
 var data = getLevels(3).map((real, index) => ({
   real: real.toString(),
   natural: (index + 1).toString()
@@ -25108,7 +25104,7 @@ function getLevels(maxLevel = 1) {
 }
 
 // src/articles/equal-infinity/index.client.tsx
-var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+var import_jsx_runtime2 = __toESM(require_jsx_runtime());
 var root = (0, import_client.createRoot)(document.body);
 root.render(/* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}));
 /*! Bundled license information:

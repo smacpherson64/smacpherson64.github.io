@@ -30,9 +30,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// node_modules/jszip/dist/jszip.min.js
+// node_modules/.deno/jszip@3.10.1/node_modules/jszip/dist/jszip.min.js
 var require_jszip_min = __commonJS({
-  "node_modules/jszip/dist/jszip.min.js"(exports, module) {
+  "node_modules/.deno/jszip@3.10.1/node_modules/jszip/dist/jszip.min.js"(exports, module) {
     !function(e) {
       if ("object" == typeof exports && "undefined" != typeof module) module.exports = e();
       else if ("function" == typeof define && define.amd) define([], e);
@@ -2396,9 +2396,9 @@ var require_jszip_min = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react.development.js
+// node_modules/.deno/react@19.0.0/node_modules/react/cjs/react.development.js
 var require_react_development = __commonJS({
-  "node_modules/react/cjs/react.development.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/cjs/react.development.js"(exports, module) {
     "use strict";
     (function() {
       function defineDeprecationWarning(methodName, info) {
@@ -3503,9 +3503,9 @@ var require_react_development = __commonJS({
   }
 });
 
-// node_modules/react/index.js
+// node_modules/.deno/react@19.0.0/node_modules/react/index.js
 var require_react = __commonJS({
-  "node_modules/react/index.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -3515,9 +3515,9 @@ var require_react = __commonJS({
   }
 });
 
-// node_modules/scheduler/cjs/scheduler.development.js
+// node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/cjs/scheduler.development.js
 var require_scheduler_development = __commonJS({
-  "node_modules/scheduler/cjs/scheduler.development.js"(exports) {
+  "node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/cjs/scheduler.development.js"(exports) {
     "use strict";
     (function() {
       function performWorkUntilDeadline() {
@@ -3783,9 +3783,9 @@ var require_scheduler_development = __commonJS({
   }
 });
 
-// node_modules/scheduler/index.js
+// node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/index.js
 var require_scheduler = __commonJS({
-  "node_modules/scheduler/index.js"(exports, module) {
+  "node_modules/.deno/scheduler@0.25.0/node_modules/scheduler/index.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -3795,9 +3795,9 @@ var require_scheduler = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom.development.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom.development.js
 var require_react_dom_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom.development.js"(exports) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom.development.js"(exports) {
     "use strict";
     (function() {
       function noop() {
@@ -4039,9 +4039,9 @@ var require_react_dom_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/index.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/index.js
 var require_react_dom = __commonJS({
-  "node_modules/react-dom/index.js"(exports, module) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/index.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -4052,9 +4052,9 @@ var require_react_dom = __commonJS({
   }
 });
 
-// node_modules/react-dom/cjs/react-dom-client.development.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom-client.development.js
 var require_react_dom_client_development = __commonJS({
-  "node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/cjs/react-dom-client.development.js"(exports) {
     "use strict";
     (function() {
       function findHook(fiber, id) {
@@ -21642,9 +21642,9 @@ var require_react_dom_client_development = __commonJS({
   }
 });
 
-// node_modules/react-dom/client.js
+// node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/client.js
 var require_client = __commonJS({
-  "node_modules/react-dom/client.js"(exports, module) {
+  "node_modules/.deno/react-dom@19.0.0/node_modules/react-dom/client.js"(exports, module) {
     "use strict";
     if (false) {
       checkDCE();
@@ -21655,9 +21655,9 @@ var require_client = __commonJS({
   }
 });
 
-// node_modules/react/cjs/react-jsx-runtime.development.js
+// node_modules/.deno/react@19.0.0/node_modules/react/cjs/react-jsx-runtime.development.js
 var require_react_jsx_runtime_development = __commonJS({
-  "node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/cjs/react-jsx-runtime.development.js"(exports) {
     "use strict";
     (function() {
       function getComponentNameFromType(type) {
@@ -22096,9 +22096,9 @@ var require_react_jsx_runtime_development = __commonJS({
   }
 });
 
-// node_modules/react/jsx-runtime.js
+// node_modules/.deno/react@19.0.0/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = __commonJS({
-  "node_modules/react/jsx-runtime.js"(exports, module) {
+  "node_modules/.deno/react@19.0.0/node_modules/react/jsx-runtime.js"(exports, module) {
     "use strict";
     if (false) {
       module.exports = null;
@@ -22109,10 +22109,10 @@ var require_jsx_runtime = __commonJS({
 });
 
 // src/experiments/ico.client.tsx
-var import_jszip = __toESM(require_jszip_min(), 1);
-var import_react = __toESM(require_react(), 1);
-var import_client = __toESM(require_client(), 1);
-var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+var import_jszip = __toESM(require_jszip_min());
+var import_react = __toESM(require_react());
+var import_client = __toESM(require_client());
+var import_jsx_runtime = __toESM(require_jsx_runtime());
 var sizes = [16, 24, 32, 48, 64, 128, 256];
 var emojiRanges = [
   [128513, 128591],
