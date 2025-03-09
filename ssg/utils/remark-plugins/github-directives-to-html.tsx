@@ -6,7 +6,6 @@ export function githubDirectivesToHtml() {
     file: import("npm:vfile").VFile
   ): undefined => {
     visit(tree, function (node) {
-      console.log({ node });
       if (node.type === "containerDirective") {
         const data = node.data || (node.data = {});
         data.hName = "blockquote";
