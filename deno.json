@@ -32,6 +32,7 @@
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
     "remark": "npm:remark@^15.0.1",
+    "remark-deflist": "npm:remark-deflist@^1.0.0",
     "remark-directive": "npm:remark-directive@^4.0.0",
     "remark-frontmatter": "npm:remark-frontmatter@^5.0.0",
     "remark-gfm": "npm:remark-gfm@^4.0.1",
