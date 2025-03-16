@@ -189,7 +189,7 @@
 }
 
 .markdown a {
-  @apply border-b border-current text-blue-400 hover:text-blue-500 focus:text-blue-500;
+  @apply underline underline-offset-2 decoration-1 decoration-current/80 text-blue-400 hover:text-blue-500 focus:text-blue-500;
 }
 
 .markdown img,

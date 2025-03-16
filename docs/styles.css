@@ -2170,10 +2170,11 @@ pre[class*="language-"] {
   padding-block: calc(var(--spacing) * 3);
 }
 .markdown a {
-  border-bottom-style: var(--tw-border-style);
-  border-bottom-width: 1px;
-  border-color: currentColor;
   color: var(--color-blue-400);
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, currentColor 80%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   &:hover {
     @media (hover: hover) {
       color: var(--color-blue-500);
