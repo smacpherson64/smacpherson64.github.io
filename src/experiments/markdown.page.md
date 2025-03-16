@@ -1,21 +1,16 @@
-# h1 Heading 8-)
+# Headings
+
+# h1 Heading
 ## h2 Heading
 ### h3 Heading
 #### h4 Heading
 ##### h5 Heading
 ###### h6 Heading
 
-
-## Horizontal Rules
-
-___
-
 ---
 
-***
+# Emphasis
 
-
-## Emphasis
 
 **This is bold text**
 
@@ -28,7 +23,10 @@ _This is italic text_
 ~~Strikethrough~~
 
 
-## Blockquotes
+---
+
+
+# Blockquotes
 
 
 > Blockquotes can also be nested...
@@ -36,9 +34,12 @@ _This is italic text_
 > > > ...or with spaces between arrows.
 
 
-## Lists
+---
 
-Unordered
+
+# Lists
+
+**Unordered**
 
 + Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
@@ -48,15 +49,12 @@ Unordered
     - Nulla volutpat aliquam velit
 + Very easy!
 
-Ordered
+**Ordered**
 
-1. Lorem ipsum dolor sit amet
-2. Consectetur adipiscing elit
-3. Integer molestie lorem at massa
-
-
-1. You can use sequential numbers...
-1. ...or keep all the numbers as `1.`
+1. sequential numbers
+1. sequential numbers
+1. sequential numbers
+1. sequential numbers
 
 Start numbering with offset:
 
@@ -64,32 +62,41 @@ Start numbering with offset:
 1. bar
 
 
-## Code
+---
+
+
+# Code
 
 Inline `code`
 
-Indented code
-
-    // Some comments
-    line 1 of code
-    line 2 of code
-    line 3 of code
-
-
-Block code "fences"
-
-```
-Sample text here...
-```
-
 Syntax highlighting
 
-``` js
-var foo = function (bar) {
-  return bar++;
+``` tsx
+export type Page = {
+  lastmod?: string;
+  url: string;
+  changefreq?: string;
+  priority?: string;
+  modifiedAt?: Date | null;
 };
 
-console.log(foo(5));
+function add(...args: number[]) {
+  return args.reduce((acc, number) => acc + number, 0)
+};
+
+/test/
+
+1 + 1
+
+true
+
+false
+
+let a = "test";
+const b = 5;
+var c = BigInt(5);
+
+console.log(add(5, 5, 5, 5)); // 20
 ```
 
 ## Tables
@@ -111,34 +118,14 @@ Right aligned columns
 
 ## Links
 
-[link text](http://dev.nodeca.com)
+[link text](https://sethmac.com)
 
-[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+[link with title](https://sethmac.com/ "Title text")
 
-Autoconverted link https://github.com/nodeca/pica
-
-
-## Images
-
-![Minion](https://octodex.github.com/images/minion.png)
-![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
-Like links, Images also have a footnote style syntax
-
-![Alt text][id]
-
-With a reference later in the document defining the URL location:
-
-[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+automatic link: https://sethmac.com
 
 
-## Plugins
-
-The killer feature of `markdown-it` is very effective support of
-[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
-
-
-### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
+## Footnotes
 
 Footnote 1 link[^first].
 
@@ -154,8 +141,9 @@ Duplicated footnote reference[^second].
 
 [^second]: Footnote text.
 
+---
 
-### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
+# Definition lists
 
 Term 1
 
@@ -166,20 +154,9 @@ Term 2 with *inline markup*
 
 :   Definition 2
 
-        { some code, part of Definition 2 }
+---
 
-    Third paragraph of definition 2.
-
-_Compact style:_
-
-Term 1
-  ~ Definition 1
-
-Term 2
-  ~ Definition 2a
-  ~ Definition 2b
-
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+# Custom containers
 
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
@@ -196,6 +173,11 @@ Term 2
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
-::: warning
-*here be dragons*
-:::
+## Math
+
+$$
+X = Y * 2
+Y = 5
+X = 5 * 2
+X = 10
+$$

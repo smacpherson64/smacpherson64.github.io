@@ -100,7 +100,7 @@
 }
 
 .markdown hr {
-  @apply mx-auto w-3/4 border-slate-800 my-8;
+  @apply mx-auto w-full border-slate-800 my-8;
 }
 
 .markdown p {
@@ -200,4 +200,32 @@
 .markdown select,
 .markdown textarea {
   max-width: 100%;
+}
+
+.markdown .footnotes {
+  @apply mt-16 pt-8 mb-8 border-t border-t-slate-500/50;
+}
+
+.markdown .remark-highlight {
+  @apply text-xs;
+}
+
+.markdown code {
+  @apply bg-slate-950;
+}
+
+.markdown pre code {
+  @apply text-xs;
+}
+
+.markdown dt {
+  @apply font-semibold not-first:mt-4;
+}
+
+.markdown dd {
+  @apply pl-4;
+}
+
+.markdown .math-display {
+  @apply block p-4;
 }

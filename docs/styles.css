@@ -1,4 +1,4 @@
-/*! tailwindcss v4.0.12 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.0.14 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -13,11 +13,15 @@
     --color-red-600: oklch(0.577 0.245 27.325);
     --color-orange-100: oklch(0.954 0.038 75.164);
     --color-orange-300: oklch(0.837 0.128 66.29);
+    --color-orange-400: oklch(0.75 0.183 55.934);
     --color-orange-500: oklch(0.705 0.213 47.604);
+    --color-orange-700: oklch(0.553 0.195 38.402);
+    --color-amber-200: oklch(0.924 0.12 95.746);
     --color-yellow-100: oklch(0.973 0.071 103.193);
     --color-yellow-200: oklch(0.945 0.129 101.54);
     --color-yellow-300: oklch(0.905 0.182 98.111);
     --color-yellow-500: oklch(0.795 0.184 86.047);
+    --color-lime-200: oklch(0.938 0.127 124.321);
     --color-green-200: oklch(0.925 0.084 155.995);
     --color-green-300: oklch(0.871 0.15 154.449);
     --color-green-400: oklch(0.792 0.209 151.711);
@@ -27,15 +31,20 @@
     --color-green-800: oklch(0.448 0.119 151.328);
     --color-green-900: oklch(0.393 0.095 152.535);
     --color-emerald-400: oklch(0.765 0.177 163.223);
+    --color-emerald-600: oklch(0.596 0.145 163.225);
     --color-sky-400: oklch(0.746 0.16 232.661);
     --color-sky-500: oklch(0.685 0.169 237.323);
+    --color-blue-200: oklch(0.882 0.059 254.128);
     --color-blue-400: oklch(0.707 0.165 254.624);
     --color-blue-500: oklch(0.623 0.214 259.815);
     --color-blue-600: oklch(0.546 0.245 262.881);
     --color-violet-500: oklch(0.606 0.25 292.717);
+    --color-pink-600: oklch(0.592 0.249 0.584);
+    --color-slate-100: oklch(0.968 0.007 247.896);
     --color-slate-200: oklch(0.929 0.013 255.508);
     --color-slate-300: oklch(0.869 0.022 252.894);
     --color-slate-400: oklch(0.704 0.04 256.788);
+    --color-slate-500: oklch(0.554 0.046 257.417);
     --color-slate-600: oklch(0.446 0.043 257.281);
     --color-slate-700: oklch(0.372 0.044 257.287);
     --color-slate-800: oklch(0.279 0.041 260.031);
@@ -1910,7 +1919,7 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 code[class*="language-"], pre[class*="language-"] {
-  color: #ccc;
+  color: var(--color-slate-300);
   background: 0 0;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   font-size: 1em;
@@ -1934,7 +1943,7 @@ pre[class*="language-"] {
   overflow: auto;
 }
 :not(pre) > code[class*="language-"], pre[class*="language-"] {
-  background: #2d2d2d;
+  background-color: var(--color-slate-950);
 }
 :not(pre) > code[class*="language-"] {
   padding: 0.1em;
@@ -1942,31 +1951,37 @@ pre[class*="language-"] {
   white-space: normal;
 }
 .token.block-comment, .token.cdata, .token.comment, .token.doctype, .token.prolog {
-  color: #999;
+  color: var(--color-green-700);
 }
-.token.punctuation {
-  color: #ccc;
+.token.operator, .token.punctuation {
+  color: var(--color-slate-100);
 }
 .token.attr-name, .token.deleted, .token.namespace, .token.tag {
-  color: #e2777a;
+  color: var(--color-orange-700);
 }
-.token.function-name {
-  color: #6196cc;
+.token.boolean, .token.function-name {
+  color: var(--color-blue-400);
 }
-.token.boolean, .token.function, .token.number {
-  color: #f08d49;
+.token.function, .token.number {
+  color: var(--color-amber-200);
+}
+.token.number {
+  color: var(--color-lime-200);
 }
 .token.class-name, .token.constant, .token.property, .token.symbol {
-  color: #f8c555;
+  color: var(--color-blue-200);
 }
 .token.atrule, .token.builtin, .token.important, .token.keyword, .token.selector {
-  color: #cc99cd;
+  color: var(--color-sky-500);
 }
-.token.attr-value, .token.char, .token.regex, .token.string, .token.variable {
-  color: #7ec699;
+.token.attr-value, .token.char, .token.regex, .token.variable {
+  color: var(--color-emerald-600);
 }
-.token.entity, .token.operator, .token.url {
-  color: #67cdcc;
+.token.regex {
+  color: var(--color-pink-600);
+}
+.token.entity, .token.url, .token.string {
+  color: var(--color-orange-400);
 }
 .token.bold, .token.important {
   font-weight: 700;
@@ -1978,7 +1993,7 @@ pre[class*="language-"] {
   cursor: help;
 }
 .token.inserted {
-  color: green;
+  color: var(--color-green-700);
 }
 @media print {
   *, *:before, *:after {
@@ -2071,7 +2086,7 @@ pre[class*="language-"] {
 .markdown hr {
   margin-inline: auto;
   margin-block: calc(var(--spacing) * 8);
-  width: calc(3/4 * 100%);
+  width: 100%;
   border-color: var(--color-slate-800);
 }
 .markdown p {
@@ -2186,6 +2201,39 @@ pre[class*="language-"] {
 }
 .markdown img, .markdown canvas, .markdown iframe, .markdown video, .markdown svg, .markdown select, .markdown textarea {
   max-width: 100%;
+}
+.markdown .footnotes {
+  margin-top: calc(var(--spacing) * 16);
+  margin-bottom: calc(var(--spacing) * 8);
+  border-top-style: var(--tw-border-style);
+  border-top-width: 1px;
+  border-top-color: color-mix(in oklab, var(--color-slate-500) 50%, transparent);
+  padding-top: calc(var(--spacing) * 8);
+}
+.markdown .remark-highlight {
+  font-size: var(--text-xs);
+  line-height: var(--tw-leading, var(--text-xs--line-height));
+}
+.markdown code {
+  background-color: var(--color-slate-950);
+}
+.markdown pre code {
+  font-size: var(--text-xs);
+  line-height: var(--tw-leading, var(--text-xs--line-height));
+}
+.markdown dt {
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  &:not(*:first-child) {
+    margin-top: calc(var(--spacing) * 4);
+  }
+}
+.markdown dd {
+  padding-left: calc(var(--spacing) * 4);
+}
+.markdown .math-display {
+  display: block;
+  padding: calc(var(--spacing) * 4);
 }
 @property --tw-translate-x {
   syntax: "*";
