@@ -12,7 +12,7 @@
 
     "dev:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css --watch",
     "dev:client": "./node_modules/.bin/esbuild './src/**/*.client.tsx' --bundle --outdir=docs --outbase=./src --format=esm --log-level=info --watch",
-    "dev:pages": "deno -RWE --watch ./ssg/main.tsx",
+    "dev:pages": "deno -RWE --watch ./ssg/main.tsx --watch",
     "dev:server": "serve ./docs",
     "dev": "deno task 'dev:*'"
   },
