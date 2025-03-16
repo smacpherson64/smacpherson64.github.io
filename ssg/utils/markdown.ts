@@ -4,6 +4,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkPrism from "remark-prism";
 import remarkDirective from "remark-directive";
+import remarkDeflist from "remark-deflist";
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import { unified } from "unified";
 import remarkFrontmatter from "remark-frontmatter";
@@ -32,6 +33,7 @@ export function parse(markdown: string) {
     .use(remarkGithubAdmonitionsToDirectives)
     .use(githubDirectivesToHtml)
     .use(remarkDirective)
+    .use(remarkDeflist)
     .processSync(markdown);
 
   return String(file);

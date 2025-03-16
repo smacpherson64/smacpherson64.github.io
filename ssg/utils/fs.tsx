@@ -1,44 +1,52 @@
 import { walk, WalkEntry, type WalkOptions } from "jsr:@std/fs/walk";
-import { resolve } from "jsr:@std/path";
-import { typeByExtension } from "@std/media-types";
 
 export function getExtension(filePath: string, otherwise = "txt"): string {
   return filePath.toLocaleLowerCase().split(".").pop() ?? otherwise;
 }
 
-export type WalkFileEntry = {
-  name: string;
-  path: string;
-  relativePath: string;
-  extension: string;
-  mediaType?: string;
-  createdAt: Date | null;
-  modifiedAt: Date | null;
-};
-
 export async function getFiles(
   dir: string,
   options: WalkOptions
-): Promise<WalkFileEntry[]> {
-  const directoryPath = resolve(dir);
-
+): Promise<WalkEntry[]> {
   const entries = await Array.fromAsync(walk(dir, options));
-  const files = entries.filter((entry) => entry.isFile);
-  return files.map(function enhanceFile(entry: WalkEntry) {
-    const extension = getExtension(entry.name);
-    const mediaType = typeByExtension(extension);
-    const stats = Deno.statSync(entry.path);
-    const fullPath = resolve(entry.path);
-    const relativePath = fullPath.replace(directoryPath, "");
+  return entries.filter((entry) => entry.isFile);
+}
 
-    return {
-      name: entry.name,
-      path: fullPath,
-      relativePath,
-      extension,
-      mediaType,
-      createdAt: stats.birthtime,
-      modifiedAt: stats.mtime,
-    };
-  });
+export function isSameContents(
+  leftBuffer?: Uint8Array,
+  rightBuffer?: Uint8Array
+): boolean {
+  if (!leftBuffer || !rightBuffer) return false;
+  if (leftBuffer.length !== rightBuffer.length) return false;
+  return leftBuffer.every((value, index) => value === rightBuffer[index]);
+}
+
+export function writeSyncIfChanged(path: string, contents: Uint8Array) {
+  const outputContents = maybeReadFileSync(path);
+  if (outputContents && isSameContents(contents, outputContents)) return;
+  Deno.writeFileSync(path, contents);
+}
+
+export function maybeFileStat(path: string): Deno.FileInfo | undefined {
+  try {
+    return Deno.statSync(path);
+  } catch {
+    return;
+  }
+}
+
+export function maybeReadFileSync(path: string) {
+  try {
+    return Deno.readFileSync(path);
+  } catch {
+    return;
+  }
+}
+
+export function removeFileSync(path: string) {
+  try {
+    Deno.removeSync(path);
+  } catch {
+    return;
+  }
 }
