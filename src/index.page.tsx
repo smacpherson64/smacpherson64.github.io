@@ -248,6 +248,7 @@ export default function Page() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" href="/favicon_128.png" />
       </head>
       <body>
         <div className="dark:text-gray-300 relative mx-auto container p-8 lg:px-16 grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-16">

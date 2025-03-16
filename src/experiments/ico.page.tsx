@@ -10,6 +10,7 @@ export default function Page() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>ico generator | sethmac.com</title>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" href="/favicon_128.png" />
         <script src="./ico.client.js" defer async />
       </head>
 

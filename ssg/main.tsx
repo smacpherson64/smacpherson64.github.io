@@ -89,6 +89,7 @@ async function compileSourceFile(file: string): Promise<void> {
       break;
     }
 
+    case "ico":
     case "png":
     case "jpg":
     case "svg": {

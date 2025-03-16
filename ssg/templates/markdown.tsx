@@ -18,6 +18,7 @@ export default function Template(props: Static<typeof schema>) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title}</title>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" href="/favicon_128.png" />
       </head>
       <body className="markdown">
         <div

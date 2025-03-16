@@ -3,6 +3,7 @@ export default function Page() {
     <html>
       <head>
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" href="/favicon_128.png" />
       </head>
 
       <body>

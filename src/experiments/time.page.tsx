@@ -4,6 +4,7 @@ export default function Page() {
       <head>
         <meta charSet="utf-8" />
         <link rel="stylesheet" href="/styles.css" />
+        <link rel="icon" type="image/png" href="/favicon_128.png" />
         <script src="./time.client.js" defer async></script>
       </head>
       <body />
