@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { getFrontmatter, parse } from "./markdown.ts";
-import { renderXMLToString } from "./react.tsx";
+import { renderPDF, renderXMLToString } from "./react.tsx";
 import MarkdownTemplate from "../templates/markdown.tsx";
 import SitemapTemplate from "../templates/sitemap.tsx";
 import { baseUrl, Page } from "./site.tsx";
@@ -27,6 +27,15 @@ export function compileMarkdown(filePath: string): Uint8Array<ArrayBufferLike> {
   );
 
   return encoder.encode(result);
+}
+
+export async function compilePDF(
+  filePath: string
+): Promise<Uint8Array<ArrayBufferLike>> {
+  const { default: Component } = await import(filePath);
+
+  const stream = await renderPDF(<Component />);
+  return new Response(stream as any).bytes();
 }
 
 export async function compileTypescript(

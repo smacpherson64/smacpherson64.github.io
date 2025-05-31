@@ -11,11 +11,9 @@ export type CircleProps = React.ComponentProps<"svg">;
  * A visual circle
  *
  * @example
- * ```typescript
- * import {Circle} from '...'
- *
+ * ```tsx
  * export default function Example() {
- * return <Circle />
+ *  return <Circle />
  * }
  * ```
  *

@@ -11,11 +11,9 @@ export type ArrowProps = React.ComponentProps<"svg">;
  * A visual circle
  *
  * @example
- * ```typescript
- * import {Arrow} from '...'
- *
+ * ```tsx
  * export default function Example() {
- * return <Arrow />
+ *  return <Arrow />
  * }
  * ```
  *

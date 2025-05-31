@@ -18,7 +18,9 @@
   },
   "imports": {
     "@eslint/js": "npm:@eslint/js@^9.22.0",
+    "@react-pdf/renderer": "npm:@react-pdf/renderer@^4.3.0",
     "@sinclair/typebox": "npm:@sinclair/typebox@^0.34.30",
+    "@std/assert": "jsr:@std/assert@^1.0.13",
     "@std/media-types": "jsr:@std/media-types@^1.1.0",
     "@tailwindcss/cli": "npm:@tailwindcss/cli@^4.0.14",
     "@types/react": "npm:@types/react@^19.0.10",
@@ -31,6 +33,7 @@
     "prism-react-renderer": "npm:prism-react-renderer@^2.4.1",
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
+    "react-pdf-tailwind": "npm:react-pdf-tailwind@^2.3.0",
     "remark": "npm:remark@^15.0.1",
     "remark-deflist": "npm:remark-deflist@^1.0.0",
     "remark-directive": "npm:remark-directive@^4.0.0",

@@ -8,6 +8,7 @@ import {
 import {
   compileHTMLSitemap,
   compileMarkdown,
+  compilePDF,
   compileTypescript,
   compileXMLSitemap,
 } from "./utils/compile.tsx";
@@ -16,6 +17,7 @@ import { ensureDirSync } from "jsr:@std/fs/ensure-dir";
 import { dirname } from "jsr:@std/path/dirname";
 import { copySync } from "jsr:@std/fs/copy";
 import { parseArgs } from "jsr:@std/cli/parse-args";
+
 import {
   getFiles,
   isSameContents,
@@ -81,11 +83,18 @@ async function compileSourceFile(file: string): Promise<void> {
 
     case "tsx":
     case "js": {
-      if (!metadata.path.endsWith(`.page.${metadata.extension}`)) return;
-      writeSyncIfChanged(
-        metadata.output,
-        await compileTypescript(metadata.path)
-      );
+      if (metadata.path.endsWith(`.pdf.${metadata.extension}`)) {
+        writeSyncIfChanged(metadata.output, await compilePDF(metadata.path));
+        return;
+      }
+
+      if (metadata.path.endsWith(`.page.${metadata.extension}`)) {
+        writeSyncIfChanged(
+          metadata.output,
+          await compileTypescript(metadata.path)
+        );
+        return;
+      }
       break;
     }
 
