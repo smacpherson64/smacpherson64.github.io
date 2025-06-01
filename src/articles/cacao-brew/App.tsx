@@ -130,7 +130,6 @@ function App() {
                 <Img src="./assets/strainer.jpg" />
                 <Figcaption className="text-base">
                   For straining, we like this strainer from oxo.
-                  <br /> It's wide lips make save one's fingers from burning.
                 </Figcaption>
               </figure>
             </div>
