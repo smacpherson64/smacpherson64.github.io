@@ -51,6 +51,16 @@ function App() {
 
           <hr className="text-gray-800" />
 
+          <section>
+            <H2 className="font-bold">Result</H2>
+            <figure>
+              <Img src="./assets/result.jpg" />
+              <Figcaption className="text-sm text-slate-400">
+                Makes roughly three mugs of cacao brew
+              </Figcaption>
+            </figure>
+          </section>
+
           <section className="mt-8">
             <H2 className="font-bold">Ingredients</H2>
             <ul className="mt-4">
@@ -77,11 +87,7 @@ function App() {
 
               <li className="mt-8">
                 <figure>
-                  <div className="aspect-square max-w-92 w-full border border-dotted border-gray-800 p-4 rounded-2xl grid place-items-center">
-                    <div className="text-blue-400">
-                      <span>Imagine water here...</span>
-                    </div>
-                  </div>
+                  <Img src="./assets/water.jpg" />
                   <Figcaption>33oz (4.125cups) filtered water</Figcaption>
                 </figure>
               </li>
