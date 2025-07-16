@@ -61,8 +61,8 @@ export function getSiteFileMetadata(path: string | URL) {
     .replace(siteDir, "");
 
   const relativeUrl = relativePath
-    .replace(/(\.md|\.page.tsx?)$/, ".html")
-    .replace(/(\.md|\.pdf.tsx?)$/, ".pdf")
+    .replace(/(\.page\.md|\.page.tsx?)$/, ".html")
+    .replace(/(\.pdf\.md|\.pdf.tsx?)$/, ".pdf")
     .split(SEPARATOR)
     .join("/");
 

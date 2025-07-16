@@ -12,7 +12,7 @@ import {
   compileTypescript,
   compileXMLSitemap,
 } from "./utils/compile.tsx";
-import { info } from "./utils/console.tsx";
+import { info, warn } from "./utils/console.tsx";
 import { ensureDirSync } from "jsr:@std/fs/ensure-dir";
 import { dirname } from "jsr:@std/path/dirname";
 import { copySync } from "jsr:@std/fs/copy";
@@ -117,7 +117,11 @@ async function compileAllSourceFiles() {
   });
 
   for (const source of sources) {
-    await compileSourceFile(source.path);
+    try {
+      await compileSourceFile(source.path);
+    } catch (error) {
+      warn(error);
+    }
   }
 }
 

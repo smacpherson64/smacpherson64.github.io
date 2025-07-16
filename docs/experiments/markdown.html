@@ -1,0 +1,172 @@
+<html lang="en" style="background-color:#0f172a" class="h-full"><head><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>sethmac.com</title><link rel="icon" type="image/png" href="/favicon_128.png"/><link rel="stylesheet" href="/styles.css"/></head><body class="markdown"><div class="wrapper"><h1>Headings</h1>
+<h1>h1 Heading</h1>
+<h2>h2 Heading</h2>
+<h3>h3 Heading</h3>
+<h4>h4 Heading</h4>
+<h5>h5 Heading</h5>
+<h6>h6 Heading</h6>
+<hr>
+<h1>Emphasis</h1>
+<p><strong>This is bold text</strong></p>
+<p><strong>This is bold text</strong></p>
+<p><em>This is italic text</em></p>
+<p><em>This is italic text</em></p>
+<p><del>Strikethrough</del></p>
+<hr>
+<h1>Blockquotes</h1>
+<blockquote>
+<p>Blockquotes can also be nested...</p>
+<blockquote>
+<p>...by using additional greater-than signs right next to each other...</p>
+<blockquote>
+<p>...or with spaces between arrows.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<hr>
+<h1>Lists</h1>
+<p><strong>Unordered</strong></p>
+<ul>
+<li>Create a list by starting a line with <code>+</code>, <code>-</code>, or <code>*</code></li>
+<li>Sub-lists are made by indenting 2 spaces:
+<ul>
+<li>Marker character change forces new list start:
+<ul>
+<li>Ac tristique libero volutpat at</li>
+</ul>
+<ul>
+<li>Facilisis in pretium nisl aliquet</li>
+</ul>
+<ul>
+<li>Nulla volutpat aliquam velit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Very easy!</li>
+</ul>
+<p><strong>Ordered</strong></p>
+<ol>
+<li>sequential numbers</li>
+<li>sequential numbers</li>
+<li>sequential numbers</li>
+<li>sequential numbers</li>
+</ol>
+<p>Start numbering with offset:</p>
+<ol start="57">
+<li>foo</li>
+<li>bar</li>
+</ol>
+<hr>
+<h1>Code</h1>
+<p>Inline <code>code</code></p>
+<p>Syntax highlighting</p>
+<div class="remark-highlight"><pre class="language-tsx"><code class="language-tsx"><span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">Page</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  lastmod<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  url<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  changefreq<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  priority<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  modifiedAt<span class="token operator">?</span><span class="token operator">:</span> <span class="token known-class-name class-name">Date</span> <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token spread operator">...</span>args<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> args<span class="token punctuation">.</span><span class="token method function property-access">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> acc <span class="token operator">+</span> <span class="token builtin">number</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">test</span><span class="token regex-delimiter">/</span></span>
+
+<span class="token number">1</span> <span class="token operator">+</span> <span class="token number">1</span>
+
+<span class="token boolean">true</span>
+
+<span class="token boolean">false</span>
+
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token string">"test"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token known-class-name class-name">BigInt</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 20</span>
+</code></pre></div>
+<h2>Tables</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td>engine</td>
+<td>engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
+<p>Right aligned columns</p>
+<table>
+<thead>
+<tr>
+<th align="right">Option</th>
+<th align="right">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">data</td>
+<td align="right">path to data files to supply the data that will be passed into templates.</td>
+</tr>
+<tr>
+<td align="right">engine</td>
+<td align="right">engine to be used for processing templates. Handlebars is the default.</td>
+</tr>
+<tr>
+<td align="right">ext</td>
+<td align="right">extension to be used for dest files.</td>
+</tr>
+</tbody>
+</table>
+<h2>Links</h2>
+<p><a href="https://sethmac.com">link text</a></p>
+<p><a href="https://sethmac.com/" title="Title text">link with title</a></p>
+<p>automatic link: <a href="https://sethmac.com">https://sethmac.com</a></p>
+<h2>Footnotes</h2>
+<p>Footnote 1 link<sup><a href="#user-content-fn-first" id="user-content-fnref-first" data-footnote-ref aria-describedby="footnote-label">1</a></sup>.</p>
+<p>Footnote 2 link<sup><a href="#user-content-fn-second" id="user-content-fnref-second" data-footnote-ref aria-describedby="footnote-label">2</a></sup>.</p>
+<p>Inline footnote^[Text of inline footnote] definition.</p>
+<p>Duplicated footnote reference<sup><a href="#user-content-fn-second" id="user-content-fnref-second-2" data-footnote-ref aria-describedby="footnote-label">2</a></sup>.</p>
+<hr>
+<h1>Definition lists</h1>
+<dl><dt>Term 1</dt><dd>Definition 1
+with lazy continuation.</dd><dt>Term 2 with <em>inline markup</em></dt><dd>Definition 2</dd></dl>
+<hr>
+<h1>Custom containers</h1>
+<blockquote class="note"><p class="header">note</p><p>Useful information that users should know, even when skimming content.</p></blockquote>
+<blockquote class="tip"><p class="header">tip</p><p>Helpful advice for doing things better or more easily.</p></blockquote>
+<blockquote class="info"><p class="header">info</p><p>Key information users need to know to achieve their goal.</p></blockquote>
+<blockquote class="warning"><p class="header">warning</p><p>Urgent info that needs immediate user attention to avoid problems.</p></blockquote>
+<blockquote class="danger"><p class="header">danger</p><p>Advises about risks or negative outcomes of certain actions.</p></blockquote>
+<h2>Math</h2>
+<pre><code class="language-math math-display">X = Y * 2
+Y = 5
+X = 5 * 2
+X = 10</code></pre>
+<section data-footnotes class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes</h2>
+<ol>
+<li id="user-content-fn-first">
+<p>Footnote <strong>can have markup</strong></p>
+<p>and multiple paragraphs. <a href="#user-content-fnref-first" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+<li id="user-content-fn-second">
+<p>Footnote text. <a href="#user-content-fnref-second" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a> <a href="#user-content-fnref-second-2" data-footnote-backref="" aria-label="Back to reference 2-2" class="data-footnote-backref">↩<sup>2</sup></a></p>
+</li>
+</ol>
+</section>
+</div></body></html>

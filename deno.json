@@ -1,19 +1,25 @@
 {
   "compilerOptions": {
-    "jsx":"react-jsx",
+    "jsx": "react-jsx",
     "jsxImportSource": "npm:react",
-    "jsxImportSourceTypes": "npm:@types/react"
+    "jsxImportSourceTypes": "npm:@types/react",
+    "checkJs": true
+  },
+  "fmt": {
+    "options": {
+      "lineWidth": 120
+    }
   },
   "tasks": {
-    "build:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css",
-    "build:client": "./node_modules/.bin/esbuild './src/**/*.client.tsx' --bundle --outdir=docs --outbase=./src --format=esm --log-level=info",
+    "build:css": "deno run -A npm:@tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css",
+    "build:client": "./esbuild --bundle --outdir=docs --outbase=./src --format=esm --log-level=info './src/**/*.client.tsx'",
     "build:pages": "deno -RWE ./ssg/main.tsx",
     "build": "deno task 'build:*'",
 
-    "dev:css": "npx @tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css --watch",
-    "dev:client": "./node_modules/.bin/esbuild './src/**/*.client.tsx' --bundle --outdir=docs --outbase=./src --format=esm --log-level=info --watch",
+    "dev:css": "deno run -A npm:@tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css --watch",
+    "dev:client": "./esbuild --bundle --outdir=docs --outbase=./src --format=esm --log-level=info --watch './src/**/*.client.tsx'",
     "dev:pages": "deno -RWE --watch ./ssg/main.tsx --watch",
-    "dev:server": "serve ./docs",
+    "dev:server": "deno run --allow-net --allow-read=./docs jsr:@std/http/file-server ./docs",
     "dev": "deno task 'dev:*'"
   },
   "imports": {
@@ -26,7 +32,7 @@
     "@types/react": "npm:@types/react@^19.0.10",
     "date-fns": "npm:date-fns@^4.1.0",
     "decimal.js": "npm:decimal.js@^10.5.0",
-    "esbuild": "npm:esbuild@^0.25.1",
+    "esbuild": "https://deno.land/x/esbuild@v0.25.6",
     "eslint": "npm:eslint@^9.22.0",
     "eslint-plugin-react": "npm:eslint-plugin-react@^7.37.4",
     "jszip": "npm:jszip@^3.10.1",

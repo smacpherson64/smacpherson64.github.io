@@ -1,0 +1,178 @@
+<html lang="en" style="background-color:#0f172a" class="h-full"><head><meta charSet="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>sethmac.com</title><link rel="icon" type="image/png" href="/favicon_128.png"/><link rel="stylesheet" href="/styles.css"/></head><body class="markdown"><div class="wrapper"><h1>React Components</h1>
+<p>React in the style of VanJS.</p>
+<h2>Proof of concept</h2>
+<p>My goal was to make a proof of concept that could work like VanJS style of callable functions using React.</p>
+<p>Mainly something that could be used directly in the browser without compiling / bundling.</p>
+<p>I generally use three things that prevent things from being used in browsers directly without bundlers:</p>
+<ul>
+<li>Typescript, JSX, and npm</li>
+</ul>
+<p>For NodeJS however, the last piece is JSX. By using a function calling style (like VanJS), React can be used on the server in a more ergonomic way.</p>
+<div class="remark-highlight"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">Fragment</span><span class="token punctuation">,</span> createElement <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"react"</span><span class="token punctuation">;</span>
+
+<span class="token doc-comment comment">/** <span class="token keyword">@import</span> <span class="token class-name"><span class="token punctuation">{</span> JSX<span class="token punctuation">,</span> JSXElementConstructor<span class="token punctuation">,</span> ReactElement<span class="token punctuation">,</span> ComponentProps<span class="token punctuation">,</span> ReactNode <span class="token punctuation">}</span></span> from 'react' */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span>Record<span class="token punctuation">&#x3C;</span>`data-$<span class="token punctuation">{</span>string<span class="token punctuation">}</span>`<span class="token punctuation">,</span> string<span class="token punctuation">></span><span class="token punctuation">}</span></span> <span class="token class-name">DataAttributes</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token keyword">keyof</span> JSX<span class="token punctuation">.</span>IntrinsicElements <span class="token operator">|</span> JSXElementConstructor<span class="token punctuation">&#x3C;</span>any<span class="token punctuation">></span> <span class="token operator">|</span> string<span class="token punctuation">}</span></span> <span class="token class-name">ComponentInput</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@template</span> <span class="token class-name"><span class="token punctuation">{</span>ComponentInput<span class="token punctuation">}</span></span> <span class="token class-name">A</span>
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span>ComponentProps<span class="token punctuation">&#x3C;</span>A <span class="token keyword">extends</span> <span class="token keyword">keyof</span> JSX<span class="token punctuation">.</span>IntrinsicElements <span class="token operator">?</span> A <span class="token operator">:</span> A <span class="token keyword">extends</span> string <span class="token operator">?</span> <span class="token string">"div"</span> <span class="token operator">:</span> A<span class="token punctuation">></span> <span class="token operator">&#x26;</span> DataAttributes<span class="token punctuation">}</span></span> <span class="token class-name">Props</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@template</span> <span class="token class-name"><span class="token punctuation">{</span>ComponentInput<span class="token punctuation">}</span></span> <span class="token class-name">A</span>
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span>Props<span class="token punctuation">&#x3C;</span>A<span class="token punctuation">></span> <span class="token operator">|</span> ReactNode<span class="token punctuation">}</span></span> <span class="token class-name">ElementOrProps</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@template</span> <span class="token class-name"><span class="token punctuation">{</span>ComponentInput<span class="token punctuation">}</span></span> <span class="token class-name">A</span>
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token punctuation">(</span>
+ <span class="token operator">*</span>   <span class="token operator">...</span>args<span class="token operator">:</span>
+ <span class="token operator">*</span>     <span class="token operator">|</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+ <span class="token operator">*</span>     <span class="token operator">|</span> <span class="token punctuation">[</span>ElementOrProps<span class="token punctuation">&#x3C;</span>A<span class="token punctuation">></span> <span class="token operator">|</span> <span class="token keyword">undefined</span><span class="token punctuation">]</span>
+ <span class="token operator">*</span>     <span class="token operator">|</span> <span class="token punctuation">[</span>ElementOrProps<span class="token punctuation">&#x3C;</span>A<span class="token punctuation">></span> <span class="token operator">|</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">(</span>ReactNode <span class="token operator">|</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+ <span class="token operator">*</span> <span class="token punctuation">)</span> <span class="token operator">=></span> ReactElement<span class="token punctuation">&#x3C;</span>Props<span class="token punctuation">&#x3C;</span>A<span class="token punctuation">></span><span class="token punctuation">></span><span class="token punctuation">}</span></span> <span class="token class-name">Component</span>
+ */</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@param</span> <span class="token class-name"><span class="token punctuation">{</span>unknown<span class="token punctuation">}</span></span> <span class="token parameter">input</span>
+ * <span class="token keyword">@returns</span> <span class="token class-name"><span class="token punctuation">{</span>boolean<span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword">function</span> <span class="token function">isProps</span><span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>input<span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> input <span class="token operator">!==</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token string">"$$typeof"</span> <span class="token keyword">in</span> input<span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword control-flow">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@template</span> <span class="token class-name"><span class="token punctuation">{</span>ComponentInput<span class="token punctuation">}</span></span> <span class="token class-name">A</span>
+ * <span class="token keyword">@param</span> <span class="token class-name"><span class="token punctuation">{</span>A<span class="token punctuation">}</span></span> <span class="token parameter">tag</span>
+ * <span class="token keyword">@return</span> <span class="token class-name"><span class="token punctuation">{</span>Component<span class="token punctuation">&#x3C;</span>A<span class="token punctuation">></span><span class="token punctuation">}</span></span>
+ */</span>
+<span class="token keyword">function</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token doc-comment comment">/**
+   * <span class="token keyword">@param</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token operator">...</span>any<span class="token punctuation">}</span></span> <span class="token parameter">args</span>
+   */</span>
+  <span class="token keyword control-flow">return</span> <span class="token keyword">function</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token parameter"><span class="token spread operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>head<span class="token punctuation">,</span> <span class="token spread operator">...</span>rest<span class="token punctuation">]</span> <span class="token operator">=</span> args<span class="token punctuation">;</span>
+    <span class="token doc-comment comment">/** <span class="token keyword">@type</span> <span class="token class-name"><span class="token punctuation">{</span>any<span class="token punctuation">}</span></span> */</span>
+    <span class="token keyword">let</span> props <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> children <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token spread operator">...</span>rest<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token function">isProps</span><span class="token punctuation">(</span>head<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      props <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow">else</span> <span class="token punctuation">{</span>
+      children<span class="token punctuation">.</span><span class="token method function property-access">unshift</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword control-flow">return</span> <span class="token function">createElement</span><span class="token punctuation">(</span>tag<span class="token punctuation">,</span> props<span class="token punctuation">,</span> <span class="token spread operator">...</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span>Readonly<span class="token punctuation">&#x3C;</span>Record<span class="token punctuation">&#x3C;</span>string<span class="token punctuation">,</span> Component<span class="token punctuation">&#x3C;</span>string<span class="token punctuation">></span><span class="token punctuation">></span><span class="token punctuation">></span> <span class="token operator">&#x26;</span> <span class="token punctuation">{</span><span class="token punctuation">[</span>K <span class="token keyword">in</span> <span class="token keyword">keyof</span> JSX<span class="token punctuation">.</span>IntrinsicElements<span class="token punctuation">]</span><span class="token operator">:</span> Component<span class="token punctuation">&#x3C;</span>K<span class="token punctuation">></span><span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token class-name">ProxyBaseObject</span>
+ */</span>
+
+<span class="token keyword module">export</span> <span class="token keyword">const</span> tags <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span><span class="token doc-comment comment">/** <span class="token keyword">@type</span> <span class="token class-name"><span class="token punctuation">{</span>ProxyBaseObject<span class="token punctuation">}</span></span> */</span> <span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span><span class="token punctuation">(</span>_<span class="token punctuation">,</span> tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> tag <span class="token operator">!==</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token keyword control-flow">return</span> noop<span class="token punctuation">;</span>
+
+    <span class="token keyword control-flow">switch</span> <span class="token punctuation">(</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"fragment"</span><span class="token operator">:</span>
+        <span class="token keyword control-flow">return</span> <span class="token function">component</span><span class="token punctuation">(</span><span class="token maybe-class-name">Fragment</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword module">default</span><span class="token operator">:</span>
+        <span class="token keyword control-flow">return</span> <span class="token function">component</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">noop</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword control-flow">return</span> <span class="token keyword null nil">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div>
+<p>Then using it would look like:</p>
+<div class="remark-highlight"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> tags <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">"../utils/react.js"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> div<span class="token punctuation">,</span> small<span class="token punctuation">,</span> abbr<span class="token punctuation">,</span> details<span class="token punctuation">,</span> summary<span class="token punctuation">,</span> ul<span class="token punctuation">,</span> li <span class="token punctuation">}</span> <span class="token operator">=</span> tags<span class="token punctuation">;</span>
+
+<span class="token doc-comment comment">/**
+ * <span class="token keyword">@typedef</span> <span class="token class-name"><span class="token punctuation">{</span>Object<span class="token punctuation">}</span></span> <span class="token class-name">ExperienceVisual<span class="token punctuation">.</span>Props</span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>Object<span class="token punctuation">}</span></span> <span class="token parameter">item</span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">item<span class="token punctuation">.</span>description</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">item<span class="token punctuation">.</span>title</span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span><span class="token punctuation">[</span>number<span class="token punctuation">,</span> number<span class="token punctuation">]</span><span class="token punctuation">}</span></span> <span class="token parameter">item<span class="token punctuation">.</span>range</span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">}</span></span> <span class="token parameter">item<span class="token punctuation">.</span>business</span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">item<span class="token punctuation">.</span>responsibilities</span><span class="token punctuation">]</span></span>
+ * <span class="token keyword">@property</span> <span class="token class-name"><span class="token punctuation">{</span>string<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span></span> <span class="token optional-parameter"><span class="token punctuation">[</span><span class="token parameter">item<span class="token punctuation">.</span>accomplishments</span><span class="token punctuation">]</span></span>
+ *
+ * <span class="token keyword">@param</span> <span class="token class-name"><span class="token punctuation">{</span>ExperienceVisual<span class="token punctuation">.</span>Props<span class="token punctuation">}</span></span> <span class="token parameter">props</span>
+ */</span>
+<span class="token keyword module">export</span> <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">ExperienceVisual</span></span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> item <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> header <span class="token operator">=</span> <span class="token punctuation">(</span>
+      <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"leading-tight"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"flex items-baseline gap-1"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"font-semibold"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            item<span class="token punctuation">.</span><span class="token property-access">description</span>
+              <span class="token operator">?</span> <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"relative group cursor-help"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                  <span class="token function">abbr</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token string-property property">"data-title"</span><span class="token operator">:</span> item<span class="token punctuation">.</span><span class="token property-access">description</span><span class="token punctuation">,</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"border-b border-dotted"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    item<span class="token punctuation">.</span><span class="token property-access">title</span>
+                  <span class="token punctuation">)</span><span class="token punctuation">,</span>
+                  <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"absolute hidden group-hocus:block -top-6 left-1/2 -translate-x-1/2 px-2 py-1 text-xs rounded-md bg-slate-700/50 text-white backdrop-blur-sm w-[200px]"</span><span class="token punctuation">,</span> <span class="token literal-property property">tabIndex</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                    item<span class="token punctuation">.</span><span class="token property-access">description</span>
+                  <span class="token punctuation">)</span>
+                <span class="token punctuation">)</span>
+              <span class="token operator">:</span> item<span class="token punctuation">.</span><span class="token property-access">title</span>
+            <span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token function">small</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span><span class="token property-access">range</span><span class="token punctuation">.</span><span class="token method function property-access">join</span><span class="token punctuation">(</span><span class="token string">" - "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"font-light dark:text-gray-500"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> item<span class="token punctuation">.</span><span class="token property-access">business</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>item<span class="token punctuation">.</span><span class="token property-access">responsibilities</span> <span class="token operator">&#x26;&#x26;</span> <span class="token operator">!</span>item<span class="token punctuation">.</span><span class="token property-access">responsibilities</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"ml-5"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> header<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
+    <span class="token function">details</span><span class="token punctuation">(</span>
+      <span class="token function">summary</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"gap-2 focus:outline-0 focus:ring-2 focus:ring-sky-500 rounded-xs"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> header<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      
+      item<span class="token punctuation">.</span><span class="token property-access">responsibilities</span> <span class="token operator">&#x26;&#x26;</span>
+        <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"mt-2 block px-2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"text-sm text-gray-700 dark:text-gray-300"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token string">"Responsibilities:"</span>
+          <span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">ul</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"flex flex-col gap-2 mt-2 pl-8 text-gray-700 dark:text-gray-300 text-sm"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            item<span class="token punctuation">.</span><span class="token property-access">responsibilities</span><span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">$item</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span>
+              <span class="token function">li</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">key</span><span class="token operator">:</span> $item<span class="token punctuation">,</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"marker:text-sky-500 list-disc leading-tight"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                $item
+              <span class="token punctuation">)</span>
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    item<span class="token punctuation">.</span><span class="token property-access">accomplishments</span> <span class="token operator">&#x26;&#x26;</span>
+      <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"mt-2 px-2"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"text-sm text-gray-700 dark:text-gray-300"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token string">"Favorite accomplishments:"</span>
+        <span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">ul</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"flex flex-col gap-2 mt-2 pl-8 text-gray-700 dark:text-gray-300  text-sm"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          item<span class="token punctuation">.</span><span class="token property-access">accomplishments</span><span class="token punctuation">.</span><span class="token method function property-access">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">$item</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span>
+            <span class="token function">li</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">key</span><span class="token operator">:</span> $item<span class="token punctuation">,</span> <span class="token literal-property property">className</span><span class="token operator">:</span> <span class="token string">"marker:text-sky-500 list-disc leading-tight"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+              $item
+            <span class="token punctuation">)</span>
+          <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span>
+      <span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div>
+</div></body></html>

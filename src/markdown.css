@@ -63,7 +63,7 @@
 }
 
 .markdown .wrapper {
-  @apply mx-auto max-w-xl p-4 sm:p-8 leading-normal;
+  @apply mx-auto max-w-3xl p-4 sm:p-8 leading-normal;
 }
 
 :where(.markdown .wrapper > *) {
@@ -105,6 +105,11 @@
 
 .markdown p {
   @apply leading-normal;
+}
+
+.markdown p + p,
+.markdown ul + p {
+  @apply mt-8;
 }
 
 .markdown strong {
@@ -207,7 +212,7 @@
 }
 
 .markdown .remark-highlight {
-  @apply text-xs;
+  @apply my-12;
 }
 
 .markdown code {
