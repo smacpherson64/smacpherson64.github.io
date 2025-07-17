@@ -3,6 +3,7 @@ export default function Page() {
     <html className="bg-slate-700">
       <head>
         <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/styles.css" />
         <link rel="icon" type="image/png" href="/favicon_128.png" />
       </head>

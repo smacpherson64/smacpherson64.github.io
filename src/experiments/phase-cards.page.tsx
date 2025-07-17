@@ -66,7 +66,7 @@ export default function Page() {
   return (
     <html lang="en" className="h-full">
       <head>
-        <meta charSet="UTF-8" />
+        <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>sethmac.com</title>
         <link rel="icon" type="image/png" href="/favicon_128.png" />

@@ -19747,8 +19747,8 @@ function App() {
       {
         method: "GET",
         action: "/share",
-        className: "grid place-items-center h-screen",
-        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col gap-2", children: [
+        className: "grid place-items-center h-screen w-full p-8",
+        children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "flex flex-col gap-2 w-full", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", { htmlFor: "text-to-share", className: "text-gray-400 text-xl", children: "Share text" }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
             "textarea",
@@ -19756,7 +19756,7 @@ function App() {
               id: "text-to-share",
               name: "i",
               placeholder: "Type content to share...",
-              className: "rounded-3xl text-3xl bg-gray-600 text-white p-5",
+              className: "rounded-2xl sm:rounded-3xl text-xl sm:text-3xl bg-gray-600 text-white p-5 max-w-full",
               rows: 5,
               autoFocus: true
             }
@@ -19765,7 +19765,7 @@ function App() {
             "button",
             {
               type: "submit",
-              className: "rounded-3xl bg-blue-400 p-4 text-3xl text-white",
+              className: "rounded-2xl sm:rounded-3xl text-xl sm:text-3xl bg-blue-400 p-4 text-white",
               children: "Link"
             }
           )
@@ -19773,7 +19773,7 @@ function App() {
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { className: "grid place-items-center h-screen text-xl text-white select-all", children: data });
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { className: "grid place-items-center h-screen text-3xl text-white select-all", children: data });
 }
 (0, import_client.createRoot)(document.body).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(App, {}));
 /*! Bundled license information:
