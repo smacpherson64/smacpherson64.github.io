@@ -19,7 +19,7 @@
     "dev:css": "deno run -A npm:@tailwindcss/cli -i ./src/styles.css -o ./docs/styles.css --watch",
     "dev:client": "./esbuild --bundle --outdir=docs --outbase=./src --format=esm --log-level=info --watch './src/**/*.client.tsx'",
     "dev:pages": "deno -RWE --watch ./ssg/main.tsx --watch",
-    "dev:server": "deno run --allow-net --allow-read=./docs jsr:@std/http/file-server ./docs",
+    "dev:server": "deno run --allow-net --allow-read=./docs jsr:@std/http/file-server ./docs --port=80",
     "dev": "deno task 'dev:*'"
   },
   "imports": {
@@ -37,6 +37,7 @@
     "eslint-plugin-react": "npm:eslint-plugin-react@^7.37.4",
     "jszip": "npm:jszip@^3.10.1",
     "prism-react-renderer": "npm:prism-react-renderer@^2.4.1",
+    "qrcode": "npm:qrcode@^1.5.4",
     "react": "npm:react@^19.0.0",
     "react-dom": "npm:react-dom@^19.0.0",
     "react-pdf-tailwind": "npm:react-pdf-tailwind@^2.3.0",
