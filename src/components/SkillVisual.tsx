@@ -16,7 +16,8 @@ export function SkillVisual({
   description,
 }: SkillVisualProps) {
   const total = useMemo(
-    () => new Date().getFullYear() - startYear,
+    // Include current year
+    () => new Date().getFullYear() + 1 - startYear,
     [startYear]
   );
 
