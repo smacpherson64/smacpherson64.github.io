@@ -59,7 +59,7 @@
 }
 
 .markdown {
-    @apply text-white font-sans font-extralight;
+    @apply text-white font-sans font-extralight text-sm sm:text-lg text-pretty;
 }
 
 .markdown .wrapper {
@@ -76,7 +76,7 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-    @apply text-slate-200 font-extralight mt-8 first:mt-0;
+    @apply text-slate-100 font-semibold mt-8 first:mt-0;
 }
 
 .markdown h1 {
@@ -107,12 +107,17 @@
     @apply leading-normal;
 }
 
-.markdown blockquote p + p {
-    @apply mt-2;
-}
-
+.markdown p + *,
 .markdown ul + p {
     @apply mt-8;
+}
+
+.markdown p + p {
+    @apply mt-4;
+}
+
+.markdown blockquote p + p {
+    @apply mt-1;
 }
 
 .markdown strong {
@@ -120,7 +125,7 @@
 }
 
 .markdown blockquote {
-    @apply ml-2 my-8 p-2 border-l-2 border-slate-800 leading-tight text-slate-400;
+    @apply ml-[2px] my-4 p-2 border-l-4 border-slate-800 leading-tight text-slate-400;
 }
 
 .markdown blockquote .header {

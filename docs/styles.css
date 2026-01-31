@@ -2180,9 +2180,16 @@ pre[class*="language-"] {
 }
 .markdown {
   font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
   --tw-font-weight: var(--font-weight-extralight);
   font-weight: var(--font-weight-extralight);
+  text-wrap: pretty;
   color: var(--color-white);
+  @media (width >= 40rem) {
+    font-size: var(--text-lg);
+    line-height: var(--tw-leading, var(--text-lg--line-height));
+  }
 }
 .markdown .wrapper {
   margin-inline: auto;
@@ -2199,9 +2206,9 @@ pre[class*="language-"] {
 }
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
   margin-top: calc(var(--spacing) * 8);
-  --tw-font-weight: var(--font-weight-extralight);
-  font-weight: var(--font-weight-extralight);
-  color: var(--color-slate-200);
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-slate-100);
   &:first-child {
     margin-top: calc(var(--spacing) * 0);
   }
@@ -2236,21 +2243,24 @@ pre[class*="language-"] {
   --tw-leading: var(--leading-normal);
   line-height: var(--leading-normal);
 }
-.markdown blockquote p + p {
-  margin-top: calc(var(--spacing) * 2);
-}
-.markdown ul + p {
+.markdown p + *, .markdown ul + p {
   margin-top: calc(var(--spacing) * 8);
+}
+.markdown p + p {
+  margin-top: calc(var(--spacing) * 4);
+}
+.markdown blockquote p + p {
+  margin-top: calc(var(--spacing) * 1);
 }
 .markdown strong {
   --tw-font-weight: var(--font-weight-semibold);
   font-weight: var(--font-weight-semibold);
 }
 .markdown blockquote {
-  margin-block: calc(var(--spacing) * 8);
-  margin-left: calc(var(--spacing) * 2);
+  margin-block: calc(var(--spacing) * 4);
+  margin-left: 2px;
   border-left-style: var(--tw-border-style);
-  border-left-width: 2px;
+  border-left-width: 4px;
   border-color: var(--color-slate-800);
   padding: calc(var(--spacing) * 2);
   --tw-leading: var(--leading-tight);

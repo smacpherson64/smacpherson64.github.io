@@ -50,7 +50,7 @@ Some are idealistic and foreign like the Christian's book of Proverbs
 
 Some are pessimistic like the Christian's book of Ecclesiastes
 
-Some are event ancient to the ancients:
+Some are even ancient to the ancients:
 
 > - Hatreds never cease by hatreds in this world. By love alone they cease. This is an ancient Law.
 
