@@ -3,7 +3,7 @@ import { visit } from "npm:unist-util-visit";
 export function githubDirectivesToHtml() {
   return (
     tree: import("npm:mdast").Root,
-    file: import("npm:vfile").VFile
+    file: import("npm:vfile").VFile,
   ): undefined => {
     visit(tree, function (node) {
       if (node.type === "containerDirective") {
@@ -12,6 +12,7 @@ export function githubDirectivesToHtml() {
         data.hProperties = {
           class: [node.name].filter(Boolean).join(" ").toLocaleLowerCase(),
         };
+
         node.children.unshift({
           type: "paragraph",
           data: { hProperties: { class: "header" } },

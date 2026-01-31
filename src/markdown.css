@@ -1,73 +1,73 @@
 @media print {
-  *,
-  *:before,
-  *:after {
-    background: transparent !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
 
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
 
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
 
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
 
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: "";
-  }
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
 
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
 
-  thead {
-    display: table-header-group;
-  }
+    thead {
+        display: table-header-group;
+    }
 
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
 
-  img {
-    max-width: 100% !important;
-  }
+    img {
+        max-width: 100% !important;
+    }
 
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
 
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
 }
 
 .markdown {
-  @apply text-white font-sans font-extralight;
+    @apply text-white font-sans font-extralight;
 }
 
 .markdown .wrapper {
-  @apply mx-auto max-w-3xl p-4 sm:p-8 leading-normal;
+    @apply mx-auto max-w-3xl p-4 sm:p-8 leading-normal;
 }
 
 :where(.markdown .wrapper > *) {
-  @apply mt-2;
+    @apply mt-2;
 }
 
 .markdown h1,
@@ -76,125 +76,128 @@
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply text-slate-200 font-extralight mt-8 first:mt-0;
+    @apply text-slate-200 font-extralight mt-8 first:mt-0;
 }
 
 .markdown h1 {
-  @apply text-3xl;
+    @apply text-3xl;
 }
 
 .markdown h2 {
-  @apply text-2xl;
+    @apply text-2xl;
 }
 
 .markdown h3 {
-  @apply text-xl;
+    @apply text-xl;
 }
 
 .markdown h4 {
-  @apply text-lg;
+    @apply text-lg;
 }
 
 .markdown h6 {
-  @apply text-sm;
+    @apply text-sm;
 }
 
 .markdown hr {
-  @apply mx-auto w-full border-slate-800 my-8;
+    @apply mx-auto w-full border-slate-800 my-8;
 }
 
 .markdown p {
-  @apply leading-normal;
+    @apply leading-normal;
 }
 
-.markdown p + p,
+.markdown blockquote p + p {
+    @apply mt-2;
+}
+
 .markdown ul + p {
-  @apply mt-8;
+    @apply mt-8;
 }
 
 .markdown strong {
-  @apply font-semibold;
+    @apply font-semibold;
 }
 
 .markdown blockquote {
-  @apply ml-2 p-4 border-l-2 border-slate-800 text-lg leading-relaxed text-slate-400;
+    @apply ml-2 my-8 p-2 border-l-2 border-slate-800 leading-tight text-slate-400;
 }
 
 .markdown blockquote .header {
-  @apply text-sm capitalize;
+    @apply text-sm capitalize;
 }
 
 .markdown blockquote.note .header {
-  @apply font-semibold text-blue-500;
+    @apply font-semibold text-blue-500;
 }
 
 .markdown blockquote.note {
-  @apply border-blue-500;
+    @apply border-blue-500;
 }
 
 .markdown blockquote.tip .header {
-  @apply font-semibold text-green-300;
+    @apply font-semibold text-green-300;
 }
 
 .markdown blockquote.tip {
-  @apply border-green-300;
+    @apply border-green-300;
 }
 
 .markdown blockquote.info .header {
-  @apply font-semibold text-violet-500;
+    @apply font-semibold text-violet-500;
 }
 
 .markdown blockquote.info {
-  @apply border-violet-500;
+    @apply border-violet-500;
 }
 
 .markdown blockquote.warning .header {
-  @apply font-semibold text-orange-300;
+    @apply font-semibold text-orange-300;
 }
 
 .markdown blockquote.warning {
-  @apply border-orange-300;
+    @apply border-orange-300;
 }
 
 .markdown blockquote.danger .header {
-  @apply font-semibold text-red-500;
+    @apply font-semibold text-red-500;
 }
 
 .markdown blockquote.danger {
-  @apply border-red-500;
+    @apply border-red-500;
 }
 
 .markdown blockquote > blockquote {
-  @apply mt-4;
+    @apply mt-4;
 }
 
 .markdown ul {
-  @apply pl-8 list-disc;
+    @apply pl-8 list-disc;
 }
 
 .markdown ol {
-  @apply pl-8 list-decimal;
+    @apply pl-8 list-decimal;
 }
 
 .markdown li {
-  @apply mt-2 leading-tight;
+    @apply mt-2 leading-tight;
 }
 
 .markdown table {
-  @apply rounded;
+    @apply rounded;
 }
 
 .markdown th {
-  @apply font-semibold;
+    @apply font-semibold;
 }
 
 .markdown th,
 .markdown td {
-  @apply px-4 py-3 border border-slate-700;
+    @apply px-4 py-3 border border-slate-700;
 }
 
 .markdown a {
-  @apply underline underline-offset-2 decoration-1 decoration-current/80 text-blue-400 hover:text-blue-500 focus:text-blue-500;
+    @apply underline underline-offset-2 decoration-1 decoration-current/80 text-blue-400 hover:text-blue-500 focus:text-blue-500;
 }
 
 .markdown img,
@@ -204,33 +207,33 @@
 .markdown svg,
 .markdown select,
 .markdown textarea {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .markdown .footnotes {
-  @apply mt-16 pt-8 mb-8 border-t border-t-slate-500/50;
+    @apply mt-16 pt-8 mb-8 border-t border-t-slate-500/50;
 }
 
 .markdown .remark-highlight {
-  @apply my-12;
+    @apply my-12;
 }
 
 .markdown code {
-  @apply bg-slate-950;
+    @apply bg-slate-950;
 }
 
 .markdown pre code {
-  @apply text-xs;
+    @apply text-xs;
 }
 
 .markdown dt {
-  @apply font-semibold not-first:mt-4;
+    @apply font-semibold not-first:mt-4;
 }
 
 .markdown dd {
-  @apply pl-4;
+    @apply pl-4;
 }
 
 .markdown .math-display {
-  @apply block p-4;
+    @apply block p-4;
 }
